@@ -12,7 +12,7 @@ include_once basename(__DIR__) . '/../Settings.php';
     <meta name="author" content="Carlo Aresu">
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
-    <link rel="stylesheet" type="text/css" href="../css/stile.css">
+    <link rel="stylesheet" type="text/css" href="../../css/stile.css">
 </head>
 
 <body>
