@@ -1,6 +1,13 @@
+<!--form di ricerca
+form della home page cliente che permette di effettuare delle ricerche
+-->
+<article>
+    <h1>HOME PAGE CLIENTE</h1>
+</article>
 <article>
 
- <form>
+<form>
+ 
 
 <input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
         
@@ -45,7 +52,9 @@
                 <option value="17">Altro</option>
             </select>  
           
- 
-</form> 
 
+</form> 
 </article>
+<?php
+var_dump($_SESSION['current_user']);
+?>

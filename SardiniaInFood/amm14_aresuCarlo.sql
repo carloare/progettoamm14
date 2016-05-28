@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Mar 05, 2016 alle 00:10
+-- Generato il: Mar 12, 2016 alle 16:58
 -- Versione del server: 5.5.35
 -- Versione PHP: 5.4.6-1ubuntu1.7
 
@@ -45,7 +45,30 @@ CREATE TABLE IF NOT EXISTS `Attivita` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tipo` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+
+--
+-- Dump dei dati per la tabella `Attivita`
+--
+
+INSERT INTO `Attivita` (`id`, `tipo`) VALUES
+(1, 'Agriturismo'),
+(2, 'American Bar'),
+(3, 'Bar Caffè'),
+(4, 'Birreria'),
+(5, 'Bistrot'),
+(6, 'Fast Food'),
+(7, 'Gelateria'),
+(8, 'Osteria'),
+(9, 'Pasticceria'),
+(10, 'Pizzeria'),
+(11, 'Pub'),
+(12, 'Ristorante'),
+(13, 'Self Service'),
+(14, 'Snack Bar'),
+(15, 'Take Away'),
+(16, 'Trattoria'),
+(17, 'Altro');
 
 -- --------------------------------------------------------
 
@@ -68,9 +91,6 @@ CREATE TABLE IF NOT EXISTS `Aziende` (
   `telefono` varchar(128) DEFAULT NULL,
   `email` varchar(128) DEFAULT NULL,
   `sito_web` varchar(128) DEFAULT NULL,
-  `facebook` varchar(128) DEFAULT NULL,
-  `twitter` varchar(128) DEFAULT NULL,
-  `instagram` varchar(128) DEFAULT NULL,
   `ruolo` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tipo_incarichi_id` (`tipo_incarichi_id`),
@@ -119,7 +139,17 @@ CREATE TABLE IF NOT EXISTS `Incarichi` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tipo` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dump dei dati per la tabella `Incarichi`
+--
+
+INSERT INTO `Incarichi` (`id`, `tipo`) VALUES
+(1, 'Proprietario'),
+(2, 'Dirigente Generale'),
+(3, 'Consulente'),
+(4, 'Altro');
 
 -- --------------------------------------------------------
 
@@ -193,7 +223,31 @@ CREATE TABLE IF NOT EXISTS `Servizi` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tipo` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- Dump dei dati per la tabella `Servizi`
+--
+
+INSERT INTO `Servizi` (`id`, `tipo`) VALUES
+(1, 'Accesso disabili'),
+(2, 'Accetta carte di credito'),
+(3, 'Accetta prenotazioni'),
+(4, 'Bagno diponibile'),
+(5, 'Bancomat'),
+(6, 'Bevande alcoliche'),
+(7, 'Catering'),
+(8, 'Consegna a domicilio'),
+(9, 'Da asporto'),
+(10, 'Guardaroba disponibile'),
+(11, 'Musica'),
+(12, 'Parcheggio auto'),
+(13, 'Parcheggio bici'),
+(14, 'Per fumatori'),
+(15, 'Posti a sedere all''aperto'),
+(16, 'Stanza privata'),
+(17, 'Tv'),
+(18, 'Wi-Fi');
 
 -- --------------------------------------------------------
 

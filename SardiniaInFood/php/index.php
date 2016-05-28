@@ -7,6 +7,7 @@ include_once 'view/ViewDescriptor.php';
 // punto unico di accesso
 
 FrontController::start();
+
 class FrontController
 
 	{
@@ -33,16 +34,54 @@ class FrontController
 				// home page visualizzata di default
 
 			case 0:
-				$vd->setErrorFile('view/out/error_out.php');
-				$vd->setMenuFile('view/out/menu_home_page.php');
-				$vd->setContentFile('view/out/home_page_default.php');
-				$vd->setFooterFile('view/out/footer_home_page.php');
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setMenuFile('view/out/menu_home_page.php'); //bottoni della home page
+				$vd->setContentFile('view/out/home_page_default.php'); //nella home è presente il fom di ricerca
+				$vd->setFooterFile('view/out/footer_home_page.php'); //altri bottoni della home page
 				if (isset($GET['logout']))
 					{
 					session_destroy();
 					}
 
 				break;
+
+				// form di registrazione del cliente
+
+			case 1:
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setMenuFile('view/out/menu_back.php'); //bottone per tornare nella home
+				$vd->setContentFile('view/out/form_registrazione_cliente.php'); //form per la registrazione di un nuovo cliente
+				$vd->setFooterFile('view/out/footer_empty.php'); //footer vuoto
+				break;
+
+				// login cliente
+
+			case 2:
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setMenuFile('view/out/menu_back.php'); //bottone per tornare nella home
+				$vd->setContentFile('view/out/login_cliente.php'); //login cliente
+				$vd->setFooterFile('view/out/footer_empty.php'); //footer vuoto
+				break;
+
+				// form di registrazione del cliente
+
+			case 3:
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setMenuFile('view/out/menu_back.php'); //bottone per tornare nella home
+				$vd->setContentFile('view/out/form_registrazione_azienda.php'); //form per la registrazione di una nuova azienda
+				$vd->setFooterFile('view/out/footer_empty.php'); //footer vuoto
+				break;
+
+				// login azienda
+
+			case 4:
+                               
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setMenuFile('view/out/menu_back.php'); //bottone per tornare nella home
+				$vd->setContentFile('view/out/login_azienda.php'); //login azienda
+				$vd->setFooterFile('view/out/footer_empty.php'); //footer vuoto
+				break;
+
 
 			default:
 				self::write404();
@@ -60,13 +99,8 @@ class FrontController
 			}
 		}
 
-	/*
-	 * Errori     
-        */
-
-	public static
-
-	function write404()
+/*ERRORI*/
+	public static function write404()
 		{
 		}
 
