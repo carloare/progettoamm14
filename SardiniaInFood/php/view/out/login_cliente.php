@@ -1,4 +1,4 @@
-<form name="login_form" action="../php/controller/BaseController.php" method="POST"> 
+<form name="login_form" action="BaseController.php" method="POST"> 
     
  <p> Username: </p> <input type="text" name="username_cliente" value="" title="inserisci il tuo username"> 
   
