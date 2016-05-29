@@ -63,11 +63,11 @@
    
     
     
-    include_once '../model/Utente.php';
+    include_once 'Utente.php';
     
-    include_once '../model/UtenteFactory.php';
+    include_once 'UtenteFactory.php';
 
-    include_once '../model/Azienda.php';
+    include_once 'Azienda.php';
    
    
 
