@@ -1,18 +1,18 @@
 <?php
 
-// Pagina che gestisce l'input dell'utente che non ha ancora effettuato il login
+// Pagina che gestisce l"input dell"utente che non ha ancora effettuato il login
 
-include_once '../view/ViewDescriptor.php';
+include_once 'view/ViewDescriptor.php';
 
-include_once '../model/Utente.php';
+include_once 'model/Utente.php';
 
-include_once '../model/UtenteFactory.php';
+include_once 'model/UtenteFactory.php';
 
-include_once '../model/Azienda.php';
+include_once 'model/Azienda.php';
 
-include_once '../model/Cliente.php';
+include_once 'model/Cliente.php';
 
-include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
+include_once basename(__DIR__) . '/../Settings.php';
 
 if (session_status() != 2) session_start();
 
@@ -27,14 +27,14 @@ class BaseController
 
 	public static function handleInput()
 		{
-		switch ($_REQUEST["cmd"])
+		switch ($_REQUEST['cmd'])
 			{
 
 /*
- * ==============================REGISTRAZIONE NUOVO CLIENTE NELL'APPLICAZIONE===============================================
+ * ==============================REGISTRAZIONE NUOVO CLIENTE NELL"APPLICAZIONE===============================================
  */                    
                     
-			// registra un nuovo cliente nell'applicazione
+			// registra un nuovo cliente nell"applicazione
 
 		case 'registrazione_cliente':
 
@@ -45,12 +45,14 @@ class BaseController
 			define("password_regexpr", "/^[a-zA-Z0-9]+$/");
 			define("email_conferma_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 
-			// valori inseriti dall'utente che si vuole registrare come cliente (POST)
+			// valori inseriti dall"utente che si vuole registrare come cliente (POST)
 
 			$name = $_REQUEST['nome_completo'];
 			$username = $_REQUEST['username'];
 			$pass = $_REQUEST['password'];
 			$mail = $_REQUEST['email_conferma'];
+                        
+                      
 			$ruolo = $_REQUEST['ruolo'];
 
 			// flag che verifica la presenza di un generico errore
@@ -69,7 +71,7 @@ class BaseController
 
 			//verifica la correttezza dei valori inseriti nella compliazione del form
 
-			if ($name != "")
+			if (!empty($name))
 				{
 				if (1 === preg_match(nome_completo_regexpr, $name))
 					{
@@ -78,17 +80,17 @@ class BaseController
 					}
 				  else
 					{
-					$_SESSION['nome_completo_cliente'] = '<br />Il campo nome contiene caratteri non validi';
+					$_SESSION['nome_completo_cliente'] = "<br> <div id='messaggio-errore'>Il campo nome contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 					$error_rec++;
 					}
 				}
 			  else
 				{
-				$_SESSION['nome_completo_cliente'] = '<br />Il campo nome &egrave; vuoto';
+				$_SESSION['nome_completo_cliente'] = "<br> <div id='messaggio-errore'>Il campo nome &egrave; vuoto</div>";
 				$error_rec++;
 				}
 
-			if ($username != "")
+			if (!empty($username))
 				{
 				if (1 === preg_match(username_regexpr, $username))
 					{
@@ -97,17 +99,17 @@ class BaseController
 					}
 				  else
 					{
-					$_SESSION['username_cliente'] = '<br />Il campo username contiene caratteri non validi';
+					$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 					$error_rec++;
 					}
 				}
 			  else
 				{
-				$_SESSION['username_cliente'] = '<br />Il campo username contiene caratteri non validi';
+				$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username &egrave; vuoto</div>";
 				$error_rec++;
 				}
 
-			if ($pass != "")
+			if (!empty($pass))
 				{
 				if (1 === preg_match(password_regexpr, $pass))
 					{
@@ -116,32 +118,32 @@ class BaseController
 					}
 				  else
 					{
-					$_SESSION['password_cliente'] = '<br />Il campo password non valido';
+					$_SESSION['password_cliente'] = "<br> <div id='messaggio-errore'>Il campo password non valido.<br>Verifica eventuali errori di battitura.</div>";
 					$error_rec++;
 					}
 				}
 			  else
 				{
-				$_SESSION['password_cliente'] = '<br />Il campo password &egrave; vuoto';
+				$_SESSION['password_cliente'] = "<br> <div id='messaggio-errore'>Il campo password &egrave; vuoto</div>";
 				$error_rec++;
 				}
 
-			if ($mail != "")
+			if (!empty($mail))
 				{
 				if (1 === preg_match(email_conferma_regexpr, $mail))
 					{
-					$email = self::test_input($mail);
+					$email = self::test_input($mail); 
 					$utente->setEmailConferma($email);
 					}
 				  else
 					{
-					$_SESSION['email_cliente'] = '<br />Il campo email non valido. email@esempio.com';
+					$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
 					$error_rec++;
 					}
 				}
 			  else
 				{
-				$_SESSION['email_cliente'] = '<br />Il campo email &egrave; vuoto';
+				$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
 				$error_rec++;
 				}
 
@@ -163,11 +165,13 @@ class BaseController
                                  //si è verificato un errore (campo vuoto o caratteri non validi) nel form di registrazione
                                 $_SESSION['errore'] = 1;
                                 
-				$vd->setLogoFile('../view/out/logo.php');
-				$vd->setMenuFile('../view/out/menu_back.php');
-				$vd->setContentFile('../view/out/form_registrazione_cliente.php'); //ritorna al form di registrazione cliente
-				$vd->setErrorFile('../view/out/error_out.php');
-				$vd->setFooterFile('../view/out/footer_empty.php');
+
+                                
+				$vd->setLogoFile("../view/out/logo.php");
+				$vd->setMenuFile("../view/out/menu_back.php");
+				$vd->setContentFile("../view/out/form_registrazione_cliente.php"); //ritorna al form di registrazione cliente
+				$vd->setErrorFile("../view/out/error_out.php");
+				$vd->setFooterFile("../view/out/footer_empty.php");
 
 				// richiamo la vista
 
@@ -193,8 +197,8 @@ class BaseController
                 $pass_cliente = $_REQUEST['password_cliente'];
                 
                     //definiamo le espressioni regolari per controllare la correttezza formale di username e password
-                    define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
-                    define("password_regexpr", "/^[a-zA-Z0-9]+$/");
+                    define('username_regexpr', '/^[A-Za-z0-9 ]{3,20}$/');
+                    define('password_regexpr', '/^[a-zA-Z0-9]+$/');
                     
                 
                     
@@ -230,13 +234,13 @@ class BaseController
                 $vd = new ViewDescriptor();     
               
             $vd->setTitolo("SardiniaInFood");
-        $vd->setLogoFile('../view/out/logo.php');
-        $vd->setMenuFile('../view/out/menu_back.php');
-                $vd->setContentFile('../view/out/login_cliente.php'); //ritorna al form di login
-                $vd->setErrorFile('../view/out/error_out.php');
-                $vd->setFooterFile('../view/out/footer_empty.php');
+        $vd->setLogoFile("../view/out/logo.php");
+        $vd->setMenuFile("../view/out/menu_back.php");
+                $vd->setContentFile("../view/out/login_cliente.php"); //ritorna al form di login
+                $vd->setErrorFile("../view/out/error_out.php");
+                $vd->setFooterFile("../view/out/footer_empty.php");
             // richiamo la vista
-            require_once '../view/Master.php'; 
+            require_once "../view/Master.php"; 
             }
             else 
                 {
@@ -252,10 +256,10 @@ class BaseController
 			
                         
 /*
-* =================================REGISTRAZIONE DI UNA NUOVA AZIENDA NELL'APPLICAZIONE=========================================
+* =================================REGISTRAZIONE DI UNA NUOVA AZIENDA NELL"APPLICAZIONE=========================================
 */
             
-            // registra una nuova azienda nell'applicazione
+            // registra una nuova azienda nell"applicazione
 
 		case 'registrazione_azienda':
 
@@ -273,7 +277,7 @@ class BaseController
                     define("sito_web_regexpr", "/^((?:http(?:s)?\:\/\/)?[a-zA-Z0-9_-]+(?:.[a-zA-Z0-9_-]+)*.[a-zA-Z]{2,4}(?:\/[a-zA-Z0-9_]+)*(?:\/[a-zA-Z0-9_]+.[a-zA-Z]{2,4}(?:\?[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)?)?(?:\&[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)*)$/");
                    
 
-// valori inseriti dall'utente che vuole registrare la sua azienda (POST)
+// valori inseriti dall"utente che vuole registrare la sua azienda (POST)
 
 			$name = $_REQUEST['nome_completo_azienda'];
                         $task = $_REQUEST['tipo_incarichi_id'];
@@ -298,7 +302,7 @@ class BaseController
             
            
                 //verifica la correttezza dei valori inseriti nella compliazione del form
-         if($name!="") {
+         if(!empty($name)) {
                     
                     if( 1 === preg_match(nome_completo_regexpr, $name)){
                         
@@ -306,29 +310,29 @@ class BaseController
                     $utente->setNomeCompleto($nome_completo);     
         
                 } else {  
-                    $_SESSION['nome_completo_azienda'] = '<br>Il campo nome completo contiene caratteri non validi';
+                    $_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['nome_completo_azienda'] = '<br>Il campo nome completo &egrave; vuoto';
+                    $_SESSION['nome_completo_azienda'] = "<br><div id='messaggio-errore'>Il campo nome completo &egrave; vuoto</div>";
                     $error_rec++;
                 }        
                 
                                 
                 
-    if($task!="") {
+    if(!empty($task)) {
                 $utente->setTipo_incarichi_id($task); 
                 
                  
                }
                if($task=="") {
-                   $_SESSION['tipo_incarichi_id'] = '<br>Il campo tipo di incarico verr&agrave; impostato a Proprietario';
+                   $_SESSION['tipo_incarichi_id'] = "<br><div id='messaggio-errore'>Il campo tipo di incarico non &egrave; stato schelto.<br> Verr&agrave; impostato automaticamete a Proprietario</div>";
                
                }            
                
                
-   if($mail!="") {
+   if(!empty($mail)) {
                     
                     if( 1 === preg_match(email_conferma_regexpr, $mail)){
             
@@ -339,17 +343,17 @@ class BaseController
                     $utente->setEmailConferma($email);     
         
                 } else {     
-                    $_SESSION['email_conferma_azienda'] = '<br>Il tuo campo email non &egrave; valido. email@esempio.com';
+                    $_SESSION['email_conferma_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['email_conferma_azienda'] = '<br>Il tuo campo email &egrave; vuoto';
+                    $_SESSION['email_conferma_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
                     $error_rec++;
                 }         
                
                 
-       if($username!="") {
+       if(!empty($username)) {
                     
                     if( 1 === preg_match(username_regexpr, $username)){
                         
@@ -357,16 +361,16 @@ class BaseController
                     $utente->setUsername($nome_utente);     
         
                 } else {  
-                    $_SESSION['username_azienda'] = '<br>Il campo username completo contiene caratteri non validi';
+                    $_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['username_azienda'] = '<br>Il campo username completo &egrave; vuoto';
+                    $_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo &egrave; vuoto</div>";
                     $error_rec++;
                 }              
                
-        if($pass!="") {
+        if(!empty($pass)) {
                     
                     if( 1 === preg_match(password_regexpr, $pass)){
             
@@ -377,12 +381,12 @@ class BaseController
                     $utente->setPassword($password);     
         
                 } else {       
-                    $_SESSION['password_azienda'] = '<br>Il campo password non &egrave; valido.';
+                    $_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['password_azienda'] = '<br>Il campo password &egrave; vuoto';
+                    $_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password &egrave; vuoto</div>";
                     $error_rec++;
                 }        
                
@@ -390,7 +394,7 @@ class BaseController
                
                
                
-               if($company_name!="") {
+               if(!empty($company_name)) {
                     
                     if( 1 === preg_match(nome_azienda_regexpr, $company_name)){
                         
@@ -398,12 +402,12 @@ class BaseController
                     $utente->setNomeAzienda($nome_azienda);     
         
                 } else {  
-                    $_SESSION['name_azienda'] = '<br>Il campo nome azienda completo contiene caratteri non validi';
+                    $_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['name_azienda'] = '<br>Il campo nome azienda completo &egrave; vuoto';
+                    $_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo &egrave; vuoto</div>";
                     $error_rec++;
                 }        
                
@@ -411,20 +415,20 @@ class BaseController
                
                 
                 
-               if($company_type!="") {
+               if(!empty($company_type)) {
                 $utente->setTipo_attivita_id($company_type); 
                 
                  
                }
                if($company_type=="") {
-                   $_SESSION['tipo_attivita_id'] = '<br>Il campo tipo attivit&agrave; verr&agrave; impostato a Agriturismo';
+                   $_SESSION['tipo_attivita_id'] = "<br><div id='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.<br> Verr&agrave; impostato automaticamete a Agriturismo</div>";
                
                }
                
                   
                
                
-              if($company_mail!="") {
+              if(!empty($company_mail)) {
                     
                     if( 1 === preg_match(email_conferma_regexpr, $company_mail)){
             
@@ -435,18 +439,18 @@ class BaseController
                     $utente->setEmail($posta);     
         
                 } else {     
-                    $_SESSION['company_mail_azienda'] = '<br>Il tuo campo email non &egrave; valido. email@esempio.com';
+                    $_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['company_mail_azienda'] = '<br>Il tuo campo email &egrave; vuoto';
+                    $_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
                     $error_rec++;
                 }     
                
                           
                
-               if($company_description!="") {
+               if(!empty($company_description)) {
                     
                     if( 1 === preg_match(descrizione_regexpr, $company_description)){
             
@@ -455,19 +459,19 @@ class BaseController
                     $utente->setDescrizione($descrizione);     
         
                 } else {      
-                     $_SESSION['descrizione_azienda'] = '<br>Il campo descrizione non &egrave; valido.';
+                     $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['descrizione_azienda'] = '<br>Il campo descrizione &egrave; vuoto';
+                    $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione &egrave; vuoto</div>";
                     $error_rec++;
                 }  
                
                      
            
 
-              if($company_city!="") {
+              if(!empty($company_city)) {
                     
                     if( 1 === preg_match(citta_regexpr, $company_city)){
             
@@ -478,12 +482,12 @@ class BaseController
                     $utente->setCitta($citta);     
         
                 } else {       
-                    $_SESSION['city_azienda'] = '<br>Il campo citt&agrave; non &egrave; valido.';
+                    $_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['city_azienda'] = '<br>Il campo citt&agrave; &egrave; vuoto';
+                    $_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; &egrave; vuoto</div>";
                     $error_rec++;
                 }                     
                 
@@ -491,7 +495,7 @@ class BaseController
     
                 
                 
-                if($company_address!="") {
+                if(!empty($company_address)) {
                     
                     if( 1 === preg_match(indirizzo_regexpr, $company_address)){
             
@@ -502,17 +506,17 @@ class BaseController
                     $utente->setIndirizzo($indirizzo);     
         
                 } else {         
-                    $_SESSION['address_azienda'] = '<br>Il campo indirizzo non &egrave; valido.';
+                    $_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['address_azienda'] = '<br>Il campo indirizzo &egrave; vuoto';
+                    $_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo &egrave; vuoto</div>";
                     $error_rec++;
                 }     
                 
                                 
-                 if($company_phone!="") {
+                 if(!empty($company_phone)) {
                     
                     if( 1 === preg_match(telefono_regexpr, $company_phone)){
             
@@ -523,18 +527,18 @@ class BaseController
                     $utente->setTelefono($telefono);     
         
                 } else {        
-                    $_SESSION['phone_azienda'] = '<br>Il campo telefono non &egrave; valido.';
+                    $_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['phone_azienda'] = '<br>Il campo telefono &egrave; vuoto';
+                    $_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono &egrave; vuoto</div>";
                     $error_rec++;
                 }  
                 
                 
                 
-       if($company_web_site!="") {
+       if(!empty($company_web_site)) {
                     
                     if( 1 === preg_match(sito_web_regexpr, $company_web_site)){
             
@@ -545,12 +549,12 @@ class BaseController
                     $utente->setSitoWeb($sito_web);     
         
                 } else {        
-                    $_SESSION['sito_web_azienda'] = '<br>Il campo del sito web non &egrave; valido.';
+                    $_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                     $error_rec++; 
                 } 
                 
                 } else { 
-                    $_SESSION['sito_web_azienda'] = '<br>Il campo del sito web &egrave; vuoto';
+                    $_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web &egrave; vuoto</div>";
                     $error_rec++;
                 }              
                 
@@ -690,13 +694,13 @@ class BaseController
                 
             $vd = new ViewDescriptor();                           
             $vd->setTitolo("Benvenuto in FoodAdvisor");
-            $vd->setLogoFile('../view/out/logo.php');
-            $vd->setMenuFile('../view/out/menu_back_to_home_page.php');
-            $vd->setContentFile('../view/out/form_registrazione_azienda.php'); 
-            $vd->setErrorFile('../view/out/error_out.php');
-            $vd->setFooterFile('../view/out/footer_empty.php');
+            $vd->setLogoFile("../view/out/logo.php");
+            $vd->setMenuFile("../view/out/menu_back.php");
+            $vd->setContentFile("../view/out/form_registrazione_azienda.php"); 
+            $vd->setErrorFile("../view/out/error_out.php");
+            $vd->setFooterFile("../view/out/footer_empty.php");
             // richiamo la vista
-            require_once '../view/Master.php'; 
+            require_once "../view/Master.php"; 
       }
       break;  
 
@@ -706,7 +710,7 @@ class BaseController
   /*
 * ==============================================================================
 */
-      //effettua il login per l'azienda
+      //effettua il login per l"azienda
             case 'login_azienda':  
                 
                 
@@ -749,7 +753,7 @@ class BaseController
                     
                     
             
-            //messaggio di errore se i campi sono vuoti o non rispettano l'espressione regolare
+            //messaggio di errore se i campi sono vuoti o non rispettano l"espressione regolare
             if($error != 0) {
                    //errore in fase di login
                 $_SESSION['errore'] = 4;
@@ -757,13 +761,13 @@ class BaseController
                 $vd = new ViewDescriptor();     
            
             $vd->setTitolo("SardiniaInFood");
-        $vd->setLogoFile('../view/out/logo.php');
-        $vd->setMenuFile('../view/out/menu_back.php');
-                $vd->setContentFile('../view/out/login_azienda.php'); //ritorna alla funzione login azienda
-                $vd->setErrorFile('../view/out/error_out.php');
-                $vd->setFooterFile('../view/out/footer_empty.php');
+        $vd->setLogoFile("../view/out/logo.php");
+        $vd->setMenuFile("../view/out/menu_back.php");
+                $vd->setContentFile("../view/out/login_azienda.php"); //ritorna alla funzione login azienda
+                $vd->setErrorFile("../view/out/error_out.php");
+                $vd->setFooterFile("../view/out/footer_empty.php");
             // richiamo la vista
-            require_once '../view/Master.php'; 
+            require_once "../view/Master.php"; 
             }
             else 
                 {
@@ -777,15 +781,94 @@ class BaseController
             break;
                 
  /*
-* ==============================================================================
+* ===============================CERCA DOVE COSA===============================================
 */
-  /*
-* ==============================================================================
-*/
+  //Analizza i parametri passati dal form per effettuare una ricerca
+
+
+              case "cercadovecosa": 
+               
+                  
+            
+                   //flag per controllare la presenza di errori
+                   $errore = 0;
+                  //espressione regolare 
+                 define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
+         
+                 //parametri inseriti nel form di ricerca
+           $city_request = $_REQUEST['citta'];
+           //"pulizia" del parametro city
+           $city = trim($city_request);
+           
+           $tipo_attivita_id = $_REQUEST['tipo_attivita_id'];
+           
+             //per semplicità se il parametro city è uguale a "Dove",
+           //che significa che l"utente non ha inserito nulla nel campo form "citta",
+           //oppure è uguale a "", che significa che l"utente
+           //ha lasciato uno spazio bianco nel campo form "citta", allora viene considerato
+           //UNDEFINE
+           
+           if($city=="Dove" || $city=="")
+           {
+               $citta='UNDEFINE';
+           }
+           //in caso contrario si va a controllare il contenuto di city
+           //affinchè rispetti l"espressione regolare
+           else
+           {
+                  
+                    if( 1 === preg_match(citta_regexpr, $city)){
+            
+                    
+                    $citta = self::test_input($city);
+                                           
+        
+                } else {       
+                   
+                    $errore++; 
+                } 
+           }    
+               
+           
+     //se non ci sono errori      
+      if($errore==0)
+          {
+            
+          //se non ci sono errori richiama la funzione cercaDoveCosa
+       
+           self::cercaDoveCosa($citta,$tipo_attivita_id);
+          }
+      else{
+          //sono presenti caratteri non validi
+          
+           $_SESSION['errore'] = 5;
+             
+             //richiama la home page
+    $vd = new ViewDescriptor();
+  
+     $vd->setTitolo("Benvenuto in SardiniaInFood");
+     $vd->setLogoFile("../view/out/logo.php");
+     $vd->setMenuFile("../view/out/menu_home_page.php"); 
+     $vd->setContentFile("../view/out/home_page_default.php"); //richiama la home page
+     $vd->setErrorFile("../view/out/error_out.php");
+    $vd->setFooterFile("../view/out/footer_home_page.php"); 
+				
+     
+     // richiamo la vista
+     require_once "../view/Master.php";  
+      }
       
+   
+      
+      
+      
+         break;   
 /*
- * =============================================================================
- */      
+ * ================================MOSTRA PROFILO=============================================
+ */  
+            case "profile": 
+             self::showProfile();
+                  break;
 /*
  * =============================================================================
  */      
@@ -810,7 +893,7 @@ class BaseController
       
       
 		case 'logout': //back alla pagina index
-			$url = "http://localhost/SardiniaInFood/php/index.php?page=0";
+			$url = "http://localhost/SardiniaInFood/php/index.php?page=0</div>";
 			session_destroy();
 			header("location:$url");
 			break;
@@ -818,11 +901,11 @@ class BaseController
 		}
 
 /*
-* ==============================================================================
+* =================================TEST INPUT============================================
 */
 
 	// con questa funzione vado a:
-	// - rimuovere gli spazi bianchi all'inizio e alla fine della stringa
+	// - rimuovere gli spazi bianchi all"inizio e alla fine della stringa
 	// - converte certi caratteri in entità  HTML
 
 	public static function test_input($data)
@@ -840,10 +923,10 @@ class BaseController
 		{
           
 	    //funzione di registrazione creaUtente a seconda del ruolo:
-            //1-verifica che l'utente non sia già registranto
-            //andando a confrontare nel database l'indirizzo email inserito durante la 
+            //1-verifica che l"utente non sia già registranto
+            //andando a confrontare nel database l"indirizzo email inserito durante la 
             //registrazione nel form
-            //2-se non risulta che l'utente sia già registrato va effettivamente a
+            //2-se non risulta che l"utente sia già registrato va effettivamente a
             //registrare il nuovo utente nel database
             //
             //viene usata una transizione
@@ -852,20 +935,20 @@ class BaseController
 
 
 
-     if($test == 'PRESENTE') { 
+     if($test == "PRESENTE") { 
         
          //se il cliente è già registrato viene mostrato un messaggio di errore
          $_SESSION['errore'] = 2;
          
            $vd = new ViewDescriptor();
                 $vd->setTitolo("SardiniaInFood");
-                $vd->setLogoFile('../view/out/logo.php');
-                $vd->setErrorFile('../view/out/error_out.php');
-                $vd->setMenuFile('../view/out/menu_back.php');
-                $vd->setContentFile('../view/out/form_registrazione_cliente.php'); //ritorna la form di registrazione cliente
-                $vd->setFooterFile('../view/out/footer_empty.php');
+                $vd->setLogoFile("../view/out/logo.php");
+                $vd->setErrorFile("../view/out/error_out.php");
+                $vd->setMenuFile("../view/out/menu_back.php");
+                $vd->setContentFile("../view/out/form_registrazione_cliente.php"); //ritorna la form di registrazione cliente
+                $vd->setFooterFile("../view/out/footer_empty.php");
          //richiamo la vista
-       require_once '../view/Master.php';
+       require_once "../view/Master.php";
      
      }
       else { 
@@ -886,38 +969,38 @@ class BaseController
                 //Funzione che permette il login del cliente   
     public static function login_cliente($username, $password) {                
    
-        //cerco l'utente nel database in base all'email e la password passati        
+        //cerco l"utente nel database in base all"email e la password passati        
         $utente = UtenteFactory::cercaCliente($username, $password); 
         // creo il descrittore della vista
         $vd = new ViewDescriptor();
       
         //utente non trovato. Viene visualizzato nuovamente il form di login
-        if($utente=='NOTFOUND') {
+        if($utente=="NOTFOUND") {
       
             $_SESSION['errore'] = 3;
             $vd->setTitolo("SardiniaInFood");
-            $vd->setLogoFile('../view/out/logo.php');
-            $vd->setMenuFile('../view/out/menu_back.php');
-            $vd->setErrorFile('../view/out/error_out.php'); 
-            $vd->setContentFile('../view/out/form_login_cliente.php'); //ritorno al form di login
-            $vd->setFooterFile('../view/out/footer_empty.php');
+            $vd->setLogoFile("../view/out/logo.php");
+            $vd->setMenuFile("../view/out/menu_back.php");
+            $vd->setErrorFile("../view/out/error_out.php"); 
+            $vd->setContentFile("../view/out/login_cliente.php"); //ritorno al form di login
+            $vd->setFooterFile("../view/out/footer_empty.php");
         
         } else {
-             //salvo l'utente in sessione
+             //salvo l"utente in sessione
             $_SESSION['current_user'] = $utente;
           
             //si sposta nella home page del cliente
             $vd->setTitolo("SardiniaInFood");
-            $vd->setLogoFile('../view/in/logo.php');
-            $vd->setMenuFile('../view/in/menu_cliente.php');
-            $vd->setErrorFile('../view/in/error_in.php'); 
-            $vd->setContentFile('../view/in/cliente/home_page_cliente.php');
-            $vd->setFooterFile('../view/in/footer_empty.php');
+            $vd->setLogoFile("../view/in/logo.php");
+            $vd->setMenuFile("../view/in/menu_cliente.php");
+            $vd->setErrorFile("../view/in/error_in.php"); 
+            $vd->setContentFile("../view/in/cliente/home_page_cliente.php");
+            $vd->setFooterFile("../view/in/footer_empty.php");
             
                                    
         }
         // richiamo la vista
-        require_once '../view/Master.php';
+        require_once "../view/Master.php";
     }   
 /*
 * ============================REGISTRAZIONE AZIENDA==================================================
@@ -927,10 +1010,10 @@ class BaseController
 		{
           
             //funzione di registrazione creaUtente a seconda del ruolo:
-            //1-verifica che l'utente non sia già registranto
-            //andando a confrontare nel database l'indirizzo email inserito durante la 
+            //1-verifica che l"utente non sia già registranto
+            //andando a confrontare nel database l"indirizzo email inserito durante la 
             //registrazione nel form
-            //2-se non risulta che l'utente sia già registrato va effettivamente a
+            //2-se non risulta che l"utente sia già registrato va effettivamente a
             //registrare il nuovo utente nel database
             //
             //viene usata una transizione
@@ -939,21 +1022,21 @@ class BaseController
 
 
 
-     if($test == 'PRESENTE') { 
+     if($test == "PRESENTE") { 
         
-         //se l'azienda è già registrato viene mostrato un messaggio di errore
+         //se l"azienda è già registrato viene mostrato un messaggio di errore
          $_SESSION['errore'] = 2;
          
          //caricamento pagina
            $vd = new ViewDescriptor();
                 $vd->setTitolo("SardiniaInFood");
-                $vd->setLogoFile('../view/out/logo.php');
-                $vd->setErrorFile('../view/out/error_out.php');
-                $vd->setMenuFile('../view/out/menu_back.php');
-                $vd->setContentFile('../view/out/form_registrazione_azienda.php'); //ritorna al form di registraizone
-                $vd->setFooterFile('../view/out/footer_empty.php');
+                $vd->setLogoFile("../view/out/logo.php");
+                $vd->setErrorFile("../view/out/error_out.php");
+                $vd->setMenuFile("../view/out/menu_back.php");
+                $vd->setContentFile("../view/out/form_registrazione_azienda.php"); //ritorna al form di registraizone
+                $vd->setFooterFile("../view/out/footer_empty.php");
          //richiamo la vista
-       require_once '../view/Master.php';
+       require_once "../view/Master.php";
      
      }
       else { 
@@ -971,10 +1054,10 @@ class BaseController
 /*
 * ==============================================================================
 */       
-                     //Funzione che permette il login dell'azienda    
+                     //Funzione che permette il login dell"azienda    
     public static function login_azienda($username, $password) {                
   
-        //cerco l'utente nel database in base all'email e la password passati        
+        //cerco l"utente nel database in base all"email e la password passati        
         $utente = UtenteFactory::cercaAzienda($username, $password); 
         
      
@@ -982,39 +1065,137 @@ class BaseController
         $vd = new ViewDescriptor();
       
         //utente non trovato. Viene visualizzato nuovamente il form di login
-        if($utente=='NOTFOUND') {
+        if($utente=="NOTFOUND") {
       
             $_SESSION['errore'] = 3;
             $vd->setTitolo("SardiniaInFood");
-            $vd->setLogoFile('../view/out/logo.php');
-            $vd->setMenuFile('../view/out/menu_back.php');
-            $vd->setErrorFile('../view/out/error_out.php'); 
-            $vd->setContentFile('../view/out/form_login_cliente.php'); //ritorna al form di login
-            $vd->setFooterFile('../view/out/footer_empty.php');
+            $vd->setLogoFile("../view/out/logo.php");
+            $vd->setMenuFile("../view/out/menu_back.php");
+            $vd->setErrorFile("../view/out/error_out.php"); 
+            $vd->setContentFile("../view/out/login_cliente.php"); //ritorna al form di login
+            $vd->setFooterFile("../view/out/footer_empty.php");
         
         } else {
-             //salvo l'utente in sessione
+             //salvo l"utente in sessione
             $_SESSION['current_user'] = $utente;
           
             //si sposta nella home page del cliente
             $vd->setTitolo("SardiniaInFood");
-            $vd->setLogoFile('../view/in/logo.php');
-            $vd->setMenuFile('../view/in/menu_azienda.php');
-            $vd->setErrorFile('../view/in/error_in.php'); 
-            $vd->setContentFile('../view/in/azienda/home_page_azienda.php');
-            $vd->setFooterFile('../view/in/footer_empty.php');
+            $vd->setLogoFile("../view/in/logo.php");
+            $vd->setMenuFile("../view/in/menu_azienda.php");
+            $vd->setErrorFile("../view/in/error_in.php"); 
+            $vd->setContentFile("../view/in/azienda/home_page_azienda.php");
+            $vd->setFooterFile("../view/in/footer_empty.php");
             
                                    
         }
         // richiamo la vista
-        require_once '../view/Master.php';
+        require_once "../view/Master.php";
     }   
 /*
-* ==============================================================================
+* ===============================CERCA DOVE COSA===============================================
 */        
+    //l"utente può ricercare un certo tipo di azienda in un certo luogo
+     public static function cercaDoveCosa($citta, $tipo_attivita_id)
+    {
+        
+         //flag per controllare la presenza di errori
+          $errore=0;
+         
+          
+  //le possibili combinazioni citta / tipo attivita sono
+
+           // citta=="UNDEFINE" / tipo_attivita_id == -1  => CASO NON VALIDO
+           // citta=="stringa" / tipo_attivita_id == -1 => CASO VALIDO
+           // citta=="UNDEFINE" / tipo_attivita_id >= 1 => CASO VALIDO
+           // citta=="stringa" / tipo_attivita_id >= 1 => CASO VALIDO        
+          
+    
+          
+         //verifica che non ci si trovi nel caso non valido
+         if($citta=="UNDEFINE" AND $tipo_attivita_id==-1)
+             {
+                   $_SESSION['errore']=5;
+                   $errore++;
+               }      
+    
+               //se $errore==0 non sono passato per il caso non valido
+               if($errore==0)
+               { 
+                 
+  
+                 
+//funzione che ricerca in un certo luogo una certa categoria di aziende
+$risultati = UtenteFactory::cercaDoveCosa($citta, $tipo_attivita_id);
+
+
+if($risultati!="ZERO")
+{
+    //passaggio dei risultati
+$_SESSION['risultati']=  serialize($risultati);
+    
+}
+else
+{
+   //errore nessun risultato trovato
+    $_SESSION['errore']=6;
+    
+    //in qualunque caso richiamo la home page
+    $vd = new ViewDescriptor();
+     
+     $vd->setTitolo("Benvenuto in SardiniaInFood");
+    
+     $vd->setLogoFile("../view/out/logo.php");
+     $vd->setMenuFile("../view/out/menu_home_page.php");
+     $vd->setContentFile("../view/out/home_page_default.php");
+     $vd->setErrorFile("../view/out/error_out.php");
+     $vd->setFooterFile("../view/out/footer_home_page.php");   
+     
+     // richiamo la vista
+     require_once "../view/Master.php";  
+}
+     
+         }
+
+ //in qualunque caso richiamo la home page
+    $vd = new ViewDescriptor();
+     
+     $vd->setTitolo("Benvenuto in SardiniaInFood");
+   
+     $vd->setLogoFile("../view/out/logo.php");
+     $vd->setMenuFile("../view/out/menu_home_page.php");
+     $vd->setContentFile("../view/out/home_page_default.php");
+     $vd->setErrorFile("../view/out/error_out.php");
+     $vd->setFooterFile("../view/out/footer_home_page.php");   
+     
+     // richiamo la vista
+     require_once "../view/Master.php";  
+     
+      
+    }
+    
  /*
 * ==============================================================================
 */     
+     //mostra il profilo dell"azienda selezionata
+     public static function showProfile()
+    {
+         
+         
+         $vd = new ViewDescriptor();
+       $vd->setTitolo("SardiniaInFood: Profilo");
+       $vd->setLogoFile("../view/out/logo.php");  
+       $vd->setMenuFile("../view/out/menu_back.php");
+       $vd->setContentFile("../view/out/show_profile.php");
+       $vd->setErrorFile("../view/out/error_out.php"); 
+       $vd->setFooterFile("../view/out/footer_empty.php");
+     
+        // richiamo la vista
+        require_once "../view/Master.php"; 
+         
+         
+    }
+    
  /*
 * ==============================================================================
 */   

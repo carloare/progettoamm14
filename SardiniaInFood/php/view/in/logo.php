@@ -1,1 +1,2 @@
-<img src="http://localhost/SardiniaInFood/images/logo.gif" alt="Smiley face">
+<img src="../images/logo.gif" alt="Smiley face">
+

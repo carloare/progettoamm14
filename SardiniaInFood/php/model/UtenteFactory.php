@@ -1,8 +1,12 @@
 <?php
 
+include_once 'Azienda.php';
+
 //apro la sessione solo per memorizzare i servizi offerti dell'azienda (creaUtente)
 if (session_status() != 2) session_start();
-
+//pulizia dei vari risultati conservati dentro la sessione
+$_SESSION['risultati']=NULL;
+$_SESSION['risultati_cliente']=NULL;
 /*
  * Classe che contiene tutti quei servizi necessari a un generico utente (cliente o azienda)
  */
@@ -796,10 +800,388 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
     }
 /*
  * =============================================================================
- * -----------------------------------------------------------------
+ * ---------------------------------CERCA DOVE COSA--------------------------------
  * =============================================================================
  */   
  
+
+//funzione che ricerca in un certo luogo una certa categoria di aziende
+public static function cercaDoveCosa($citta, $tipo_attivita_id) {
+    
+  
+    
+    //connessione al database
+    $mysqli = new mysqli();
+    //$mysqli->connect("localhost","root","davide","amm14_aresuCarlo");
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[cercaDoveCosa] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            }
+           else
+           {
+         
+     
+               
+            //gestisce le combinazioni citta / tipo_attivita_id
+   if($citta!="UNDEFINE" AND $tipo_attivita_id!=-1)            
+            {
+  
+        $query = "SELECT * FROM Aziende WHERE citta LIKE CONCAT('%', ?, '%') AND tipo_attivita_id = ?";
+            }          
+    
+     if($citta!="UNDEFINE" AND $tipo_attivita_id==-1)
+            {
+      
+                $query = "SELECT * FROM Aziende WHERE citta LIKE CONCAT('%', ?, '%')";
+            }           
+       if($citta=="UNDEFINE" AND $tipo_attivita_id!=-1)
+            {
+          
+           
+                $query = "SELECT * FROM Aziende WHERE tipo_attivita_id = ?";
+            }         
+            
+        
+            
+          
+            
+            //inizializzazione del prepared statement
+            $stmt = $mysqli->stmt_init();
+            $ctrl = $stmt->prepare($query);
+            
+            //errore nello statement
+           
+            
+             if (!$ctrl) {
+              error_log("[cercaDoveCosa] errore nella inizializzazione dello statement");
+            $mysqli->close();
+            return null;  
+       
+        }
+            
+        
+        if($citta!="UNDEFINE" AND $tipo_attivita_id!=-1) 
+            {
+            //bind      
+                $ctrl = $stmt->bind_param('si', $citta, $tipo_attivita_id);
+            }
+            
+             if($citta!="UNDEFINE" AND $tipo_attivita_id==-1)
+            {
+            //bind      
+                $ctrl = $stmt->bind_param('s', $citta);
+            } 
+             if($citta=="UNDEFINE" AND $tipo_attivita_id!=-1)
+            {
+            //bind      
+                $ctrl = $stmt->bind_param('i', $tipo_attivita_id);
+            }
+       
+            
+            //esecuzione dello statement      
+            $ctrl = $stmt->execute();
+            //eventuali errori
+            if(!$ctrl)
+            {
+               error_log("[cercaDoveCosa] errore nell'esecuzione dello statement");
+            $mysqli->close();
+            return null; 
+            }
+     
+            
+            
+            $row_result=array();
+            $ctrl = $stmt->bind_result( 
+                    $row_result['id'],
+                    $row_result['nome_completo'],      
+                    $row_result['tipo_incarichi_id'], 
+                    $row_result['email_conferma'],
+                    $row_result['username'],
+                    $row_result['password'],
+                    $row_result['nome_azienda'],
+                    $row_result['citta'],
+                    $row_result['indirizzo'],
+                    $row_result['tipo_attivita_id'],
+                    $row_result['descrizione'],
+                    $row_result['telefono'],
+                    $row_result['email'],
+                    $row_result['sito_web'],
+                    $row_result['ruolo']
+                    );
+    
+         
+
+            //fetch del risultato          
+            while($stmt->fetch())
+            { 
+            $attivita[] = self::risultatiDoveCosa($row_result);
+            }
+            
+           $mysqli->close();  
+           
+                    if(isset($attivita) AND $attivita!=0)
+                          {
+              
+                        
+                        
+                      return $attivita;
+           
+                     }
+           else 
+           {
+               
+               return 'ZERO';
+               }
+                 
+           }
+    
+    $mysqli->close();
+                
+                
+            }      
+             
+            public function risultatiDoveCosa($row_result)
+            { 
+           $utente = new Azienda();
+           $utente->setId($row_result['id']);
+           $utente->setNomeCompleto($row_result['nome_completo']);              
+           $utente->setTipo_incarichi_id($row_result['tipo_incarichi_id']);
+           $utente->setEmailConferma($row_result['email_conferma']);
+           $utente->setUsername($row_result['username']);
+           $utente->setPassword($row_result['password']);
+           $utente->setNomeAzienda($row_result['nome_azienda']);
+           $utente->setCitta($row_result['citta']);
+           $utente->setIndirizzo($row_result['indirizzo']); 
+           $utente->setTipo_attivita_id($row_result['tipo_attivita_id']); 
+           $utente->setDescrizione($row_result['descrizione']);
+           $utente->setTelefono($row_result['telefono']);
+           $utente->setEmail($row_result['email']);
+           $utente->setSitoWeb($row_result['sito_web']);
+           $utente->setRuolo($row_result['ruolo']);
+           return $utente;
+           }    
+
+/*
+ * =============================================================================
+ * ---------------------------------CERCA ATTIVITA--------------------------------
+ * =============================================================================
+ */  
+         //funzione che a seconda del valore tipo_attività_id restituisce 
+         //una stringa che contiene l'attività svolta
+    
+    
+     public static function cercaAttivita($tipo_attivita_id)
+     {
+         
+        
+         
+         if($tipo_attivita_id==1)
+         {
+             return 'Agriturismo';
+         }
+         if($tipo_attivita_id==2)
+         {
+             return 'American Bar';
+         }
+         if($tipo_attivita_id==3)
+         {
+             return 'Bar Caff&egrave;';
+         }
+         if($tipo_attivita_id==4)
+         {
+             return 'Birreria';
+         }
+         if($tipo_attivita_id==5)
+         {
+             return 'Bistrot';
+         }
+         if($tipo_attivita_id==6)
+         {
+             return 'Fast Food';
+         }
+         if($tipo_attivita_id==7)
+         {
+             return 'Gelateria';
+         }
+         if($tipo_attivita_id==8)
+         {
+             return 'Osteria';
+         }
+         if($tipo_attivita_id==9)
+         {
+             return 'Pasticceria';
+         }
+         if($tipo_attivita_id==10)
+         {
+             return 'Pizzeria';
+         }
+         if($tipo_attivita_id==11)
+         {
+             return 'Pub';
+         }
+         if($tipo_attivita_id==12)
+         {
+             return 'Ristorante';
+         }
+         if($tipo_attivita_id==13)
+         {
+             return 'Self Service';
+         }
+         if($tipo_attivita_id==14)
+         {
+             return 'Snack Bar';
+         }
+         if($tipo_attivita_id==15)
+         {
+             return 'Tack Away';
+         }
+         if($tipo_attivita_id==16)
+         {
+             return 'Trattoria';
+         }
+          if($tipo_attivita_id==17)
+         {
+             return 'Altro';
+         }
+     }
+           
+           
+           
+           
+/*
+ * =============================================================================
+ * --------------------------------CERCA AZIENDA PER ID---------------------------------
+ * =============================================================================
+ */
+     public static function cercaAziendaPerId($id_azienda)
+ {
+    
+ //connessione al database
+    $mysqli = new mysqli();
+    
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[cercaAziendaPerId] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            }
+        else 
+            {                                                                  
+            // nessun errore
+            //formulazione della query SQL  
+            $result = $mysqli->query("SELECT * FROM Aziende WHERE id = $id_azienda");
+  
+          while ($row = $result->fetch_object())
+            { 
+            $utente = new Azienda();
+            $utente->setId($row->id);
+            $utente->setNomeCompleto($row->nome_completo);  
+            $utente->setTipo_incarichi_id($row->tipo_incarichi_id);
+            $utente->setEmailConferma($row->email_conferma);
+            $utente->setUsername($row->username);
+            $utente->setPassword($row->password);
+            $utente->setNomeAzienda($row->nome_azienda);
+            $utente->setCitta($row->citta);
+            $utente->setIndirizzo($row->indirizzo); 
+            $utente->setTipo_attivita_id($row->tipo_attivita_id); 
+            $utente->setDescrizione($row->descrizione);
+            $utente->setTelefono($row->telefono);
+            $utente->setEmail($row->email);
+            $utente->setSitoWeb($row->sito_web);
+            $utente->setRuolo($row->ruolo);
+            
+          
+            
+        
+            }
+        return $utente;    
+          }
+          $mysqli->close();
+ }
+
+/*
+ * =============================================================================
+ * --------------------------------CERCA SERVIZI AZIENDA---------------------------------
+ * =============================================================================
+ */  
+ public static function cercaServiziAzienda($id_azienda)
+ {
+    
+ //connessione al database
+    $mysqli = new mysqli();
+    
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[cercaServiziAzienda] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            }
+        else 
+            {                                                                  
+           
+        $query = "SELECT Servizi.tipo, Aziende_Servizi.valore FROM Aziende_Servizi JOIN Servizi ON Servizi.id = Aziende_Servizi.id_servizi AND Aziende_Servizi.id_aziende =$id_azienda";
+        
+               
+        
+       //Risultato query
+$result = $mysqli->query($query);
+if (!isset($result)) {
+            error_log("[cercaServiziAzienda] errore");
+            $mysqli->close();
+            return null;
+            }
+else
+{
+    echo "<br>";
+
+//Recuperara valori come oggetti
+while($row = $result->fetch_object()){
+echo "$row->tipo :";
+        if($row->valore==1)
+            echo " Si";
+       else
+           echo " No";
+echo "<br>";
+}
+
+}
+
+$mysqli->close();
+    }
+ 
+ 
+
+}
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+
 /*
  * =============================================================================
  * -----------------------------------------------------------------
@@ -837,8 +1219,79 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
  * =============================================================================
  */  
 
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
 
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
 
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
+/*
+ * =============================================================================
+ * -----------------------------------------------------------------
+ * =============================================================================
+ */  
 
 
 

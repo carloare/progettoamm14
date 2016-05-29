@@ -1,5 +1,5 @@
 <article>
-    <form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
+    <form action="controller/BaseController.php" id="registrazione_cliente" method="POST">
             
                 <p> <label for="nome_completo_cliente">Nome Completo:</label></p>
                 <input type="text" name="nome_completo" id="nome_completo_cliente" value="<?php if (isset($_POST['nome_completo'])AND $_POST['ruolo']==0) echo $_POST['nome_completo'];?>" title="inserisci il tuo nome completo"><?php if(isset($_SESSION['nome_completo_cliente'])) echo $_SESSION['nome_completo_cliente']; ?> 
@@ -11,7 +11,7 @@
                 <input type="password" name="password" id="password_cliente" value="<?php if (isset($_POST['password'])AND $_POST['ruolo']==0) echo $_POST['password'];?>" title="inserisci la tua password"><?php if(isset($_SESSION['password_cliente'])) echo $_SESSION['password_cliente']; ?>       
    
                 <p><label for="email_conferma_cliente">Email:</label></p>
-                <input type="email" name="email_conferma" id="email_conferma_cliente" value="<?php if (isset($_POST['email_conferma'])AND $_POST['ruolo']==0) echo $_POST['email_conferma'];?>" title="inserisci la tua email"><?php if(isset($_SESSION['email_conferma'])) echo $_SESSION['email_conferma']; ?>
+                <input type="email" name="email_conferma" id="email_conferma_cliente" value="<?php if (isset($_POST['email_conferma'])AND $_POST['ruolo']==0) echo $_POST['email_conferma'];?>" title="inserisci la tua email"><?php if(isset($_SESSION['email_cliente'])) echo $_SESSION['email_cliente']; ?>
                                 
                 <input type="hidden" name="cmd" value="registrazione_cliente">
                 <input type="hidden" name="ruolo" value="0">

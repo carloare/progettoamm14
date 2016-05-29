@@ -24,7 +24,7 @@ switch ($errore) {
         ?>
         <div class="error">
     <img src="/SardiniaInFood/images/circle.png" alt="Errore nell'inserimento dei dati" height="32" width="32" title="Errore nell'inserimento dei dati"> 
-    <h4>Errore nell'inserimento dei dati</h4>
+    <h4>Si &egrave; verificato un errore nell'inserimento dei dati</h4>
     </div>
     <?php   
  
@@ -63,6 +63,34 @@ switch ($errore) {
         <div class="warning">
     <img src="/SardiniaInFood/images/circle.png" alt="Errore nellinserimento dei dati in login" height="32" width="32" title="Errore nellinserimento dei dati in login"> 
     <h4>Errore nellinserimento dei dati in login</h4>
+    </div>
+    <?php   
+ 
+        break;
+    
+    
+    
+    case 5: 
+    //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
+   
+        ?>
+        <div class="warning">
+    <img src="/SardiniaInFood/images/circle.png" alt="Inserire dei parametri di ricerca" height="32" width="32" title="Inserire dei parametri di ricerca"> 
+    <h4>Errore inserire dei parametri di ricerca</h4>
+    </div>
+    <?php   
+ 
+        break;
+    
+    
+    
+    case 6: 
+    //errore nessun risultato trovato
+   
+        ?>
+        <div class="warning">
+    <img src="/SardiniaInFood/images/circle.png" alt="errore nessun risultato trovato" height="32" width="32" title="errore nessun risultato trovato"> 
+    <h4>Errore nessun risultato trovato</h4>
     </div>
     <?php   
  

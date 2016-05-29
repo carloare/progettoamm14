@@ -180,11 +180,18 @@ validator a:hover{
 
 
 
+/*---RESULTS----*/
 
+.results{
+    width: 50%;
+    border: solid thin black;
+    float: left;
+}
 
-
-
-
+/*----messaggi di errore nella compilazione del form di registrazione---*/
+#messaggio-errore{
+    color: red;
+}
 
 
 

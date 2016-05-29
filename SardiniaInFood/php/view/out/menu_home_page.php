@@ -3,6 +3,6 @@
         <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=2" title="Login clienti">Accedi</a>
     </li>
     <li><!--richiama la pagina di registrazione per un nuovo cliente-->
-         <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=1" title="Iscriviti">Iscriviti</a>
+         <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/?page=1" title="Iscriviti">Iscriviti</a>
      </li>
 </ul>
