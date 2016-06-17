@@ -63,11 +63,11 @@
    
     
     
-    include_once 'Utente.php';
+    include_once basename(__DIR__) . '/../Utente.php';
     
-    include_once 'UtenteFactory.php';
+    include_once basename(__DIR__) . '/../UtenteFactory.php';
 
-    include_once 'Azienda.php';
+    include_once basename(__DIR__) . '/../Azienda.php';
    
    
 
