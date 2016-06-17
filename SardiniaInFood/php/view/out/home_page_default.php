@@ -63,11 +63,11 @@
    
     
     
-    include_once '/../Utente.php';
+    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
     
-    include_once '/../UtenteFactory.php';
+    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/UtenteFactory.php';
 
-    include_once '/../Azienda.php';
+    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
    
    
 
