@@ -60,7 +60,7 @@
    -->
     <?php 
     
-   
+   echo $_SERVER["REQUEST_URI"];
     
     
     include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';
