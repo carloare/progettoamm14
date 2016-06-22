@@ -2,17 +2,17 @@
 
 // Pagina che gestisce l"input dell"utente che non ha ancora effettuato il login
 
-include_once 'view/ViewDescriptor.php';
+include_once '../view/ViewDescriptor.php';
 
-include_once 'model/Utente.php';
+include_once '../model/Utente.php';
 
-include_once 'model/UtenteFactory.php';
+include_once '../model/UtenteFactory.php';
 
-include_once 'model/Azienda.php';
+include_once '../model/Azienda.php';
 
-include_once 'model/Cliente.php';
+include_once '../model/Cliente.php';
 
-include_once basename(__DIR__) . '/../Settings.php';
+include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
 if (session_status() != 2) session_start();
 

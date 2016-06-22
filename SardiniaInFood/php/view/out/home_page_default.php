@@ -1,6 +1,6 @@
 <article>
 
- <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
+ <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
 <input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
         
@@ -63,11 +63,11 @@
    
     
     
-    include '../model/Utente.php';
+    include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';
     
-    include '../model/UtenteFactory.php';
+    include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 
-    include '../model/Azienda.php';
+    include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
    
    
 
@@ -152,7 +152,7 @@ echo '</div>';
 
     //nome azienda
 echo '<br>';
-    echo "<a  href='../controller/BaseController.php?cmd=profile&id_azienda=$id_azienda'>$nome_azienda</a>";
+    echo "<a  href='/SardiniaInFood/php/controller/BaseController.php?cmd=profile&id_azienda=$id_azienda'>$nome_azienda</a>";
 
     //indirizzo, citta
     echo '<br>';

@@ -1,6 +1,6 @@
 <!--registrazione azienda versione alpha-->
 
-<form action="controller/BaseController.php" id="registrazione_azienda" method="POST">
+<form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_azienda" method="POST">
     
     
     
