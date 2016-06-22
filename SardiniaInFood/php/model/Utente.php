@@ -1,4 +1,6 @@
 <?php
+
+echo 'ciao';
 /*
 * Classe che rappresenta un generico utente del sistema
 */
