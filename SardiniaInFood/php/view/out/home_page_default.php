@@ -63,11 +63,11 @@
    
     
     
-    include '/../php/model/Utente.php';
+    include '/../../model/Utente.php';
     
-    include '/../php/model/UtenteFactory.php';
+    include '/../../model/UtenteFactory.php';
 
-    include '/../php/model/Azienda.php';
+    include '/../../model/Azienda.php';
    
    
 
