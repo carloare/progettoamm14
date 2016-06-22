@@ -10,4 +10,5 @@ class Settings
     public static $db_name='amm14_aresuCarlo';       
 }
 
+echo 'ciao';
 ?>
