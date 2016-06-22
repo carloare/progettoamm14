@@ -63,11 +63,11 @@
    
     
     
-    include 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
+    include '/../php/model/Utente.php';
     
-    include 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+    include '/../php/model/UtenteFactory.php';
 
-    include 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+    include '/../php/model/Azienda.php';
    
    
 
