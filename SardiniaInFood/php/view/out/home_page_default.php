@@ -63,11 +63,11 @@
    echo $_SERVER["REQUEST_URI"];
     
     
-    include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';
+    include_once '/model/Utente.php';
     
-    include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+    include_once '/model/UtenteFactory.php';
 
-    include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
+    include_once '/model/Azienda.php';
    
    
 
