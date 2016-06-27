@@ -62,7 +62,7 @@ $numero_richiami = $utente->getNumeroRichiami();
              $mysqli->rollback();
          }
     
-    var_dump($result);
+   
      $risultato = $result->fetch_row();
            
      if($risultato[0] > 0)
