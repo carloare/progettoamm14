@@ -12,7 +12,7 @@ include_once '../model/Azienda.php';
 
 include_once '../model/Cliente.php';
 
-include_once 'Settings.php';
+include_once '../Settings.php';
 
 if (session_status() != 2) session_start();
 
