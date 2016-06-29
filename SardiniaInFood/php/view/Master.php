@@ -1,6 +1,6 @@
 <?php
 include_once 'ViewDescriptor.php';
-include_once basename(__DIR__) . '/../Settings.php';
+include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@ include_once basename(__DIR__) . '/../Settings.php';
     <meta name="author" content="Carlo Aresu">
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
-    <link href="../css/stile.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">
 </head>
 
 <body>
