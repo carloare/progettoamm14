@@ -15,6 +15,14 @@ class FrontController
 		{
 		if (session_status() != 2) session_start();
 
+                //pulizia dei risultati e dei parametri di ricerca usati dal cliente
+              $_SESSION['risultati_cliente']=NULL; 
+              $_SESSION['citta_cliente']=NULL;
+             $_SESSION['tipo_attivita_id_cliente']=NULL;
+             
+             
+             
+             
 		// caricamento pagina
 
 		$vd = new ViewDescriptor();
@@ -30,9 +38,11 @@ class FrontController
 			{
 			switch ($value)
 				{
-
+                            
+                            
+                            
 				// home page visualizzata di default
-
+                                            
 			case 0:
 				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
 				$vd->setMenuFile('view/out/menu_home_page.php'); //bottoni della home page
