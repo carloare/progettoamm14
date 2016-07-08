@@ -5,9 +5,9 @@
  */
 
 
-include_once 'model/UtenteFactory.php';
-include_once 'model/Azienda.php';
-include_once 'model/Utente.php';
+include_once '../model/UtenteFactory.php';
+include_once '../model/Azienda.php';
+include_once '../model/Utente.php';
 
 
 if (session_status() != 2) session_start();
@@ -33,33 +33,41 @@ $descrizione = $azienda_to_show->getDescrizione();
      
   $attivita = UtenteFactory::cercaAttivita($id_attivita);
 
-  //creare una funzione
   
+  
+   //creazione dell'istruzione per visualizzare una
+  //immagine di una specifica attività
+  //con cercaAttivita ottengo:
+  //-l'attività svolta
+  //-il nome dell'immagine
+  //-il titolo del tag img
   $url = '<img src="/SardiniaInFood/images/';
-  $url .=  UtenteFactory::cercaAttivita($id_attivita);  
-  $url .= '" alt="Immagine attività">';
+  $url .= UtenteFactory::cercaAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
+  $url .= '" alt="Immagine attivit&agrave;"';
+  $url .= 'title=';
+  $url .= UtenteFactory::cercaAttivita($id_attivita);
+  $url .= '>';
 
     
-   //creare una funzione
   
-  //test media voto 4/5
-  $media_v = 4.3; 
-  $media_voto=(int)$media_v;  
+  //creazione del titolo della media_voto in funzione del valore di media_voto
+  $media_voto=UtenteFactory::mediaVotoInStatistiche($id_azienda);  
   
-  if($media_voto>=4) $titolo_voto="Alle persone piace questo posto";
-  else if($media_voto>=3 AND $media_voto<4) $titolo_voto="Le persone hanno pareri contrastanti su questo posto";
-  else $titolo_voto="Alle persono non piace questo posto";
+  if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
+  else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
+  else $titolo_m="Alle persono non piace questo posto";
   
-  //test prezzo 3/5
-  $rapporto_qp = 3.1;
+  //creazione del titolo rapporto_qp in funzione del valore di rapporto_qp
+
+  $rapporto_qp = UtenteFactory::rapportoQualitaPrezzoInStatistiche($id_azienda); 
+  
   $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
-  if($rapporto_qualita_prezzo>=4) $titolo_prezzo="Costoso";
-  else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_prezzo="Moderato";
-  else $titolo_prezzo="Economico";
+  if($rapporto_qualita_prezzo>=4) $titolo_qp="Costoso";
+  else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_qp="Moderato";
+  else $titolo_qp="Economico";
   
   
-  
-  
+   
   
   
         
@@ -75,9 +83,9 @@ echo '<br>';
     echo $nome_azienda;
 
     //descrizione
-    echo '<br>';
+    echo '<br>/descrizione';
     echo $descrizione;
-    
+     echo '<br>descrizione/';
     
     //indirizzo, citta
     echo '<br>';
@@ -88,7 +96,7 @@ echo '<br>';
    echo ' &#8226; ';
      //voto qualità prezzo
     
-    echo "<div title='$titolo_prezzo'>";
+     echo "<div title='$titolo_qp'>";
     for($i=0; $i<$rapporto_qualita_prezzo; $i++)
     {
         echo '$';
@@ -111,18 +119,31 @@ echo '<br>';
     echo '  sito web: ';
     echo $sitoweb;
    
-//servizi
+//servizi offerti dall'azienda
     
     UtenteFactory::cercaServiziAzienda($id_azienda);
    
     
-   //voto
-echo "<div title='$titolo_voto'>";
-echo $media_v;
+   //voto medio
+echo "<div title='$titolo_m'>";
+echo $media_voto;
 echo "</div>";
 
+
+
+
+ echo '<div class="last_comment">';
+ UtenteFactory::ultimaRecensione($id_azienda);
+   echo '</div>';
+
+
+
+
     
-echo '</div>';   
+echo '</div>'; 
+
+
+  
     ?>
     
 </article> 

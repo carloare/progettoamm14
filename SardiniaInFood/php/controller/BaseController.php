@@ -2,17 +2,17 @@
 
 // Pagina che gestisce l"input dell"utente che non ha ancora effettuato il login
 
-include_once 'view/ViewDescriptor.php';
+include_once '../view/ViewDescriptor.php';
 
-include_once 'model/Utente.php';
+include_once '../model/Utente.php';
 
-include_once 'model/UtenteFactory.php';
+include_once '../model/UtenteFactory.php';
 
-include_once 'model/Azienda.php';
+include_once '../model/Azienda.php';
 
-include_once 'model/Cliente.php';
+include_once '../model/Cliente.php';
 
-include_once basename(__DIR__) . '/../Settings.php';
+include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
 if (session_status() != 2) session_start();
 
@@ -31,7 +31,7 @@ class BaseController
 			{
 
 /*
- * ==============================REGISTRAZIONE NUOVO CLIENTE NELL"APPLICAZIONE===============================================
+ * ==============================REGISTRAZIONE NUOVO CLIENTE===============================================
  */                    
                     
 			// registra un nuovo cliente nell"applicazione
@@ -256,7 +256,7 @@ class BaseController
 			
                         
 /*
-* =================================REGISTRAZIONE DI UNA NUOVA AZIENDA NELL"APPLICAZIONE=========================================
+* =================================REGISTRAZIONE DI UNA NUOVA AZIENDA=========================================
 */
             
             // registra una nuova azienda nell"applicazione
@@ -266,7 +266,17 @@ class BaseController
 			// definizione delle espressioni regolari
 
                     define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
-                    define("email_conferma_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");                     
+                    define("email_conferma_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");      
+                    
+                    //////
+                   //
+                    //FARE COME NEL FOGLIETTO
+                    //
+                    
+                    
+                    
+                    
+                    
                     define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
                     define("password_regexpr", "/^[a-zA-Z0-9]+$/");                  
                     define("nome_azienda_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");     
@@ -295,6 +305,35 @@ class BaseController
                         $company_web_site = $_REQUEST['sito_web_azienda'];
                        
                 
+                        
+                        
+   $_SESSION['nome_completo_azienda']=
+$_SESSION['tipo_incarichi_id'] =
+$_SESSION['email_conferma_azienda'] =
+$_SESSION['username_azienda'] =
+$_SESSION['password_azienda']=
+$_SESSION['name_azienda']=
+$_SESSION['tipo_attivita_id']=
+$_SESSION['company_mail_azienda']=
+$_SESSION['descrizione_azienda']=
+$_SESSION['city_azienda']=
+$_SESSION['address_azienda']=
+$_SESSION['phone_azienda']=
+$_SESSION['sito_web_azienda']            =NULL;          
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
             $error_rec = 0; //verifica la presenza di un generico errore
  
          $utente = new Azienda(); 
@@ -412,17 +451,21 @@ class BaseController
                 }        
                
                
-               
+               echo '/bc:';
+                echo $company_type;echo '\<br>';
                 
+                
+                 echo '/bc:';
+                echo $_REQUEST['tipo_attivita_id']; echo '\<br>';
                 
                if(!empty($company_type)) {
                 $utente->setTipo_attivita_id($company_type); 
                 
-                 
                }
-               if($company_type=="") {
-                   $_SESSION['tipo_attivita_id'] = "<br><div id='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.<br> Verr&agrave; impostato automaticamete a Agriturismo</div>";
-               
+               if($company_type=="-1") {
+                   echo 'entro qui';
+                   $_SESSION['tipo_attivita_id'] = "<br><div id='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.</div>";
+               $error_rec++; 
                }
                
                   
@@ -452,11 +495,22 @@ class BaseController
                
                if(!empty($company_description)) {
                     
+                   echo htmlentities($company_description);
+                   
                     if( 1 === preg_match(descrizione_regexpr, $company_description)){
-            
-                    
-                    $descrizione = self::test_input($company_description); 
-                    $utente->setDescrizione($descrizione);     
+                        
+                        
+                        /////////
+                        //
+                        //
+                        //
+                        //IL CASINO ME LO FA CON LA FUNZIONE test_input dove ho trim e htmlspecialchars
+                        //
+                        //
+                        /////////
+                     
+           
+                    $utente->setDescrizione($company_description);     
         
                 } else {      
                      $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
@@ -708,7 +762,7 @@ class BaseController
             
             
   /*
-* ==============================================================================
+* ===================================LOGIN DELL'AZIENDA===========================================
 */
       //effettua il login per l"azienda
             case 'login_azienda':  
@@ -783,7 +837,7 @@ class BaseController
  /*
 * ===============================CERCA DOVE COSA===============================================
 */
-  //Analizza i parametri passati dal form per effettuare una ricerca
+  //analizza i parametri passati dal form per effettuare una ricerca
 
 
               case "cercadovecosa": 
@@ -864,8 +918,9 @@ class BaseController
       
          break;   
 /*
- * ================================MOSTRA PROFILO=============================================
+ * ================================MOSTRA PROFILO AZIENDA=============================================
  */  
+         //mostra il profilo di un'azienda
             case "profile": 
              self::showProfile();
                   break;
@@ -888,7 +943,7 @@ class BaseController
  * =============================================================================
  */      
 /*
- * =============================================================================
+ * ====================================LOGOUT=========================================
  */      
       
       
@@ -986,7 +1041,15 @@ class BaseController
             $vd->setFooterFile("../view/out/footer_empty.php");
         
         } else {
-             //salvo l"utente in sessione
+            //puliza della sessione di ricerca della home page
+            //altrimenti quando si fa logout da cliente
+            //ci si ritrova con una eventuale vecchia ricerca fatta prima sulla home page
+            $_SESSION['citta']=NULL;
+            $_SESSION['tipo_attivita_id']=NULL;
+            $_SESSION['risultati']=NULL;
+            
+            
+             //salvo l'utente in sessione
             $_SESSION['current_user'] = $utente;
           
             //si sposta nella home page del cliente
@@ -1117,47 +1180,57 @@ class BaseController
              {
                    $_SESSION['errore']=5;
                    $errore++;
+                   //pulizia
+              $_SESSION['risultati']='ZERO'; 
+              $_SESSION['citta']=NULL;
+             $_SESSION['tipo_attivita_id']=NULL;
+             
                }      
     
                //se $errore==0 non sono passato per il caso non valido
                if($errore==0)
                { 
+                   
+                //parametri arrivati correttamente
+                   //come detto in home_page_default righe 84-89
+                   //qui metto in sessione i parametri che sono corretti
+                   $_SESSION['citta']= $citta;
+                   $_SESSION['tipo_attivita_id']=$tipo_attivita_id;
+   
                  
-  
+                 
                  
 //funzione che ricerca in un certo luogo una certa categoria di aziende
 $risultati = UtenteFactory::cercaDoveCosa($citta, $tipo_attivita_id);
 
 
-if($risultati!="ZERO")
+
+//ho trovato almeno un risultato
+if($risultati!='ZERO')
 {
+   
     //passaggio dei risultati
-$_SESSION['risultati']=  serialize($risultati);
+$_SESSION['risultati']=  $risultati;
     
+
+
 }
 else
 {
-   //errore nessun risultato trovato
+ 
+//errore nessun risultato trovato
     $_SESSION['errore']=6;
+    //pulizia
+   $_SESSION['risultati']='ZERO';
+   $_SESSION['citta']=NULL; 
+   $_SESSION['tipo_attivita_id']=NULL;
     
-    //in qualunque caso richiamo la home page
-    $vd = new ViewDescriptor();
-     
-     $vd->setTitolo("Benvenuto in SardiniaInFood");
     
-     $vd->setLogoFile("../view/out/logo.php");
-     $vd->setMenuFile("../view/out/menu_home_page.php");
-     $vd->setContentFile("../view/out/home_page_default.php");
-     $vd->setErrorFile("../view/out/error_out.php");
-     $vd->setFooterFile("../view/out/footer_home_page.php");   
-     
-     // richiamo la vista
-     require_once "../view/Master.php";  
+    
 }
-     
-         }
+               }
 
- //in qualunque caso richiamo la home page
+//in qualunque caso richiamo la home page
     $vd = new ViewDescriptor();
      
      $vd->setTitolo("Benvenuto in SardiniaInFood");
@@ -1170,12 +1243,21 @@ else
      
      // richiamo la vista
      require_once "../view/Master.php";  
+
+
+
+
+
+
+         
+
+ 
      
       
     }
     
  /*
-* ==============================================================================
+* ===================================SHOW PROFILE===========================================
 */     
      //mostra il profilo dell"azienda selezionata
      public static function showProfile()

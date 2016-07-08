@@ -1,6 +1,17 @@
 <!--registrazione azienda versione alpha-->
+<?php
+   $mysqli = new mysqli();
+   $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);
+        if (!isset($mysqli)) {
+            error_log("impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+    
+?>
 
-<form action="controller/BaseController.php" id="registrazione_azienda" method="POST">
+
+<form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_azienda" method="POST">
     
     
     
@@ -13,16 +24,98 @@
    <p><label for="tipo_incarichi_id">Tipo di incarico:</label></p>
    <select id="tipo_incarichi_id" name="tipo_incarichi_id" title="incarico svolto">
        
-        <?php if ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] == 1)) { ?> <option value="1" selected>Proprietario</option><?php } ?> 
-            <?php if ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] == 2)) { ?> <option value="2" selected>Dirigente Generale</option><?php } ?>
-                <?php if ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] == 3)) { ?> <option value="3" selected>Consulente</option><?php } ?>
-                    <?php if ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] == 4)) { ?> <option value="4" selected>Altro</option><?php } ?>
-                        <?php if (!isset($_POST['tipo_incarichi_id'])) { ?><option value="">Che tipo di incarico svolge dentro l'azienda?</option><?php } ?>
-      <option value="1">Proprietario</option>
-      <option value="2">Dirigente Generale</option>
-      <option value="3">Consulente</option>
-      <option value="4">Altro</option>
-   </select> <?php if(isset($_SESSION['tipo_incarichi_id'])) echo $_SESSION['tipo_incarichi_id'];?>
+       
+       
+       
+       
+       
+       
+       
+       
+     
+<?php 
+
+//quando è settato ed è diverso da -1
+if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")) {
+echo 1;
+    $pinco=$_POST['tipo_attivita_id'];
+    $query="SELECT tipo FROM Incarichi WHERE id='$pinco'";   
+    $result = $mysqli->query($query);      
+    $pallino=$result->fetch_row();      
+    $nome_attivita=$pallino[0];
+    
+?> 
+     
+     <option value="<?php echo $pinco;?>"><?php echo $nome_attivita; ?></option>
+         
+         
+<?php }  ?> 
+
+     
+ <option value="-1">Che tipo di incarico svolge dentro l'azienda?</option>    
+
+
+<?php
+
+//quando non è settato ed è uguale a -1
+if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1")) 
+{
+         
+     $query="SELECT id, tipo FROM Incarichi ORDER BY tipo DESC"; 
+       
+     
+     //quando è settato ede è diverso da -1
+} 
+
+elseif((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == "-1"))
+    {
+ echo $_SESSION['tipo_attivita_id'];
+ $query="SELECT id, tipo FROM Incarichi ORDER BY tipo ASC"; 
+    }
+
+
+
+
+
+elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
+{
+    echo 3;
+     $id_fffff = $_POST['tipo_attivita_id'];
+          
+     $query="SELECT id, tipo FROM Incarichi WHERE (id != $id_fffff) ORDER BY tipo DESC"; 
+     
+    echo $_SESSION['tipo_attivita_id'];
+}    
+     $result = $mysqli->query($query);
+     
+     while ($row = $result->fetch_row()) { ?> 
+ 
+            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                
+      <?php }  
+      
+   
+     ?>
+       
+       
+   </select><?php if(isset($_SESSION['tipo_incarichi_id'])) echo $_SESSION['tipo_incarichi_id'];?>
+       
+       
+       
+       
+       
+       
+       
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
    <p><label for="email_conferma_azienda">E-mail:</label></p>
    <input type="email" name="email_conferma_azienda" id="email_conferma_azienda" value="<?php if (isset($_POST['email_conferma_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['email_conferma_azienda']; ?>" title="inserisci la tua email"><?php if (isset($_SESSION['email_conferma_azienda'])) echo $_SESSION['email_conferma_azienda']; ?> 
@@ -47,43 +140,98 @@
   
    <p><label for="tipo_attivita_id">Tipo di attivit&agrave;:</label></p>
    <select id="tipo_attivita_id" name="tipo_attivita_id" title="scegli il tipo di attivit&agrave;">
+    
        
-    <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 1)) { ?> <option value="1" selected>Agriturismo</option><?php } ?> 
-        <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 2)) { ?> <option value="2" selected>American Bar</option><?php } ?>
-            <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 3)) { ?> <option value="3" selected>Bar Caff&egrave;</option><?php } ?> 
-                <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 4)) { ?> <option value="4" selected>Birreria</option><?php } ?>
-                    <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 5)) { ?> <option value="5" selected>Bistrot</option><?php } ?>
-                        <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 6)) { ?> <option value="6" selected>Fast Food</option><?php } ?> 
-                            <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 7)) { ?> <option value="7" selected>Gelateria</option><?php } ?>
-                                <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 8)) { ?> <option value="8" selected>Osteria</option><?php } ?> 
-                                    <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 9)) { ?> <option value="9" selected>Pasticceria</option><?php } ?>
-                                        <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 10)) { ?> <option value="10" selected>Pizzeria</option><?php } ?>
-                                            <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 11)) { ?> <option value="11" selected>Pub</option><?php } ?> 
-                                                <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 12)) { ?> <option value="12" selected>Ristorante</option><?php } ?>
-                                                    <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 13)) { ?> <option value="13" selected>Self Service</option><?php } ?> 
-                                                        <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 14)) { ?> <option value="14" selected>Snack Bar</option><?php } ?>
-                                                            <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 15)) { ?> <option value="15" selected>Take Away</option><?php } ?>
-                                                                <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 16)) { ?> <option value="16" selected>Trattoria</option><?php } ?> 
-                                                                    <?php if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == 17)) { ?> <option value="17" selected>Altro</option><?php } ?> 
-                                                                        <?php if (!isset($_POST['tipo_attivita_id'])) { ?><option value="">Di che attivit&agrave; si tratta?</option><?php } ?>
+       
+       
+     
+<?php 
 
-      <option value="1">Agriturismo</option>
-      <option value="2">American Bar</option>
-      <option value="3">Bar Caff&egrave;</option>
-      <option value="4">Birreria</option>
-      <option value="5">Bistrot</option>
-      <option value="6">Fast Food</option>
-      <option value="7">Gelateria</option>
-      <option value="8">Osteria</option>
-      <option value="9">Pasticceria</option>
-      <option value="10">Pizzeria</option>
-      <option value="11">Pub</option>
-      <option value="12">Ristorante</option>
-      <option value="13">Self Service</option>
-      <option value="14">Snack Bar</option>
-      <option value="15">Take Away</option>
-      <option value="16">Trattoria</option>
-      <option value="17">Altro</option>
+//quando è settato ed è diverso da -1
+if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")) {
+echo 1;
+    $pinco=$_POST['tipo_attivita_id'];
+    $query="SELECT tipo FROM Attivita WHERE id='$pinco'";   
+    $result = $mysqli->query($query);      
+    $pallino=$result->fetch_row();      
+    $nome_attivita=$pallino[0];
+    
+?> 
+     
+     <option value="<?php echo $pinco;?>"><?php echo $nome_attivita; ?></option>
+         
+         
+<?php }  ?> 
+
+     
+ <option value="-1">Che attivit&agrave; svolge?</option>    
+
+
+<?php
+
+//quando non è settato ed è uguale a -1
+if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1")) 
+{
+         
+     $query="SELECT id, tipo FROM Attivita ORDER BY tipo ASC"; 
+       
+     
+     //quando è settato ede è diverso da -1
+} 
+
+elseif((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] == "-1"))
+    {
+ echo $_SESSION['tipo_attivita_id'];
+ $query="SELECT id, tipo FROM Attivita ORDER BY tipo ASC"; 
+    }
+
+
+
+
+
+elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
+{
+    echo 3;
+     $id_fffff = $_POST['tipo_attivita_id'];
+          
+     $query="SELECT id, tipo FROM Attivita WHERE (id != $id_fffff) ORDER BY tipo ASC"; 
+     
+    echo $_SESSION['tipo_attivita_id'];
+}    
+     $result = $mysqli->query($query);
+     
+     while ($row = $result->fetch_row()) { ?> 
+ 
+            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                
+      <?php }  
+      
+   
+     ?>
+
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
    </select><?php if(isset($_SESSION['tipo_attivita_id'])) echo $_SESSION['tipo_attivita_id'];?>
    
    <p><label for="email_azienda">E-mail:</label></p>
@@ -91,7 +239,7 @@
    
    
    <p><label for="descrizione_azienda">Breve Descrizione:</label></p>
-   <textarea name="descrizione_azienda" id="descrizione_azienda" title="inserisci una brevissima descrizione (max 200)" rows="4" cols="50"><?php if (isset($_POST['descrizione_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['descrizione_azienda']; ?></textarea> <?php if (isset($_SESSION['descrizione_azienda'])) echo $_SESSION['descrizione_azienda']; ?>
+   <textarea name="descrizione_azienda" id="descrizione_azienda" title="inserisci una brevissima descrizione (max 200)" rows="4" cols="50" maxlength="200"><?php if (isset($_POST['descrizione_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['descrizione_azienda']; ?></textarea> <?php if (isset($_SESSION['descrizione_azienda'])) echo $_SESSION['descrizione_azienda']; ?>
 
 
    <p><label for="citta_azienda">Citta:</label></p>
@@ -192,6 +340,6 @@ Wi-Fi
    <hr>
    <input type="hidden" name="cmd" value="registrazione_azienda">
    <input type="hidden" name="ruolo" value="1">
-   <p><input type="submit" value="Iscriviti"></p>
+   <input type="submit" value="Iscriviti">
 </form>
 

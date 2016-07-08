@@ -1,5 +1,5 @@
 <article>
-    <form action="controller/BaseController.php" id="registrazione_cliente" method="POST">
+    <form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
             
                 <p> <label for="nome_completo_cliente">Nome Completo:</label></p>
                 <input type="text" name="nome_completo" id="nome_completo_cliente" value="<?php if (isset($_POST['nome_completo'])AND $_POST['ruolo']==0) echo $_POST['nome_completo'];?>" title="inserisci il tuo nome completo"><?php if(isset($_SESSION['nome_completo_cliente'])) echo $_SESSION['nome_completo_cliente']; ?> 
@@ -16,7 +16,7 @@
                 <input type="hidden" name="cmd" value="registrazione_cliente">
                 <input type="hidden" name="ruolo" value="0">
                 <input type="hidden" name="numero_richiami" value="0">
-                <p><input type="submit" value="Submit"></p>
+                <input type="submit" value="Iscriviti">
                 
             </form> 
 </article>

@@ -1,4 +1,4 @@
-<form name="login_form" action="controller/BaseController.php" method="POST"> 
+<form name="login_form" action="/SardiniaInFood/php/controller/BaseController.php" method="POST"> 
     
  <p> Username: </p> <input type="text" name="username_azienda" value="" title="inserisci il tuo username"> 
   
