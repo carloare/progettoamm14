@@ -1,6 +1,6 @@
 <ul class="menu">
     <li><!--richiama la home page di default-->
-        <a href="/SardiniaInFood/php/?page=0">&laquo; Indietro</a>
+        <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=0">&laquo; Indietro</a>
     </li>
 </ul>
 
