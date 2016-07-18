@@ -2,17 +2,9 @@
 /*
 * Classe che rappresenta un generico utente del sistema
 */
-class Utente
+class Amministratore
 
 	{
-	/*
-	* Costante che definisce il ruolo cliente
-	*/
-	const Cliente = 0;
-	/*
-	* Costante che definisce il ruolo azienda
-	*/
-	const Azienda = 1;
 	/*
 	* Identificatore dell'utente
 	*/
@@ -29,14 +21,7 @@ class Utente
 	* Password per l'autenticazione
 	*/
 	private $password;
-	/*
-	* Email dell'utente
-	*/
-	private $email_personale;
-	/*
-	* Il ruolo dell'utente nell'applicazione.
-	*/
-	private $ruolo;
+	
         
 	public function __construct()
 		{
@@ -81,22 +66,6 @@ class Utente
 		return true;
 		}
 
-	/*
-	* Restituisce l'email dell'utente che ha effettuato la registrazione
-	*/
-	public function getEmailConferma()
-		{
-		return $this->email_personale;
-		}
-
-	/*
-	* Imposta una nuova email per l'utente che ha effettuato la registrazione
-	*/
-	public function setEmailConferma($email_personale)
-		{
-		$this->email_personale = $email_personale;
-		return true;
-		}
 
 	/*
 	* Restituisce lo username dell'utente
@@ -132,29 +101,8 @@ class Utente
 		return true;
 		}
 
-	/*
-	* Restituisce un intero corrispondente al ruolo
-	*/
-	public function getRuolo()
-		{
-		return $this->ruolo;
-		}
-
-	/*
-	* Imposta un ruolo per un dato utente
-	*/
-	public function setRuolo($ruolo)
-		{
-		switch ($ruolo)
-			{
-		case self::Cliente:
-		case self::Azienda:
-			$this->ruolo = $ruolo;
-			return true;
-		default:
-			return false;
-			}
-		}
+	
+                
 	}
 
 ?>

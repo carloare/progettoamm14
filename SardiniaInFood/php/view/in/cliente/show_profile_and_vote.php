@@ -40,7 +40,7 @@ $descrizione = $azienda_to_show->getDescrizione();
      $email = $azienda_to_show->getEmail();
      $sitoweb =$azienda_to_show->getSitoWeb();
      
-  $attivita = UtenteFactory::cercaAttivita($id_attivita);
+  $attivita = UtenteFactory::mostraAttivita($id_attivita);
 
   
     //id_azienda in sessione per poter eseguire nelle funzioni UtenteFactory
@@ -52,15 +52,15 @@ $descrizione = $azienda_to_show->getDescrizione();
   
    //creazione dell'istruzione per visualizzare una
   //immagine di una specifica attività
-  //con cercaAttivita ottengo:
+  //con mostraAttivita ottengo:
   //-l'attività svolta
   //-il nome dell'immagine
   //-il titolo del tag img
   $url = '<img src="/SardiniaInFood/images/';
-  $url .= UtenteFactory::cercaAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
+  $url .= UtenteFactory::mostraAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
   $url .= '" alt="Immagine attivit&agrave;"';
   $url .= 'title=';
-  $url .= UtenteFactory::cercaAttivita($id_attivita);
+  $url .= UtenteFactory::mostraAttivita($id_attivita);
   $url .= '>';
 
     
@@ -82,7 +82,7 @@ $descrizione = $azienda_to_show->getDescrizione();
   
   
    
-  
+
   
         
     //visualizzo i risultati
@@ -103,11 +103,13 @@ echo '<br>';
     
     //indirizzo, citta
     echo '<br>';
+          echo '<img src="/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
+
     echo "$indirizzo"; echo' , '; echo $citta;
     //tipo attività
     echo '<br>';
     echo $attivita;
-   echo ' &#8226; ';
+   
      //voto qualità prezzo
     
      echo "<div title='$titolo_qp'>";
@@ -125,18 +127,33 @@ echo '<br>';
     
     
    
-   //recapiti
-   echo '<br> tel:';
-    echo "$telefono"; 
-    echo'  email:'; 
-    echo $email;
-    echo '  sito web: ';
-    echo $sitoweb;
-   
+  //recapiti
+   echo '<br>';
+     echo '<img src="/SardiniaInFood/images/telephone.png" alt="telefono" title="telefono" height="16" width="16">';
+    echo " $telefono"; 
+     echo '  <img src="/SardiniaInFood/images/email.png" alt="email" title="email" height="16" width="16">';
+    echo " $email";
+    echo '  <img src="/SardiniaInFood/images/web.png" alt="sito web" title="sito web" height="16" width="16">';
+    echo " $sitoweb";
+     echo "<br>";
 //servizi dell'azienda
     
-    UtenteFactory::cercaServiziAzienda($id_azienda);
+   $result = UtenteFactory::cercaServiziAzienda($id_azienda);
    
+  
+//Recuperara valori 
+while($row = $result->fetch_row()){
+echo "$row[0] :";
+        if($row[1]==1)
+            echo " Si";
+       else
+           echo " No";
+echo "<br>";
+}
+ 
+    
+    
+    
      //voto medio
 echo "<div title='$titolo_m'>";
 echo $media_voto;
@@ -147,8 +164,46 @@ echo "</div>";
     //ultime recensioni inserite
     echo '<div class="lasts_comments">';
     
- UtenteFactory::cercaUltimeRecensioni($id_azienda);                                  
+ $recensioni = UtenteFactory::cercaUltimeRecensioni($id_azienda);                                  
 
+ 
+ 
+ 
+ //pe ogni risultato mostra data chi ha recensito e la recensione
+while($row = $recensioni->fetch_object()) {
+
+    echo '<div class="recensione">';
+   echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
+   // print $row->id;
+   // print $row->id_aziende;
+    
+    print $row->data;
+    echo ' ';
+   echo $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
+   echo ' ha scritto: ';
+    print $row->recensione;
+    //echo ' ';
+    //print $row->numero_segnalazioni;
+    
+     ?><!--se la recensione conetiene messaggi offensivi può essere segnalata con il flag
+     la segnalazione va nella funzione "segnalazione" qui sotto che aggiorna
+     la tabella Recensioni e la tabella Segnalazioni-->
+     <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="16" width="16" title="segnala" onclick ="return confirm('Conferma la segnalazione?');"> 
+     <?php 
+     
+   echo '</div>';
+       
+   
+   
+   
+   
+   
+   
+   
+}  
+ 
+ 
+ 
  
  echo'</div>';
    
@@ -166,6 +221,8 @@ echo "<br>";
 $voto_valido = 0;
 
 $voto_valido = UtenteFactory::votoValido();
+
+echo $voto_valido;
 
 
 echo "<br>";
@@ -207,6 +264,7 @@ $rapporto_valido = 0;
 
 $rapporto_valido = UtenteFactory::rapportoValido();
 
+echo $rapporto_valido;
 
 echo "<br>";
 if($rapporto_valido=='VALID') {
@@ -245,6 +303,9 @@ $preferito_valido = 0;
 
 $preferito_valido = UtenteFactory::preferitoValido();
 
+echo $preferito_valido;
+
+
 
 echo "<br>";
 if($preferito_valido=='VALID') {
@@ -268,7 +329,7 @@ echo '</section>';
  <form id="recensione">
      <h3>Voui inserire una tua recensione?</h3>
   <div>
- <textarea  name="comments"  id="comments" rows="5" cols="20" maxlength="200" title="Voui inserire una tua recensione?"></textarea>
+ <textarea  name="comments"  id="comments" rows="5" cols="20" maxlength="150" title="Voui inserire una tua recensione?"></textarea>
    </div><?php if (isset($_SESSION['recensione'])) echo $_SESSION['recensione']; ?>
 <input type="button" value="Invia" name="submit" id="submit"> 
 

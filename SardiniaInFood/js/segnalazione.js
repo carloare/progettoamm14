@@ -9,7 +9,7 @@ $("input:image").click(function() {
 
 $.ajax({
                type: "POST",
-               url: "ClienteController.php?cmd=segnalazionerecensione",
+               url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=segnalazionerecensione",
                data: "id="+id,
              dataType: "text"
                 

@@ -11,7 +11,6 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
 
 
-
 if(session_status()!=2) session_start();
 
 if(isset($_REQUEST['cmd']))
@@ -42,9 +41,9 @@ class ClienteController {
                  define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
          
                  //parametri inseriti nel form di ricerca
-           $city_request = $_REQUEST['citta'];
+           $citta_request = $_REQUEST['citta'];
            //'pulizia' del parametro city
-           $city = trim($city_request);
+           $citta = trim($citta_request);
            
            $tipo_attivita_id = $_REQUEST['tipo_attivita_id'];
            
@@ -54,7 +53,7 @@ class ClienteController {
            //ha lasciato uno spazio bianco nel campo form 'citta', allora viene considerato
            //UNDEFINE
            
-           if($city=="Dove" || $city=="")
+           if($citta=="Dove" || strlen($citta)==0)
            {
                $citta='UNDEFINE';
            }
@@ -63,13 +62,9 @@ class ClienteController {
            else
            {
                   
-                    if( 1 === preg_match(citta_regexpr, $city)){
+                    if(!(1 === preg_match(citta_regexpr, $citta)))
             
-                    
-                    $citta = self::test_input($city);
-                                           
-        
-                } else {       
+                   {       
                    
                     $errore++; 
                 } 
@@ -94,8 +89,8 @@ class ClienteController {
   
      $vd->setTitolo("Benvenuto in SardiniaInFood");
      $vd->setLogoFile('../view/in/logo.php');
-      $vd->setMenuFile('../view/in/menu_cliente.php'); 
-     $vd->setContentFile('../view/in/cliente/home_page_cliente.php'); //richiama la home page
+      $vd->setMenuFile('../view/in/menu_home_cliente.php'); 
+     $vd->setContentFile('../view/in/cliente/home_page_cliente.php'); 
      $vd->setErrorFile('../view/in/error_in.php');
     $vd->setFooterFile('../view/in/footer_empty.php'); 
 				
@@ -121,12 +116,10 @@ class ClienteController {
  * ================================BACK HOME PAGE================================================
  */                      
               //ritorna nella home page
-                     case "back_home_page": 
-                         //pulizia dalle vecchie ricerche
- $_SESSION['citta_cliente']=NULL;
-$_SESSION['tipo_attivita_id_cliente']=NULL;
-             self::ShowHomePageCliente();
-                  break;
+                //     case "back_home_page": 
+                        
+           // self::ShowHomePageCliente();
+            //      break;
                     
    /*
  * =============================VOTA===================================================
@@ -217,6 +210,8 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
             
           case 'ricercapreferiti':
               
+              
+
  
   
                    //flag per controllare la presenza di errori
@@ -225,19 +220,19 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
                  define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
          
                  //parametri inseriti nel form di ricerca
-           $city_request = $_REQUEST['citta'];
+           $citta_request = $_REQUEST['citta_preferiti'];
            //'pulizia' del parametro city
-           $city = trim($city_request);
+           $citta = trim($citta_request);
            
-           $tipo_attivita_id = $_REQUEST['tipo_attivita_id'];
+           $tipo_attivita_id = $_REQUEST['tipo_attivita_id_preferiti'];
            
              //per semplicità se il parametro city è uguale a 'Dove',
-           //che significa che l'utente non ha inserito nulla nel campo form 'citta',
+           //che significa che l'utente non ha inserito nulla nel campo form 'citta_preferiti',
            //oppure è uguale a '', che significa che l'utente
-           //ha lasciato uno spazio bianco nel campo form 'citta', allora viene considerato
+           //ha lasciato uno spazio bianco nel campo form 'citta_preferiti', allora viene considerato
            //UNDEFINE
            
-           if($city=="Dove" || $city=="")
+           if($citta=="Dove" || strlen($citta)==0)
            {
                $citta='UNDEFINE';
            }
@@ -246,13 +241,10 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
            else
            {
                   
-                    if( 1 === preg_match(citta_regexpr, $city)){
+                    if(!( 1 === preg_match(citta_regexpr, $citta)))
             
                     
-                    $citta = self::test_input($city);
-                                           
-        
-                } else {       
+                   {       
                    
                     $errore++; 
                 } 
@@ -277,7 +269,7 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
   
      $vd->setTitolo("Benvenuto in SardiniaInFood");
      $vd->setLogoFile('../view/in/logo.php');
-      $vd->setMenuFile('../view/in/menu_cliente.php'); 
+      $vd->setMenuFile('../view/in/menu_favorites_cliente.php'); 
      $vd->setContentFile('../view/in/cliente/show_favorites.php'); //richiama alla pagine dei preferiti
      $vd->setErrorFile('../view/in/error_in.php');
     $vd->setFooterFile('../view/in/footer_empty.php'); 
@@ -297,12 +289,31 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
  */  
        //ritorna alla home page dopo essere entrato in un profilo      
             case 'indietro':
-                 self::ShowHomePageCliente();
+                 self::showHomePageCliente();
                  break;    
             
+               /*            
+    
+ * ============================INDIETRO MA CANCELLA LA SESSIONE====================================================
+ */  
+       //ritorna alla home page dopo essere entrato in un profilo      
+            case 'back_clear_home_page':
+                //ci passo ucendo dai preferit
+                //e pulendo la ricerca
+              //devo pulire
+                
+                
+                if(isset($_SESSION['risultati_cliente'])) {unset($_SESSION['risultati_cliente']);}
+                if(isset($_SESSION['risultati_cliente_preferiti'])) {unset($_SESSION['risultati_cliente_preferiti']);}
+                
+                  self::showHomePageCliente();
+                 break;  
             
             
-            
+             
+             
+             
+             
           /*   
              case 'paginazionerecensioni':
                  if(isset($_POST['page']))
@@ -324,23 +335,7 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
             */
                 
                 
-/*
-* =================================TEST INPUT============================================
-*/
 
-	// con questa funzione vado a:
-	// - rimuovere gli spazi bianchi all"inizio e alla fine della stringa
-	// - converte certi caratteri in entità  HTML
-
-	public static function test_input($data)
-		{
-		$data = trim($data);
-		$data = htmlspecialchars($data);
-		return $data;
-		}
-
-/*                
-                
                 
                 
    /*
@@ -370,19 +365,14 @@ $_SESSION['tipo_attivita_id_cliente']=NULL;
                    $_SESSION['errore']=2;
                    $errore++;
                    //pulizia
-                        $_SESSION['risultati_cliente']='ZERO'; 
-              $_SESSION['citta_cliente']=NULL;
-             $_SESSION['tipo_attivita_id_cliente']=NULL;
+                       unset($_SESSION['risultati_cliente']); 
+            
                }      
     
                //se $errore==0 non sono passato per il caso non valido
                if($errore==0)
                { 
-                 //parametri arrivati correttamente
-                   $_SESSION['citta_cliente']= $citta;
-                   $_SESSION['tipo_attivita_id_cliente']=$tipo_attivita_id;
-   
-  
+               
                  
 //funzione che ricerca in un certo luogo una certa categoria di aziende
 $risultati = UtenteFactory::cercaDoveCosa($citta, $tipo_attivita_id);
@@ -400,9 +390,8 @@ else
    //errore nessun risultato trovato
     $_SESSION['errore']=3;
     //pulizia
-     $_SESSION['risultati_cliente']='ZERO';
-   $_SESSION['citta_cliente']=NULL; 
-   $_SESSION['tipo_attivita_id_cliente']=NULL;
+     unset($_SESSION['risultati_cliente']);
+  
    
 }
      
@@ -415,7 +404,7 @@ else
      $vd->setTitolo("Benvenuto in SardiniaInFood");
    
    $vd->setLogoFile('../view/in/logo.php');
-     $vd->setMenuFile('../view/in/menu_cliente.php');
+     $vd->setMenuFile('../view/in/menu_home_cliente.php');
      $vd->setContentFile('../view/in/cliente/home_page_cliente.php');
      $vd->setErrorFile('../view/in/error_in.php');
      $vd->setFooterFile('../view/in/footer_empty.php');   
@@ -438,7 +427,7 @@ else
          $vd = new ViewDescriptor();
        $vd->setTitolo("SardiniaInFood: Profilo");
        $vd->setLogoFile("../view/in/logo.php");  
-       $vd->setMenuFile("../view/in/menu_cliente.php");
+       $vd->setMenuFile("../view/in/menu_show_profile_and_vote_cliente.php");
        $vd->setContentFile("../view/in/cliente/show_profile_and_vote.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
        $vd->setFooterFile("../view/in/footer_empty.php");
@@ -449,7 +438,10 @@ else
          
     }
                 
-    /*
+   
+    
+    
+     /*
 * ================================MOSTRA HOME PAGE==============================================
 */                  
      
@@ -462,7 +454,7 @@ else
          $vd = new ViewDescriptor();
        $vd->setTitolo("SardiniaInFood: Profilo");
        $vd->setLogoFile("../view/in/logo.php");  
-       $vd->setMenuFile("../view/in/menu_cliente.php");
+       $vd->setMenuFile("../view/in/menu_home_cliente.php");
        $vd->setContentFile("../view/in/cliente/home_page_cliente.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
        $vd->setFooterFile("../view/in/footer_empty.php");
@@ -471,7 +463,8 @@ else
         require_once "../view/Master.php"; 
          
          
-    }
+    }   
+    
                 
      /*
 * ================================VOTA==============================================
@@ -558,7 +551,7 @@ else
          $vd = new ViewDescriptor();
        $vd->setTitolo("SardiniaInFood: Profilo");
        $vd->setLogoFile("../view/in/logo.php");  
-       $vd->setMenuFile("../view/in/menu_cliente.php");
+       $vd->setMenuFile("../view/in/menu_favorites_cliente.php");
        $vd->setContentFile("../view/in/cliente/show_favorites.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
        $vd->setFooterFile("../view/in/footer_empty.php");
@@ -613,10 +606,7 @@ else
              
                    $_SESSION['errore']=4;
                    $errore++;
-                   //pulizia
-                    $_SESSION['risultati_cliente_preferiti']=NULL; 
-                    $_SESSION['tipo_attivita_id_preferiti']=NULL;
-  $_SESSION['citta_preferiti']=NULL;
+                   
                }      
     
                //se $errore==0 non sono passato per il caso non valido
@@ -644,8 +634,7 @@ else
     //pulizia
     $_SESSION['risultati_cliente_preferiti']='ZERO';
     
-  $_SESSION['tipo_attivita_id_preferiti']=NULL;
-  $_SESSION['citta_preferiti']=NULL;
+  
                }      
 
 }
@@ -657,7 +646,7 @@ else
      $vd->setTitolo("Benvenuto in SardiniaInFood");
    
    $vd->setLogoFile('../view/in/logo.php');
-     $vd->setMenuFile('../view/in/menu_cliente.php');
+     $vd->setMenuFile('../view/in/menu_favorites_cliente.php');
      $vd->setContentFile('../view/in/cliente/show_favorites.php');
      $vd->setErrorFile('../view/in/error_in.php');
      $vd->setFooterFile('../view/in/footer_empty.php');   

@@ -17,6 +17,7 @@ $(document).ready(function() {
 $('.ratings_stars').bind('click', function() {
 
     var selezionato = $(this).attr("class");
+    
                  if(selezionato =="star_1 ratings_stars ratings_over")
                     var voto = 1;   
                  if(selezionato =="star_2 ratings_stars ratings_over")
@@ -42,7 +43,7 @@ $('.ratings_stars').bind('click', function() {
                 //{voto : "value"}
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
-                document.getElementById("vota"). style.display = 'none';
+                document.getElementById("vota_hearts"). style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema. Il tuo voto è andato perso"); 
     });		
 });

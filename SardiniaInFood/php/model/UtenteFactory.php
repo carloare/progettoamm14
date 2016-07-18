@@ -3,19 +3,20 @@
 include_once 'Azienda.php';
 include_once 'Cliente.php';
 include_once 'Utente.php';
+include_once 'Amministratore.php';
+
 
 
 if (session_status() != 2) session_start();
 
 //pulizia dei vari risultati conservati dentro la sessione
-$_SESSION['risultati']=NULL;
-$_SESSION['risultati_cliente']=NULL;
+
 /*
  * Classe che contiene tutti quei servizi necessari a un generico utente (cliente o azienda)
  */
 
 class UtenteFactory {
-    
+  
 /*
  * =============================================================================
  * ------------------------------CREA UTENTE-----------------------------------
@@ -44,7 +45,7 @@ class UtenteFactory {
 $nome_completo = $utente->getNomeCompleto(); 
 $username = $utente->getUsername();
 $password =$utente->getPassword();
-$email_conferma =$utente->getEmailConferma();
+$email_personale =$utente->getEmailConferma();
 $ruolo = $utente->getRuolo();
 $numero_richiami = $utente->getNumeroRichiami();      
 
@@ -57,7 +58,7 @@ $numero_richiami = $utente->getNumeroRichiami();
     
       //verifica se nella tabella Cliente è presente l'email digitata 
         //(l'email è unica per ogni persona)
- $query ="SELECT COUNT(*) FROM Clienti WHERE email_conferma = \"$email_conferma\"";
+ $query ="SELECT COUNT(*) FROM Clienti WHERE email_personale = \"$email_personale\"";
    
     $result = $mysqli->query($query);
     
@@ -79,10 +80,10 @@ $numero_richiami = $utente->getNumeroRichiami();
       {
         
         //effettiva registrazione del nuovo cliente nella tabella Clienti
-    $stmt = $mysqli->prepare("INSERT INTO Clienti (nome_completo, username, password, email_conferma, ruolo, numero_richiami) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO Clienti (nome_completo, username, password, email_personale, ruolo, numero_richiami) VALUES (?, ?, ?, ?, ?, ?)");
     
     
-    $ctrl = $stmt->bind_param('ssssii', $nome_completo, $username, $password, $email_conferma,$ruolo, $numero_richiami);
+    $ctrl = $stmt->bind_param('ssssii', $nome_completo, $username, $password, $email_personale,$ruolo, $numero_richiami);
          
     if(!$ctrl)
          {
@@ -104,8 +105,7 @@ $numero_richiami = $utente->getNumeroRichiami();
      $mysqli->commit();
  $mysqli->autocommit(TRUE);
  
- 
-$mysqli->close();
+
 
 }
 
@@ -118,7 +118,7 @@ if($ruolo==1)
           //valori dell'oggetto creato tramite il form
   $nome_completo_azienda =$utente->getNomeCompleto();
           $tipo_incarichi_id =$utente->getTipo_incarichi_id();
-          $email_conferma_azienda=$utente->getEmailConferma();
+          $email_personale_azienda=$utente->getEmailConferma();
           $username_azienda=$utente->getUsername();
           $password_azienda=$utente->getPassword();
           $name_azienda =$utente->getNomeAzienda();
@@ -155,9 +155,9 @@ if($ruolo==1)
  else {
           
           //effettua la registrazione nel database
-$stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id, email_conferma, username, password, nome_azienda, citta, indirizzo, tipo_attivita_id, descrizione, telefono, email, sito_web, ruolo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id, email_personale, username, password, nome_azienda, citta, indirizzo, tipo_attivita_id, descrizione, telefono, email, sito_web, ruolo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-     $ctrl = $stmt->bind_param('sissssssissssi', $nome_completo_azienda, $tipo_incarichi_id, $email_conferma_azienda, $username_azienda, $password_azienda, $name_azienda, $city_azienda, $address_azienda, $tipo_attivita_id, $descrizione_azienda, $phone_azienda, $company_mail_azienda, $sito_web_azienda, $ruolo );
+     $ctrl = $stmt->bind_param('sissssssissssi', $nome_completo_azienda, $tipo_incarichi_id, $email_personale_azienda, $username_azienda, $password_azienda, $name_azienda, $city_azienda, $address_azienda, $tipo_attivita_id, $descrizione_azienda, $phone_azienda, $company_mail_azienda, $sito_web_azienda, $ruolo );
  
      if(!$ctrl)
          {
@@ -175,11 +175,16 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
 
      $last_id = $mysqli->query($query);
             
+      if(!$last_id)
+         {
+             $mysqli->rollback();
+         }
+     
             $row = $last_id->fetch_array();
 
             $id_nuova_azienda = $row[0];
        
-            echo $id_nuova_azienda;
+            
             
      //il primo id non utilizzato lo associto all'azienda appena registrata
             //e inizializzo la tabella Statistiche
@@ -187,381 +192,92 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
       $query = ("INSERT INTO Statistiche(id_aziende, visualizzazioni, media_voto, numero_voti, media_rapporto_qualita_prezzo, numero_voti_qualita_prezzo, numero_preferenze) VALUES ($id_nuova_azienda, 0, 0, 0, 0, 0, 0)");
 
       $result = $mysqli->query($query);
-      echo $query;
-      var_dump($result);
+     
       
+      if(isset($_REQUEST['servizi']))
+      {
+      $form_servizi=$_REQUEST['servizi'];
       
-      
- }
-    
-      
-               
    
- 
-       //inserisce i servizi offetti dall'azienda nella tabella Azienda_Servizi
-      //mette a 1 se si vuole specificare che il servizio è offerto
-      //mette a 0 se si vuole specificar che il servizio non è offerto
- //alla fine viene pulita la SESSION
-          
-          if(isset($_SESSION['accesso_disabili'])){
-              if($_SESSION['accesso_disabili']==1)
-              {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,1,1)");
-              }
-              else
-              {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,1,0)"); 
-              }
-              $result = $mysqli->query($query);
-     if(!$result)
+      //creo un arrey con tutti i servizi impostati che hanno valore 0
+      //non checcati
+  $static_servizi = array();
+   $index_array_servizi = 0;  
+            $query = "SELECT id FROM  Servizi";
+            
+            $result = $mysqli->query($query);
+            
+           
+            if(!$result)
          {
-             $mysqli->rollback();
+             $mysqli->rollback(); 
          }
-         $_SESSION['accesso_disabili'] = NULL;
-          }
-          
-          
-           if(isset($_SESSION['accetta_carde_di_credito'])){
-               if($_SESSION['accetta_carde_di_credito']==1)
-               {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,2,1)");
-               }
-               else
-               {
-                   $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,2,0)");
-               }
-              $result = $mysqli->query($query);
-     if(!$result)
-         {
-             $mysqli->rollback();
-         }
-         $_SESSION['accetta_carde_di_credito'] = NULL;
-          }
-          
-          
-          
-          if(isset($_SESSION['accetta_prenotazioni'])){
-              if($_SESSION['accetta_prenotazioni']==1)
-              {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,3,1)");
-              }
-              else
-                  {
-                  $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,3,0)");
-              }
-              $result = $mysqli->query($query);
-     if(!$result)
-         {
-             $mysqli->rollback();
-         }
-         $_SESSION['accetta_prenotazioni'] = NULL;
-          }
-          
-
-       if(isset($_SESSION['bagno_disponibile'])){
-           if($_SESSION['bagno_disponibile']==1)
-           {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,4,1)");
-           }
-           else
-           {
-               $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,4,0)");
-           }
-              $result = $mysqli->query($query);
-     if(!$result)
-         {
-             $mysqli->rollback();
-         }
-         $_SESSION['bagno_disponibile'] = NULL;
-          }
-          
-          
-          
-          
-           if(isset($_SESSION['bancomat'])){
-               if($_SESSION['bancomat']==1)
-               {
-              $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,5,1)");
-               }
-               else
-               {
-                $query =("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,5,0)");   
-               }
-              $result = $mysqli->query($query);
-     if(!$result)
-         {
-             $mysqli->rollback();
-         }
-         $_SESSION['bancomat'] = NULL;
-          }
-          
-          
-          
-          
-          
-          
-           if (isset($_SESSION['bevande_alcoliche'])) {
-               if($_SESSION['bevande_alcoliche']==1)
-               {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,6,1)");
-               }
-               else
-               {
-                    $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,6,0)");
-               }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['bevande_alcoliche'] = NULL;
+            
+            
+            
+     //creo un array della stessa dimensione della tabella dei servizi
+            //con tutti i valori a zero
+     while ($row = $result->fetch_row()) {
+              $id_servizio = $row[0];
+              $static_servizi[$index_array_servizi] = $id_servizio;
+              $index_array_servizi = $index_array_servizi + 1;
             }
-          
+      
             
-            
-            
-            
-          
-           if (isset($_SESSION['catering'])) {
-               if($_SESSION['catering']==1)
-               {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,7,1)");
-               }
-               else
-               {
-                   $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,7,0)");
-               }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['catering'] = NULL;
-            }
-            
-            
-            
-            
-          
-           if (isset($_SESSION['consegna_a_domicilio'])) {
-               if($_SESSION['consegna_a_domicilio']==1)
-               {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,8,1)");
-               }
-               else
-               {
-               $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,8,0)");
-               }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['consegna_a_domicilio'] = NULL;
-            }
-          
-            
-            
-            
-            
-            
-          
-           if (isset($_SESSION['da_asporto'])) {
-               if($_SESSION['da_asporto']==1)
-               {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,9,1)");
-               }
-               else
-               {
-                  $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,9,0)");  
-               }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['da_asporto'] = NULL;
-            }
-            
-            
-            
-            
-          
-           if (isset($_SESSION['guardaroba_disponibile'])) {
-               if($_SESSION['guardaroba_disponibile']==1)
-               {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,10,1)");
-               }
-                else 
-                    {
-                    $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,10,0)");
-                    }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['guardaroba_disponibile'] = NULL;
-            }
-          
-            
-            
-            
-          
-            if (isset($_SESSION['musica'])) {
-                if($_SESSION['musica']==1)
-                {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,11,1)");
-                }
-                else
-                {
-                    $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,11,0)");
-                }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['musica'] = NULL;
-            }
-          
-            
-            
-            
-          
-          if (isset($_SESSION['parcheggio_auto'])) {
-              if($_SESSION['parcheggio_auto']==1)
-              {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,12,1)");
-              }
-              else
-              {
-                   $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,12,0)");
-              }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['parcheggio_auto'] = NULL;
-            }
-          
-            
-            
-            
-            
-          if (isset($_SESSION['parcheggio_bici'])) {
-              if($_SESSION['parcheggio_bici']==1)
-              {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,13,1)");
-              }
-              else
-              {
-         $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,13,0)");
-              }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['parcheggio_bici'] = NULL;
-            }
-          
-          
-          if (isset($_SESSION['per_fumatori'])) {
-              if($_SESSION['per_fumatori']==1)
-              {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,14,1)");
-              }
- else {
-                     $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,14,0)");
-
- }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['per_fumatori'] = NULL;
-            }
-          
-            
-            
-            
-            
-            
-             if (isset($_SESSION['posti_sedere_aperto'])) {
-                 if($_SESSION['posti_sedere_aperto']==1)
-                 {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,15,1)");
-                 }
- else
-     {
-                     $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,15,0)");
-
- }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['posti_sedere_aperto'] = NULL;
-            }
-            
-            
-            
-            
-            
-              if (isset($_SESSION['stanza_privata'])) {
-                  if($_SESSION['stanza_privata']==1)
-                  {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,16,1)");
-                  }
-                  else
-                  {
-   $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,16,0)");
-                  }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['stanza_privata'] = NULL;
-            }
-            
-            
-            
-            
-            
-            
-              if (isset($_SESSION['tv'])) {
-                  if($_SESSION['tv']==1)
-                  {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,17,1)");
-                  }
-                  else
-                  {
-                     $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,17,0)"); 
-                  }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['tv'] = NULL;
-            }
-            
-            
-            
-            
-            
-            
-                   if (isset($_SESSION['wifi'])) {
-                       if($_SESSION['wifi']==1)
-                       {
-                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,18,1)");
-                       }
-                       else
-                       {
-      $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi,valore) VALUES ($id_nuova_azienda,18,0)");
-                       }
-                $result = $mysqli->query($query);
-                if (!$result) {
-                    $mysqli->rollback();
-                }
-                $_SESSION['wifi'] = NULL;
-            }
+                 
+     
+      
+      
+      //per ogni elemento dell'array appena creato
+            //1 2 3 4 5 prendi prima 
+            //1...2...3...
+     foreach ($static_servizi as $static_id_servizio) {
     
+    $query = "SELECT tipo FROM Servizi WHERE id = $static_id_servizio";
+            
+            $result = $mysqli->query($query);          
+               
+            $row = $result->fetch_row();
+               
+               //verfica se nell'array è presenta il valore
+              if (in_array($static_id_servizio, $form_servizi)) {
+              
+                  //se c'è corrispondenza viene messo a 1 il suo valore
+                  $value_service=1;
+                // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' checked='checked'/><span style='color: #0066cc;'>$row[0]</span><br />";
+              
+               
+               
+               
+              //fatti i primi 2
+             // mysqli insert. id->ultimo id in tabella
+              //fatto questo glielo metto e inserisco nel db
+              
+                
+       
+              } else {      
+                  
+                  //caso contrario viene messo 0
+                  $value_service=0; 
+                  
+               // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' /><span style='color: #0066cc;'>$row[0]</span><br />";
+              
+                
+              }       
+                $query = ("INSERT INTO Aziende_Servizi (id_aziende, id_servizi, valore) VALUES ($id_nuova_azienda , $static_id_servizio, $value_service)");
+
+       $ctrl = $mysqli->query($query);
+           }
+      }
+           
+ }
+    
+      
+                
+
     }
     }
+    $mysqli->close();
 
 }
 
@@ -625,7 +341,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
      
            
                 $ctrl = $stmt->bind_result 
-                     ($id, $nome_completo, $username, $password, $email_conferma, $ruolo, $numero_richiami);
+                     ($id, $nome_completo, $username, $password, $email_personale, $ruolo, $numero_richiami);
             
                 
             if(!$ctrl) {
@@ -654,7 +370,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             $utente->setNomeCompleto($nome_completo);
             $utente->setUsername($username);
             $utente->setPassword($password);
-            $utente->setEmailConferma($email_conferma);
+            $utente->setEmailConferma($email_personale);
             $utente->setRuolo($ruolo);
             $utente->setNumeroRichiami($numero_richiami);      
             $mysqli->close();
@@ -663,6 +379,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             
         
         }    
+            $mysqli->close();
     }
  
  
@@ -721,7 +438,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
      
           
                 $ctrl = $stmt->bind_result 
-                     ($id, $nome_completo,$tipo_incarichi_id, $email_conferma,$username, $password, $nome_azienda, $citta, $indirizzo, $tipo_attivita_id, 
+                     ($id, $nome_completo,$tipo_incarichi_id, $email_personale,$username, $password, $nome_azienda, $citta, $indirizzo, $tipo_attivita_id, 
                         $descrizione, $telefono, $email, $sito_web, $ruolo);
               
                 
@@ -755,7 +472,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             $utente->setId($id);
             $utente->setNomeCompleto($nome_completo);
             $utente->setTipo_incarichi_id($tipo_incarichi_id);
-                    $utente->setEmailConferma($email_conferma);
+                    $utente->setEmailConferma($email_personale);
                     $utente->setUsername($username);
                     $utente->setPassword($password);
                     $utente->setNomeAzienda($nome_azienda);
@@ -771,14 +488,15 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             
                     
                     
-            $mysqli->close();
-           
-            return $utente;
+          
          
-                        
+                  $mysqli->close();
+           
+            return $utente;      
            
         
         }    
+          
     }
 /*
  * =============================================================================
@@ -794,7 +512,6 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
     
     //connessione al database
     $mysqli = new mysqli();
-    //$mysqli->connect("localhost","root","davide","amm14_aresuCarlo");
     $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
     
     // suppongo di aver creato mysqli e di aver chiamato la connect
@@ -881,7 +598,7 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
                     $row_result['id'],
                     $row_result['nome_completo'],      
                     $row_result['tipo_incarichi_id'], 
-                    $row_result['email_conferma'],
+                    $row_result['email_personale'],
                     $row_result['username'],
                     $row_result['password'],
                     $row_result['nome_azienda'],
@@ -909,110 +626,276 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
                           {
               
                         
-                        
+                       
                       return $attivita;
            
                      }
            else 
            {
-               
+              
                return 'ZERO';
                }
                  
            }
     
-    $mysqli->close();
+ $mysqli->close();
                 
                 
             }      
              
           
 
-/*
+/* MOSTRA ATTIVITA
+*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+         //funzione che restituisce una stringa che contiene l'attività svolta
+         //selezionata dalla submit
+    
+    
+     public static function mostraAttivita($tipo_attivita_id)
+     {
+         
+        
+         $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[mostraAttivita] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+            $query = ("SELECT tipo FROM Attivita WHERE id = $tipo_attivita_id");
+            
+$result = $mysqli->query($query);
+      
+         //  $risultato = $result->fetch_row();
+ $risultato = $result->fetch_row();
+
+ 
+ $mysqli->close();
+           return $risultato[0];
+            }
+         
+         
+         
+         
+         
+         
+         
+         
+          
+     }
+           
+     
+ /*
  * =============================================================================
- * ---------------------------------CERCA ATTIVITA--------------------------------
+ * ---------------------------------CERCA INCARICO--------------------------------
+ * =============================================================================
+ */  
+         //funzione che a seconda del valore tipo_incarico_id restituisce 
+         //una stringa che contiene l'incarico svolto
+    
+    
+     public static function cercaIncarico($tipo_attivita_id)
+     {
+         
+        
+         $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaincarico] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+            $query = ("SELECT tipo FROM Incarichi WHERE id = $tipo_incarichi_id");
+            
+$result = $mysqli->query($query);
+      
+           $risultato = $result->fetch_row();
+
+           $mysqli->close();
+             return $risultato[0];
+            }
+         
+         
+         
+         
+         
+         
+         
+             
+     }    
+     
+     
+     
+           
+     
+     
+/* MOSTRA ELENCO ATTIVITA
+*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+         //funzione che restituisce una stringa che contiene l'attività svolta
+    
+    
+     public static function mostraElencoAttivita($tipo_attivita_id)
+     {
+        //creo istanza mysqli
+    $mysqli = new mysqli();
+    //connessione al db
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    //se è avvenuto un errore di connessione
+    if (!isset($mysqli)) {
+            error_log("[mostraElencoAttivita] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+        else 
+            {     //connessione OK
+       
+            
+            if($tipo_attivita_id==0)
+        {
+       $query="SELECT * FROM Attivita ORDER BY tipo ASC"; 
+        }
+       
+      
+      else
+      {
+          
+           $query="SELECT * FROM Attivita WHERE (id != $tipo_attivita_id) ORDER BY tipo ASC"; 
+      }
+  
+      
+      
+     $results = $mysqli->query($query);
+     
+     
+        
+      
+       $mysqli->close();
+      return $results;
+      }
+    
+     }         
+     
+     
+
+     
+  /*
+ * =============================================================================
+ * ---------------------------------CERCA INCARICHI--------------------------------
  * =============================================================================
  */  
          //funzione che a seconda del valore tipo_attività_id restituisce 
          //una stringa che contiene l'attività svolta
     
     
-     public static function cercaAttivita($tipo_attivita_id)
+     public static function mostraElencoIncarichi($tipo_incarichi_id)
      {
          
-        
+      
+         //connessione al database
+    $mysqli = new mysqli();
+    
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[showIncarichi] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+        else 
+            {     
+       
+            
+            if($tipo_incarichi_id==0)
+        {
+       $query="SELECT * FROM Incarichi ORDER BY tipo ASC"; 
+        }
+       
+      
+      else
+      {
+          
+           $query="SELECT * FROM Incarichi WHERE (id != $tipo_incarichi_id) ORDER BY tipo ASC"; 
+                 
+      }
+  
+      
+      
+     $results = $mysqli->query($query);
+      $mysqli->close();
+     return $results;
+     
+    
+      
+      
+      }
+      
+     }        
+     
+     
+     
+     
+ /*
+ * =============================================================================
+ * -------------------------------MOSTRA INCARICO----------------------------------
+ * =============================================================================
+ */   
+ 
+    //funzione che restituisce le recensioni
+     public static function mostraIncarico($id_incarichi) 
+            {
          
-         if($tipo_attivita_id==1)
-         {
-             return 'Agriturismo';
-         }
-         if($tipo_attivita_id==2)
-         {
-             return 'American Bar';
-         }
-         if($tipo_attivita_id==3)
-         {
-             return 'Bar Caff&egrave;';
-         }
-         if($tipo_attivita_id==4)
-         {
-             return 'Birreria';
-         }
-         if($tipo_attivita_id==5)
-         {
-             return 'Bistrot';
-         }
-         if($tipo_attivita_id==6)
-         {
-             return 'Fast Food';
-         }
-         if($tipo_attivita_id==7)
-         {
-             return 'Gelateria';
-         }
-         if($tipo_attivita_id==8)
-         {
-             return 'Osteria';
-         }
-         if($tipo_attivita_id==9)
-         {
-             return 'Pasticceria';
-         }
-         if($tipo_attivita_id==10)
-         {
-             return 'Pizzeria';
-         }
-         if($tipo_attivita_id==11)
-         {
-             return 'Pub';
-         }
-         if($tipo_attivita_id==12)
-         {
-             return 'Ristorante';
-         }
-         if($tipo_attivita_id==13)
-         {
-             return 'Self Service';
-         }
-         if($tipo_attivita_id==14)
-         {
-             return 'Snack Bar';
-         }
-         if($tipo_attivita_id==15)
-         {
-             return 'Tack Away';
-         }
-         if($tipo_attivita_id==16)
-         {
-             return 'Trattoria';
-         }
-          if($tipo_attivita_id==17)
-         {
-             return 'Altro';
-         }
-     }
+      
+
+     //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+// suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[mostraIncarico] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+        else 
+            {     
+
+
+$results = $mysqli->query("SELECT * FROM Incarichi WHERE  id = $id_incarichi");
+
+
+
+// close connection
+$mysqli->close();
+return $results;
            
-           
+ }    
+            }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
            
            
 /*
@@ -1047,7 +930,7 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
             $utente->setId($row->id);
             $utente->setNomeCompleto($row->nome_completo);  
             $utente->setTipo_incarichi_id($row->tipo_incarichi_id);
-            $utente->setEmailConferma($row->email_conferma);
+            $utente->setEmailConferma($row->email_personale);
             $utente->setUsername($row->username);
             $utente->setPassword($row->password);
             $utente->setNomeAzienda($row->nome_azienda);
@@ -1064,9 +947,10 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
             
         
             }
-        return $utente;    
-          }
           $mysqli->close();
+           return $utente; 
+          }
+          
  }
 
 /*
@@ -1098,28 +982,8 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
         
        //Risultato query
 $result = $mysqli->query($query);
-if (!isset($result)) {
-            error_log("[cercaServiziAzienda] errore");
-            $mysqli->close();
-            return NULL;
-            }
-else
-{
-    echo "<br>";
-
-//Recuperara valori come oggetti
-while($row = $result->fetch_object()){
-echo "$row->tipo :";
-        if($row->valore==1)
-            echo " Si";
-       else
-           echo " No";
-echo "<br>";
-}
-
-}
-
 $mysqli->close();
+return $result;
     }
  
  
@@ -1136,6 +1000,12 @@ $mysqli->close();
         $id_azienda = $_SESSION['id_azienda'];
         $id_cliente = $_SESSION['current_user']->getId();
         $voto = $_REQUEST['voto'];
+        
+        
+        echo  $id_azienda ;
+         echo $id_cliente;
+         echo $voto;
+        
         
         $nuova_media = 0;
         
@@ -1273,12 +1143,12 @@ $query = ("UPDATE Statistiche SET numero_preferenze = numero_preferenze + 1 WHER
                 {
             echo ' È stata inserita nella lista dei preferiti';
                 }
-            
-          
-            }
-                 $mysqli->commit();
+              $mysqli->commit();
  $mysqli->autocommit(TRUE);
         $mysqli->close();
+          
+            }
+               
         
     }
     
@@ -1432,11 +1302,12 @@ $stmt->close();
         $mysqli = new mysqli();
              $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);   
         // suppongo di aver creato mysqli e di aver chiamato la connect
-        if (!isset($mysqli)) {
-            error_log("[cancellaCliente] impossibile inizializzare il database");
+       if (!isset($mysqli)) {
+            error_log("[rapportoQualitaPrezzo] impossibile inizializzare il database");
             $mysqli->close();
             return NULL;
             }
+ else {
 
         $stmt = $mysqli->prepare("DELETE FROM Clienti WHERE id = ?");
         
@@ -1462,7 +1333,7 @@ $stmt->close();
         }
 
         $stmt->close();
-    }
+ }}
     
 /*
  * =============================================================================
@@ -1583,16 +1454,7 @@ $result = $mysqli->query($query);
             $query = ("UPDATE Statistiche SET visualizzazioni = visualizzazioni + 1 WHERE id_aziende = $id_azienda");
             $result = $mysqli->query($query);
 
-            
-            
-            if (!$result) {
-                error_log("[updateViewsAzienda] errore");
-                $mysqli->close();
-                return NULL;
-                }
-            //else {
-             //   return 'UPDATED';
-           // }
+           
                 
         }
     }
@@ -1623,34 +1485,18 @@ else
         $query = "SELECT * FROM Recensioni WHERE id_aziende = $id_azienda ORDER BY id DESC LIMIT 1";
 
        //Risultato query
-$result = $mysqli->query($query);
- if (!isset($result)) {
-            error_log("[ultimaRecensione] errore");
-            $mysqli->close();
-            return null;
-            }
-else
-{
-    echo "<br>";
+$results = $mysqli->query($query);
 
 
 
 
-//Recuperara valori come oggetti
-while($row = $result->fetch_object()){
-    
- echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
-  echo ' ';
-echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-echo ' ';
 
-    
-echo "$row->data<br>$row->recensione<br><br>";
-}
 
-}
-}
+
 $mysqli->close();
+return $results;
+}
+
     }
 /*
  * =============================================================================
@@ -1686,7 +1532,7 @@ $mysqli->close();
             $utente->setNomeCompleto($row->nome_completo);  
             $utente->setUsername($row->username);
            $utente->setPassword($row->password);
- $utente->setEmailConferma($row->email_conferma);
+ $utente->setEmailConferma($row->email_personale);
  $utente->setRuolo($row->ruolo);
 $utente->setNumeroRichiami($row->numero_richiami);
 
@@ -1695,9 +1541,10 @@ $utente->setNumeroRichiami($row->numero_richiami);
             
         
             }
-        return $utente;    
+         $mysqli->close();
+          return $utente;   
           }
-          $mysqli->close();
+          
  }
  /*
  * =============================================================================
@@ -1722,45 +1569,14 @@ if ($mysqli->connect_error) {
 
 $results = $mysqli->query("SELECT * FROM Recensioni WHERE id_aziende = $id_azienda ORDER BY id DESC LIMIT 5");
 
-//pe ogni risultato mostra data chi ha recensito e la recensione
-while($row = $results->fetch_object()) {
 
-    echo '<div class="recensione">';
-   echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
-   // print $row->id;
-   // print $row->id_aziende;
-    
-    print $row->data;
-    echo ' ';
-   echo $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-   echo ' ha scritto: ';
-    print $row->recensione;
-    //echo ' ';
-    //print $row->numero_segnalazioni;
-    
-     ?><!--se la recensione conetiene messaggi offensivi può essere segnalata con il flag
-     la segnalazione va nella funzione "segnalazione" qui sotto che aggiorna
-     la tabella Recensioni e la tabella Segnalazioni-->
-     <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="16" width="16" title="segnala" onclick ="return confirm('Conferma la segnalazione?');"> 
-     <?php 
-     
-   echo '</div>';
-       
-   
-   
-   
-   
-   
-   
-   
-}  
 
 
 
 // close connection
 $mysqli->close();
 
-    
+    return $results;
     
     
     
@@ -1768,8 +1584,7 @@ $mysqli->close();
 
            
  }
- 
-   
+
 
 /*
  * =============================================================================
@@ -1817,11 +1632,7 @@ $mysqli->close();
 
             
             
-            if (!$result) {
-                error_log("[segnalazione] errore");
-                $mysqli->close();
-                return NULL;
-                }
+          
                 
         }
     }
@@ -1857,11 +1668,7 @@ $mysqli->close();
             $views = $row[0];
 
 
-            if (!isset($views)) {
-            error_log("[views] errore");
-            $mysqli->close();
-            return null;
-            }
+          
 
             $mysqli->close();
             return $views;
@@ -1988,7 +1795,7 @@ $mysqli->close();
 Aziende.id,
 Aziende.nome_completo,
 Aziende.tipo_incarichi_id,
-Aziende.email_conferma,
+Aziende.email_personale,
 Aziende.username,
 Aziende.password,
 Aziende.nome_azienda,
@@ -2012,7 +1819,7 @@ FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHERE Preferiti.i
            $query = "SELECT Aziende.id,
 Aziende.nome_completo,
 Aziende.tipo_incarichi_id,
-Aziende.email_conferma,
+Aziende.email_personale,
 Aziende.username,
 Aziende.password,
 Aziende.nome_azienda,
@@ -2034,7 +1841,7 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
            $query = "SELECT Aziende.id,
 Aziende.nome_completo,
 Aziende.tipo_incarichi_id,
-Aziende.email_conferma,
+Aziende.email_personale,
 Aziende.username,
 Aziende.password,
 Aziende.nome_azienda,
@@ -2057,7 +1864,7 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
            $query = "SELECT Aziende.id,
 Aziende.nome_completo,
 Aziende.tipo_incarichi_id,
-Aziende.email_conferma,
+Aziende.email_personale,
 Aziende.username,
 Aziende.password,
 Aziende.nome_azienda,
@@ -2150,7 +1957,7 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
                     $row_result['id'],  
                     $row_result['nome_completo'],
                     $row_result['tipo_incarichi_id'],
-                    $row_result['email_conferma'],
+                    $row_result['email_personale'],
                     $row_result['username'],
                     $row_result['password'],
                     $row_result['nome_azienda'],
@@ -2186,13 +1993,13 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
                           {
               
                         
-                        
+                        $mysqli->close();
                         return $attivita;
                     
                      }
            else 
            {
-               
+               $mysqli->close();
                return 'ZERO';
                }
                  
@@ -2210,9 +2017,9 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
             { 
            $utente = new Azienda();
            $utente->setId($row_result['id']);
-            $utente->setNomeCompleto($row_result['nome_completo']);
+           $utente->setNomeCompleto($row_result['nome_completo']);
            $utente->setTipo_incarichi_id($row_result['tipo_incarichi_id']);
-           $utente->setEmailConferma($row_result['email_conferma']);
+           $utente->setEmailConferma($row_result['email_personale']);
            $utente->setUsername($row_result['username']);
            $utente->setPassword($row_result['password']);
            $utente->setNomeAzienda($row_result['nome_azienda']);
@@ -2315,10 +2122,13 @@ $mysqli->close();
            
            
             if($risultato[0] > 0)
+            {
+                $mysqli->close();
                 return 'NOVALID';
+            }
             else
             {
-
+$mysqli->close();
                 return 'VALID';
             }
     } 
@@ -2369,10 +2179,13 @@ $mysqli->close();
            
            
             if($risultato[0] > 0)
+            {
+                $mysqli->close();
                 return 'NOVALID';
+            }
             else
             {
-
+$mysqli->close();
                 return 'VALID';
             }
     } 
@@ -2418,11 +2231,13 @@ $mysqli->close();
             }
            
            
-            if($risultato[0] > 0)
+            if($risultato[0] > 0){
+                $mysqli->close();
                 return 'NOVALID';
+            }
             else
             {
-
+$mysqli->close();
                 return 'VALID';
             }
     } 
@@ -2455,7 +2270,7 @@ $mysqli->close();
          $result = $mysqli->query($query);
       
            $risultato = $result->fetch_row();
-
+$mysqli->close();
            return $risultato[0];
             }
 
@@ -2509,6 +2324,59 @@ $mysqli->close();
 
 
 
+/*
+ * =============================================================================
+ * ------CERCA I SERVIZI OFFERTI DA PARTE DI UN'AZIENDA-------------------------
+ * =============================================================================
+ */  
+ //funzione che cerca i servizi offerti da parte di una singola azienda
+
+    
+   /* !!!!!!!!!!!!!!!*/
+
+public static function cercaServizi()
+{
+      
+  $id_azienda = $_SESSION['current_user']->getId();
+  
+  
+    
+    //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[cercaServizi] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+           else
+           {
+         
+  
+        $query = "SELECT id_servizi, valore FROM Aziende_Servizi WHERE id_aziende= $id_azienda";
+           
+            
+        
+            
+          
+        
+         $result = $mysqli->query($query);
+      
+          
+         
+      $risultati = array();
+        while ($row = $result->fetch_row()) {
+          $risultati[] = $row;
+        }
+        
+         
+            }
+$mysqli->close(); 
+        
+        return $risultati;
+}
 
 
 
@@ -2518,11 +2386,797 @@ $mysqli->close();
 
 
 
+/*
+ * =============================================================================
+ * ----------------------------SHOW SERVIZI-------------------------------------
+ * =============================================================================
+ */  
+       public static function showServizio($id_servizio) 
+            {
+        
+           $id_azienda = $_SESSION['current_user']->getId();
+        
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[showServizi] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+            $query = ("SELECT tipo FROM Servizi WHERE id = $id_servizio");
+            
+$result = $mysqli->query($query);
+      
+           $risultato = $result->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+            }
+
+}
+
+
+
+/*
+ * =============================================================================
+ * --------------------------------USERNAME VALIDO---------------------------------
+ * =============================================================================
+ */  
+    //controlla che lo username iserito sia unico
+    
+       public static function cercaUsername($username, $ruolo) 
+            {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaUsername] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+if($ruolo==0)
+{
+    
+     $query = ("SELECT COUNT(*) 
+FROM Clienti
+WHERE username = \"$username\"");
+}
+ else {
+    
+ 
+          
+   
+
+
+$query ="SELECT COUNT(*) FROM Aziende WHERE username = \"$username\"";
+ }
+    $result = $mysqli->query($query);
+    
+
+    
+    
+     $risultato = $result->fetch_row();
+           
+     if($risultato[0] > 0)
+     {
+               $mysqli->close();
+                return 'NO';    
+     }            
+else {$mysqli->close(); return 'SI';}
+
+            }
+
+
+            }
+
+
+            
+            
+/*
+ * =============================================================================
+ * --------------------------------EMAIL VALIDO---------------------------------
+ * =============================================================================
+ */  
+    //controlla che l'email sia 'valida': ogni utente o azienda deve avere una sua
+            //email distinta
+    
+       public static function cercaEmail($email, $dove) 
+            {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaEmail] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+                //cerca l'email nella tabella clienti
+if($dove==0)
+{
+    
+     $query = ("SELECT COUNT(*) FROM Clienti WHERE email = \"$email\"");
+}
+ elseif($dove==1) {
+    
+          //cerca l'email nella tabella azienda, nella parte riguardante il profilo personale
+   
+$query ="SELECT COUNT(*) FROM Aziende WHERE email_personale = \"$email\"";
+ }
+ elseif($dove==2) {
+    
+          //cerca l'email nella tabella azienda, nella parte riguardante il profilo dell'azienda
+$query ="SELECT COUNT(*) FROM Aziende WHERE email = \"$email\"";
+ }
+    $result = $mysqli->query($query);
+    
+  
+    
+    
+     $risultato = $result->fetch_row();
+           
+     if($risultato[0] > 0)
+     {
+               $mysqli->close();
+                return 'NO';    
+     }            
+else {
+    $mysqli->close(); 
+    return 'SI';}
+
+            }
+
+
+            }            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+/*
+ * =============================================================================
+ * ----------------------------CONTA NUMERO RECENSIONI-------------------------------------
+ * =============================================================================
+ */  
+       public static function contaRecensioni($id_azienda) 
+            {
+        
+           $id_azienda = $_SESSION['current_user']->getId();
+        
+        //connessione al database
+        //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[votoValido] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+            $query = ("SELECT COUNT(*) FROM Recensioni WHERE id_aziende = $id_azienda");
+
+         $result = $mysqli->query($query);
+      
+           $risultato = $result->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+            }
+
+}
+
+
+         
+
+
+/*
+ * =============================================================================
+ * -------------------------------VISUALIZZA COMMENTI----------------------------------
+ * =============================================================================
+ */   
+ 
+    //funzione che restituisce le recensioni
+     public static function showRecensioni($id_azienda, $primo, $commenti_per_pagina) 
+            {
+         
+      
+
+     //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+
+if ($mysqli->connect_error) {
+    die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
+}
+
+
+
+$results = $mysqli->query("SELECT * FROM Recensioni WHERE id_aziende = $id_azienda  ORDER BY id DESC LIMIT $primo, $commenti_per_pagina");
+// close connection
+$mysqli->close();
+return $results;
+
+
+
+           
+ }
+ 
+ 
+ 
+ /*
+ * =============================================================================
+ * -------------------------------MOSTRA SERVIZI----------------------------------
+ * =============================================================================
+ */   
+ 
+    //funzione che restituisce le recensioni
+     public static function mostraServizi() 
+            {
+         
+      
+
+     //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+
+if ($mysqli->connect_error) {
+    die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
+}
+
+
+
+$results = $mysqli->query("SELECT  id,  tipo FROM  Servizi");
+
+
+
+// close connection
+$mysqli->close();
+return $results;
+           
+ }
+ 
+    
+   
+
+
+
+/*
+ * =============================================================================
+ * ------------------------------CERCA CLIENTE-----------------------------------
+ * =============================================================================
+ */  
+
+
+ 
+ //cerco l'utente nel database in base usando username e password
+    public static function cercaAmministratore($username, $password) {
+       
+    //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);  
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+   if (!isset($mysqli)) {
+            error_log("[cercaAmministratore] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            } 
+            
+            else 
+                {                                                                  
+        
+        //formulazione della query SQL  
+        $query = "SELECT * FROM Amministratore WHERE username = ? AND password = ?";
+               
+   
+       
+            //inizializzazione del prepared statement
+            $stmt = $mysqli->stmt_init();
+      
+            $stmt->prepare($query);
+               
+   
+            //bind      
+            $ctrl = $stmt->bind_param('ss', $username, $password);
+        
+            //in caso di errore
+            if(!$ctrl) {
+            error_log("[cercaAmministratore] impossibile effettuare il binding in input");
+            $mysqli->close();
+            return NULL;
+             }
+   
+            //esecuzione dello statement      
+            $ctrl = $stmt->execute();
+            
+            //eventuali errori
+            if(!$ctrl) {
+            error_log("[cercaAmministratore] errore nell'esecuzione dello statement");
+            $mysqli->close();
+            return NULL;
+            }
+     
+           
+                $ctrl = $stmt->bind_result 
+                     ($id, $username, $password, $nome_completo);
+            
+                
+            if(!$ctrl) {
+            error_log("[cercaAmministratore] errore nel bind dei parametri in output");
+            $mysqli->close();
+            return NULL;
+            }
+
+            //fetch del risultato          
+            $ctrl = $stmt->fetch();
+            
+            //eventuali errori
+            if(!$ctrl)
+            {
+            error_log("[cercaAmministratore] errore nel fetch dello statement");
+            $mysqli->close();
+            //nessun risultato trovato
+            return 'NOTFOUND';
+            }
+       
+            //crea un oggetto Amministratore da restituire
+           
+            $utente = new Amministratore();
+            $utente->setId($id);
+            $utente->setNomeCompleto($nome_completo);
+            $utente->setUsername($username);
+            $utente->setPassword($password); 
+            $mysqli->close();
+            return $utente;
+         
+            
+        
+        }    
+    }
+ 
 
 
 
 
 
 
+
+/*
+ * =============================================================================
+ * --------------------------------USERNAME VALIDO UPDATE---------------------------------
+ * =============================================================================
+ */  
+    //deve controllare che la username sia unica (nessun utente deve avere la sua stessa username)
+    //inoltre non deve dare errore se aggiornando il proprio profilo non si altera il valore username
+                //se lasciassi la funione di prima mi conterebbe il mio stesso username e darebbe errore
+
+       public static function cercaUsernameUpdate($username, $ruolo, $id) 
+            {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+       $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaUsernameUpdate] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+    
+ 
+          
+   
+
+
+$query ="SELECT COUNT(*) FROM Aziende WHERE username = \"$username\" AND id!=$id";
+ 
+    $result = $mysqli->query($query);
+    
+
+    
+    
+     $risultato = $result->fetch_row();
+           
+     if($risultato[0] > 0)
+     {
+               $mysqli->close();
+                return 'NO';    
+     }            
+else {$mysqli->close(); return 'SI';}
+
+            }
+
+
+            }
+
+
+
+         
+       /*
+ * =============================================================================
+ * --------------------------------EMAIL VALIDO UPDATE---------------------------------
+ * =============================================================================
+ */  
+    //deve controllare che la email sia unica (nessun utente deve avere la sua stessa email)
+    //inoltre non deve dare errore se aggiornando il proprio profilo non si altera il valore email.
+            //se lasciassi la funione di prima mi conterebbe la mia stessa email e darebbe errore
+    
+       public static function cercaEmailUpdate($email, $dove, $id) 
+            {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaEmail] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+                //cerca l'email nella tabella clienti
+if($dove==1) {
+    
+ 
+          //cerca l'email nella tabella azienda, nella parte riguardante il profilo personale
+   
+
+
+$query ="SELECT COUNT(*) FROM Aziende WHERE email_personale = \"$email\" AND id!= $id";
+ }
+ elseif($dove==2) {
+    
+ 
+          //cerca l'email nella tabella azienda, nella parte riguardante il profilo dell'azienda
+   
+
+
+$query ="SELECT COUNT(*) FROM Aziende WHERE email = \"$email\"AND id!= $id";
+ }
+    $result = $mysqli->query($query);
+    
+
+    
+    
+     $risultato = $result->fetch_row();
+           
+     if($risultato[0] > 0)
+     {
+               $mysqli->close();
+                return 'NO';    
+     }            
+else {$mysqli->close(); return 'SI';}
+
+            }
+
+
+            }              
+         
+         
+         
+         
+         
+  /*
+ * =============================================================================
+ * ------------------------------UPDATE PROFILO PERSONALE-----------------------------------
+ * =============================================================================
+ */    
+    //funzione che modifica il profilo personale di chi registra un'azienda
+    
+    public static function updateProfiloPersonale($id, $utente)
+    {       
+             //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[updateProfiloPersonale] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+                
+                
+                
+                
+                //riprendo i valori che dovrei aver modificato
+           
+                
+                $nome=$utente->getNomeCompleto();
+               
+                $incarico=$utente->getTipo_incarichi_id();
+               
+                $email=$utente->getEmailConferma();
+               
+               
+                $username=$utente->getUsername();
+                 
+                $password=$utente->getPassword();
+             
+                
+      
+                
+   $stmt = $mysqli->prepare("UPDATE Aziende SET 
+       nome_completo = ?, tipo_incarichi_id = ?, email_personale = ?, 
+       username = ?, password = ? WHERE id = $id");
+
+            $ctrl = $stmt->bind_param('sisss', $nome, $incarico, $email, $username, $password);
+            if (!$ctrl) {
+                error_log("[updateProfiloPersonale] errore");
+            $mysqli->close();
+            return null; 
+            
+            }
+
+            $stmt->execute();
+            
+            if (!$ctrl) {
+             error_log("[updateProfiloPersonale] errore");
+            $mysqli->close();
+            return 'INSUCCESSO';
+       
+        }else {
+                
+                return 'SUCCESSO';
+            }               
+                
+                
+            }      
+ 
+    }        
+            
+            
+            
+            
+ /*
+ * =============================================================================
+ * ------------------------------UPDATE PROFILO AZIENDA-----------------------------------
+ * =============================================================================
+ */    
+    //funzione che modifica il profilo personale di chi registra un'azienda
+    
+    public static function updateProfiloAzienda($id, $utente)
+    {       
+             //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[updateProfiloAzienda] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+                
+                
+                
+                
+                //riprendo i valori che dovrei aver modificato
+           
+                
+                $nome_azienda=$utente->getNomeAzienda();
+                $tipo_attivita_id=$utente->getTipo_attivita_id();
+                $email=$utente->getEmail();
+                $descrizione=$utente->getDescrizione();
+                $citta=$utente->getCitta();
+               $indirizzo=$utente->getIndirizzo();
+                $telefono=$utente->getTelefono();
+                $sito_web=$utente->getSitoWeb();
+                echo'uf: ';
+                var_dump($indirizzo);
+              
+               
+                
+      
+                
+   $stmt = $mysqli->prepare("UPDATE Aziende SET 
+       nome_azienda = ?, tipo_attivita_id = ?, email = ?, 
+       descrizione = ?, citta = ?, indirizzo = ?, telefono = ?, sito_web=? WHERE id = $id");
+
+            $ctrl = $stmt->bind_param('sissssis', $nome_azienda, $tipo_attivita_id, 
+                    $email, $descrizione, $citta, $indirizzo, $telefono, $sito_web);
+            if (!$ctrl) {
+                error_log("[updateProfiloAzienda] errore");
+            $mysqli->close();
+            return null; 
+            
+            }
+
+            $stmt->execute();
+            
+            if (!$ctrl) {
+             error_log("[updateProfiloAzienda] errore");
+            $mysqli->close();
+            return 'INSUCCESSO';
+       
+        }else {
+                
+                return 'SUCCESSO';
+            }               
+                
+                
+            }      
+ 
+    }        
+            
+                       
+            
+/*
+ * =============================================================================
+ * ------------------------------UPDATE SERVIZI-----------------------------------
+ * =============================================================================
+ */    
+    //funzione che aggiorna i servizi offerti
+    
+    public static function updateServizi($utente)
+    {       
+             //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[updateServizi] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+                
+                $id_azienda = $utente->getId();
+                
+  if(isset($_SESSION['servizi']))
+      {
+      $form_servizi=$_SESSION['servizi'];
+      
+                                                                                     var_dump($form_servizi);
+      //creo un arrey con tutti i servizi impostati che hanno valore 0
+      //non checcati
+  $static_servizi = array();
+   $index_array_servizi = 0;  
+            $query = "SELECT id FROM  Servizi";
+            
+            $result = $mysqli->query($query);
+            
+           
+           
+            
+            
+     //creo un array della stessa dimensione della tabella dei servizi
+            //con tutti i valori a zero
+     while ($row = $result->fetch_row()) {
+              $id_servizio = $row[0];
+              $static_servizi[$index_array_servizi] = $id_servizio;
+              $index_array_servizi = $index_array_servizi + 1;
+            }
+      
+                                                                                var_dump($static_servizi);
+                 
+     
+      
+      
+      //per ogni elemento dell'array appena creato
+            //1 2 3 4 5 prendi prima 
+            //1...2...3...
+     foreach ($static_servizi as $static_id_servizio) {
+    
+    $query = "SELECT tipo FROM Servizi WHERE id = $static_id_servizio";
+            
+            $result = $mysqli->query($query);          
+               
+            $row = $result->fetch_row();
+               
+               //verfica se nell'array è presenta il valore
+              if (in_array($static_id_servizio, $form_servizi)) {
+              
+                  //se c'è corrispondenza viene messo a 1 il suo valore
+                  $value_service=1;
+                // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' checked='checked'/><span style='color: #0066cc;'>$row[0]</span><br />";
+              
+               
+               
+               
+              //fatti i primi 2
+             // mysqli insert. id->ultimo id in tabella
+              //fatto questo glielo metto e inserisco nel db
+              
+                
+       
+              } else {      
+                  
+                  //caso contrario viene messo 0
+                  $value_service=0; 
+                  
+               // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' /><span style='color: #0066cc;'>$row[0]</span><br />";
+              
+                
+              }       
+                $query = ("UPDATE `Aziende_Servizi` SET id_aziende=$id_azienda, id_servizi=$static_id_servizio, valore = $value_service");
+
+                
+                echo $query;
+                
+       $ctrl = $mysqli->query($query);
+           }
+      }              
+                
+            
+            
+            if (!$ctrl) {
+             error_log("[updateServizi] errore");
+            $mysqli->close();
+            return 'INSUCCESSO';
+       
+        }else {
+                
+                return 'SUCCESSO';
+            }               
+                
+                
+            }      
+ 
+    }                   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+         
+         
+         
 }
 ?>
