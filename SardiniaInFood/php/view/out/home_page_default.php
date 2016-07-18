@@ -169,7 +169,7 @@ if(isset($_POST['citta']) AND isset($_POST['tipo_attivita_id']) AND $_SESSION['r
   //-l'attività svolta
   //-il nome dell'immagine
   //-il titolo del tag img
-  $url = '<img src="/SardiniaInFood/images/';
+  $url = '<img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/';
   $url .= UtenteFactory::cercaAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
   $url .= '" alt="Immagine attivit&agrave;"';
   $url .= 'title=';
