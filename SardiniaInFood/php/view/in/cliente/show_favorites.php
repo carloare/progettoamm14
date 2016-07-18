@@ -1,47 +1,34 @@
 <script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/cancelladaipreferiti.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
 
+<?php if (session_status() != 2) session_start();?>
 
-<?php
-   $mysqli = new mysqli();
-   $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);
-        if (!isset($mysqli)) {
-            error_log("impossibile inizializzare il database");
-            $mysqli->close();
-            return NULL;
-            }
-    
-?>
 
 
 <h2>Filtra tra i preferiti</h2>
  <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
 
      
-     
- <input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
+<input type="text" name="citta_preferiti" value="<?php
+
+if (isset($_POST['citta_preferiti'])) echo $_POST['citta_preferiti'];
+  else echo "Dove"; ?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
         
- <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attività">
+ <select name="tipo_attivita_id_preferiti" id="tipo_attivita_id_preferiti" title="scegli il tipo di attivit&agrave; che vuoi cercare">
                 
-              
-<?php 
+<?php
 
-
-if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")) {
-
-    $pinco=$_POST['tipo_attivita_id'];
-    $query="SELECT tipo FROM Attivita WHERE id='$pinco'";   
-    $result = $mysqli->query($query);      
-    $pallino=$result->fetch_row();      
-    $nome_attivita=$pallino[0];
-    
-    
+if ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1"))
+	{
+	$id_attivita = $_POST['tipo_attivita_id_preferiti'];
+	$nome_attivita = UtenteFactory::mostraAttivita($id_attivita);
 ?> 
-     
-     <option value="<?php echo $pinco;?>" ><?php echo $nome_attivita; ?></option>
-         
-         
-<?php } ?> 
+    <option value="<?php
+	echo $id_attivita; ?>" ><?php
+	echo $nome_attivita; ?></option>
+  
+<?php
+	} ?> 
 
      
  <option value="-1">Cosa</option>    
@@ -49,30 +36,18 @@ if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")
 
 <?php
 
+if ((!isset($_POST['tipo_attivita_id_preferiti'])) OR ($_POST['tipo_attivita_id_preferiti'] == "-1"))
+	{
+	UtenteFactory::mostraElencoAttivita(0);
+	}
+elseif ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1"))
+	{
+	$not_show = $_POST['tipo_attivita_id_preferiti'];
+	UtenteFactory::mostraElencoAttivita($not_show);
+	}
 
-
-if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1"))
-{
-          
-     $query="SELECT id, tipo FROM Attivita ORDER BY tipo ASC"; 
-     
-} 
-elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
-{
-    
-     $id_fffff = $_POST['tipo_attivita_id'];
-          
-     $query="SELECT id, tipo FROM Attivita WHERE (id != $id_fffff) ORDER BY tipo ASC"; 
-     
-}    
-     $result = $mysqli->query($query);
-     
-     while ($row = $result->fetch_row()) { ?> 
- 
-            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
-                
-      <?php }  ?>
-
+?>
+            
 
             
             </select>  
@@ -92,7 +67,7 @@ elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "
 
 
 
- if (session_status() != 2) session_start();
+
  
  
  
@@ -102,37 +77,32 @@ elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "
     
    
     
-    //al primo avvio mostro tutti i preferiti
-    if(!isset($_SESSION['risultati_cliente_preferiti'])) 
+   //se ho dei risultati li mostra
 
-    {
+if (isset($_SESSION['risultati_cliente_preferiti']) AND $_SESSION['risultati_cliente_preferiti']!='ZERO')
+	{
+
+	
+
+	$aziende_preferite = $_SESSION['risultati_cliente_preferiti'];
+        
+        }
+        if (!isset($_SESSION['risultati_cliente_preferiti']))
+            //se sono alla prima entrata mostro tutti i preferiti
+        {
+             
  $citta = "UNDEFINE";
     $tipo_attivita_id = -1;
     $aziende_preferite = UtenteFactory::cercaAziendePreferite($tipo_attivita_id, $citta);
     
     }
-    
-    //caso in cui nella ricerca trova almeno un risultato
-    if(isset($_SESSION['risultati_cliente_preferiti']) AND $_SESSION['risultati_cliente_preferiti']!='ZERO')
-    {
- 
-  
-       
-   //passaggio dei risultati
- $aziende_preferite= $_SESSION['risultati_cliente_preferiti'];
-  
-
-  
-  }
  
       
 //caso in cui non trova alcun risultato
  if(isset($_SESSION['risultati_cliente_preferiti']) AND $_SESSION['risultati_cliente_preferiti']=='ZERO')
  {
      $aziende_preferite=NULL;
-     $_SESSION['risultati_cliente_preferiti']=NULL;
-      //$citta = NULL;
-    //$tipo_attivita_id = NULL;
+   
  }
  
  
@@ -159,7 +129,7 @@ $descrizione = $azienda_preferita->getDescrizione();
      $email = $azienda_preferita->getEmail();
      $sitoweb =$azienda_preferita->getSitoWeb();
      
-  $attivita = UtenteFactory::cercaAttivita($id_attivita);
+  $attivita = UtenteFactory::mostraAttivita($id_attivita);
 
   
     //id_azienda in sessione per poter eseguire nelle funzioni UtenteFactory
@@ -170,15 +140,15 @@ $descrizione = $azienda_preferita->getDescrizione();
   
    //creazione dell'istruzione per visualizzare una
   //immagine di una specifica attività
-  //con cercaAttivita ottengo:
+  //con mostraAttivita ottengo:
   //-l'attività svolta
   //-il nome dell'immagine
   //-il titolo del tag img
   $url = '<img src="/SardiniaInFood/images/';
-  $url .= UtenteFactory::cercaAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
+  $url .= UtenteFactory::mostraAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
   $url .= '" alt="Immagine attivit&agrave;"';
   $url .= 'title=';
-  $url .= UtenteFactory::cercaAttivita($id_attivita);
+  $url .= UtenteFactory::mostraAttivita($id_attivita);
   $url .= '>';
 
     

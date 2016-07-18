@@ -3,86 +3,7 @@ form della home page cliente che permette di effettuare delle ricerche
 -->
 
 
-<?php
-   $mysqli = new mysqli();
-   $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);
-        if (!isset($mysqli)) {
-            error_log("impossibile inizializzare il database");
-            $mysqli->close();
-            return NULL;
-            }
-    
-?>
-
-<article>
-    <h1>HOME PAGE CLIENTE</h1>
-</article>
-<article>
-
-<article>
-
- <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
-
-<input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
-        
- <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
-                
 <?php 
-
-
-if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")) {
-
-    $pinco=$_POST['tipo_attivita_id'];
-    $query="SELECT tipo FROM Attivita WHERE id='$pinco'";   
-    $result = $mysqli->query($query);      
-    $pallino=$result->fetch_row();      
-    $nome_attivita=$pallino[0];
-    
-?> 
-     
-     <option value="<?php echo $pinco;?>"><?php echo $nome_attivita; ?></option>
-         
-         
-<?php } ?> 
-
-     
- <option value="-1">Cosa</option>    
-
-
-<?php
-if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1"))
-{
-          
-     $query="SELECT id, tipo FROM Attivita ORDER BY tipo ASC"; 
-     
-} elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
-{
-    
-     $id_fffff = $_POST['tipo_attivita_id'];
-          
-     $query="SELECT id, tipo FROM Attivita WHERE (id != $id_fffff) ORDER BY tipo ASC"; 
-     
-}    
-     $result = $mysqli->query($query);
-     
-     while ($row = $result->fetch_row()) { ?> 
- 
-            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
-                
-      <?php }  ?>
-            </select>  
-          
-  <input type="hidden" name="cmd" value="cercadovecosa">
-  <input type="submit" value="Cerca">
-</form> 
-</article>
-
-<article>
-    
-   <!--visualizzazione dei risultati della ricerca
-   work in progress
-   -->
-    <?php 
     
    
     
@@ -100,48 +21,101 @@ if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1")
     
     
     if (session_status() != 2) session_start();
-
-    //come sulla ricerca nella home page
-                  
-
-                  
-                   //parametri dell'ultima ricerca
-                  //sono stati salvati in sessione nel ClienteCongroller nella funzione cercaDoveCosa
-                  //dopo che entrambi hanno superato i vari controlli
-                  //sono quindi certo che sono valori accettabili
-    //in questo modo riesco a visualizzare l'ultima ricerca effettuata dopo che esco dal profilo di un'azienda
-if(isset($_SESSION['citta_cliente']) AND isset($_SESSION['tipo_attivita_id_cliente']) AND $_SESSION['risultati_cliente']!='ZERO') 
-    {
-    
-    $citta = $_SESSION['citta_cliente'];
-    $tipo_attivita_id = $_SESSION['tipo_attivita_id_cliente'];
-    $aziende = UtenteFactory::cercaDoveCosa($citta, $tipo_attivita_id);
-            
-    }
+    ?>
 
 
 
-    //alla prima ricerca verifico che nel ClienteControllor
-    //siano arrivati i risultati dell'UtenteFactory
-    //e in tal caso li porto qui nella home page
-    if(isset($_SESSION['risultati_cliente']) AND $_SESSION['risultati_cliente']!='ZERO')
-    {
-  
-  $aziende = new Azienda();
+
+
+<article>
+    <h1>HOME PAGE CLIENTE</h1>
+      <img src="/SardiniaInFood/images/cliente.png" alt="Smiley face" height="256" width="256"> 
+</article>
+
+
+
+
+<article>
+
+ <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
+
+<input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
         
-   //passaggio dei risultati
-  $aziende= $_SESSION['risultati_cliente'];
-   
+ <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
+                
+<?php
+
+if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
+	{
+	$id_attivita = $_POST['tipo_attivita_id'];
+	$nome_attivita = UtenteFactory::mostraAttivita($id_attivita);
+?> 
+    <option value="<?php
+	echo $id_attivita; ?>" ><?php
+	echo $nome_attivita; ?></option>
   
-    }
+<?php
+	} ?> 
+     
     
-    
-     //visualizza i risultati
-    if(isset($aziende)) {
+
+
+<?php
+
+if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1"))
+	{
+    ?> <option value="-1">Cosa</option> <?php
+	$attivita = UtenteFactory::mostraElencoAttivita(0);
+	
+	}
+elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
+	{
+	$not_show = $_POST['tipo_attivita_id'];
+
+	// uso la stessa funzione di prima ma invece di passare 0 (id non assegnato ad alcuna attività  )
+	// passo l'id dell'attività da non mostrare (gli id 'validi' vanno da 1 in poi)
+	// Lo faccio perchè le query si differenziano solo per la clausola WHERE
+
+	$attivita = UtenteFactory::mostraElencoAttivita($not_show);
+	
+}
+while ($row = $attivita->fetch_row())
+	{ ?> 
  
-        
-        
+            <option value="<?php
+		echo $row[0]; ?>"><?php
+		echo $row[1]; ?></option>
+                
+      <?php
+	}
 
+?>
+ 
+ 
+            </select>  
+          
+  <input type="hidden" name="cmd" value="cercadovecosa">
+  <input type="submit" value="Cerca">
+</form> 
+</article>
+
+<article>
+    
+   <!--visualizzazione dei risultati della ricerca
+   work in progress
+   -->
+    <?php
+
+    
+    
+    //se ho dei risultati li mostra
+    if (isset($_SESSION['risultati_cliente']))
+	{
+
+	// passaggio dei risultati
+
+	$aziende = $_SESSION['risultati_cliente'];
+   
  
    foreach($aziende as $azienda)
    {
@@ -156,19 +130,19 @@ if(isset($_SESSION['citta_cliente']) AND isset($_SESSION['tipo_attivita_id_clien
      
      
   //cerca a seconda dell'id attivita l'effettiva attività svolta   
-  $attivita = UtenteFactory::cercaAttivita($id_attivita);
+  $attivita = UtenteFactory::mostraAttivita($id_attivita);
 
    //creazione dell'istruzione per visualizzare una
   //immagine di una specifica attività
-  //con cercaAttivita ottengo:
+  //con mostraAttivita ottengo:
   //-l'attività svolta
   //-il nome dell'immagine
   //-il titolo del tag img
   $url = '<img src="/SardiniaInFood/images/';
-  $url .= UtenteFactory::cercaAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
+  $url .= UtenteFactory::mostraAttivita($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
   $url .= '" alt="Immagine attivit&agrave;"';
   $url .= 'title=';
-  $url .= UtenteFactory::cercaAttivita($id_attivita);
+  $url .= UtenteFactory::mostraAttivita($id_attivita);
   $url .= '>';
  
   //creazione del titolo della media_voto in funzione del valore di media_voto
@@ -212,16 +186,19 @@ if(isset($_SESSION['citta_cliente']) AND isset($_SESSION['tipo_attivita_id_clien
    
    
    
-   //voto medio
-   echo "<div class='voto' title='$titolo_m'>";
-echo $media_voto;
-echo'<br>';
-echo 'Sulla base di ';
-echo $numero_voti;
-if($media_voto>=4) echo " voti Alle persone piace questo posto";
-  else if($media_voto>=3 AND $media_voto<4) echo " voti Le persone hanno pareri contrastanti su questo posto";
-  else echo " voti Alle persono non piace questo posto";
-echo '</div>';
+   echo "<div id='voto' title='$titolo_m'>";
+		echo "<div class='voto' title='$titolo_m'>";
+                echo $media_voto;
+                echo '</div>';
+		echo '<br />';
+		echo 'Sulla base di ';
+		echo $numero_voti;
+		if ($media_voto >= 4) echo " voti <br />Alle persone piace questo posto";
+		else
+		if ($media_voto >= 3 AND $media_voto < 4) echo " <br />voti Le persone hanno pareri contrastanti su questo posto";
+		else echo " voti <br />Alle persono non piace questo posto";
+		
+                echo '</div>';
 
 
 
@@ -230,12 +207,15 @@ echo '</div>';
 
     //nome azienda
 echo '<br>';
-    //entra nel profilo dell'azienda e permette di inserire dei voti, inserire l'azienda nella lista dei preferiti, inserire dei commenti
-   echo "<a  href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=$id_azienda'>$nome_azienda</a>";
 
-    //indirizzo, citta
-    echo '<br>';
-    echo "$indirizzo"; echo' , '; echo $citta;
+echo "$nome_azienda";
+   
+
+    echo '<br />';
+                echo '<img src="/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
+		echo " $indirizzo";
+		echo ' , ';
+		echo $citta;
     //tipo attività
     echo '<br>';
     echo $attivita;
@@ -276,12 +256,24 @@ if($rapporto_qualita_prezzo>=4) echo " voti Le persone ritengono che sia costoso
    
     //ultima recensione scritta
    echo '<div class="last_comment">';
- UtenteFactory::ultimaRecensione($id_azienda);
+ $recensione= UtenteFactory::ultimaRecensione($id_azienda);
+ //Recuperara valori come oggetti
+while($row =$recensione->fetch_object()){
+    
+ echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
+  echo ' ';
+echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
+echo ' ';
+
+    
+echo "$row->data<br>$row->recensione<br><br>";
+}
    echo '</div>';
    
-   
-   
-   
+   //entra nel profilo
+    echo "<a href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=$id_azienda'>MAGGIORI DETTAGLI</a>";
+    
+  
    
    
 echo '</div>';        
@@ -289,8 +281,8 @@ echo '</div>';
    }
 
     
-    }
-
+    
+        }
     ?>
      
 </article>
