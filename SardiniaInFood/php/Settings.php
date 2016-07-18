@@ -5,9 +5,10 @@
 class Settings
 {
     public static $db_host = 'localhost';
-    public static $db_user = 'root';
-    public static $db_password = 'davide';
-    public static $db_name='amm14_aresuCarlo';       
+    public static $db_user = 'aresuCarlo';
+    public static $db_password = 'falco808';
+    public static $db_name='amm14_aresuCarlo';  
+
 }
 
 ?>
