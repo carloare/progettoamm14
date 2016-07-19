@@ -84,7 +84,7 @@ class Utente
 	/*
 	* Restituisce l'email dell'utente che ha effettuato la registrazione
 	*/
-	public function getEmailConferma()
+	public function getEmailPersonale()
 		{
 		return $this->email_personale;
 		}
@@ -92,7 +92,7 @@ class Utente
 	/*
 	* Imposta una nuova email per l'utente che ha effettuato la registrazione
 	*/
-	public function setEmailConferma($email_personale)
+	public function setEmailPersonale($email_personale)
 		{
 		$this->email_personale = $email_personale;
 		return true;

@@ -6,8 +6,6 @@
  */
 
 
-if(session_status()!=2)
-            session_start();
 
 
 
@@ -91,6 +89,19 @@ switch ($errore) {
         <div class="avviso">
     <img src="/SardiniaInFood/images/avviso.png" alt="Nessun risultato &egrave; stato trovato" height="48" width="48" title="Nessun risultato &egrave; stato trovato"> 
     <h4>ATTENZIONE nessun risultato trovato</h4>
+    </div>
+    <?php   
+ 
+        break;
+    
+    
+    case 7: 
+    //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
+   
+        ?>
+        <div class="errore">
+    <img src="/SardiniaInFood/images/error.png" alt="Utente Bannato" height="48" width="48" title="Utente Bannato"> 
+    <h4>Errore impossibile effettuare l'accesso a SardegnaInFood<br>Utente Bannato</h4>
     </div>
     <?php   
  

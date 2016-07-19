@@ -140,6 +140,7 @@ class ClienteController {
  */               
               //permette dare un giudizio al rapporto qualità prezzo
        case 'rapporto_qualita_prezzo': 
+           $_SESSION['voto_qp'] = $_REQUEST['voto_qp'];
                   self::rapportoQualitaPrezzo();
                   break;     
   /*
@@ -174,9 +175,9 @@ class ClienteController {
                  //segnala un commento inopportuno
       case 'segnalazionerecensione':         
               
-          $id=$_REQUEST['id'];
-        
-                self::segnalazione($id);
+          $id_recensione=$_REQUEST['id'];
+         
+                self::segnalazione($id_recensione);
                 break;            
               
               
@@ -270,7 +271,7 @@ class ClienteController {
      $vd->setTitolo("Benvenuto in SardiniaInFood");
      $vd->setLogoFile('../view/in/logo.php');
       $vd->setMenuFile('../view/in/menu_favorites_cliente.php'); 
-     $vd->setContentFile('../view/in/cliente/show_favorites.php'); //richiama alla pagine dei preferiti
+     $vd->setContentFile('../view/in/cliente/mostra_preferiti.php'); //richiama alla pagine dei preferiti
      $vd->setErrorFile('../view/in/error_in.php');
     $vd->setFooterFile('../view/in/footer_empty.php'); 
 				
@@ -427,8 +428,8 @@ else
          $vd = new ViewDescriptor();
        $vd->setTitolo("SardiniaInFood: Profilo");
        $vd->setLogoFile("../view/in/logo.php");  
-       $vd->setMenuFile("../view/in/menu_show_profile_and_vote_cliente.php");
-       $vd->setContentFile("../view/in/cliente/show_profile_and_vote.php");
+       $vd->setMenuFile("../view/in/menu_mostra_profilo_e_vota_cliente.php");
+       $vd->setContentFile("../view/in/cliente/mostra_profilo_e_vota.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
        $vd->setFooterFile("../view/in/footer_empty.php");
      
@@ -508,7 +509,18 @@ else
    public static function commenta() 
    { 
          
+     
+      $_REQUEST['comments']= htmlentities($_REQUEST['comments']);
+       
        UtenteFactory::commenta();
+       
+      
+       
+       
+       
+       
+       
+       
  
    }                
      /*
@@ -552,7 +564,7 @@ else
        $vd->setTitolo("SardiniaInFood: Profilo");
        $vd->setLogoFile("../view/in/logo.php");  
        $vd->setMenuFile("../view/in/menu_favorites_cliente.php");
-       $vd->setContentFile("../view/in/cliente/show_favorites.php");
+       $vd->setContentFile("../view/in/cliente/mostra_preferiti.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
        $vd->setFooterFile("../view/in/footer_empty.php");
      
@@ -647,7 +659,7 @@ else
    
    $vd->setLogoFile('../view/in/logo.php');
      $vd->setMenuFile('../view/in/menu_favorites_cliente.php');
-     $vd->setContentFile('../view/in/cliente/show_favorites.php');
+     $vd->setContentFile('../view/in/cliente/mostra_preferiti.php');
      $vd->setErrorFile('../view/in/error_in.php');
      $vd->setFooterFile('../view/in/footer_empty.php');   
      

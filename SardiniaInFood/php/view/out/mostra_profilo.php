@@ -12,6 +12,7 @@ include_once '../model/Utente.php';
 
 <article>
 <?php 
+
 /*
  * in questa pagina viene mostrato il profilo di un'azienda.
  */
@@ -30,26 +31,26 @@ $descrizione = $azienda_to_show->getDescrizione();
      $email = $azienda_to_show->getEmail();
      $sitoweb =$azienda_to_show->getSitoWeb();
      
-  // mostraAttivita restituisce una stringa che contiene l'attivita
+  // mostraAttivitaSelezionata restituisce una stringa che contiene l'attivita
 		// corrispondente all'id passato.
 
-		$attivita = UtenteFactory::mostraAttivita($id_attivita);
+		$attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 
 		// nell'istruzione sotto viene 'creata' l'immagine di una specifica attività 
-		// Con la stringa restituita da mostraAttivita vado a indicare:
+		// Con la stringa restituita da mostraAttivitaSelezionata vado a indicare:
 		// - l'attività  svolta
 		// - il nome dell'immagine png contenuta nella cartella image
 		// - il titolo del tag img
 
 		$url_immagine = '<img src="/SardiniaInFood/images/';
-		$url_immagine.= UtenteFactory::mostraAttivita($id_attivita);
+		$url_immagine.= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 		$url_immagine.= '" alt="Immagine attivit&agrave;"';
 		$url_immagine.= 'title=';
-		$url_immagine.= UtenteFactory::mostraAttivita($id_attivita);
+		$url_immagine.= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 		$url_immagine.= '>';
 
   //creazione del titolo della media_voto in funzione del valore di media_voto
-  $media_voto=UtenteFactory::mediaVotoInStatistiche($id_azienda);  
+  $media_voto=UtenteFactory::mediaVoto($id_azienda);  
   
   if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
   else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
@@ -57,7 +58,7 @@ $descrizione = $azienda_to_show->getDescrizione();
   
   //creazione del titolo rapporto_qp in funzione del valore di rapporto_qp
 
-  $rapporto_qp = UtenteFactory::rapportoQualitaPrezzoInStatistiche($id_azienda); 
+  $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
   
   $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
   if($rapporto_qualita_prezzo>=4) $titolo_qp="Costoso";

@@ -2,12 +2,20 @@
 $(document).ready(function() {
  $('.ratings_stars').hover(
 
-            //gestisce il passaggio del mouse
+//aggiungo e rimuovo al volo le classi css, sulla selezione corrente
+//-colore di rosso il cuore
+//-script per assegnare il voto
+//con:
+//prevAll seleziona tutti i cuori precedenti a quello corrente
+//andSelf seleziona il cuore sotto il mouse
+
+//passaggio avanti         
 
     function() {
         $(this).prevAll().andSelf().addClass('ratings_over');           
     },
 
+//passaggio indietro
     function() {
         $(this).prevAll().andSelf().removeClass('ratings_over');
     }
@@ -16,6 +24,7 @@ $(document).ready(function() {
 //spedisce il voto al database
 $('.ratings_stars').bind('click', function() {
 
+//legge l'attributo selezionato
     var selezionato = $(this).attr("class");
     
                  if(selezionato =="star_1 ratings_stars ratings_over")
@@ -28,19 +37,12 @@ $('.ratings_stars').bind('click', function() {
                     var voto = 4; 
                  if(selezionato =="star_5 ratings_stars ratings_over")
                     var voto = 5; 
-                
-             
-                 
-                 
+                  
             $.ajax({ 
                 type: "POST",
                 url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=vota",
                 
                 data: { voto : voto }
-                //non fa nulla
-                //{ voto: value }
-                //lo prende ma da voto 0
-                //{voto : "value"}
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
                 document.getElementById("vota_hearts"). style.display = 'none';

@@ -233,7 +233,7 @@ class AziendaController {
 					}
 					else
 					{
-						$_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -265,17 +265,17 @@ class AziendaController {
 						if ($valido == 'SI')
 						{
                                                     
-							$utente->setEmailConferma($mail);
+							$utente->setEmailPersonale($mail);
 						}
 						else
 						{
-							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
 							$error_rec++;
 						}
 					}
 					else
 					{
-						$_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br />Verifica eventuali errori di battitura.<br />Esempio email valida: email@esempio.com</div>";
+						$_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
 						$error_rec++;
 					}
 				}
@@ -297,13 +297,13 @@ class AziendaController {
 						}
 						else
 						{
-							$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br />scegline un altro</div>";
+							$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
 							$error_rec++;
 						}
 					}
 					else
 					{
-						$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -322,7 +322,7 @@ class AziendaController {
 					}
 					else
 					{
-						$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -425,7 +425,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					}
 					else
 					{
-						$_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -465,7 +465,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 						}
 						else
 						{
-							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
 							$error_rec++;
 						}
                                             
@@ -497,7 +497,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 						$contacaratteri = strlen($company_description);
 						if ($contacaratteri >= 150)
 						{
-							$_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br />Il campo contiene $contacaratteri caratteri</div>";
+							$_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br>Il campo contiene $contacaratteri caratteri</div>";
 						}
 						else
 						{
@@ -524,7 +524,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					}
 					else
 					{
-						$_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -546,7 +546,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					}
 					else
 					{
-						$_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -567,7 +567,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					}
 					else
 					{
-						$_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -588,7 +588,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					}
 					else
 					{
-						$_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -647,24 +647,21 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
     
      public static function updateServizi() {
     
-         
-         $utente = $_SESSION['current_user'];
+        
 
-				// se mi arriva correttametne la sessione azienda
-
-				if (isset($utente))
-				{
-
-					// se mi arriva la request dei servizi la metto in sessione
-
-					if (isset($_REQUEST['servizi']))
-					{
+					
+//arrivano i servizi modificati
+	if (isset($_REQUEST['servizi']))
+         {
+            
+            
+        
 						$_SESSION['servizi'] = $_REQUEST['servizi'];
 					}
 
 					// effettua la registrazione dell'azienda
 
-					 $update = UtenteFactory::updateServizi($utente);
+					 $update = UtenteFactory::updateServizi();
 
                                 
                                 
@@ -687,7 +684,7 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 					// richiamo la vista
 
 					require_once '../view/Master.php';
-				}}
+				}
          
          
          

@@ -4,6 +4,7 @@
 
 
 include_once '../view/ViewDescriptor.php';
+include_once '../model/UtenteFactory.php';
 include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
 
@@ -30,7 +31,20 @@ class AmministratoreController {
       case 'home':         
                 self::showHomePageAmministratore();
                 break;          
-           
+      case 'showsegnalazioni':         
+    self::moderazione();
+ 
+                break;   
+            case 'richiama':         
+    self::richiama();
+ 
+                break;       
+
+            
+            case 'banna':         
+    self::banna();
+ 
+                break;       
 
         }
     }    
@@ -82,7 +96,32 @@ class AmministratoreController {
     }    
    
     
-  
+     /**EFFETTUA UN RICHIAMO
+     * ==========================
+     */
+public static function richiama() {
+    
+    $id_recensione = $_REQUEST['id_recensione'];
+    //ricerca autore recensione
+    $id_cliente = UtenteFactory::cercaAutoreRecensione($id_recensione);
+    
+    UtenteFactory::richiama($id_cliente);
+    
+    UtenteFactory::cancellaRecensione($id_recensione);    
+}
+    
+    /**BANNARE UN CLIENTE 
+     * ==========================
+     */
+public static function banna() {
+    $id_cliente = $_REQUEST['id_cliente'];
+    UtenteFactory::banna($id_cliente);    
+}
+
+
+
+
+
 
 
 }

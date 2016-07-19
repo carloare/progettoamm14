@@ -22,7 +22,7 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1"))
 {
 	$id_attivita = $_POST['tipo_attivita_id'];
-	$nome_attivita = UtenteFactory::mostraAttivita($id_attivita);
+	$nome_attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 ?> 
    <!-- <option value="<?php// echo $id_attivita; ?>" > <?php //echo $nome_attivita; ?></option>-->
   
@@ -44,7 +44,7 @@ if ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "-1")
 if ((!isset($_POST['tipo_attivita_id'])) OR ($_POST['tipo_attivita_id'] == "-1"))
 {
     ?> <option value="-1">Cosa</option> <?php
-	$attivita = UtenteFactory::mostraElencoAttivita(0);
+	$attivita = UtenteFactory::listaAttivita(0);
       
 }
 //quando viene selezionato qualcosa, devono essere mostrate tutte le attività tranne quella selezionata
@@ -56,7 +56,7 @@ elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "
         //passo l'id dell'attività da non mostrare (gli id validi vanno da 1 in poi)
         //Lo faccio perchè le query si differenziano solo per la clausola WHERE
         
-	$attivita = UtenteFactory::mostraElencoAttivita($not_show);
+	$attivita = UtenteFactory::listaAttivita($not_show);
        
 }while ($row = $attivita->fetch_row()) { ?> 
  
@@ -72,7 +72,7 @@ elseif ((isset($_POST['tipo_attivita_id'])) AND ($_POST['tipo_attivita_id'] != "
    </select><?php if(isset($_SESSION['tipo_attivita_id'])) echo $_SESSION['tipo_attivita_id'];?>
    
    <p><label for="email_azienda">E-mail:</label></p>
-   <input type="email" name="company_mail_azienda" id="email_azienda" value="<?php if (isset($_POST['company_mail_azienda'])) echo $_POST['company_mail_azienda']; ?>" title="inserisci l'email dell'azienda"><?php if (isset($_SESSION['company_mail_azienda'])) echo $_SESSION['company_mail_azienda']; ?>
+   <input type="email" name="email_azienda" id="email_azienda" value="<?php if (isset($_POST['email_azienda'])) echo $_POST['email_azienda']; ?>" title="inserisci l'email dell'azienda"><?php if (isset($_SESSION['email_azienda'])) echo $_SESSION['email_azienda']; ?>
    
    
    <p><label for="descrizione_azienda">Breve Descrizione:</label></p>

@@ -90,7 +90,7 @@ class FrontController
                                 //login amministratore                            
                             
 			case 5:
-				$vd->setMenuFile('view/out/menu_back_amm.php'); //menu amministratore
+				$vd->setMenuFile('view/out/menu_back.php'); //menu amministratore
 				$vd->setContentFile('view/out/login_amm.php'); //login amministratore
 				$vd->setErrorFile('view/out/error_empty.php');
 				$vd->setFooterFile('view/out/footer_empty.php');

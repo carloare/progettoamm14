@@ -6,9 +6,6 @@ include_once 'Utente.php';
 include_once 'Amministratore.php';
 
 
-
-if (session_status() != 2) session_start();
-
 //pulizia dei vari risultati conservati dentro la sessione
 
 /*
@@ -45,20 +42,39 @@ class UtenteFactory {
 $nome_completo = $utente->getNomeCompleto(); 
 $username = $utente->getUsername();
 $password =$utente->getPassword();
-$email_personale =$utente->getEmailConferma();
+$email_personale =$utente->getEmailPersonale();
 $ruolo = $utente->getRuolo();
 $numero_richiami = $utente->getNumeroRichiami();      
 
         
  //inizializzazione del prepared statement
  $stmt = $mysqli->stmt_init(); 
- //inizio transizione+
+ //inizio transizione
  
         $mysqli->autocommit(FALSE);        
     
+        //verifico che il cliente non sia bannato
+   $query ="SELECT bannato FROM Clienti WHERE email = \"$email_personale\"";
+   
+    $result = $mysqli->query($query);
+    
+     if(!$result)
+         {
+             $mysqli->rollback();
+         }
+    
+    
+     $risultato = $result->fetch_row();
+          
+     if($risultato[0] > 0)
+     {
+                $mysqli->rollback();
+                return 'BANNATO';    
+     }           
+        
       //verifica se nella tabella Cliente è presente l'email digitata 
         //(l'email è unica per ogni persona)
- $query ="SELECT COUNT(*) FROM Clienti WHERE email_personale = \"$email_personale\"";
+ $query ="SELECT COUNT(*) FROM Clienti WHERE email = \"$email_personale\"";
    
     $result = $mysqli->query($query);
     
@@ -75,12 +91,14 @@ $numero_richiami = $utente->getNumeroRichiami();
                 $mysqli->rollback();
                 return 'PRESENTE';    
      }            
+     
+     
         
       else
       {
         
         //effettiva registrazione del nuovo cliente nella tabella Clienti
-    $stmt = $mysqli->prepare("INSERT INTO Clienti (nome_completo, username, password, email_personale, ruolo, numero_richiami) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO Clienti (nome_completo, username, password, email, ruolo, numero_richiami) VALUES (?, ?, ?, ?, ?, ?)");
     
     
     $ctrl = $stmt->bind_param('ssssii', $nome_completo, $username, $password, $email_personale,$ruolo, $numero_richiami);
@@ -118,7 +136,7 @@ if($ruolo==1)
           //valori dell'oggetto creato tramite il form
   $nome_completo_azienda =$utente->getNomeCompleto();
           $tipo_incarichi_id =$utente->getTipo_incarichi_id();
-          $email_personale_azienda=$utente->getEmailConferma();
+          $email_personale_azienda=$utente->getEmailPersonale();
           $username_azienda=$utente->getUsername();
           $password_azienda=$utente->getPassword();
           $name_azienda =$utente->getNomeAzienda();
@@ -215,8 +233,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             
             
             
-     //creo un array della stessa dimensione della tabella dei servizi
-            //con tutti i valori a zero
+     //mette in array gli id dei servizi
      while ($row = $result->fetch_row()) {
               $id_servizio = $row[0];
               $static_servizi[$index_array_servizi] = $id_servizio;
@@ -244,7 +261,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
               
                   //se c'è corrispondenza viene messo a 1 il suo valore
                   $value_service=1;
-                // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' checked='checked'/><span style='color: #0066cc;'>$row[0]</span><br />";
+                // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' checked='checked'/><span style='color: #0066cc;'>$row[0]</span><br>";
               
                
                
@@ -260,7 +277,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
                   //caso contrario viene messo 0
                   $value_service=0; 
                   
-               // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' /><span style='color: #0066cc;'>$row[0]</span><br />";
+               // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' /><span style='color: #0066cc;'>$row[0]</span><br>";
               
                 
               }       
@@ -341,7 +358,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
      
            
                 $ctrl = $stmt->bind_result 
-                     ($id, $nome_completo, $username, $password, $email_personale, $ruolo, $numero_richiami);
+                     ($id, $nome_completo, $username, $password, $email_personale, $ruolo, $numero_richiami, $bannato);
             
                 
             if(!$ctrl) {
@@ -361,21 +378,27 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             //nessun risultato trovato
             return 'NOTFOUND';
             }
+            
+            if($bannato!=0)
+            {
+                return 'BANNATO';
+            }
        
             //crea un oggetto Cliente da restituire
+          
            
-            
             $utente = new Cliente();
             $utente->setId($id);
             $utente->setNomeCompleto($nome_completo);
             $utente->setUsername($username);
             $utente->setPassword($password);
-            $utente->setEmailConferma($email_personale);
+            $utente->setEmailPersonale($email_personale);
             $utente->setRuolo($ruolo);
             $utente->setNumeroRichiami($numero_richiami);      
             $mysqli->close();
             return $utente;
-         
+            
+      
             
         
         }    
@@ -472,7 +495,7 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
             $utente->setId($id);
             $utente->setNomeCompleto($nome_completo);
             $utente->setTipo_incarichi_id($tipo_incarichi_id);
-                    $utente->setEmailConferma($email_personale);
+                    $utente->setEmailPersonale($email_personale);
                     $utente->setUsername($username);
                     $utente->setPassword($password);
                     $utente->setNomeAzienda($nome_azienda);
@@ -645,14 +668,11 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
              
           
 
-/* MOSTRA ATTIVITA
-*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/** RESTITUISCE UNA STRINGA CONTENENTE L'ATTIVITA SELEZIONATA CORRISPONDENTE A tipo_attivita_id
+* ================================
 */
-         //funzione che restituisce una stringa che contiene l'attività svolta
-         //selezionata dalla submit
     
-    
-     public static function mostraAttivita($tipo_attivita_id)
+     public static function mostraAttivitaSelezionata($tipo_attivita_id)
      {
          
         
@@ -662,7 +682,7 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
 
     // suppongo di aver creato mysqli e di aver chiamato la connect
         if (!isset($mysqli)) {
-            error_log("[mostraAttivita] impossibile inizializzare il database");
+            error_log("[mostraAttivitaSelezionata] impossibile inizializzare il database");
             $mysqli->close();
             return null;
             } else {
@@ -672,22 +692,14 @@ public static function cercaDoveCosa($citta, $tipo_attivita_id) {
             
 $result = $mysqli->query($query);
       
-         //  $risultato = $result->fetch_row();
+        
  $risultato = $result->fetch_row();
 
  
  $mysqli->close();
            return $risultato[0];
             }
-         
-         
-         
-         
-         
-         
-         
-         
-          
+        
      }
            
      
@@ -740,13 +752,13 @@ $result = $mysqli->query($query);
            
      
      
-/* MOSTRA ELENCO ATTIVITA
-*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/** MOSTRA L'ELENCO DELLE ATTIVITA
+ * - SE tipo_attività_id è 0 significa che devono essere mostrate tutte le attività
+ * - SE tipo_attività_id è DIVERSO da 0 occorre mostrare tutte le attività tranne quella
+ * con id uguale proprio a tipo_attività_id
+* =======================================
 */
-         //funzione che restituisce una stringa che contiene l'attività svolta
-    
-    
-     public static function mostraElencoAttivita($tipo_attivita_id)
+     public static function listaAttivita($tipo_attivita_id)
      {
         //creo istanza mysqli
     $mysqli = new mysqli();
@@ -755,7 +767,7 @@ $result = $mysqli->query($query);
     
     //se è avvenuto un errore di connessione
     if (!isset($mysqli)) {
-            error_log("[mostraElencoAttivita] impossibile inizializzare il database");
+            error_log("[listaAttivita] impossibile inizializzare il database");
             $mysqli->close();
             return NULL;
             }
@@ -930,7 +942,7 @@ return $results;
             $utente->setId($row->id);
             $utente->setNomeCompleto($row->nome_completo);  
             $utente->setTipo_incarichi_id($row->tipo_incarichi_id);
-            $utente->setEmailConferma($row->email_personale);
+            $utente->setEmailPersonale($row->email_personale);
             $utente->setUsername($row->username);
             $utente->setPassword($row->password);
             $utente->setNomeAzienda($row->nome_azienda);
@@ -1009,7 +1021,8 @@ return $result;
         
         $nuova_media = 0;
         
-   
+   //METTERE $mysqli->free_result();
+
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);   
@@ -1026,7 +1039,9 @@ return $result;
 $mysqli->autocommit(FALSE);
 
          $query = ("INSERT INTO Voti (id_aziende , id_clienti, voto) VALUES ( $id_azienda, $id_cliente, $voto)");
+         echo $query;
  $ctrl = $mysqli->query($query);
+
  
        
         if(!$ctrl)
@@ -1038,13 +1053,16 @@ $mysqli->autocommit(FALSE);
        else
        {
            
-        $media_voto = $mysqli->query("SELECT media_voto FROM Statistiche WHERE id_aziende = $id_azienda");     
+        $query=("SELECT media_voto FROM Statistiche WHERE id_aziende = $id_azienda");     
              
-        $row = $media_voto->fetch_array();
+        
+        $ctrl = $mysqli->query($query);
+        
+        $row = $ctrl->fetch_array();
 
         $media_voto = $row[0];
         
-          if(!$media_voto)
+          if(!$ctrl)
          {
              $mysqli->rollback();
          }
@@ -1059,19 +1077,19 @@ $mysqli->autocommit(FALSE);
         $nuova_media = ($nuova_media + $voto) / 2;
             }
 
-        $ctrl = $mysqli->query("UPDATE Statistiche SET media_voto = $nuova_media WHERE id_aziende = $id_azienda");
+        $query=("UPDATE Statistiche SET media_voto = $nuova_media WHERE id_aziende = $id_azienda");
 
-    
+    $ctrl = $mysqli->query($query);
 
-        if(!$ctrl)
+       if(!$ctrl)
          {
              $mysqli->rollback();
              echo ' Si è verificato un errore';
          }
        
-       $ctrl = $mysqli->query("UPDATE Statistiche SET numero_voti = numero_voti + 1 WHERE id_aziende = $id_azienda");
+       $query=("UPDATE Statistiche SET numero_voti = numero_voti + 1 WHERE id_aziende = $id_azienda");
 
-    
+    $ctrl = $mysqli->query($query);
 
         if(!$ctrl)
          {
@@ -1084,7 +1102,7 @@ $mysqli->autocommit(FALSE);
             echo ' Grazie per aver inserito il tuo voto';
            
        }
-         $mysqli->commit();
+        $mysqli->commit();
  $mysqli->autocommit(TRUE);
         $mysqli->close();
     }
@@ -1095,7 +1113,7 @@ $mysqli->autocommit(FALSE);
            
 /*
  * =============================================================================
- * ----------------------------------INSERISCI TRA I PREFERITI -------------------------------
+ * ---------------------------------- TRA I PREFERITI -------------------------------
  * =============================================================================
  */  
   //funzione che inserisce un'azienda tra i preferiti
@@ -1162,8 +1180,9 @@ $query = ("UPDATE Statistiche SET numero_preferenze = numero_preferenze + 1 WHER
         
         $id_azienda = $_SESSION['id_azienda'];
         $id_cliente = $_SESSION['current_user']->getId();
-        $voto = $_REQUEST['voto_qp']; 
-        
+        $voto = $_SESSION['voto_qp']; 
+        echo 'è arrivato il voto';
+        echo $voto;
         $nuova_madia_qp=0;
         
 
@@ -1281,10 +1300,18 @@ $data = date("d/m/Y");
             else
             {
 
-$stmt= $mysqli->prepare("INSERT INTO Recensioni(id_aziende, id_clienti, data,recensione, numero_segnalazioni) VALUES (?,?,?,?,?)");
+$stmt= $mysqli->prepare("INSERT INTO Recensioni(id_aziende, id_clienti, data, recensione, segnalato,valido) VALUES (?,?,?,?,?,?)");
 
-$stmt->bind_param('iissi', $_SESSION['id_azienda'],$_SESSION['current_user']->getId(), $data, $_REQUEST['comments'],$zero);
+$stmt->bind_param('iissii', $_SESSION['id_azienda'],$_SESSION['current_user']->getId(), $data, $_REQUEST['comments'],$zero,$zero);
 $stmt->execute();
+
+if($stmt)
+{
+    echo 'La tua recensione è stata inserita correttamente';
+}
+
+
+
 $stmt->close();
         
     }
@@ -1309,39 +1336,16 @@ $stmt->close();
             }
  else {
 
-        $stmt = $mysqli->prepare("DELETE FROM Clienti WHERE id = ?");
-        
-
-        $ctrl = $stmt->bind_param('i', $delete_id);
-        if (!$ctrl) {
-            error_log("[cancellaClienti] impossibile effettuare il binding in input");
-            $mysqli->close();
-            return NULL;       
-        }
-
-        //esecuzione dello statement      
-        $ctrl = $stmt->execute();
-      
-        //eventuali errori
-        if (!$ctrl) {
-            error_log("[cancellaClienti] errore nell'esecuzione dello statement");
-            $mysqli->close();
-            return NULL; 
-     }
-         else {
-            header("location: /SardiniaInFood/php/index.php?page=0"); 
-        }
+        $results = $mysqli->query("DELETE FROM `Clienti` WHERE id=$delete_id");
 
         $stmt->close();
  }}
     
-/*
- * =============================================================================
- * --------------------------------MEDIA VOTO IN STATISTICHE---------------------------------
- * =============================================================================
- */  
-    //restituisce la media del voto 
- public static function mediaVotoInStatistiche($id_azienda)
+ 
+/** RESTITUISCA LA MEDIA DEL VOTO DI UN'AZIENDA
+ ======================
+ */
+ public static function mediaVoto($id_azienda)
  {
     
  //connessione al database
@@ -1350,7 +1354,7 @@ $stmt->close();
     
     // suppongo di aver creato mysqli e di aver chiamato la connect
     if (!isset($mysqli)) {
-            error_log("[mediaVotoInStatistiche] impossibile inizializzare il database");
+            error_log("[mediaVoto] impossibile inizializzare il database");
             $mysqli->close();
             return NULL;
             }
@@ -1360,8 +1364,6 @@ $stmt->close();
         $query = "SELECT media_voto FROM Statistiche WHERE id_aziende=$id_azienda";
         
                
-        
-
 $result = $mysqli->query($query);
 
          $row = $result->fetch_array();
@@ -1369,7 +1371,7 @@ $result = $mysqli->query($query);
             $mediavoto = $row[0];
 
           if (!isset($mediavoto)) {
-            error_log("[mediaVotoInStatistiche] errore");
+            error_log("[mediaVoto] errore");
             $mysqli->close();
             return NULL;
             }
@@ -1381,13 +1383,11 @@ $result = $mysqli->query($query);
 
 }
 
-/*
- * =============================================================================
- * ------------------RAPPORTO QUALITA PREZZO IN STATISTICHE---------------------------------
- * =============================================================================
+/** RESTITUISCE IL VOTO RELATIVO AL RAPPORTO QUALITA/PREZZO
+ * ==============================
  */  
     //restituisce il rapporto qualità prezzo 
- public static function rapportoQualitaPrezzoInStatistiche($id_azienda)
+ public static function rapportoQP($id_azienda)
  {
     
  //connessione al database
@@ -1396,7 +1396,7 @@ $result = $mysqli->query($query);
     
     // suppongo di aver creato mysqli e di aver chiamato la connect
     if (!isset($mysqli)) {
-            error_log("[rapportoQualitaPrezzoInStatistiche] impossibile inizializzare il database");
+            error_log("[rapportoQualitaPrezzo] impossibile inizializzare il database");
             $mysqli->close();
             return NULL;
             }
@@ -1415,7 +1415,7 @@ $result = $mysqli->query($query);
             $rapporto_qp = $row[0];
 
           if (!isset($rapporto_qp)) {
-            error_log("[rapportoQualitaPrezzoInStatistiche] errore");
+            error_log("[rapportoQualitaPrezzo] errore");
             $mysqli->close();
             return NULL;
             }
@@ -1461,12 +1461,10 @@ $result = $mysqli->query($query);
 
 
 
-/*
- * =============================================================================
- * -------------------------------ULTIMO COMMENTO----------------------------------
- * =============================================================================
+/** RESTITUISCE UNA STRINGA CONTENENTE L'ULTIMA RECENSIONE RICEVUTA DA UN'AZIENDA
+ * ===================================
  */  
-    //funzione che restituisce l'ultima recensione inserita
+    
     public static function ultimaRecensione($id_azienda) {
        //connessione al database
         $mysqli = new mysqli();
@@ -1482,8 +1480,12 @@ $result = $mysqli->query($query);
 else
 {
 
-        $query = "SELECT * FROM Recensioni WHERE id_aziende = $id_azienda ORDER BY id DESC LIMIT 1";
+        //$query = "SELECT * FROM Recensioni WHERE id_aziende = $id_azienda ORDER BY id DESC LIMIT 1";
+//considerare i bannati
+    $query="SELECT * FROM Recensioni 
+        JOIN Clienti ON Clienti.id = Recensioni.id_clienti
 
+WHERE Recensioni.id_aziende = $id_azienda AND Clienti.bannato =0 AND Recensioni.valido = 0 ORDER BY Clienti.id DESC LIMIT 1";
        //Risultato query
 $results = $mysqli->query($query);
 
@@ -1498,12 +1500,9 @@ return $results;
 }
 
     }
-/*
- * =============================================================================
- * ---------------------------------CERCA CLIENTE PER ID--------------------------------
- * =============================================================================
+/** CERCA IL CLIENTE ASSOCIATO ALL'ID PASSATO
+ * ==================================
  */  
-    //restituisce il cliente associata a un id
      public static function cercaClientePerId($id_cliente)
  {
     
@@ -1532,7 +1531,7 @@ return $results;
             $utente->setNomeCompleto($row->nome_completo);  
             $utente->setUsername($row->username);
            $utente->setPassword($row->password);
- $utente->setEmailConferma($row->email_personale);
+ $utente->setEmailPersonale($row->email);
  $utente->setRuolo($row->ruolo);
 $utente->setNumeroRichiami($row->numero_richiami);
 
@@ -1553,7 +1552,7 @@ $utente->setNumeroRichiami($row->numero_richiami);
  */   
  
     //funzione che restituisce le ultime 5 recensioni
-     public static function cercaUltimeRecensioni($id_azienda) 
+     public static function ultimeRecensioni($id_azienda) 
             {
    //connessione al database
     $mysqli = new mysqli();
@@ -1566,10 +1565,17 @@ if ($mysqli->connect_error) {
     die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
 }
 
+//togliere il bannato
+//$results = $mysqli->query("SELECT *
+//FROM Recensioni JOIN Clienti ON Clienti.id = Recensioni.id_clienti WHERE Recensioni.id_aziende = $id_azienda AND Clienti.bannato = 0 AND Recensioni.valido = 0 ORDER BY Clienti.id DESC LIMIT 5");
 
-$results = $mysqli->query("SELECT * FROM Recensioni WHERE id_aziende = $id_azienda ORDER BY id DESC LIMIT 5");
-
-
+$results = $mysqli->query("SELECT 
+ Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, Recensioni.data, Recensioni.recensione, Recensioni.segnalato, Recensioni.valido
+FROM Recensioni
+JOIN Clienti ON Clienti.id = Recensioni.id_clienti
+WHERE Recensioni.id_aziende =$id_azienda
+AND Clienti.bannato =0
+AND Recensioni.valido =0");
 
 
 
@@ -1594,9 +1600,9 @@ $mysqli->close();
 
  //funzione che conta il numero delle views
 
-    public static function segnalazione($id) {
+    public static function segnalazione($id_recensione) { //mettere autocommit 
        
-        
+        $id_utente=$_SESSION['current_user']->getId();
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -1610,9 +1616,10 @@ $mysqli->close();
             } else 
                 {
             //aggiornare Recensioni 
-            $query = ("UPDATE Recensioni SET numero_segnalazioni = numero_segnalazioni + 1 WHERE id = $id");
+            $query = ("UPDATE `Recensioni` SET segnalato=1 WHERE id=$id_recensione");
             $result = $mysqli->query($query);
 
+           
             
             
             if (!$result) {
@@ -1623,24 +1630,32 @@ $mysqli->close();
             //else {
              //   return 'UPDATED';
            // }
-                
+     
                 //aggiornare Segnalazioni
-                $query=("INSERT INTO Segnalazioni(id_recensioni) VALUES ($id)");
+                $query=("INSERT INTO Segnalazioni(id_recensioni, id_clienti) VALUES ($id_recensione, $id_utente)");
    
    
    $result = $mysqli->query($query);
 
-            
-            
+   
+   
+     //WORK IN PROGRESS       
+            if($result){
+    echo 'La segnalazione è avvenuta in modo corretto';
+    
+}else{
+     
+            echo 'Si è verificato un errore';
+          
+            return null;
+}
           
                 
         }
     }
     
-/*
- * =============================================================================
- * ---------------------------------NUMERO VISUALIZZAZIONI--------------------------------
- * =============================================================================
+/** RESTITUISCE IL NJUMERO DELLE VISUALIZZAZIONI PER UN'AZIENDA
+* ===============================
  */  
 //funzine che restituisce il numeo di visualizzazioni di un'azienda
     public static function numeroVisualizzazioni($id_azienda) {
@@ -1676,12 +1691,9 @@ $mysqli->close();
     }
     
     
-   /*
- * =============================================================================
- * ---------------------------------NUMERO VISUALIZZAZIONI--------------------------------
- * =============================================================================
+   /** RESTITUISCE IL NUMERO DEI VOTI RICEVUTI DA UN'AZIENDA
+ * ====================
  */  
-//funzine che restituisce il numeo di visualizzazioni di un'azienda
     public static function numeroVoti($id_azienda) {
         //connessione al database
         $mysqli = new mysqli();
@@ -1690,7 +1702,7 @@ $mysqli->close();
 
         // suppongo di aver creato mysqli e di aver chiamato la connect
         if (!isset($mysqli)) {
-            error_log("[views] impossibile inizializzare il database");
+            error_log("[numeroVoti] impossibile inizializzare il database");
             $mysqli->close();
             return null;
             } else {
@@ -1708,7 +1720,7 @@ $mysqli->close();
 
 
             if (!isset($numero_voti)) {
-            error_log("[views] errore");
+            error_log("[numeroVoti] errore");
             $mysqli->close();
             return null;
             }
@@ -1718,13 +1730,11 @@ $mysqli->close();
         }
     } 
     
-    /*
- * =============================================================================
- * ---------------------------------NUMERO VISUALIZZAZIONI--------------------------------
- * =============================================================================
+    /**RESTITUISCE IL NUMERO DEI VOTI DEL RAPPORTO QUALITA/PREZZO
+ * =======================================
  */  
-//funzine che restituisce il numeo di visualizzazioni di un'azienda
-    public static function numeroVotiQualitaPrezzo($id_azienda) {
+
+    public static function numeroVotiQP($id_azienda) {
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -1993,13 +2003,13 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
                           {
               
                         
-                        $mysqli->close();
+                       
                         return $attivita;
                     
                      }
            else 
            {
-               $mysqli->close();
+               
                return 'ZERO';
                }
                  
@@ -2019,7 +2029,7 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
            $utente->setId($row_result['id']);
            $utente->setNomeCompleto($row_result['nome_completo']);
            $utente->setTipo_incarichi_id($row_result['tipo_incarichi_id']);
-           $utente->setEmailConferma($row_result['email_personale']);
+           $utente->setEmailPersonale($row_result['email_personale']);
            $utente->setUsername($row_result['username']);
            $utente->setPassword($row_result['password']);
            $utente->setNomeAzienda($row_result['nome_azienda']);
@@ -2508,8 +2518,22 @@ else {$mysqli->close(); return 'SI';}
                 //cerca l'email nella tabella clienti
 if($dove==0)
 {
+    $query_ban = ("SELECT bannato FROM Clienti WHERE email = \"$email\"");
+    
+    $result_ban = $mysqli->query($query_ban);
+    
+     $ris = $result_ban->fetch_row();
+           
+     if($ris[0] > 0)
+     {
+               $mysqli->close();
+                return 'BANNATO';    
+     }   
+    
+    
     
      $query = ("SELECT COUNT(*) FROM Clienti WHERE email = \"$email\"");
+     
 }
  elseif($dove==1) {
     
@@ -2523,9 +2547,6 @@ $query ="SELECT COUNT(*) FROM Aziende WHERE email_personale = \"$email\"";
 $query ="SELECT COUNT(*) FROM Aziende WHERE email = \"$email\"";
  }
     $result = $mysqli->query($query);
-    
-  
-    
     
      $risultato = $result->fetch_row();
            
@@ -2640,8 +2661,8 @@ return $results;
      public static function mostraServizi() 
             {
          
-      
-
+      $utente = $_SESSION['current_user'];
+$id_azienda =  $utente->getId();
      //connessione al database
     $mysqli = new mysqli();
     $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -2653,8 +2674,7 @@ if ($mysqli->connect_error) {
 
 
 
-$results = $mysqli->query("SELECT  id,  tipo FROM  Servizi");
-
+$results = $mysqli->query("SELECT Aziende_Servizi.valore, Servizi.tipo, Servizi.id FROM Aziende_Servizi JOIN Servizi ON Servizi.id = Aziende_Servizi.id_servizi WHERE id_aziende =$id_azienda");
 
 
 // close connection
@@ -2910,9 +2930,7 @@ else {$mysqli->close(); return 'SI';}
             $mysqli->close();
             return null;
             } else {
-                
-                
-                
+         
                 
                 //riprendo i valori che dovrei aver modificato
            
@@ -2921,7 +2939,7 @@ else {$mysqli->close(); return 'SI';}
                
                 $incarico=$utente->getTipo_incarichi_id();
                
-                $email=$utente->getEmailConferma();
+                $email=$utente->getEmailPersonale();
                
                
                 $username=$utente->getUsername();
@@ -2999,7 +3017,7 @@ else {$mysqli->close(); return 'SI';}
                 $telefono=$utente->getTelefono();
                 $sito_web=$utente->getSitoWeb();
                 echo'uf: ';
-                var_dump($indirizzo);
+             
               
                
                 
@@ -3044,8 +3062,12 @@ else {$mysqli->close(); return 'SI';}
  */    
     //funzione che aggiorna i servizi offerti
     
-    public static function updateServizi($utente)
+    public static function updateServizi()
     {       
+         //prendo l'azienda che ho in sessione
+         $utente = $_SESSION['current_user'];
+         
+         
              //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -3059,123 +3081,603 @@ else {$mysqli->close(); return 'SI';}
             } else {
                 
                 $id_azienda = $utente->getId();
-                
+                echo $id_azienda;
   if(isset($_SESSION['servizi']))
       {
-      $form_servizi=$_SESSION['servizi'];
+           $form_servizi=$_SESSION['servizi'];
       
-                                                                                     var_dump($form_servizi);
-      //creo un arrey con tutti i servizi impostati che hanno valore 0
-      //non checcati
-  $static_servizi = array();
-   $index_array_servizi = 0;  
-            $query = "SELECT id FROM  Servizi";
-            
-            $result = $mysqli->query($query);
-            
            
            
-            
-            
-     //creo un array della stessa dimensione della tabella dei servizi
-            //con tutti i valori a zero
-     while ($row = $result->fetch_row()) {
+          $static_servizi = array();
+          
+          $query = "SELECT id FROM Servizi";
+          $result = $mysqli->query($query);
+          $index_array_servizi = 0; 
+          
+          while ($row = $result->fetch_row()) {
               $id_servizio = $row[0];
               $static_servizi[$index_array_servizi] = $id_servizio;
               $index_array_servizi = $index_array_servizi + 1;
-            }
-      
-                                                                                var_dump($static_servizi);
-                 
-     
-      
-      
-      //per ogni elemento dell'array appena creato
-            //1 2 3 4 5 prendi prima 
-            //1...2...3...
-     foreach ($static_servizi as $static_id_servizio) {
-    
-    $query = "SELECT tipo FROM Servizi WHERE id = $static_id_servizio";
-            
-            $result = $mysqli->query($query);          
-               
-            $row = $result->fetch_row();
-               
-               //verfica se nell'array è presenta il valore
-              if (in_array($static_id_servizio, $form_servizi)) {
-              
-                  //se c'è corrispondenza viene messo a 1 il suo valore
-                  $value_service=1;
-                // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' checked='checked'/><span style='color: #0066cc;'>$row[0]</span><br />";
-              
-               
-               
-               
-              //fatti i primi 2
-             // mysqli insert. id->ultimo id in tabella
-              //fatto questo glielo metto e inserisco nel db
-              
-                
-       
-              } else {      
-                  
-                  //caso contrario viene messo 0
-                  $value_service=0; 
-                  
-               // echo "<input style='vertical-align:middle;' type='checkbox' name='servizi[]' value='$static_id_servizio' /><span style='color: #0066cc;'>$row[0]</span><br />";
-              
-                
-              }       
-                $query = ("UPDATE `Aziende_Servizi` SET id_aziende=$id_azienda, id_servizi=$static_id_servizio, valore = $value_service");
-
-                
-                echo $query;
-                
-       $ctrl = $mysqli->query($query);
            }
-      }              
-                
-            
-            
-            if (!$ctrl) {
-             error_log("[updateServizi] errore");
-            $mysqli->close();
-            return 'INSUCCESSO';
-       
-        }else {
-                
-                return 'SUCCESSO';
-            }               
-                
-                
-            }      
- 
-    }                   
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+          var_dump($form_servizi);
+           foreach ($static_servizi as $id_static_servizio) {
+var_dump($id_static_servizio);
+              if (in_array($id_static_servizio, $form_servizi)) {
+                  
+                  echo "OK";
+               
+// echo "<input style='vertical-align:middle;' type='checkbox' name='mete_di_viaggio[]' value='$id_mdv_less_plus' checked='checked'/><span style='color: #009900;'>$nomeMDV</span><br />";
+              $query = "UPDATE Aziende_Servizi SET valore=1 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
+                  $result = $mysqli->query($query);
+                  
+                  } else {     ECHO "nO";                
+                //echo "<input style='vertical-align:middle;' type='checkbox' name='mete_di_viaggio[]' value='$id_mdv_less_plus' /><span style='color: #009900;'>$nomeMDV</span><br />";
+              $query = "UPDATE Aziende_Servizi SET valore=0 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
+                  $result = $mysqli->query($query);
+                      }
+            } 
            
             
+           
+           
+           
+           
+       
+   }
+  
+   
+   
+       
+        
+        
+       
+      
+ 
+    }$mysqli->close();  }                
             
             
             
             
             
             
+ /*
+ * =============================================================================
+ * ----------------------------CONTA SEGNALAZIONI-------------------------------------
+ * =============================================================================
+ */  
+       public static function contaSegnalazioni() 
+            {
+        //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaSegnalazioni] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+//$results = $mysqli->query("SELECT COUNT(*) FROM Segnalazioni");
+                //contare le segnalazioni ma non sugli utenti bannati
+$result = $mysqli->query("SELECT COUNT( * ) 
+FROM Segnalazioni
+JOIN Recensioni ON Recensioni.id = Segnalazioni.id_recensioni
+JOIN Clienti ON Clienti.id = Recensioni.id_clienti
+WHERE Clienti.bannato =0");
+            
+
+   $risultato = $result->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }                  }   
             
             
             
             
+
+
+/*
+ * =============================================================================
+ * -------------------------------VISUALIZZA COMMENTI SEGNALATI----------------------------------
+ * =============================================================================
+ */   
+ 
+    //funzione che restituisce le recensioni
+     public static function showSegnalazioni($primo, $segnalazioni_per_pagina) 
+            {
          
+      
+
+     //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+
+if ($mysqli->connect_error) {
+    die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
+}
+
+
+
+//$results = $mysqli->query("SELECT * FROM Recensioni WHERE numero_segnalazioni > 0 ORDER BY id DESC LIMIT $primo, $segnalazioni_per_pagina");
+
+//visualizzare tutte le recensioni segnalate tranne quelle degli utenti bannati
+$results= $mysqli->query("
+SELECT 
+Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, Recensioni.data, 
+Recensioni.recensione, Recensioni.numero_segnalazioni, Recensioni.valido
+FROM Recensioni
+JOIN Clienti ON Clienti.id = Recensioni.id_clienti
+JOIN Segnalazioni ON Segnalazioni.id_recensioni=Recensioni.id
+WHERE Recensioni.numero_segnalazioni > 0
+AND Clienti.bannato = 0
+ORDER BY Recensioni.id DESC LIMIT $primo, $segnalazioni_per_pagina");
+// close connection
+$mysqli->close();
+return $results;
+ 
+ }
+        
+
+ 
+/** MOSTRA A UNA AZIENDA I SERVIZI SELEZIONABILI
+ * ==============================================
+ */
+    public static function listaServizi() {
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[votoValido] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT * FROM Servizi");
+
+
+// close connection
+        $mysqli->close();
+        return $results;
+    }
+         
+            }   
+           
+    
+/**CONTA IL NUMERO DELLE AZIENDE REGISTRATE (STATISTICHE AMMINISTRATORE)
+ * ==================================
+ */    
+            
+            
+            
+  public static function contaAziende() {
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaAziende] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT COUNT(*) FROM Aziende");
+
+
+// close connection
+       $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }      
+            }    
+            
+            
+
+    
+/**CONTA IL NUMERO DEI CLIENTI REGISTRATI (STATISTICHE AMMINISTRATORE)
+ * ==================================
+ */    
+            
+            
+            
+  public static function contaClienti() {
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaClienti] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT COUNT(*) FROM Clienti");
+
+         
+
+   $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }       }              
+            
+ /**CONTA IL NUMERO DEI COMMENTI (STATISTICHE AMMINISTRATORE)
+ * ==================================
+ */    
+            
+            
+            
+  public static function contaCommenti() {
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaRecensioni] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT COUNT(*) FROM Recensioni");
+
+      
+
+   $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }  }                    
+            
+    
+    
+/**CONTA IL NUMERO DELLE VISUALIZZAZIONI (STATISTICHE AMMINISTRATORE)
+ * ==================================
+ */    
+            
+            
+            
+  public static function contaVisualizzazioni() {
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaVisualizzazioni] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT SUM(visualizzazioni) FROM Statistiche");
+
+           
+
+   $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }                         
+          }
+          
+          
+    /**BANNARE UN CLIENTE 
+     * ==========================
+     */        
+          
+       public static function banna($id_cliente)    
+        {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+       $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[banna] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+    
+
+$query ="UPDATE `Clienti` SET `bannato`=1 WHERE `id`= $id_cliente";
+ 
+    $result = $mysqli->query($query);
+    
+
+   if(!$result){
+       return 'NO RIUSCITO';    
+   }
+     else
+     {
+          return 'RIUSCITO';
+     }
+             
+$mysqli->close();
+
+            
+
+
+            }  }
+            
+  /**EFFETTUA UN RICHIAMO ALL'UTENTE
+     * ==========================
+     */        
+          
+       public static function richiama($id_cliente)    
+        {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+       $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[richiama] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+  $mysqli->autocommit(FALSE);  
+
+
+$query ="UPDATE Clienti SET numero_richiami=numero_richiami+1 WHERE `id`= $id_cliente";
+ 
+    $result = $mysqli->query($query);
+    
+    if(!$result)
+     {
+                $mysqli->rollback();
+        
+     }           
+    
+    
+    $results = $mysqli->query("SELECT numero_richiami FROM Clienti WHERE id=$id_cliente");
+
+           if(!$results)
+     {
+                $mysqli->rollback();
+        
+     }  else{ //autobannato
+
+   $risultato = $results->fetch_row();
+
+           if($risultato[0]==3)
+           {$query ="UPDATE Clienti SET bannato=1 WHERE `id`= $id_cliente";
+           $result = $mysqli->query($query);
+           }
+     }
+   
+
+      if($results){
+    echo 'Richiamo effettuato';
+    
+}else{
+     
+            echo 'Si è verificato un errore';
+          
+            return null;
+}  
+     
+     
+     
+     
+   //messaggio
+              $mysqli->autocommit(TRUE);
+$mysqli->close();
+
+            
+
+
+            }  }          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          
+          
+    
+            
+            
+            
+            
+            
+            
+            
+            
+ /**CONTA IL NUMERO DI RICHIAMI
+ * ==================================
+ */    
+            
+            
+            
+  public static function numeroRichiami() {
+
+      //prendo l'azienda che ho in sessione
+         $id_cliente = $_SESSION['current_user']->getId();
+      
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[numeroRichiami] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT `numero_richiami` FROM `Clienti` WHERE id=$id_cliente");
+
+           
+
+   $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }                         
+          }           
+            
+            
+            
+            
+            
+            /**CERCA AUTORE DI UNA RECENSIONE
+ * ==================================
+ */    
+            
+            
+            
+  public static function cercaAutoreRecensione($id_recensione) {
+
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaAutoreRecensione] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("SELECT Clienti.id
+FROM Clienti
+JOIN Recensioni ON Recensioni.id_clienti = Clienti.id
+WHERE Recensioni.id =$id_recensione");
+
+           
+
+   $risultato = $results->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+    }                         
+          }        
+            
+            
+          
+ 
+            /**RENDE INLEGGIBILE UNA RECENSIONE
+ * ==================================
+ */    
+            
+            
+            
+  public static function cancellaRecensione($id_recensione) {
+
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaAutoreRecensione] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+
+$results = $mysqli->query("UPDATE Recensioni SET valido=1 WHERE `id`=$id_recensione");
+$results = $mysqli->query("DELETE FROM Segnalazioni WHERE id_recensioni=$id_recensione");
+           
+
+   
+$mysqli->close();
+           
+    }                         
+          }                
+          
+            
+            
+          
+          
+          
+          
+          
+          
+    
+            
+          
+              
+              
+              
+  /**VERIFICA SE UN COMMENTO È STATO SEGNALATO
+ * ================================
+ */  
+   
+    
+       public static function segnalato($id_recensione, $current_id)    
+            {
+        
+            
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[segnalato] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+             
+
+
+
+$query ="SELECT COUNT(*) FROM Segnalazioni WHERE id_recensioni = $id_recensione AND id_clienti= $current_id";
+ 
+    $result = $mysqli->query($query);
+    
+    
+     $risultato = $result->fetch_row();
+           
+     if($risultato[0] == 0)
+     {
+             //NON SEGNALATO
+                return 0;    
+     }            
+else { return 1;}
+
+            }
+
+  $mysqli->close();
+            }                   
+              
+              
+              
          
          
 }

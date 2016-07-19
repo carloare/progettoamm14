@@ -52,7 +52,7 @@ echo '<br><br>';
 <?php
  //nella tabella Voti vado a ricercare tutti i voti dati per una stessa azienda
 echo '<img src="/SardiniaInFood/images/heart.png" alt="media voto" title="media voto" height="64" width="64">';
-    $giudizio = UtenteFactory::mediaVotoInStatistiche($id_azienda);
+    $giudizio = UtenteFactory::mediaVoto($id_azienda);
     
 if($giudizio==0)
 {
@@ -97,7 +97,7 @@ echo $numero_voti;
 <?php
  //nella tabella Voti vado a ricercare tutti i voti dati per una stessa azienda
 echo '<img src="/SardiniaInFood/images/money-bag-with-dollar-symbol.png" alt="media rapporto qualit&agrave; prezzo" title="media rapporto qualit&agrave; prezzo" height="64" width="64">';
-    $giudizio = UtenteFactory::rapportoQualitaPrezzoInStatistiche($id_azienda);
+    $giudizio = UtenteFactory::rapportoQP($id_azienda);
     
 if($giudizio==0)
 {
@@ -116,7 +116,7 @@ echo $giudizio;
 ?>
 </section> 
 <?php
-     $numero_voti_qp = UtenteFactory::numeroVotiQualitaPrezzo($id_azienda);
+     $numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
      echo '<br><br>numero voti qp: ';
      echo  $numero_voti_qp;
   echo '<br><br>';
@@ -125,15 +125,10 @@ echo $giudizio;
 
 
 </article>
-<?php
-    echo '/********************************************************************/<br><br>';
-       
-        ?>
 
 
 <article>
-    <h1 id="paginazione">QUI CI VANNO LE RECENSIONI DELL'AZIENDA</h1>
-    <h1>WORK IN PROGRESS</h1>
+    <h1 id="paginazione">Recensioni ricevute</h1>
 </article>
 
 <article>

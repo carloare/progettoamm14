@@ -1,11 +1,11 @@
 $(document).ready(function(){
     
-//button
+//Il JQUERY partirà al click sull'immgaine
 $("input:image").click(function() {
-  //alert(this.id);
+//prendo l'id associato all'azienda  
   id = this.id;
- // alert(id);
- $.ajax({
+ 
+ $.ajax({ //spedizione alla ClienteController per essere cancellato dai preferiti
                 type: "POST",
                 url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito",
                 data: "id_azienda="+id,

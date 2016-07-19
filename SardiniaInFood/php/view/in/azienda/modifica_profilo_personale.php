@@ -8,8 +8,7 @@ $azienda = $_SESSION['current_user'];
            
            
    <p> <label for="nome_completo_azienda">Nome Completo:</label></p>
-   <input type="text" name="nome_completo_azienda" id="nome_completo_azienda" value="
-       <?php echo $azienda->getNomeCompleto(); ?>" title="modifica il tuo nome completo">
+   <input type="text" name="nome_completo_azienda" id="nome_completo_azienda" value="<?php echo $azienda->getNomeCompleto(); ?>" title="modifica il tuo nome completo">
        <?php if (isset($_SESSION['nome_completo_azienda'])) echo $_SESSION['nome_completo_azienda']; ?> 
    
    
@@ -28,7 +27,7 @@ $azienda = $_SESSION['current_user'];
   
    
    <p><label for="email_personale_azienda">E-mail:</label></p>
-   <input type="email" name="email_personale_azienda" id="email_personale_azienda" value="<?php echo $azienda->getEmailConferma(); ?>" title="modifica la tua email">
+   <input type="email" name="email_personale_azienda" id="email_personale_azienda" value="<?php echo $azienda->getEmailPersonale(); ?>" title="modifica la tua email">
        <?php if (isset($_SESSION['email_personale_azienda'])) echo $_SESSION['email_personale_azienda']; ?> 
    
    
@@ -40,7 +39,7 @@ $azienda = $_SESSION['current_user'];
    <p><label for="password_azienda">Password:</label></p>
    <input type="password" name="password_azienda" id="password_azienda" value="<?php echo $azienda->getPassword(); ?>" title="modifica la tua password">
  <?php if (isset($_SESSION['password_azienda'])) echo $_SESSION['password_azienda']; ?>       
-   <br />
+   <br>
    
    
    

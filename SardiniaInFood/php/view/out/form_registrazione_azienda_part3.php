@@ -4,7 +4,7 @@
     
 <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
-    <?php $servizi = UtenteFactory::mostraServizi(); 
+    <?php $servizi = UtenteFactory::listaServizi(); 
     while ($row = $servizi->fetch_row()) { ?>
  
                 

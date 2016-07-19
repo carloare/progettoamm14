@@ -2,7 +2,7 @@
 
 // Pagina che gestisce l"input dell"utente che non ha ancora effettuato il login
 
-include_once '../view/ViewDescriptor.php'; 
+include_once '../view/ViewDescriptor.php';
 
 include_once '../model/Utente.php';
 
@@ -12,9 +12,10 @@ include_once '../model/Azienda.php';
 
 include_once '../model/Cliente.php';
 
-include_once '../Settings.php';
+include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
 if (session_status() != 2) session_start();
+
 
 if (isset($_REQUEST['cmd'])) BaseController::handleInput();
 
@@ -28,6 +29,8 @@ class BaseController
 
 	function handleInput()
 	{
+            
+                
 		switch ($_REQUEST['cmd'])
 		{
 			/*
@@ -39,10 +42,10 @@ class BaseController
 		case 'registrazione_cliente':
 
 			// definizione delle espressioni regolari
-
+ 
 			define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
-			define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
-			define("password_regexpr", "/^[a-zA-Z0-9]+$/");
+			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,20}$/");
+			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
 			define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 
 			// valori inseriti dall"utente che si vuole registrare come cliente (POST)
@@ -72,9 +75,10 @@ class BaseController
 
 			if (!empty($name))
 			{
-				unset($_SESSION['nome_completo_cliente']);
+				
 				if (1 === preg_match(nome_completo_regexpr, $name))
 				{
+                                    unset($_SESSION['nome_completo_cliente']);
 					$utente->setNomeCompleto($name);
 				}
 				else
@@ -92,20 +96,46 @@ class BaseController
                         if (!empty($email))
 			{
                             
-				unset($_SESSION['email_cliente']);
+				
                                 
 				if (1 === preg_match(email_personale_regexpr, $email))
 				{
 					
                                         $valido = UtenteFactory::cercaEmail($email, 0);
                                         
+                                        if ($valido == 'BANNATO')
+                                        {
+                                           
+                                            
+                                             // in caso di errore
+
+				$vd = new ViewDescriptor();
+				$vd->setTitolo("Benvenuto");
+
+				// si è verificato un errore (campo vuoto o caratteri non validi) nel form di registrazione
+
+				$_SESSION['errore'] = 7;
+				$vd->setLogoFile("../view/out/logo.php");
+				$vd->setMenuFile('../view/out/menu_home_page.php'); //menu 
+				$vd->setContentFile('../view/out/home_page_default.php'); //home page default
+				$vd->setErrorFile('../view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setFooterFile('../view/out/footer_home_page.php'); //footer
+
+				// richiamo la vista
+
+				require_once '../view/Master.php';
+                                            
+                                            
+                                        }
+                                            
 						if ($valido == 'SI')
 						{
-							$utente->setEmailConferma($email);
+                                                    unset($_SESSION['email_cliente']);
+							$utente->setEmailPersonale($email);
 						}
 						else
 						{
-							$_SESSION['email_cliente'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_cliente'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
 							$error_rec++;
 						}
                                         
@@ -113,7 +143,7 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br />Verifica eventuali errori di battitura.<br />Esempio email valida: email@esempio.com</div>";
+					$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
 					$error_rec++;
 				}
                                 
@@ -130,23 +160,23 @@ class BaseController
 
 			if (!empty($username))
 			{
-				unset($_SESSION['username_cliente']);
+				
 				if (1 === preg_match(username_regexpr, $username))
 				{
 					$valido = UtenteFactory::cercaUsername($username, 0); //non sono ammessi username uguali
 					if ($valido == 'SI')
-					{
+					{unset($_SESSION['username_cliente']);
 						$utente->setUsername($username);
 					}
 					else
 					{
-						$_SESSION['username_cliente'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br />scegline un altro</div>";
+						$_SESSION['username_cliente'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+					$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 					$error_rec++;
 				}
 			}
@@ -162,14 +192,14 @@ class BaseController
                                     if($pass == $pass_conferma)
                                     {
                                     
-					unset($_SESSION['password_cliente']);
+					
 					if (1 === preg_match(password_regexpr, $pass))
-					{
+					{unset($_SESSION['password_cliente']);
 						$utente->setPassword($pass);
 					}
 					else
 					{
-						$_SESSION['password_cliente'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['password_cliente'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -188,35 +218,9 @@ class BaseController
 				}              
                         
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-			if ($error_rec == 0)
+                      
+                           
+                       if ($error_rec == 0)
 			{
 
 				// se non si sono verificati errori
@@ -267,8 +271,8 @@ class BaseController
 
 			// definiamo le espressioni regolari per controllare la correttezza formale di username e password
 
-			define('username_regexpr', '/^[A-Za-z0-9 ]{3,20}$/');
-			define('password_regexpr', '/^[a-zA-Z0-9]+$/');
+			define('username_regexpr', '/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,20}$/');
+			define('password_regexpr', '/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/');
 
 			// verifica la correttezza dei valori inseriti nella compliazione del form
 
@@ -324,12 +328,12 @@ class BaseController
 
 			define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
 			define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
-			define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
-			define("password_regexpr", "/^[a-zA-Z0-9]+$/");
-			define("nome_azienda_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
+			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,20}$/");
+			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
+			define("nome_azienda_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}/");
 			define("descrizione_regexpr", "/^[A-Za-z0-9., \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
-			define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
-			define("indirizzo_regexpr", "/^[a-zA-Z0-9\s,'-]*$/");
+			define("citta_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9-\s]+$/");
+			define("indirizzo_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9\s,'-]*$/");
 			define("telefono_regexpr", "/^[0-9]{5,15}$/");
 			define("sito_web_regexpr", "/^((?:http(?:s)?\:\/\/)?[a-zA-Z0-9_-]+(?:.[a-zA-Z0-9_-]+)*.[a-zA-Z]{2,4}(?:\/[a-zA-Z0-9_]+)*(?:\/[a-zA-Z0-9_]+.[a-zA-Z]{2,4}(?:\?[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)?)?(?:\&[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)*)$/");
 
@@ -352,9 +356,9 @@ class BaseController
 					//$utente = $_SESSION['azienda'];
 				//}
 				//else
-				{
-					$utente = new Azienda();
-				}
+				
+				$utente = new Azienda();
+				
 
 				$utente->setRuolo($ruolo);
 
@@ -362,14 +366,15 @@ class BaseController
 
 				if (!empty($name))
 				{
-					unset($_SESSION['nome_completo_azienda']);
+					
 					if (1 === preg_match(nome_completo_regexpr, $name))
 					{
+                                            unset($_SESSION['nome_completo_azienda']);
 						$utente->setNomeCompleto($name);
 					}
 					else
 					{
-						$_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -393,25 +398,26 @@ class BaseController
 
 				if (!empty($email))
 				{
-					unset($_SESSION['email_personale_azienda']);
+					
 					if (1 === preg_match(email_personale_regexpr, $email))
 					{
 						 
                                         $valido = UtenteFactory::cercaEmail($email, 1);
 						if ($valido == 'SI')
 						{
-							$utente->setEmailConferma($email);
+                                                    unset($_SESSION['email_personale_azienda']);
+							$utente->setEmailPersonale($email);
 						}
 						else
 						{
-							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
 							$error_rec++;
 						}
                                         
 					}
 					else
 					{
-						$_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br />Verifica eventuali errori di battitura.<br />Esempio email valida: email@esempio.com</div>";
+						$_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
 						$error_rec++;
 					}
 				}
@@ -423,23 +429,24 @@ class BaseController
 
 				if (!empty($username))
 				{
-					unset($_SESSION['username_azienda']);
+					
 					if (1 === preg_match(username_regexpr, $username))
 					{
 						$valido = UtenteFactory::cercaUsername($username, 1);
 						if ($valido == 'SI')
 						{
+                                                    unset($_SESSION['username_azienda']);
 							$utente->setUsername($username);
 						}
 						else
 						{
-							$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br />scegline un altro</div>";
+							$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
 							$error_rec++;
 						}
 					}
 					else
 					{
-						$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -455,14 +462,15 @@ class BaseController
                                     if($pass == $pass_conferma)
                                     {
                                     
-					unset($_SESSION['password_azienda']);
+					
 					if (1 === preg_match(password_regexpr, $pass))
 					{
+                                            unset($_SESSION['password_azienda']);
 						$utente->setPassword($pass);
 					}
 					else
 					{
-						$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
 						$error_rec++;
 					}
 				}
@@ -499,7 +507,7 @@ class BaseController
 				else
 				{
 
-					// $_SESSION['azienda'] = $utente;
+					
 
 					$_SESSION['errore'] = 1;
 					$vd = new ViewDescriptor();
@@ -521,7 +529,7 @@ class BaseController
 			{
 				$company_name = trim($_REQUEST['name_azienda']);
 				$company_type = $_REQUEST['tipo_attivita_id'];
-				$company_mail = $_REQUEST['company_mail_azienda'];
+				$company_mail = $_REQUEST['email_azienda'];
 				$company_description = trim($_REQUEST['descrizione_azienda']);
 				$company_city = trim($_REQUEST['city_azienda']);
 				$company_address = trim($_REQUEST['address_azienda']);
@@ -570,19 +578,19 @@ class BaseController
 				if (!empty($company_mail))
 				{
 
-					unset($_SESSION['company_mail_azienda']);
+					unset($_SESSION['email_azienda']);
 
 					if (1 === preg_match(email_personale_regexpr, $company_mail))
 					{
                                             
-                                             $valido = UtenteFactory::cercaEmail($email, 2);
+                                             $valido = UtenteFactory::cercaEmail($company_mail, 2);
 						if ($valido == 'SI')
 						{
 							$utente->setEmail($company_mail);
 						}
 						else
 						{
-							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
 							$error_rec++;
 						}
                                             
@@ -590,13 +598,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
+						$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+					$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -806,8 +814,8 @@ class BaseController
 
 			// definiamo le espressioni regolari per controllare la correttezza formale di username e password
 
-			define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
-			define("password_regexpr", "/^[a-zA-Z0-9]+$/");
+			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,20}$/");
+			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
 
 			// verifica la correttezza formale di username e password
 
@@ -939,8 +947,8 @@ class BaseController
 
 			// mostra il profilo di un'azienda
 
-		case "profile":
-			self::showProfile();
+		case "profilo":
+			self::mostraProfilo();
 			break;
 			/*
 			* ================================LOGIN AMMINISTRATORE=============================================
@@ -986,7 +994,7 @@ class BaseController
 			else
 			{
 
-				// se non si sono verificati errori nel form passa alla funzione login_cliente
+				// se non si sono verificati errori nel form passa alla funzione login_amministratore
 
 				self::login_amministratore($username, $password);
 			}
@@ -1042,6 +1050,7 @@ class BaseController
 			require_once "../view/Master.php";
 
 		}
+                
 		else
 		{
 
@@ -1063,8 +1072,7 @@ class BaseController
 
 	// Funzione che permette il login del cliente
 
-	static
-	function login_cliente($username, $password)
+	static function login_cliente($username, $password)
 	{
 
 		// cerco l"utente nel database in base all"email e la password passati
@@ -1083,9 +1091,28 @@ class BaseController
 			$vd->setTitolo("SardiniaInFood");
 			$vd->setLogoFile("../view/out/logo.php");
 			$vd->setMenuFile("../view/out/menu_back.php");
-			$vd->setErrorFile("../view/out/error_out.php");
-			$vd->setContentFile("../view/out/login_cliente.php"); //ritorno al form di login
+                        $vd->setContentFile("../view/out/login_cliente.php"); //ritorno al form di login
+			$vd->setErrorFile("../view/out/error_out.php");			
 			$vd->setFooterFile("../view/out/footer_empty.php");
+		}
+                elseif ($utente == "BANNATO")
+		{
+
+			// se il cliente Ã¨ giÃƒ  registrato viene mostrato un messaggio di errore
+
+			$_SESSION['errore'] = 7;
+			$vd = new ViewDescriptor();
+			$vd->setTitolo("SardiniaInFood");
+			$vd->setLogoFile("../view/out/logo.php");			
+			$vd->setMenuFile("../view/out/menu_home_page.php");
+			$vd->setContentFile("../view/out/home_page_default.php"); //ritorna la form di registrazione cliente
+                        $vd->setErrorFile("../view/out/error_out.php");
+			$vd->setFooterFile('../view/out/footer_home_page.php');
+
+			// richiamo la vista
+
+			require_once "../view/Master.php";
+
 		}
 		else
 		{
@@ -1139,20 +1166,19 @@ class BaseController
 		if ($test == "PRESENTE")
 		{
 
-			// se l"azienda Ã¨ giÃƒ  registrato viene mostrato un messaggio di errore
+			// se l"azienda è già registrata viene mostrato un messaggio di errore
 
 			$_SESSION['errore'] = 2;
 
 			// caricamento pagina
 
 			$vd = new ViewDescriptor();
-			$vd->setTitolo("SardiniaInFood");
-			$vd->setLogoFile("../view/out/logo.php");
-			$vd->setErrorFile("../view/out/error_out.php");
-			$vd->setMenuFile("../view/out/menu_back.php");
-			$vd->setContentFile("../view/out/form_registrazione_azienda.php"); //ritorna al form di registraizone
-			$vd->setFooterFile("../view/out/footer_empty.php");
-
+					$vd->setTitolo("Benvenuto in FoodAdvisor");
+					$vd->setLogoFile('../view/out/logo.php');
+					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setContentFile('../view/out/form_registrazione_azienda_part2.php');
+					$vd->setErrorFile('../view/out/error_out.php');
+					$vd->setFooterFile('../view/out/footer_empty.php');
 			// richiamo la vista
 
 			require_once "../view/Master.php";
@@ -1311,8 +1337,7 @@ class BaseController
 
 	// mostra il profilo dell"azienda selezionata
 
-	static
-	function showProfile()
+	static function mostraProfilo()
 	{
 		$vd = new ViewDescriptor();
 		$vd->setTitolo("SardiniaInFood: Profilo");
