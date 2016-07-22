@@ -54,7 +54,7 @@ class FrontController
 				// form di registrazione del cliente
 
 			case 1:
-				$vd->setMenuFile('view/out/menu_back_rc.php'); //menu del form di registrazione del cliente
+				$vd->setMenuFile('view/out/menu_back.php'); //menu del form di registrazione del cliente
 				$vd->setContentFile('view/out/form_registrazione_cliente.php'); //form per la registrazione di un nuovo cliente
 				$vd->setErrorFile('view/out/error_out.php');
 				$vd->setFooterFile('view/out/footer_empty.php');
@@ -63,7 +63,7 @@ class FrontController
 				// login cliente
 
 			case 2:
-				$vd->setMenuFile('view/out/menu_back_lc.php'); //menu del form di login di un cliente
+				$vd->setMenuFile('view/out/menu_back.php'); //menu del form di login di un cliente
 				$vd->setContentFile('view/out/login_cliente.php'); //form login cliente
 				$vd->setErrorFile('view/out/error_out.php');
 				$vd->setFooterFile('view/out/footer_empty.php');
@@ -72,7 +72,7 @@ class FrontController
 				// form di registrazione dell'azienda
 
 			case 3:
-				$vd->setMenuFile('view/out/menu_back_ra.php'); //menu registrazione azienda
+				$vd->setMenuFile('view/out/menu_back.php'); //menu registrazione azienda
 				$vd->setContentFile('view/out/form_registrazione_azienda_part1.php'); //form per la registrazione di una nuova azienda (parte 1 di 3)
 				$vd->setErrorFile('view/out/error_out.php');
 				$vd->setFooterFile('view/out/footer_empty.php');
@@ -81,7 +81,7 @@ class FrontController
 				// login azienda
 
 			case 4:
-				$vd->setMenuFile('view/out/menu_back_la.php');  //menu login azienda
+				$vd->setMenuFile('view/out/menu_back.php');  //menu login azienda
 				$vd->setContentFile('view/out/login_azienda.php'); 
 				$vd->setErrorFile('view/out/error_out.php');
 				$vd->setFooterFile('view/out/footer_empty.php');

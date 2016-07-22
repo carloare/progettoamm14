@@ -20,10 +20,10 @@ switch ($errore) {
     //errore nella registrazione. Si è verificato un errore nel form di registrazione.
     
         ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Errore nell'inserimento dei dati" height="48" width="48" title="Errore nell'inserimento dei dati"> 
-    <h4>Si &egrave; verificato un errore nell'inserimento dei dati</h4>
-    </div>
+        <div class="errore">       
+             <img src="/SardiniaInFood/images/error.png" alt="Errore nella registrazione" height="48" width="48" title="Errore nell'inserimento dei dati"> 
+        <h4>Si &egrave; verificato un errore nell'inserimento dei dati</h4>
+        </div>
     <?php   
  
         break;
@@ -32,8 +32,9 @@ switch ($errore) {
     
         ?>
         <div class="errore">
+           <div class="imgerror"> 
     <img src="/SardiniaInFood/images/error.png" alt="Errore nella registrazione" height="48" width="48" title="Errore nell'inserimento dei dati"> 
-    <h4>Errore nella restrazione</h4>
+    </div><h4>Errore nella restrazione</h4>
     </div>
     <?php   
  
@@ -44,10 +45,7 @@ switch ($errore) {
     //errore utente non trovato
     /* CAMBIARE CICLE CON QUALCOSALTRO*/
         ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Errore utente inesistente" height="48" width="48" title="Errore utente inesistente"> 
-    <h4>Utente non trovato</h4>
-    </div>
+<div class="errore">Errore: l'utente non &egrave; stato trovato</div>
     <?php   
  
         break;
@@ -58,10 +56,7 @@ switch ($errore) {
     //errore in fase di login; username e password possono essere vuote o composte da caratteri non validi
    
         ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Errore nellinserimento dei dati in login" height="48" width="48" title="Errore nellinserimento dei dati in login"> 
-    <h4>Errore nellinserimento dei dati in login</h4>
-    </div>
+         <div class="errore">Errore: lo username e/o la password non sono stati inseriti correttamente</div>
     <?php   
  
         break;
@@ -72,9 +67,9 @@ switch ($errore) {
     //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
    
         ?>
-        <div class="errore">
+        <div class="errore"><div class="imgerror"> 
     <img src="/SardiniaInFood/images/error.png" alt="Inserire dei parametri di ricerca" height="48" width="48" title="Inserire dei parametri di ricerca"> 
-    <h4>Errore inserire dei parametri di ricerca</h4>
+    </div><h4>Errore inserire dei parametri di ricerca</h4>
     </div>
     <?php   
  
@@ -86,9 +81,9 @@ switch ($errore) {
     //alert nessun risultato trovato
    
         ?>
-        <div class="avviso">
+        <div class="avviso"><div class="imgerror"> 
     <img src="/SardiniaInFood/images/avviso.png" alt="Nessun risultato &egrave; stato trovato" height="48" width="48" title="Nessun risultato &egrave; stato trovato"> 
-    <h4>ATTENZIONE nessun risultato trovato</h4>
+    </div><h4>ATTENZIONE nessun risultato trovato</h4>
     </div>
     <?php   
  
@@ -99,10 +94,8 @@ switch ($errore) {
     //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
    
         ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Utente Bannato" height="48" width="48" title="Utente Bannato"> 
-    <h4>Errore impossibile effettuare l'accesso a SardegnaInFood<br>Utente Bannato</h4>
-    </div>
+        
+        <div class="errore">Errore: impossifile effettuare l'accesso. Utente bannato!</div>
     <?php   
  
         break;

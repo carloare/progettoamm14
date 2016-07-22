@@ -240,7 +240,7 @@ class BaseController
 
 				$_SESSION['errore'] = 1;
 				$vd->setLogoFile("../view/out/logo.php");
-				$vd->setMenuFile("../view/out/menu_back_rc.php");
+				$vd->setMenuFile("../view/out/menu_back.php");
 				$vd->setContentFile("../view/out/form_registrazione_cliente.php"); //ritorna al form di registrazione cliente
 				$vd->setErrorFile("../view/out/error_out.php");
 				$vd->setFooterFile("../view/out/footer_empty.php");
@@ -495,7 +495,7 @@ class BaseController
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part2.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');
@@ -514,7 +514,7 @@ class BaseController
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part1.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');
@@ -729,7 +729,7 @@ class BaseController
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part3.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');
@@ -745,7 +745,7 @@ class BaseController
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part2.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');
@@ -783,7 +783,7 @@ class BaseController
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part3.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');
@@ -1042,7 +1042,7 @@ class BaseController
 			$vd->setTitolo("SardiniaInFood");
 			$vd->setLogoFile("../view/out/logo.php");
 			$vd->setErrorFile("../view/out/error_out.php");
-			$vd->setMenuFile("../view/out/menu_back_rc.php");
+			$vd->setMenuFile("../view/out/menu_back.php");
 			$vd->setContentFile("../view/out/form_registrazione_cliente.php"); //ritorna la form di registrazione cliente
 			$vd->setFooterFile("../view/out/footer_empty.php");
 
@@ -1176,7 +1176,7 @@ if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 			$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
-					$vd->setMenuFile('../view/out/menu_back_ra.php');
+					$vd->setMenuFile('../view/out/menu_back.php');
 					$vd->setContentFile('../view/out/form_registrazione_azienda_part2.php');
 					$vd->setErrorFile('../view/out/error_out.php');
 					$vd->setFooterFile('../view/out/footer_empty.php');

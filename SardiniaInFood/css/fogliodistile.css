@@ -38,8 +38,8 @@
 /* FULL BACKGROUND IMAGE
 ========================================================================== */  
   .fullbackgroundimage {width: 100%; height: 100%; top: 0; left: 0; position: fixed; z-index: -1;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}  
-  .fullbackgroundimage.home {background: url(../images/bk-home.jpg) no-repeat center top;}
-  erca
+  .fullbackgroundimage.home {background: url(../images/bk-home.jpg) no-repeat center top; }
+  
 /* TOP HEADER
 ========================================================================== */    
   #top-header {display: none;}   
@@ -67,6 +67,7 @@
   #box-form-home {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat;}
   .form-home {margin: 0 auto; width: 800px;}
   .form-home input[type="text"] {padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block;}   
+  
   /* RADIUS BORDER 
   .form-home input[type="text"] {padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; transition: all 0.17s ease-in-out; -moz-transition: all 0.17s ease-in-out; -webkit-transition: all 0.17s ease-in-out; -o-transition: all 0.17s ease-in-out;}*/
   .form-home input[type="text"]:hover {background: #f7f7f7;}
@@ -76,7 +77,7 @@
   
 /* FOOTER
 ========================================================================== */ 
-  #footer {padding: 30px 0px 15px 0px; width: 100%; height: auto; background: #fff; position: fixed; bottom: 0; left: 0;}  
+  /*>>>>>>>>>>*/#footer {margin-top: 390px; padding: 30px 0px 15px 0px; width: 100%; height: auto; background: #fff; float: left;}  
   .main-menu-footer {width: auto; height: auto; float: left;}
   .main-menu-footer.right {float: right;}
   .main-menu-footer ul {list-style: none; margin:0; padding:0;}
@@ -85,6 +86,40 @@
   .main-menu-footer li a.validCSS3 {width: 88px; height: 31px; background: url(../images/w3c-css.png) 0 0 no-repeat; display: inline-block;}
   .main-menu-footer li a.validHTML5 {width: 88px; height: 31px; background: url(../images/w3c-html.png) 0 0 no-repeat; display: inline-block;}     
   .main-menu-footer li a:hover {text-decoration: underline;}
+  
+  
+   /* FORM LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ #box-form-login {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 500px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
+  /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin: 15px; padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px;}   
+  /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin: 15px; padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin: 15px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }
+  
+  
+ /* FORM REGISTRAZIONE
+========================================================================== */ 
+ 
+  /*>>>>>>>>>>*/ #box-form-registrazione {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 700px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
+  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
+  /*>>>>>>>>>>*/.form-registrazione select {margin: 10px; padding: 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 620px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
+  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; }   
+  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec {margin: 10px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }
+  /*>>>>>>>>>>*/ p.submitrec {padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; z-index: -1; }
+  
+  
+   /* ERRORI LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ div.errore { margin: 0 auto; margin-top: 5px; width: 500px; height: auto; 
+           background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px; 
+           	background-size: 40px 40px;
+           padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7;
+  font-size: 18px;}
+  
+  
+  
+  
   
 @media screen and (min-width: 1024px) and (max-width: 1200px) { 
 
@@ -101,6 +136,17 @@
   #footer {margin-top: 100px; position: relative; float: left;}     
 
 } 
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (min-width: 768px) and (max-width: 1023px) { 
   
@@ -129,7 +175,7 @@
   .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
   .main-menu li.user a {display: none;}
   .main-menu ul a {padding-left: 10px;} 
-  .xpopdrop ul {display: block!important;} 
+ /* .xpopdrop ul {display: block!important;} */
   
 /* BOX FORM HOME
 ========================================================================== */ 
@@ -142,8 +188,27 @@
 /* FOOTER
 ========================================================================== */ 
   #footer {margin-top: 50px; position: relative; float: left;}     
+  
+  /* FORM LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ #box-form-login {margin-top: 50px; width: 650px; }
+  /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin-left: 15px; width: 596px; font-size: 14px; display: block;}
+  /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 596px; font-size: 14px; display: block;}
+  /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;}   
+  
 
 }   
+
+  
+
+
+
+
+
+
+
+
+
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
 
@@ -172,7 +237,7 @@
   .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
   .main-menu li.user a {display: none;}
   .main-menu ul a {padding-left: 10px;} 
-  .xpopdrop ul {display: block!important;} 
+  /*.xpopdrop ul {display: block!important;} */
   
 /* BOX FORM HOME
 ========================================================================== */ 
@@ -184,10 +249,30 @@
      
 /* FOOTER
 ========================================================================== */
-  #footer {margin-top: 50px; position: relative; float: left;}  
+ /*>>>>>>>>>>*/ #footer {margin-top: 550px; position: relative; float: left;}  
   .main-menu-footer.right {margin-top: 30px; float: left;} 
   
+  /* FORM LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ #box-form-login {margin: 0 auto; margin-top: 50px; width: 420px; }
+  /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 366px; font-size: 14px; display: block; } 
+  /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block;}
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 479px) {
 
@@ -221,7 +306,7 @@
   .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
   .main-menu li.user a {display: none;}
   .main-menu ul a {padding-left: 10px;} 
-  .xpopdrop ul {display: block!important;}  
+  /*.xpopdrop ul {display: block!important;}  */
   
 /* BOX FORM HOME
 ========================================================================== */ 
@@ -233,7 +318,14 @@
   
 /* FOOTER
 ========================================================================== */ 
-  #footer {margin-top: 50px; position: relative; float: left;} 
+  /*>>>>>>>>>>*/#footer {margin-top: 550px; position: relative; float: left;} 
   .main-menu-footer.right {margin-top: 30px; float: left;} 
+  
+   /* FORM LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ #box-form-login {margin-top: 50px; width: 280px;}
+  /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin-left: 15px; width: 226px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 226px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
 
 }

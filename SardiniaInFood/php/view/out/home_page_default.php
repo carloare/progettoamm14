@@ -17,8 +17,9 @@ if (session_status() != 2) session_start();
 </h1>
 <p class="center white">
 
-     Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
+    Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
 </p>
+
 
 <!--article che riguarda la ricerca-->
 <div class="form-home">   
@@ -26,7 +27,7 @@ if (session_status() != 2) session_start();
 <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
 <input type="text" name="citta" onfocus="this.value=''" value="<?php if(isset($_POST['citta'])) { echo $_POST['citta']; } else { echo "Dove";} ?> " 
-       title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
+       title="inserisci il luogo dove fare la ricerca" size="24">    
   
  <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
                 

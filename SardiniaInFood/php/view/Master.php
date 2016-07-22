@@ -14,8 +14,8 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
     <meta name="author" content="Carlo Aresu">
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
-   <!--<link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">-->
-  <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">
+ <!-- <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">-->
   <link rel="icon" href="../images/favicon.png" sizes="16x16" type="image/png"> 
         <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
@@ -52,12 +52,12 @@ require "$logo";
         
         <nav id="nav">
            <div id="mobnav-btn"></div>   
-           
+           <ul class="main-menu">
                 <?php
 $menu = $vd->getMenuFile();
 require "$menu";
  ?>
-           
+           </ul>
         </nav>
         
         </div>
@@ -75,7 +75,7 @@ require "$content";
  ?>
             
             
-            
+        
             <?php
 $error = $vd->getErrorFile();
 require "$error";
