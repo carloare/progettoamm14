@@ -5,9 +5,9 @@ $azienda = $_SESSION['current_user'];
 ?>
 
 <form action="/SardiniaInFood/php/controller/AziendaController.php" method="post">
-   
+   <!--fare tutto cosi-->
    <p> <label for="name_azienda">Nome Azienda:</label></p>
-   <input type="text" name="name_azienda" id="name_azienda" value="<?php echo $azienda->getNomeAzienda(); ?>" title="modifica il nome della tua azienda"> 
+   <input type="text" name="name_azienda" id="name_azienda" value="<?php if(isset($_REQUEST['name_azienda'])) echo $_REQUEST['name_azienda']; else { echo $azienda->getNomeAzienda();} ?>" title="modifica il nome della tua azienda"> 
        <?php if (isset($_SESSION['name_azienda'])) echo $_SESSION['name_azienda']; ?>
   
    

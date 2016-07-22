@@ -14,8 +14,9 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
     <meta name="author" content="Carlo Aresu">
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
-  <!--  <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">-->
+   <!--<link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">-->
   <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">
+  <link rel="icon" href="../images/favicon.png" sizes="16x16" type="image/png"> 
         <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
 </head>
@@ -24,8 +25,17 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
     <div class="fullbackgroundimage home"></div>
 
 <div id="top-header">
-    
-</div>
+      <div class="container clearfix">
+      <ul class="main-menu-top">
+        <li>
+		      <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >ACCEDI</a>
+        </li>
+        <li>
+		      <a href="/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
+        </li>
+      </ul>
+      </div>
+    </div>
     
     
         

@@ -389,7 +389,7 @@ class AziendaController {
 			define("descrizione_regexpr", "/^[A-Za-z0-9., \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
 			define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
 			define("indirizzo_regexpr", "/^[a-zA-Z0-9\s,'-]*$/");
-			define("telefono_regexpr", "/^[0-9]{5,15}$/");
+			//define("telefono_regexpr", "/^[0-9]{5,15}$/");
 			define("sito_web_regexpr", "/^((?:http(?:s)?\:\/\/)?[a-zA-Z0-9_-]+(?:.[a-zA-Z0-9_-]+)*.[a-zA-Z]{2,4}(?:\/[a-zA-Z0-9_]+)*(?:\/[a-zA-Z0-9_]+.[a-zA-Z]{2,4}(?:\?[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)?)?(?:\&[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)*)$/");
 define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
          
@@ -559,9 +559,11 @@ define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 				if (!empty($company_phone))
 				{
 
+                                    
+                                    
 					unset($_SESSION['phone_azienda']);
 
-					if (1 === preg_match(telefono_regexpr, $company_phone))
+					if (is_numeric($company_phone))
 					{
 						$utente->setTelefono($company_phone);
 					}

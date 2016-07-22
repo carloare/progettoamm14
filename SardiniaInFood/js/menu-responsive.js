@@ -9,8 +9,4 @@ $(document).ready(function(){
         function () {
           $('.main-menu').toggleClass("xactive");
         }); 
-      $('.mobnav-subarrow').click(
-        function () { 
-          $(this).parent().toggleClass("xpopdrop");           
-        }); 
     });

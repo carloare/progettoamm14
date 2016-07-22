@@ -17,9 +17,8 @@ if (session_status() != 2) session_start();
 </h1>
 <p class="center white">
 
-    Lorem ipsum dolor sit amet consectetuer commodo velit sem nibh wisi. Ut sit non lorem nulla est adipiscing sapien et consequat congue. Quis Nam cursus Proin Vestibulum augue nibh nec senectus Ut dictum. Nulla consectetuer feugiat commodo Donec eget in ut turpis Maecenas platea. Porttitor.
+     Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
 </p>
-
 
 <!--article che riguarda la ricerca-->
 <div class="form-home">   

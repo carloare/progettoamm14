@@ -294,6 +294,8 @@ $stmt = $mysqli->prepare("INSERT INTO Aziende (nome_completo, tipo_incarichi_id,
 
     }
     }
+     $mysqli->commit();
+ $mysqli->autocommit(TRUE);
     $mysqli->close();
 
 }

@@ -341,6 +341,7 @@ class BaseController
 
 			if ($_POST['part'] == 1)
 			{
+                            if(isset($_SESSION['step2'])) {session_destroy(); session_start();}
 				$name = trim($_REQUEST['nome_completo_azienda']);
 				$task = trim($_REQUEST['tipo_incarichi_id']);
 				$email = trim($_REQUEST['email_personale_azienda']);
@@ -1099,7 +1100,7 @@ class BaseController
 		{
 
 			// se il cliente Ã¨ giÃƒ  registrato viene mostrato un messaggio di errore
-
+if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 			$_SESSION['errore'] = 7;
 			$vd = new ViewDescriptor();
 			$vd->setTitolo("SardiniaInFood");
