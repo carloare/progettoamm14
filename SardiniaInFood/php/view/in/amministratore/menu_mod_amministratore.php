@@ -2,7 +2,7 @@
     <ul>
         <li>
  
-        <a href="/SardiniaInFood/php/controller/AmministratoreController.php?cmd=home" title="torna alla home dell'amministratore" method="POST">&lt; INDIETRO</a>
+        <a href="/SardiniaInFood/php/controller/AmministratoreController.php?cmd=home" title="torna alla home dell'amministratore" method="POST">HOME</a>
 
     </li> 
     <li>

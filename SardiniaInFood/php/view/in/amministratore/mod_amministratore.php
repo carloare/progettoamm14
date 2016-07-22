@@ -1,6 +1,7 @@
 <script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/banna.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/richiamo.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/falso_richiamo.js"></script>
 
 
 
@@ -67,6 +68,12 @@ $id_cliente= $row->id_clienti;
   
     ?>
         
+      <!--uso l'id delle recensione per fare tutto-->
+  
+  <input type="image" src="/SardiniaInFood/images/remove-comment.png" id="<?php echo $id_recensione; ?>" class="falso_richiamo" alt="falso_richiamo" height="32" width="32" title="Falso richiamo">
+       
+     
+     
               <!--uso l'id delle recensione per fare tutto-->
   
   <input type="image" src="/SardiniaInFood/images/caution.png" id="<?php echo $id_recensione; ?>" class="richiamo" alt="richiama" height="32" width="32" title="Richiama">

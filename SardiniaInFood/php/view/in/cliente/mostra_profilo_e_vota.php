@@ -200,7 +200,7 @@ while($row = $recensioni->fetch_object()) {
      <?php 
     
      $id_recensione= $row->id; $segnalato = UtenteFactory::segnalato($id_recensione, $current_id);
- var_dump($segnalato); 
+ 
    if($segnalato==0) {?>
      
      <div id="<?php echo $row->id; ?>">

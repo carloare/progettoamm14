@@ -1,4 +1,4 @@
- <ul class="menu">
+ <ul class="main-menu-footer">
      <li><!--richiama il login dell'azienda-->
         <a href="/SardiniaInFood/php/?page=4" title="Login Aziende">LOGIN AZIENDA</a>
     </li>

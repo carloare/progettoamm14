@@ -1,64 +1,102 @@
 <?php
 include_once 'ViewDescriptor.php';
+
 include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
     <meta html-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-        <?= $vd->getTitolo() ?></title>
+        <?php echo $vd->getTitolo() ?></title>
     <meta name="author" content="Carlo Aresu">
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
-    <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">
+  <!--  <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">-->
+  <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">
+        <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
 </head>
 
 <body>
-    <div id="page">
+    <div class="fullbackgroundimage home"></div>
+
+<div id="top-header">
+    
+</div>
+    
+    
         
-        <header> 
-            <div id="header">
+        <header id="header">
+           <div class="container clearfix">
                 <div id="logo">
-                    <?php $logo=$vd->getLogoFile(); require "$logo"; ?>
+                    <?php
+$logo = $vd->getLogoFile();
+require "$logo";
+ ?>
                 </div>
-            </div>
+            
+        
+        
+        <nav id="nav">
+           <div id="mobnav-btn"></div>   
+           
+                <?php
+$menu = $vd->getMenuFile();
+require "$menu";
+ ?>
+           
+        </nav>
+        
+        </div>
         </header>
         
-        <div id="nav">
-            <div id="menu">
-                <?php $menu=$vd->getMenuFile(); require "$menu"; ?>
-            </div>
-        </div>
+        <section id="wrapper-content">
+
+    <div class="container clearfix">
+      
         
-        <div id="content">
-            <?php $content=$vd->getContentFile(); require "$content"; ?>
-            <?php $error=$vd->getErrorFile(); require "$error"; ?>
-        </div>
-        
-        <footer> 
-            <div id="footer">
-                <div id="nav_footer">
-                    <div id="footer_menu">
-                        <?php $content=$vd->getFooterFile(); require "$content"; ?>
-                    </div>
-                </div>
-                <div class="validator">
-                    <p id="validator">
-                        <a href="http://validator.w3.org/check/referer" class="xhtml" title="Questa pagina contiene HTML valido">
-                    HTML Valido                    
-                    </a>
-                        <a href="http://jigsaw.w3.org/css-validator/check/referer" class="css" title="Questa pagina ha CSS validi">
-                    CSS Valido                    
-                    </a>
-                    </p>
-                </div>
-            </div>
-        </footer>
-        
+       
+            <?php
+$content = $vd->getContentFile();
+require "$content";
+ ?>
+            
+            
+            
+            <?php
+$error = $vd->getErrorFile();
+require "$error";
+ ?>
+       
+       
     </div>
+
+</section>
+            
+            
+ <footer id="footer">
+      <div class="container clearfix">
+      <?php $content=$vd->getFooterFile(); require "$content"; ?>
+        
+        <ul class="main-menu-footer right">          
+          <li>
+		        <a class="validCSS3" href="http://validator.w3.org/check/referer" class="xhtml" title="Questa pagina contiene HTML valido"></a>
+          </li>
+          <li>
+		        <a class="validHTML5"  href="http://jigsaw.w3.org/css-validator/check/referer" class="css" title="Questa pagina ha CSS validi"></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+
+        
+    
 </body>
 
 </html>
-

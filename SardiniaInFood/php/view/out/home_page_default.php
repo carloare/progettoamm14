@@ -8,12 +8,25 @@ include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
 
 if (session_status() != 2) session_start();
 ?>
+
+<div id="box-form-home">
+<h1 class="white">
+
+    Sardinia in food
+
+</h1>
+<p class="center white">
+
+    Lorem ipsum dolor sit amet consectetuer commodo velit sem nibh wisi. Ut sit non lorem nulla est adipiscing sapien et consequat congue. Quis Nam cursus Proin Vestibulum augue nibh nec senectus Ut dictum. Nulla consectetuer feugiat commodo Donec eget in ut turpis Maecenas platea. Porttitor.
+</p>
+
+
 <!--article che riguarda la ricerca-->
-<article>   
+<div class="form-home">   
 
 <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
-<input type="text" name="citta" value="<?php if(isset($_POST['citta'])) { echo $_POST['citta']; } else { echo "Dove";} ?> " 
+<input type="text" name="citta" onfocus="this.value=''" value="<?php if(isset($_POST['citta'])) { echo $_POST['citta']; } else { echo "Dove";} ?> " 
        title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
   
  <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
@@ -61,14 +74,14 @@ while ($row = $attivita->fetch_row()) { ?>
   </select>  
           
   <input type="hidden" name="cmd" value="cercadovecosa">
-  <input type="submit" value="Cerca">
+  <input type="submit" value="CERCA">
 </form> 
+</div>
+</div>
 
-</article>
 
 
 
-<article> <!--article che mostra gli eventuali risultati della ricerca fatta-->
     
 
     <?php
@@ -81,149 +94,149 @@ if (isset($_SESSION['risultati']) AND $_SESSION['risultati'] != 'ZERO') {
 
 	// di ogni risultato mostro un mini-profilo
         
-	foreach($aziende as $azienda) {
-		$nome_azienda = $azienda->getNomeAzienda();
-		$citta = $azienda->getCitta();
-		$indirizzo = $azienda->getIndirizzo();
-		$id_azienda = $azienda->getId();
-		$id_attivita = $azienda->getTipo_attivita_id();
 
-		// mostraAttivitaSelezionata restituisce una stringa che contiene l'attivita
-		// corrispondente all'id passato.
+     foreach($aziende as $azienda)
+   {
 
-		$attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+       
+   //di ogni risultato mostro un mini-profilo
+    $nome_azienda = $azienda->getNomeAzienda();
+    $citta = $azienda->getCitta();
+    $indirizzo = $azienda->getIndirizzo();     
+     $id_azienda = $azienda->getId();
+     $id_attivita=$azienda->getTipo_attivita_id();
+     
+     
+  //cerca a seconda dell'id attivita l'effettiva attività svolta   
+  $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 
-		// nell'istruzione sotto viene 'creata' l'url dell'immagine di una specifica attività
-		// Con la stringa restituita da mostraAttivitaSelezionata vado a indicare:
-		// - l'attività svolta
-		// - il nome dell'immagine png contenuta nella cartella image
-		// - il titolo del tag img
-
-		$url_immagine = '<img src="/SardiniaInFood/images/';
-		$url_immagine.= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
-		$url_immagine.= '" alt="Immagine attivit&agrave;"';
-		$url_immagine.= ' title=';
-		$url_immagine.= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
-		$url_immagine.= '>';
-
-		// creazione del title di media_voto in funzione del valore di media_voto presente nelle statistiche
-
-		$media_voto = UtenteFactory::mediaVoto($id_azienda);
-		$numero_voti = UtenteFactory::numeroVoti($id_azienda);
-		$titolo_m = "";
-		$titolo_m.= $media_voto;
-		$titolo_m.= " / 5 ";
-		if ($media_voto >= 4) $titolo_m.= " Alle persone piace questo posto";
-		else
-		if ($media_voto >= 3 AND $media_voto < 4) $titolo_m.= " Le persone hanno pareri contrastanti su questo posto";
-		else $titolo_m = "Non ha ricevuto nessun voto";
-
-		// creazione del title di rapporto_qp in funzione del valore di rapporto_qp presente nelle statistiche
-
-		$rapporto_qp = UtenteFactory::rapportoQP($id_azienda);
-		$numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
-		$titolo_qp = "";
-		$titolo_qp.= $rapporto_qp;
-		$titolo_qp.= " / 5 ";
-		$rapporto_qualita_prezzo = (int)$rapporto_qp; //prende la parte intera
-		if ($rapporto_qualita_prezzo >= 4) $titolo_qp.= " Costoso";
-		else
-		if ($rapporto_qualita_prezzo >= 3 AND $rapporto_qualita_prezzo < 4) $titolo_qp.= " Moderato";
-		else $titolo_qp.= " Economico";
-
-		// visualizzazione dei risultati
-
-		echo '<div class="results">';
-
-		// immagine
-
-		echo $url_immagine;
-
-		// voto medio
-
-		echo "<div id='voto' title='$titolo_m'>";
-                
+   //creazione dell'istruzione per visualizzare una
+  //immagine di una specifica attività
+  //con mostraAttivitaSelezionata ottengo:
+  //-l'attività svolta
+  //-il nome dell'immagine
+  //-il titolo del tag img
+  $url = '<img src="/SardiniaInFood/images/';
+  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
+  $url .= '" alt="Immagine attivit&agrave;"';
+  $url .= 'title=';
+  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+  $url .= '>';
+ 
+  //creazione del titolo della media_voto in funzione del valore di media_voto
+  $media_voto=UtenteFactory::mediaVoto($id_azienda);  
+  
+  $numero_voti = UtenteFactory::numeroVoti($id_azienda);
+  
+  $titolo_m="";
+  $titolo_qp="";
+  
+  $titolo_m.= $media_voto;
+  $titolo_m.= " / 5 ";
+  if($media_voto>=4) $titolo_m.=" Alle persone piace questo posto";
+  else if($media_voto>=3 AND $media_voto<4) $titolo_m.=" Le persone hanno pareri contrastanti su questo posto";
+  else $titolo_m.=" Alle persono non piace questo posto";
+  
+  
+  //creazione del titolo rapporto_qp in funzione del valore di rapporto_qp
+  $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
+  
+  $numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
+  
+  $titolo_qp.= $rapporto_qp;
+  $titolo_qp.= " / 5 ";
+  
+  
+  $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
+  if($rapporto_qualita_prezzo>=4) $titolo_qp.=" costoso";
+  else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_qp.=" moderato";
+  else $titolo_qp.= " economico";
+  
+   
+    //visualizzo i risultati
+    echo '<div class="results">';
+    
+    
+    
+   echo $url; //immagine
+  
+     
+   
+   
+   
+   echo "<div id='voto' title='$titolo_m'>";
 		echo "<div class='voto' title='$titolo_m'>";
-                        if($numero_voti==0)
-                        {
-                            echo '-';
-                        }
-                        else
-                        {
-                            echo $media_voto;
+                echo $media_voto;
                 echo '</div>';
 		echo '<br>';
-                
 		echo 'Sulla base di ';
 		echo $numero_voti;
 		if ($media_voto >= 4) echo " voti <br>Alle persone piace questo posto";
 		else
 		if ($media_voto >= 3 AND $media_voto < 4) echo " <br>voti Le persone hanno pareri contrastanti su questo posto";
 		else echo " voti <br>Alle persono non piace questo posto";
-                }
-                
+		
                 echo '</div>';
 
-		// nome azienda
 
-		echo '<br>';
-		echo "<div class='info_generali'>";
 
-		// nome dell'azienda
 
-		echo "$nome_azienda";
 
-		// indirizzo, città
 
-		echo '<br>';
+    //nome azienda
+echo '<br>';
+
+echo "$nome_azienda";
+   
+
+    echo '<br>';
                 echo '<img src="/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
 		echo " $indirizzo";
 		echo ' , ';
 		echo $citta;
+    //tipo attività
+    echo '<br>';
+    echo $attivita;
+    
+    //rapporto qualità prezzo
+    echo ' &#8226; ';
+    echo "<div title='$titolo_qp'>";
+    for($i=0; $i<$rapporto_qualita_prezzo; $i++)
+    {
+        echo '$';
+    }
+    for(; $i<5; $i++)
+    {
+        echo '&#8364;';
+    }
+    
+    echo'<br>';
+echo 'Sulla base di ';
+echo $numero_voti_qp;
+if($rapporto_qualita_prezzo>=4) echo " voti Le persone ritengono che sia costoso";
+  else if($rapporto_qualita_prezzo>=3 AND $media_voto<4) echo " voti Le persone ritengono che sia moderato";
+  else echo " voti Le persone ritengono che sia economico";
 
-		// tipo attività
-
-		echo '<br>';
-		echo $attivita;
-		echo "</div>";
-
-		// rapporto qualità  prezzo
-
-		echo "<div class='rapporto_qp' title='$titolo_qp' >";
-		for ($i = 0; $i < $rapporto_qualita_prezzo; $i++)
-		{
-			echo '$';
-		}
-
-		for (; $i < 5; $i++)
-		{
-			echo '-';
-		}
-                echo '</div>';
-		echo '<br>';
-		echo 'Sulla base di ';
-		echo $numero_voti_qp;
-		if ($rapporto_qualita_prezzo >= 4) echo " voti <br>Le persone ritengono che sia costoso";
-		else
-		if ($rapporto_qualita_prezzo >= 3 AND $media_voto < 4) echo " voti <br>Le persone ritengono che sia moderato";
-		else echo " voti <br>Le persone ritengono che sia economico";
-		
-		echo "<br><br>";
-
-		// numero visualizzazioni
-
-		echo "<div class='visualizzazioni'>";
-		echo '<input type="image" src="/SardiniaInFood/images/view.png" alt="numero visualizzazioni" height="16" width="16" title="numero visualizzazioni">';
-		$visualizzazioni = UtenteFactory::numeroVisualizzazioni($id_azienda);
-		echo $visualizzazioni;
-		echo '</div>';
-
-		// ultima recensione scritta
-
-		echo '<div class="ultima_recensione">';
-		$recensione = UtenteFactory::ultimaRecensione($id_azienda);
-
-		// conta il numero di righe restituite
+    
+    
+    
+    
+    echo '</div>';
+    
+  echo "<br><br>";
+     
+  //numero visualizzazioni 
+     echo '<div>';
+   echo '<input type="image" src="/SardiniaInFood/images/view.png" alt="numero visualizzazioni" height="16" width="16" title="numero visualizzazioni");">'; 
+   $visualizzazioni=UtenteFactory::numeroVisualizzazioni($id_azienda);
+   echo $visualizzazioni;
+    echo '</div>';
+   
+    //ultima recensione scritta
+   echo '<div class="last_comment">';
+ $recensione= UtenteFactory::ultimaRecensione($id_azienda);
+ 
+ // conta il numero di righe restituite
 
 		$rowcount = mysqli_num_rows($recensione);
 
@@ -235,28 +248,25 @@ if (isset($_SESSION['risultati']) AND $_SESSION['risultati'] != 'ZERO') {
 		}
 		else
 		{ //se ho almeno una recensione
-			while ($row = $recensione->fetch_object())
-			{
-				echo '<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
-				echo ' ';
-				echo $nome = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-				echo ' ';
-				echo "$row->data<br>$row->recensione<br><br>";
-			}
-		}
-		echo '</div>';
+ //Recuperara valori come oggetti
+while($row =$recensione->fetch_object()){
+    
+ echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
+  echo ' ';
+echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
+echo ' ';
+
+    
+echo "$row->data<br>$row->recensione<br><br>";
+}}
+   echo '</div>';
        		echo "<a href='/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=$id_azienda'>MAGGIORI DETTAGLI</a>";
-		echo '</div>';
-	}
-}
-
-// se non ci sono risultati ($_SESSION['risultati']==ZERO)
-/*
-else
-{
-}*/
-
-?>
-     
-</article>
-
+		echo '</div>';     
+       
+   }
+        }
+    ?>    
+        
+        
+        
+        

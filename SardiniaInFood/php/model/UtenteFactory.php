@@ -994,6 +994,7 @@ return $results;
         
        //Risultato query
 $result = $mysqli->query($query);
+
 $mysqli->close();
 return $result;
     }
@@ -3099,9 +3100,9 @@ else {$mysqli->close(); return 'SI';}
               $static_servizi[$index_array_servizi] = $id_servizio;
               $index_array_servizi = $index_array_servizi + 1;
            }
-          var_dump($form_servizi);
+         
            foreach ($static_servizi as $id_static_servizio) {
-var_dump($id_static_servizio);
+
               if (in_array($id_static_servizio, $form_servizi)) {
                   
                   echo "OK";
@@ -3204,14 +3205,12 @@ if ($mysqli->connect_error) {
 
 //visualizzare tutte le recensioni segnalate tranne quelle degli utenti bannati
 $results= $mysqli->query("
-SELECT 
-Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, Recensioni.data, 
-Recensioni.recensione, Recensioni.numero_segnalazioni, Recensioni.valido
+SELECT Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, Recensioni.data, Recensioni.recensione, Recensioni.segnalato, Recensioni.valido
 FROM Recensioni
 JOIN Clienti ON Clienti.id = Recensioni.id_clienti
-JOIN Segnalazioni ON Segnalazioni.id_recensioni=Recensioni.id
-WHERE Recensioni.numero_segnalazioni > 0
-AND Clienti.bannato = 0
+JOIN Segnalazioni ON Segnalazioni.id_recensioni = Recensioni.id
+WHERE Recensioni.segnalato >0
+AND Clienti.bannato =0
 ORDER BY Recensioni.id DESC LIMIT $primo, $segnalazioni_per_pagina");
 // close connection
 $mysqli->close();
@@ -3676,6 +3675,117 @@ else { return 1;}
   $mysqli->close();
             }                   
               
+              
+            
+            
+ /**RENDE INLEGGIBILE UNA RECENSIONE
+ * ==================================
+ */    
+            
+            
+            
+  public static function cancellaSegnalazione($id_recensione) {
+
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaAutoreRecensione] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+$results = $mysqli->query("DELETE FROM Segnalazioni WHERE id_recensioni=$id_recensione");
+
+
+           
+
+   
+$mysqli->close();
+           
+    }  }                    
+    
+     public static function resetSegnalato($id_recensione) {
+
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaAutoreRecensione] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+$results = $mysqli->query("UPDATE Recensioni SET segnalato=0 WHERE `id`=$id_recensione");
+
+
+           
+  if($results){
+    echo 'La recensione non è più segnalata';
+    
+}else{
+     
+            echo 'Si è verificato un errore';
+          
+            return null;
+}  
+   
+$mysqli->close();
+           
+    }  }           
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static function verificaServiziOfferti($id_azienda) {
+
+
+          //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[cercaAutoreRecensione] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+
+
+$results = $mysqli->query("SELECT COUNT( * ) FROM  Aziende_Servizi WHERE  id_aziende =$id_azienda AND  valore =1");
+
+ $risultato = $results->fetch_row();
+           
+     if($risultato[0] == 0){
+   return 0;
+    
+}else{
+     
+            return 1;
+}  
+   
+$mysqli->close();
+           
+    }  }             
+    
+    
+    
+    
+    
               
               
          

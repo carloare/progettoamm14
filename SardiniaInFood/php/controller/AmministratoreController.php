@@ -44,7 +44,11 @@ class AmministratoreController {
             case 'banna':         
     self::banna();
  
-                break;       
+                break;   
+            case 'falso_richiamo':
+                self::falso_richiamo();
+ 
+                break;
 
         }
     }    
@@ -118,6 +122,22 @@ public static function banna() {
     UtenteFactory::banna($id_cliente);    
 }
 
+
+/**GESTISCE IL CASO IN CUI VIENE RICEVUTO UN FALSO RICHIAMO O
+ * LA RECENSIONE NON È CONSIDERATA OFFENSIVA
+     * ==========================
+     */
+public static function falso_richiamo() {
+    
+    $id_recensione = $_REQUEST['id_recensione'];
+    //ricerca autore recensione
+    $id_cliente = UtenteFactory::cercaAutoreRecensione($id_recensione);
+    
+    UtenteFactory::cancellaSegnalazione($id_recensione);
+    
+    UtenteFactory::resetSegnalato($id_recensione);
+    
+}
 
 
 

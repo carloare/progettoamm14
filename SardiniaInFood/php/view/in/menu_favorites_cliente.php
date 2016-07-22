@@ -1,7 +1,7 @@
 <div id="menu_favorites_cliente">
     <ul>
          <li>     
-             <a href="?cmd=back_clear_home_page" title="Torna alla tua home page" method="POST">&lt; INDIETRO</a>
+             <a href="?cmd=back_clear_home_page" title="Torna alla tua home page" method="POST">HOME</a>
         </li>
          <li>
  

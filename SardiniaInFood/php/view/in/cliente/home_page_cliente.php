@@ -112,7 +112,7 @@ while ($row = $attivita->fetch_row())
     
     
     //se ho dei risultati li mostra
-    if (isset($_SESSION['risultati_cliente']))
+    if (isset($_SESSION['risultati_cliente']) AND $_SESSION['risultati_cliente'] != 'ZERO')
 	{
 
 	// passaggio dei risultati

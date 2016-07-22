@@ -109,12 +109,18 @@ echo '<br>';
     echo '  <img src="/SardiniaInFood/images/web.png" alt="sito web" title="sito web" height="16" width="16">';
     echo " $sitoweb";
    
+    
+    //verifica se l'azienda offre dei servizi 
+    $result=UtenteFactory::verificaServiziOfferti($id_azienda);
+    //offre dei servizi
+    if($result==1)
+    {
 //servizi offerti dall'azienda
     
     $result=UtenteFactory::cercaServiziAzienda($id_azienda);
-  
-  
-   
+    
+    
+    
 //Recuperara valori 
 while($row = $result->fetch_row()){
 echo "$row[0] :";
@@ -124,31 +130,22 @@ echo "$row[0] :";
            echo " No";
 echo "<br>";
 }
+    
+    
+    }
+ else {
+     echo '<br>';
+         $servizi = UtenteFactory::listaServizi(); 
+    while ($row = $servizi->fetch_row())
+    {
+        echo '<br>';
+        echo "$row[1] : No";
+    }
+     echo '<br>';
+ }
  
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
+ 
     
    //voto medio
 echo "<div class='voto' title='$titolo_m'>";

@@ -22,7 +22,7 @@ class FrontController
 		// page = 0, viene mandata in esecuzione dallo switch l'home page
 		// di default. Da qui si accede alle varie funzionalità.
 
-		$vd->setTitolo("Benvenuto in SardiniaInFood");
+		$vd->setTitolo("Home SardegnaInFood");
 		$vd->setLogoFile('view/out/logo.php');
 		
                 $value = $_GET['page'];

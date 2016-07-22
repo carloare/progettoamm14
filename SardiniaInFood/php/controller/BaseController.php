@@ -1275,7 +1275,7 @@ class BaseController
 
 		if ($citta == "UNDEFINE" AND $tipo_attivita_id == - 1)
 		{
-			echo 1;
+			
 			$_SESSION['errore'] = 5;
 			$errore++;
 
