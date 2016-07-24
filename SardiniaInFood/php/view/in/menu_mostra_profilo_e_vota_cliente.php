@@ -1,4 +1,4 @@
-<div id="menu_mostra_profilo_e_vota_cliente">
+<ul class="main-menu">
     <ul>
         <li>     
              <a href="?cmd=indietro" method="POST" title="ritorna alla pagina precedente">&lt; INDIETRO</a>
@@ -10,4 +10,4 @@
         
     </li>
     </ul>
-</div>
+

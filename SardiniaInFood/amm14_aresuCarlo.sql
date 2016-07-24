@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Mag 20, 2016 alle 20:05
+-- Generato il: Mag 29, 2016 alle 11:14
 -- Versione del server: 5.5.35
 -- Versione PHP: 5.4.6-1ubuntu1.7
 
@@ -101,15 +101,17 @@ CREATE TABLE IF NOT EXISTS `Aziende` (
   PRIMARY KEY (`id`),
   KEY `tipo_incarichi_id` (`tipo_incarichi_id`),
   KEY `tipo_attivita_id` (`tipo_attivita_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dump dei dati per la tabella `Aziende`
 --
 
 INSERT INTO `Aziende` (`id`, `nome_completo`, `tipo_incarichi_id`, `email_personale`, `username`, `password`, `nome_azienda`, `citta`, `indirizzo`, `tipo_attivita_id`, `descrizione`, `telefono`, `email`, `sito_web`, `ruolo`) VALUES
-(1, 'Carlo', 1, 'carlo@email.it', 'carlo', '111', 'Pera', 'Cagliari', 'via LKJFLKJ 4', 1, 'afafààòàòèèè', '1111111', 'pera@email.it', 'www.pera.it', 1),
-(2, 'Marco', 3, 'marco@email.it', 'marco', '111', 'Finocchio', 'Cagliari', 'via JLKJKKJK 7', 1, 'questa è la descrizione di finocchio', '212121212', 'finocchio@email.it', 'www.finocchio.it', 1);
+(1, 'Carlo', 1, 'carlo@email.it', 'carlo', '111', 'Pera', 'Cagliari', 'via LKJFLKJ 4', 1, 'afafààòàòèèè', '2345', 'pera@email.it', 'www.pera.it', 1),
+(2, 'Marco', 3, 'marco@email.it', 'marco', '111', 'ciao', 'Cagliari', 'via JLKJKKJK 7', 1, 'questa è la descrizione di finocchio', '212121212', 'finocchio@email.it', 'www.finocchio.it', 1),
+(3, 'Max', 4, 'max@email.it', 'max', '111', 'Arancia', 'cagliari', 'via KJFLKJF 3', 1, 'àòàòàòàòàòàòàòàòàòàòàòàòàòà', '2222222222', 'ara@email.it', 'www.ara.it', 1),
+(4, 'dfgdgdf', 4, 'dfgdgd@hgghgh.kj', 'dsfsd', '111', 'dbfdbfdf', 'ertert', 'ddgd', 1, 'gergegegegeg', '7867867', 'dgdg@gfhfgh.hg', 'www.dfsfs.fd', 1);
 
 -- --------------------------------------------------------
 
@@ -125,18 +127,18 @@ CREATE TABLE IF NOT EXISTS `Aziende_Servizi` (
   PRIMARY KEY (`id`),
   KEY `id_aziende` (`id_aziende`),
   KEY `id_servizi` (`id_servizi`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Dump dei dati per la tabella `Aziende_Servizi`
 --
 
 INSERT INTO `Aziende_Servizi` (`id`, `id_aziende`, `id_servizi`, `valore`) VALUES
-(1, 1, 1, 1),
-(2, 1, 2, 1),
-(3, 1, 3, 1),
+(1, 1, 1, 0),
+(2, 1, 2, 0),
+(3, 1, 3, 0),
 (4, 1, 4, 0),
-(5, 1, 5, 1),
+(5, 1, 5, 0),
 (6, 1, 6, 0),
 (7, 1, 7, 0),
 (8, 1, 8, 0),
@@ -145,11 +147,29 @@ INSERT INTO `Aziende_Servizi` (`id`, `id_aziende`, `id_servizi`, `valore`) VALUE
 (11, 1, 11, 0),
 (12, 1, 12, 0),
 (13, 1, 13, 0),
-(14, 1, 14, 0),
-(15, 1, 15, 0),
+(14, 1, 14, 1),
+(15, 1, 15, 1),
 (16, 1, 16, 0),
 (17, 1, 17, 0),
-(18, 1, 18, 0);
+(18, 1, 18, 0),
+(19, 3, 1, 0),
+(20, 3, 2, 0),
+(21, 3, 3, 0),
+(22, 3, 4, 0),
+(23, 3, 5, 0),
+(24, 3, 6, 0),
+(25, 3, 7, 0),
+(26, 3, 8, 0),
+(27, 3, 9, 0),
+(28, 3, 10, 0),
+(29, 3, 11, 1),
+(30, 3, 12, 0),
+(31, 3, 13, 0),
+(32, 3, 14, 0),
+(33, 3, 15, 0),
+(34, 3, 16, 0),
+(35, 3, 17, 0),
+(36, 3, 18, 0);
 
 -- --------------------------------------------------------
 
@@ -165,18 +185,18 @@ CREATE TABLE IF NOT EXISTS `Clienti` (
   `email` varchar(128) DEFAULT NULL,
   `ruolo` int(1) DEFAULT NULL,
   `numero_richiami` int(11) DEFAULT NULL,
-  `bannato` int(1) NOT NULL,
+  `bannato` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dump dei dati per la tabella `Clienti`
 --
 
 INSERT INTO `Clienti` (`id`, `nome_completo`, `username`, `password`, `email`, `ruolo`, `numero_richiami`, `bannato`) VALUES
-(1, 'Carlo', 'carlo', '111', 'carlo@email.it', 0, 0, 0),
+(1, 'Carlo', 'carlo', '111', 'carlo@email.it', 0, 0, 1),
 (2, 'mario', 'mario', '111', 'mario@email.it', 0, 0, 0),
-(3, 'luigi', 'luigi', '111', 'luigi@email.it', 0, 0, 0),
+(3, 'luigi', 'luigi', '111', 'luigi@email.it', 0, 1, 0),
 (4, 'Piero', 'piero', '111', 'piero@email.it', 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -249,14 +269,24 @@ CREATE TABLE IF NOT EXISTS `Recensioni` (
   PRIMARY KEY (`id`),
   KEY `id_aziende` (`id_aziende`),
   KEY `id_clienti` (`id_clienti`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dump dei dati per la tabella `Recensioni`
 --
 
 INSERT INTO `Recensioni` (`id`, `id_aziende`, `id_clienti`, `data`, `recensione`, `segnalato`, `valido`) VALUES
-(10, 1, 1, '17/05/2016', 'test per l''inserimento di un commento', 0, 0);
+(10, 1, 1, '17/05/2016', 'test per l''inserimento di un commento', 1, 0),
+(11, 2, 3, '20/05/2016', 'aaaaaaaaaaaaa', 0, NULL),
+(12, 2, 3, '20/05/2016', 'bbbbbbbbbbbbbbbb', 0, NULL),
+(13, 2, 3, '20/05/2016', 'cccccccccccccccccccc', 0, NULL),
+(14, 2, 3, '20/05/2016', 'ASSSSSS', 0, NULL),
+(15, 1, 1, '20/05/2016', 'jhgjhgjhgjhg', 1, 0),
+(16, 1, 1, '20/05/2016', '&egrave;&egrave;&egrave;&egrave;&egrave;&egrave;&egrave;&agrave;&agrave;&agrave;&ograve;&ograve;', 0, 0),
+(17, 1, 1, '20/05/2016', 'hfhgfhgfhgfhg', 0, 0),
+(18, 1, 3, '20/05/2016', 'recensione 1', 1, 1),
+(19, 1, 3, '20/05/2016', 'recensione 1', 0, 0),
+(20, 1, 3, '20/05/2016', 'recensione 1', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +301,15 @@ CREATE TABLE IF NOT EXISTS `Segnalazioni` (
   PRIMARY KEY (`id`),
   KEY `id_recensioni` (`id_recensioni`),
   KEY `id_clienti` (`id_clienti`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- Dump dei dati per la tabella `Segnalazioni`
+--
+
+INSERT INTO `Segnalazioni` (`id`, `id_recensioni`, `id_clienti`) VALUES
+(15, 10, 3),
+(18, 15, 3);
 
 -- --------------------------------------------------------
 
@@ -326,15 +364,17 @@ CREATE TABLE IF NOT EXISTS `Statistiche` (
   `numero_preferenze` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_aziende` (`id_aziende`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dump dei dati per la tabella `Statistiche`
 --
 
 INSERT INTO `Statistiche` (`id`, `id_aziende`, `visualizzazioni`, `media_voto`, `numero_voti`, `media_rapporto_qualita_prezzo`, `numero_voti_qualita_prezzo`, `numero_preferenze`) VALUES
-(1, 1, 71, 0, 0, 0, 0, 0),
-(2, 2, 19, 0, 0, 0, 0, 0);
+(1, 1, 94, 0, 0, 0, 0, 0),
+(2, 2, 27, 0, 0, 0, 0, 0),
+(3, 3, 0, 0, 0, 0, 0, 0),
+(4, 4, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -400,8 +440,8 @@ ALTER TABLE `Recensioni`
 -- Limiti per la tabella `Segnalazioni`
 --
 ALTER TABLE `Segnalazioni`
-  ADD CONSTRAINT `Segnalazioni_ibfk_2` FOREIGN KEY (`id_clienti`) REFERENCES `Clienti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Segnalazioni_ibfk_1` FOREIGN KEY (`id_recensioni`) REFERENCES `Recensioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Segnalazioni_ibfk_1` FOREIGN KEY (`id_recensioni`) REFERENCES `Recensioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Segnalazioni_ibfk_2` FOREIGN KEY (`id_clienti`) REFERENCES `Clienti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `Statistiche`

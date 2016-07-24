@@ -1,8 +1,8 @@
 <?php
 include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 ?>
-<div id="menu_home_cliente">
-    <ul>
+
+ <ul class="main-menu">
         <li>     
              <a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=show_preferiti" title="mostra i miei preferiti" method="POST">PREFERITI</a>
         </li>
@@ -30,7 +30,7 @@ echo '
 
     </li> 
        <li>
-       <div>
+       <div id="main-menu">
         <input type="image" src="/SardiniaInFood/images/bell.png" id="" alt="numero richiami" height="32" width="32" title="Numero richiami">
        <?php
        $numero_richiami = UtenteFactory::numeroRichiami();
@@ -40,5 +40,5 @@ echo '
        </li> 
         
     </ul>
-</div>    
+
     

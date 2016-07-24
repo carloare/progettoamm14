@@ -35,7 +35,7 @@ Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato
                 <input type="password" name="password" id="password_cliente" value="<?php if (isset($_POST['password'])AND $_POST['ruolo']==0) echo $_POST['password'];?>" 
                   class="submitrec"     title="inserisci la tua password da usare nel login"><?php if(isset($_SESSION['password_cliente'])) echo $_SESSION['password_cliente']; ?>       
   
-                 <p class="submitrec"><label for="password_cliente_conferma">Conferma Password</label></p>
+                 <p class="submitrec"><label for="password_cliente_conferma">Ripeti Password</label></p>
                 <input type="password" name="password_conferma" id="password_cliente_conferma" value="" 
                   class="submitrec"     title="inserisci nuovamente la tua password">       
                 
@@ -45,9 +45,10 @@ Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato
                 <input type="hidden" name="cmd" value="registrazione_cliente">
                 <input type="hidden" name="ruolo" value="0">
                 <input type="hidden" name="numero_richiami" value="0">
+                <input type="hidden" name="bannato" value="0">
                 <input type="submit" class="submitrec" value="INSCRIVITI">
                 
             </form> 
 
-    <div>
+    </div>
     </div>

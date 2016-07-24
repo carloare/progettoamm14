@@ -1,4 +1,4 @@
-<ul class="menu_home_azienda">
+<ul class="main-menu">
 
     <li>
         <div class="dropdown" style="float:left;">

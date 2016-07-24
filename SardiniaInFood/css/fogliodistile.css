@@ -66,13 +66,13 @@
 ========================================================================== */ 
   #box-form-home {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat;}
   .form-home {margin: 0 auto; width: 800px;}
-  .form-home input[type="text"] {padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block;}   
+  /*>>>>>>>>>>*/ .form-home input[type="text"] {padding: 15px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block;}   
   
   /* RADIUS BORDER 
   .form-home input[type="text"] {padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; transition: all 0.17s ease-in-out; -moz-transition: all 0.17s ease-in-out; -webkit-transition: all 0.17s ease-in-out; -o-transition: all 0.17s ease-in-out;}*/
   .form-home input[type="text"]:hover {background: #f7f7f7;}
-  .form-home select {margin-left: 10px; padding: 11px 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 300px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
-  .form-home input[type="submit"]{margin-left: 10px; padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; display: inline-block; font-size:18px; color: #fff; cursor:pointer;}
+  /*>>>>>>>>>>*/ .form-home select {margin-left: 10px; padding: 12px 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 300px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
+  /*>>>>>>>>>>*/ .form-home input[type="submit"]{margin-left: 10px; padding: 15px 0px; border: none; width: 100px; text-align: center; background: #00a65e; display: inline-block; font-size:18px; color: #fff; cursor:pointer;}
   .form-home input[type="submit"]:hover{border: none; background: #037b47;} 
   
 /* FOOTER
@@ -87,40 +87,66 @@
   .main-menu-footer li a.validHTML5 {width: 88px; height: 31px; background: url(../images/w3c-html.png) 0 0 no-repeat; display: inline-block;}     
   .main-menu-footer li a:hover {text-decoration: underline;}
   
-  
    /* FORM LOGIN
 ========================================================================== */ 
-  /*>>>>>>>>>>*/ #box-form-login {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 500px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
+  /*>>>>>>>>>>*/ #box-form-login {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
   /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin: 15px; padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px;}   
   /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin: 15px; padding: 12px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; } 
   /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin: 15px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }
   
-  
  /* FORM REGISTRAZIONE
 ========================================================================== */ 
  
-  /*>>>>>>>>>>*/ #box-form-registrazione {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 700px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
+  /*>>>>>>>>>>*/ #box-form-registrazione {margin: 0 auto; margin-top: 100px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
   /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
-  /*>>>>>>>>>>*/.form-registrazione select {margin: 10px; padding: 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 620px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
-  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; }   
-  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; } 
-  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 600px; font-size: 18px; } 
-  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec {margin: 10px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }
-  /*>>>>>>>>>>*/ p.submitrec {padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; z-index: -1; }
+  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+
+  /*>>>>>>>>>>*/.form-registrazione select {margin: 10px; padding: 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 98%; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
+  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }   
+  /*>>>>>>>>>>*/.form-registrazione textarea.submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }  
+  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-registrazione input[type="checkbox"].submitrec { margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
+  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec { margin: 10px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }
+  /*>>>>>>>>>>*/ p.submitrec { padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
   
-  
-   /* ERRORI LOGIN
+   /* ERRORI
 ========================================================================== */ 
-  /*>>>>>>>>>>*/ div.errore { margin: 0 auto; margin-top: 5px; width: 500px; height: auto; 
-           background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px; 
-           	background-size: 40px 40px;
-           padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7;
-  font-size: 18px;}
+  /*>>>>>>>>>>*/ div.errore { margin: 0 auto; margin-top: 5px; width: 778px; height: auto; background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
+  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
   
+/* IMMAGINI TIPO DI ATTIVITA (per Firefox)
+========================================================================== */ 
+select#tipo_attivita_id option[value="-1"]   {}
+
+select#tipo_attivita_id option[value="1"]    { background:url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px; background-size: 25px 25px; }
+select#tipo_attivita_id option[value="2"]   { background:url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="3"]   { background:url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="4"]   { background:url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="5"]   { background:url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="6"]  { background:url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="7"]   { background:url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="8"]   { background:url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="9"]   { background:url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="10"]   { background:url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="11"]   { background:url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="12"]   { background:url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="13"]   { background:url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="14"]   { background:url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="15"]   { background:url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="16"]   { background:url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+select#tipo_attivita_id option[value="17"]   { background:url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px; padding-left: 100px; padding-top: 5px;background-size: 25px 25px; }
+
+  /* DIV RICHIAMI
+========================================================================== */ 
   
-  
-  
-  
+div#main-menu {width: 30px; margin-right: 15px; float: right; /*display:inline;*/ margin-top: 20px;}
+
+
+
+
+
+
 @media screen and (min-width: 1024px) and (max-width: 1200px) { 
 
   /* BASE LAYOUT
@@ -133,11 +159,12 @@
   
 /* FOOTER
 ========================================================================== */ 
-  #footer {margin-top: 100px; position: relative; float: left;}     
-
+ /*>>>>>>>>>>*/#footer {margin-top: 390px; position: relative; float: left;}     
+  
+  
 } 
 
-
+  
 
 
 
@@ -187,7 +214,7 @@
   
 /* FOOTER
 ========================================================================== */ 
-  #footer {margin-top: 50px; position: relative; float: left;}     
+ /*>>>>>>>>>>*/#footer {margin-top: 390px; position: relative; float: left;}     
   
   /* FORM LOGIN
 ========================================================================== */ 
@@ -196,10 +223,52 @@
   /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 596px; font-size: 14px; display: block;}
   /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;}   
   
+ /* FORM REGISTRAZIONE
+========================================================================== */ 
+ 
+  /*>>>>>>>>>>*/ #box-form-registrazione {margin-top: 50px; width: 650px;}
+  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
+  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
 
-}   
-
+  /*>>>>>>>>>>*/.form-registrazione select {margin-top: 10px; margin-left: 15px; padding: 8px 8px; width: 620px; font-size: 14px; display: block;}
+  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec  {margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
+  /*>>>>>>>>>>*/.form-registrazione textarea.submitrec {margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
+  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
+  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec {margin-left: 15px; width: 596px; font-size: 14px; display: block;}  
+  /*>>>>>>>>>>*/.form-registrazione input[type="checkbox"].submitrec{margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
+  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec {margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/ p.submitrec {padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
   
+   /* ERRORI LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ div.errore { font-size: 16px; width: 574px; background-size: 35px 35px;}
+  /*>>>>>>>>>>*/ div.messaggio-errore {padding-top: 5px; width: 350px; background-size: 25px 25px;}
+  
+  
+   /* IMMAGINI TIPO DI ATTIVITA
+========================================================================== */ 
+select#tipo_attivita_id option[value="-1"]   {}
+
+select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+  
+  
+}   
 
 
 
@@ -258,6 +327,50 @@
   /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
   /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 366px; font-size: 14px; display: block; } 
   /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block;}
+  
+  
+  /* FORM REGISTRAZIONE
+========================================================================== */ 
+ 
+  /*>>>>>>>>>>*/ #box-form-registrazione {margin-top: 50px; width: 420px;}
+  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
+  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+
+  /*>>>>>>>>>>*/.form-registrazione select {margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 390px; font-size: 14px; display: block;}
+  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec  {margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione textarea.submitrec {margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec{margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione input[type="checkbox"].submitrec{margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec {margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block;}     
+  /*>>>>>>>>>>*/ p.submitrec {padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
+  
+   /* ERRORI LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ div.errore { font-size: 14px; width: 353px;  background-size: 35px 35px;}
+  /*>>>>>>>>>>*/ div.messaggio-errore {padding-top: 5px; width: 300px; background-size: 25px 25px;}
+  
+  /* IMMAGINI TIPO DI ATTIVITA
+========================================================================== */ 
+select#tipo_attivita_id option[value="-1"]   {}
+
+select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
   
 }
 
@@ -327,5 +440,48 @@
   /*>>>>>>>>>>*/.form-login input[type="text"].submitlogin {margin-left: 15px; width: 226px; font-size: 14px; display: block;}   
   /*>>>>>>>>>>*/.form-login input[type="password"].submitlogin {margin-left: 15px; width: 226px; font-size: 14px; display: block;}   
   /*>>>>>>>>>>*/.form-login input[type="submit"].submitlogin {margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
+  
+  /* FORM REGISTRAZIONE
+========================================================================== */ 
+ 
+  /*>>>>>>>>>>*/ #box-form-registrazione {width: 280px;}
+  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
+  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+
+  /*>>>>>>>>>>*/.form-registrazione select {margin-left: 15px; margin-top: 20px; padding: 11px 8px; width: 250px; font-size: 14px; display: block;}
+  /*>>>>>>>>>>*/.form-registrazione input[type="text"].submitrec  {margin-left: 15px; width: 226px; font-size: 14px; display: block;}    
+  /*>>>>>>>>>>*/.form-registrazione textarea.submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/.form-registrazione input[type="password"].submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;}     
+  /*>>>>>>>>>>*/.form-registrazione input[type="email"].submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
+  /*>>>>>>>>>>*/.form-registrazione input[type="checkbox"].submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
+  /*>>>>>>>>>>*/.form-registrazione input[type="submit"].submitrec {margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}   
+  /*>>>>>>>>>>*/ p.submitrec {padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
+  
+   /* ERRORI LOGIN
+========================================================================== */ 
+  /*>>>>>>>>>>*/ div.errore { font-size: 14px; width: 212px; background-size: 30px 30px;}
+  /*>>>>>>>>>>*/ div.messaggio-errore {padding-top: 5px; padding-left: 15px; width: 250px;  font-size: 14px; background-size: 20px 20px;}
+  
+/* IMMAGINI TIPO DI ATTIVITA
+========================================================================== */ 
+select#tipo_attivita_id option[value="-1"]   {}
+
+select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
 
 }

@@ -1,3 +1,6 @@
+<?php
+include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+?>
 <div id="box-form-registrazione">
 
     
@@ -14,9 +17,7 @@ Dati personali
     <div class="form-registrazione">   
     
 
-<?php
-include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
-?>
+
 
     <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
    
@@ -55,7 +56,7 @@ while ($row = $nome_incarico->fetch_row())
 //prima entrata mostra tutti gli incarichi
 if ((!isset($_POST['tipo_incarichi_id'])) OR ($_POST['tipo_incarichi_id'] == "-1"))
 	{
-  ?>  <option value="-1">Che tipo di incarico svolgi dentro l'azienda?</option> <?php
+  ?>  <option value="-1">Con che tipo di incarico?</option> <?php
 	$incarichi=UtenteFactory::mostraElencoIncarichi(0);
         
 	}
@@ -93,23 +94,23 @@ elseif ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] !=
        
           
 
-   <p class="submitrec"><label for="email_personale_azienda">E-mail</label></p>
-   <input type="email" name="email_personale_azienda" id="email_personale_azienda" value="<?php if (isset($_POST['email_personale_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['email_personale_azienda']; ?>" 
-     class="submitrec"     title="inserisci la tua email"><?php if (isset($_SESSION['email_personale_azienda'])) echo $_SESSION['email_personale_azienda']; ?> 
+   <p class="submitrec"><label for="email_personale_azienda">Email</label></p>
+   <input class="submitrec" type="email" name="email_personale_azienda" id="email_personale_azienda" value="<?php if (isset($_POST['email_personale_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['email_personale_azienda']; ?>" 
+          title="inserisci la tua email"><?php if (isset($_SESSION['email_personale_azienda'])) echo $_SESSION['email_personale_azienda']; ?> 
    
    
    <p class="submitrec"><label for="username_azienda">Username</label></p>
-   <input type="text" name="username_azienda" id="username_azienda" value="<?php if (isset($_POST['username_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['username_azienda']; ?>" 
-    class="submitrec"      title="inserisci il tuo username&#13ti verr&agrave; richiesto per fare il login"><?php if (isset($_SESSION['username_azienda'])) echo $_SESSION['username_azienda']; ?> 
+   <input class="submitrec" type="text" name="username_azienda" id="username_azienda" value="<?php if (isset($_POST['username_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['username_azienda']; ?>" 
+        title="inserisci il tuo username&#13ti verr&agrave; richiesto per fare il login"><?php if (isset($_SESSION['username_azienda'])) echo $_SESSION['username_azienda']; ?> 
    
    
    <p class="submitrec"><label for="password_azienda">Password</label></p>
-   <input type="password" name="password_azienda" id="password_azienda" value="<?php if (isset($_POST['password_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['password_azienda']; ?>" 
-      class="submitrec"    title="inserisci la tua password&#13ti verr&agrave; richiesta per fare il login"> <?php if (isset($_SESSION['password_azienda'])) echo $_SESSION['password_azienda']; ?>       
+   <input class="submitrec" type="password" name="password_azienda" id="password_azienda" value="<?php if (isset($_POST['password_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['password_azienda']; ?>" 
+          title="inserisci la tua password&#13ti verr&agrave; richiesta per fare il login"> <?php if (isset($_SESSION['password_azienda'])) echo $_SESSION['password_azienda']; ?>       
    
-      <p class="submitrec" ><label for="password_azienda_conferma">Conferma Password:</label></p>
-                <input type="password" name="password_conferma" id="password_azienda_conferma" value="" 
-                   class="submitrec"    title="inserisci nuovamente la tua password">       
+      <p class="submitrec" ><label for="password_azienda_conferma">Ripeti Password</label></p>
+                <input class="submitrec" type="password" name="password_conferma" id="password_azienda_conferma" value="" 
+                      title="inserisci nuovamente la tua password">       
    
    <br>
  
@@ -120,5 +121,5 @@ elseif ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] !=
     
      </form> 
 
-    <div>
+    </div>
     </div>

@@ -1,6 +1,17 @@
-<div>
-    <h3>Servizi offerti</h3>
+<div id="box-form-registrazione">
 
+    
+        <h1 class="white">
+
+   Registrazione nuova azienda
+
+</h1>
+<h3 class="white" >
+Servizi offerti
+</h3>
+    
+<div>
+     <div class="form-registrazione">   
     
 <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
@@ -8,13 +19,13 @@
     while ($row = $servizi->fetch_row()) { ?>
  
                 
-         <input type="checkbox" name="servizi[]" value="<?php echo $row[0]; ?>" /><span><?php echo $row[1];?></span><br>       
+         <input class="submitrec" type="checkbox" name="servizi[]" value="<?php echo $row[0]; ?>" /><span class="submitrec" ><?php echo $row[1];?></span><br>       
        <?php  } ?>
  
 
  <br>    
  <input type="hidden" name="cmd" value="registrazione_azienda">
         <input type="hidden" name="part" value="3">
-        <input type="submit" value="Join">
+        <input class="submitrec" type="submit" value="Join">
     </form>
-</div>
+</div></div>

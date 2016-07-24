@@ -1,5 +1,5 @@
-    
-    <li class="selected"> <!--richiama la pagina del login per il cliente-->
+<ul class="main-menu">
+    <li class="selected"> <!--richiama la home page-->
         <a href="/SardiniaInFood/php/?page=0" title="Home">HOME</a>
     </li>
     <li class="user"> <!--richiama la pagina del login per il cliente-->
@@ -8,3 +8,4 @@
     <li class="user"><!--richiama la pagina di registrazione per un nuovo cliente-->
          <a href="/SardiniaInFood/php/?page=1" title="Iscriviti">ISCRIVITI</a>
      </li>
+</ul>

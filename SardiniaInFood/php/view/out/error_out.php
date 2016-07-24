@@ -19,11 +19,9 @@ switch ($errore) {
     case 1: 
     //errore nella registrazione. Si è verificato un errore nel form di registrazione.
     
-        ?>
-        <div class="errore">       
-             <img src="/SardiniaInFood/images/error.png" alt="Errore nella registrazione" height="48" width="48" title="Errore nell'inserimento dei dati"> 
-        <h4>Si &egrave; verificato un errore nell'inserimento dei dati</h4>
-        </div>
+       ?><!--
+<div class="errore">Errore: Si &egrave; verificato un errore nell'inserimento dei dati<br> 1- Verificare che tutti i campi siano stati completati correttamente <br> 2- Non &egrave; possibile registrarsi con Username uguale a 'Username' e Password uguale a 'Password'</div>
+    -->
     <?php   
  
         break;
@@ -66,11 +64,8 @@ switch ($errore) {
     case 5: 
     //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
    
-        ?>
-        <div class="errore"><div class="imgerror"> 
-    <img src="/SardiniaInFood/images/error.png" alt="Inserire dei parametri di ricerca" height="48" width="48" title="Inserire dei parametri di ricerca"> 
-    </div><h4>Errore inserire dei parametri di ricerca</h4>
-    </div>
+         ?>
+<div class="errore">Errore: inserire almeno un parametro per poter eseguire la ricerca</div>
     <?php   
  
         break;
@@ -96,6 +91,27 @@ switch ($errore) {
         ?>
         
         <div class="errore">Errore: impossifile effettuare l'accesso. Utente bannato!</div>
+    <?php   
+ 
+        break;
+    
+    
+    case 8: 
+    //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
+   
+        ?>
+        
+        <div class="errore">Errore: non &egrave; possibile registrarsi con Username uguale a 'Username' e Password uguale a 'Password'</div>
+    <?php   
+ 
+        break;
+    
+    case 9: 
+    //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
+   
+        ?>
+        
+        <div class="errore">Errore: Si &egrave; verificato un errore nell'inserimento dei dati<br>Verificare che tutti i campi siano stati completati correttamente </div>
     <?php   
  
         break;

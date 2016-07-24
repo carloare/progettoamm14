@@ -33,9 +33,9 @@ class BaseController
                 
 		switch ($_REQUEST['cmd'])
 		{
-			/*
-			* ==============================REGISTRAZIONE NUOVO CLIENTE===============================================
-			*/
+/* REGISTRAZIONE DI UN NUOVO CLIENTE
+* ==================================
+*/
 
 			// registra un nuovo cliente nell'applicazione
 
@@ -44,7 +44,7 @@ class BaseController
 			// definizione delle espressioni regolari
  
 			define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
-			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,20}$/");
+			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,64}$/");
 			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
 			define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
 
@@ -58,9 +58,11 @@ class BaseController
 
 			$ruolo = $_REQUEST['ruolo'];
 
-			// flag che verifica la presenza di un generico errore
+			// flag che gestiscono gli errori
 
-			$error_rec = 0;
+			$error_rec = 0; //errori nei campi
+                        $error_form = 0; //errore username/password
+                        
 			$utente = new Cliente();
 
 			// ruolo a 0
@@ -83,13 +85,13 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['nome_completo_cliente'] = "<br> <div id='messaggio-errore'>Il campo nome contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+					$_SESSION['nome_completo_cliente'] = "<br> <div class='errore'></div><div class='messaggio-errore'>Il campo 'Nome Completo' contiene caratteri non validi</div>";
 					$error_rec++;
 				}
 			}
 			else
 			{
-				$_SESSION['nome_completo_cliente'] = "<br> <div id='messaggio-errore'>Il campo nome &egrave; vuoto</div>";
+				$_SESSION['nome_completo_cliente'] = "<br> <div class='messaggio-errore'>Il campo 'Nome Completo' &egrave; vuoto</div>";
 				$error_rec++;
 			}
                         
@@ -135,7 +137,7 @@ class BaseController
 						}
 						else
 						{
-							$_SESSION['email_cliente'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
+							$_SESSION['email_cliente'] = "<br> <div class='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata</div>";
 							$error_rec++;
 						}
                                         
@@ -143,7 +145,7 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
+					$_SESSION['email_cliente'] = "<br> <div class='messaggio-errore'>Questo indirizzo email non &egrave; valido<br>Esempio di email valida: email@esempio.com</div>";
 					$error_rec++;
 				}
                                 
@@ -154,7 +156,7 @@ class BaseController
 			
 			else
 			{
-				$_SESSION['email_cliente'] = "<br> <div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+				$_SESSION['email_cliente'] = "<br> <div class='messaggio-errore'>Il campo 'Email' &egrave; vuoto</div>";
 				$error_rec++;
 			}
 
@@ -170,19 +172,19 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['username_cliente'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
+						$_SESSION['username_cliente'] = "<br> <div class='messaggio-errore'>Questo username &egrave; gi&agrave; stato utilizzato</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+					$_SESSION['username_cliente'] = "<br> <div class='messaggio-errore'>Il campo username contiene caratteri non validi</div>";
 					$error_rec++;
 				}
 			}
 			else
 			{
-				$_SESSION['username_cliente'] = "<br> <div id='messaggio-errore'>Il campo username &egrave; vuoto</div>";
+				$_SESSION['username_cliente'] = "<br> <div class='messaggio-errore'>Il campo 'Username' &egrave; vuoto</div>";
 				$error_rec++;
 			}
 
@@ -199,13 +201,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['password_cliente'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+						$_SESSION['password_cliente'] = "<br><div class='messaggio-errore'>Il campo password non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
                                 else
 				{
-					$_SESSION['password_cliente'] = "<br><div id='messaggio-errore'>Errore nell'inserimento della password</div>";
+					$_SESSION['password_cliente'] = "<br><div class='messaggio-errore'>Errore nell'inserimento della password</div>";
 					$error_rec++;
 				}
                                 
@@ -213,10 +215,16 @@ class BaseController
                                 
 				else
 				{
-					$_SESSION['password_cliente'] = "<br><div id='messaggio-errore'>Il campo password &egrave; vuoto</div>";
+					$_SESSION['password_cliente'] = "<br><div class='messaggio-errore'>Il campo 'Password' &egrave; vuoto</div>";
 					$error_rec++;
 				}              
                         
+       //nessun cliente può registrarsi con nome uguale a 'Username' e password uguale a 'Password'                    
+                       if($username=='Username' AND $pass=='Password')         
+                       { //gestire l'errore
+$error_form++; $error_rec++;
+                       }
+                      
                         
                       
                            
@@ -231,14 +239,19 @@ class BaseController
 			else
 			{
 
-				// in caso di errore
+			// capire di che errore si tratta
+                                
+if($error_form==0) //errore sui campi
+{
+			//	$_SESSION['errore'] = 1;
+}
+else //errore username/password
+{
+                                $_SESSION['errore'] = 8; 
+}
 
 				$vd = new ViewDescriptor();
 				$vd->setTitolo("Benvenuto");
-
-				// si è verificato un errore (campo vuoto o caratteri non validi) nel form di registrazione
-
-				$_SESSION['errore'] = 1;
 				$vd->setLogoFile("../view/out/logo.php");
 				$vd->setMenuFile("../view/out/menu_back.php");
 				$vd->setContentFile("../view/out/form_registrazione_cliente.php"); //ritorna al form di registrazione cliente
@@ -252,9 +265,9 @@ class BaseController
 			}
 
 			break;
-			/*
-			* =================================LOGIN CLIENTI=============================================
-			*/
+/* LOGIN CLIENTE
+* ===============
+*/
 
 			// effettua il login del cliente
 
@@ -271,7 +284,7 @@ class BaseController
 
 			// definiamo le espressioni regolari per controllare la correttezza formale di username e password
 
-			define('username_regexpr', '/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,20}$/');
+			define('username_regexpr', '/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9]{3,64}$/');
 			define('password_regexpr', '/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/');
 
 			// verifica la correttezza dei valori inseriti nella compliazione del form
@@ -287,8 +300,8 @@ class BaseController
 			}
 
 			// si Ã¨ verificato un errore (campo vuoto o caratteri non validi) nel form di login
-
-			if ($error != 0)
+//!!!NON è consentito registrarsi con username uguale a 'Username' e password uguale a 'Password'
+			if ($error != 0 OR ($user_cliente=='Username' AND $pass_cliente=='Password'))
 			{
 
 				// errore in fase di login
@@ -316,9 +329,9 @@ class BaseController
 			}
 
 			break;
-			/*
-			* =================================REGISTRAZIONE DI UNA NUOVA AZIENDA=========================================
-			*/
+/*REGISTRAZIONE DI UNA NUOVA AZIENDA
+ * =========================================
+*/
 
 			// registra una nuova azienda nell"applicazione
 
@@ -328,7 +341,7 @@ class BaseController
 
 			define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
 			define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
-			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,20}$/");
+			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}$/");
 			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
 			define("nome_azienda_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}/");
 			define("descrizione_regexpr", "/^[A-Za-z0-9., \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
@@ -350,7 +363,10 @@ class BaseController
 				$pass_conferma = trim($_REQUEST['password_conferma']);
                                 $ruolo = $_REQUEST['ruolo'];
 				
-                                $error_rec = 0; //verifica la presenza di un generico errore
+                                // flag che gestiscono gli errori
+
+			$error_rec = 0; //errori nei campi
+                        $error_form = 0; //errore username/password
                                 
 				//if (isset($_SESSION['azienda']))
 				//{
@@ -375,13 +391,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+						$_SESSION['nome_completo_azienda'] = "<br> <div class='messaggio-errore'>Il campo 'Nome Completo' contiene caratteri non validi</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['nome_completo_azienda'] = "<br><div id='messaggio-errore'>Il campo nome completo &egrave; vuoto</div>";
+					$_SESSION['nome_completo_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Nome Completo' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -393,7 +409,7 @@ class BaseController
 
 				if ($task == "-1")
 				{
-					$_SESSION['tipo_incarichi_id'] = "<br><div id='messaggio-errore'>Il campo tipo di incarico non &egrave; stato schelto</div>";
+					$_SESSION['tipo_incarichi_id'] = "<br><div class='messaggio-errore'>Il 'Tipo di incarico' non &egrave; stato schelto</div>";
 					$error_rec++;
 				}
 
@@ -411,20 +427,19 @@ class BaseController
 						}
 						else
 						{
-							$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
+							$_SESSION['email_personale_azienda'] = "<br><div class='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
 							$error_rec++;
 						}
                                         
 					}
 					else
 					{
-						$_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
-						$error_rec++;
+						$_SESSION['email_personale_azienda'] = "<br> <div class='messaggio-errore'>Questo indirizzo email non &egrave; valido <br> Esempio di email valida: email@esempio.com</div>";						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+					$_SESSION['email_personale_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Email' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -441,19 +456,19 @@ class BaseController
 						}
 						else
 						{
-							$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
+							$_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Questo username &egrave; gi&agrave; stato utilizzato<br>Si prega di sceglierne un altro</div>";
 							$error_rec++;
 						}
 					}
 					else
 					{
-						$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+						$_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Questo indirizzo email non &egrave; valido<br>Esempio di email valida: email@esempio.com</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo &egrave; vuoto</div>";
+					$_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Username' completo &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -471,13 +486,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+						$_SESSION['password_azienda'] = "<br><div class='messaggio-errore'>Il campo password non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
                                 else
 				{
-					$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Errore nell'inserimento della password</div>";
+					$_SESSION['password_azienda'] = "<br><div class='messaggio-errore'>Errore nell'inserimento della password</div>";
 					$error_rec++;
 				}
                                 
@@ -485,9 +500,19 @@ class BaseController
                                 
 				else
 				{
-					$_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password &egrave; vuoto</div>";
+					$_SESSION['password_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Password' &egrave; vuoto</div>";
 					$error_rec++;
 				}
+                                
+          //nessun cliente può registrarsi con nome uguale a 'Username' e password uguale a 'Password'                    
+                       if($username=='Username' AND $pass=='Password')         
+                       { //gestire l'errore
+$error_form++; $error_rec++;
+                       }
+                                             
+                                
+                                
+                                
 
 				if ($error_rec == 0)
 				{
@@ -509,8 +534,17 @@ class BaseController
 				{
 
 					
-
-					$_SESSION['errore'] = 1;
+				// capire di che errore si tratta
+                                
+if($error_form==0) //errore sui campi
+{
+				$_SESSION['errore'] = 1;
+}
+else //errore username/password
+{
+                                $_SESSION['errore'] = 8; 
+}
+		
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
@@ -552,13 +586,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['name_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Nome Azienda' contiene caratteri non validi</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo &egrave; vuoto</div>";
+					$_SESSION['name_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Nome Azienda' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -572,7 +606,7 @@ class BaseController
 
 				if ($company_type == "-1")
 				{
-					$_SESSION['tipo_attivita_id'] = "<br><div id='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.</div>";
+					$_SESSION['tipo_attivita_id'] = "<br><div class='messaggio-errore'>Il campo 'Tipo di attivit&agrave;' non &egrave; stata schelta</div>";
 					$error_rec++;
 				}
 
@@ -591,7 +625,7 @@ class BaseController
 						}
 						else
 						{
-							$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br /></div>";
+							$_SESSION['email_azienda'] = "<br><div class='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata</div>";
 							$error_rec++;
 						}
                                             
@@ -599,13 +633,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
+						$_SESSION['email_azienda'] = "<br><div class='messaggio-errore'>Questo indirizzo email non &egrave; valido<br>Esempio di email valida: email@esempio.com</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['email_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+					$_SESSION['email_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Email' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -623,11 +657,11 @@ class BaseController
 						$contacaratteri = strlen($company_description);
 						if ($contacaratteri >= 150)
 						{
-							$_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br />Il campo contiene $contacaratteri caratteri</div>";
+							$_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Breve Descrizione' non &egrave; valido<br>Il campo contiene $contacaratteri caratteri su 150 permessi</div>";
 						}
 						else
 						{
-							$_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.</div>";
+							$_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Breve Descrizione' non &egrave; valido</div>";
 						}
 
 						$error_rec++;
@@ -635,7 +669,7 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione &egrave; vuoto</div>";
+					$_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Breve Descrizione' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -650,13 +684,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['city_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Citt&agrave;' non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; &egrave; vuoto</div>";
+					$_SESSION['city_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Citt&agrave;' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -671,13 +705,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['address_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Indirizzo' non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo &egrave; vuoto</div>";
+					$_SESSION['address_azienda'] = "<br><div class='messaggio-errore'>Il campo Indirizzo' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -692,13 +726,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['phone_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Telefono' non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono &egrave; vuoto</div>";
+					$_SESSION['phone_azienda'] = "<br><div class='messaggio-errore'>Il campo 'Telefono' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -713,13 +747,13 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web non &egrave; valido.<br />Verifica eventuali errori di battitura.</div>";
+						$_SESSION['sito_web_azienda'] = "<br><div class='messaggio-errore'>Il campo del 'Sito web' non &egrave; valido</div>";
 						$error_rec++;
 					}
 				}
 				else
 				{
-					$_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web &egrave; vuoto</div>";
+					$_SESSION['sito_web_azienda'] = "<br><div class='messaggio-errore'>Il campo del 'Sito web' &egrave; vuoto</div>";
 					$error_rec++;
 				}
 
@@ -741,7 +775,7 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['errore'] = 1;
+					$_SESSION['errore'] = 9;
 					$vd = new ViewDescriptor();
 					$vd->setTitolo("Benvenuto in FoodAdvisor");
 					$vd->setLogoFile('../view/out/logo.php');
@@ -796,8 +830,8 @@ class BaseController
 			}
 
 			break;
-			/*
-			* ===================================LOGIN DELL'AZIENDA===========================================
+			/*LOGIN DELL'AZIENDA
+                        * ===========================================
 			*/
 
 			// effettua il login per l"azienda
@@ -833,8 +867,8 @@ class BaseController
 			}
 
 			// messaggio di errore se i campi sono vuoti o non rispettano l"espressione regolare
-
-			if ($error != 0)
+//!!!NON è consentito registrarsi con username uguale a 'Username' e password uguale a 'Password'
+			if ($error != 0 OR ($user_azienda=='Username' AND $pass_azienda=='Password'))
 			{
 
 				// errore in fase di login
@@ -1018,8 +1052,7 @@ class BaseController
 
 	// funzione si occupa della registrazione di un nuovo cliente
 
-	static
-	function registrazione_cliente($utente)
+	static function registrazione_cliente($utente)
 	{
 
 		// funzione di registrazione creaUtente a seconda del ruolo:

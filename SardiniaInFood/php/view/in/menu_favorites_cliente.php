@@ -1,5 +1,5 @@
-<div id="menu_favorites_cliente">
-    <ul>
+
+  <ul class="main-menu">
          <li>     
              <a href="?cmd=back_clear_home_page" title="Torna alla tua home page" method="POST">HOME</a>
         </li>
@@ -11,5 +11,4 @@
     </li>
     </ul>
     
-    
-</div>
+
