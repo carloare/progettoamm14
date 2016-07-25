@@ -937,7 +937,9 @@ return $results;
             // nessun errore
             //formulazione della query SQL  
             $result = $mysqli->query("SELECT * FROM Aziende WHERE id = $id_azienda");
-  
+ 
+            
+            
           while ($row = $result->fetch_object())
             { 
             $utente = new Azienda();
@@ -955,11 +957,7 @@ return $results;
             $utente->setTelefono($row->telefono);
             $utente->setEmail($row->email);
             $utente->setSitoWeb($row->sito_web);
-            $utente->setRuolo($row->ruolo);
-            
-          
-            
-        
+            $utente->setRuolo($row->ruolo);        
             }
           $mysqli->close();
            return $utente; 
@@ -2589,7 +2587,7 @@ else {
        public static function contaRecensioni($id_azienda) 
             {
         
-           $id_azienda = $_SESSION['current_user']->getId();
+        //   $id_azienda = $_SESSION['current_user']->getId();
         
         //connessione al database
         //connessione al database

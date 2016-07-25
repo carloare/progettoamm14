@@ -1,11 +1,23 @@
 <script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <?php if (session_status() != 2) session_start();?>
 
 
-<article>
-<h2>Filtra tra i preferiti</h2>
+
+<div id="box-form-preferiti">
+<h1 class="white">
+Filtra tra i preferiti
+</h1>
+<p class="center white">
+
+    Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
+</p>
+
+
+<!--article che riguarda la ricerca-->
+<div class="form-ricerca">   
  <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
 
      
@@ -15,50 +27,54 @@ if (isset($_POST['citta_preferiti'])) echo $_POST['citta_preferiti'];
   else echo "Dove"; ?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
         
  <select name="tipo_attivita_id_preferiti" id="tipo_attivita_id_preferiti" title="scegli il tipo di attivit&agrave; che vuoi cercare">
-                
-<?php
+ 
+     <?php
 
-if ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1"))
-	{
+//dopo aver fatto la submit mostra il tipo di attività selezionato
+
+if ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1")) {
 	$id_attivita = $_POST['tipo_attivita_id_preferiti'];
 	$nome_attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 ?> 
-    <option value="<?php
-	echo $id_attivita; ?>" ><?php
-	echo $nome_attivita; ?></option>
+    <option value="<?php echo $id_attivita; ?>" > <?php	echo $nome_attivita; ?></option>
   
 <?php
-	} ?> 
+} 
 
-     
- <option value="-1">Cosa</option>    
+//mostra tutte le attività selezionabili
 
+if ((!isset($_POST['tipo_attivita_id_preferiti'])) OR ($_POST['tipo_attivita_id_preferiti'] == "-1")) {
+?> <option value="-1">Cosa</option> <?php $attivita = UtenteFactory::listaAttivita(0);
+}
 
-<?php
+// fatta una selezione, mostro tutte le attività tranne quella appena selezionata
 
-if ((!isset($_POST['tipo_attivita_id_preferiti'])) OR ($_POST['tipo_attivita_id_preferiti'] == "-1"))
-	{
-	UtenteFactory::listaAttivita(0);
-	}
-elseif ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1"))
-	{
+elseif ((isset($_POST['tipo_attivita_id_preferiti'])) AND ($_POST['tipo_attivita_id_preferiti'] != "-1")) {
 	$not_show = $_POST['tipo_attivita_id_preferiti'];
-	UtenteFactory::listaAttivita($not_show);
-	}
+
+	// uso la stessa funzione di prima ma invece di passare 0 (id non assegnato ad alcuna attività)
+	// passo l'id dell'attività da non mostrare (gli id 'validi' partono da 1).
+	// Le query sono praticamente identiche tranne per il fatto che si differenziano solo per la clausola WHERE
+
+	$attivita = UtenteFactory::listaAttivita($not_show);
+}
+
+while ($row = $attivita->fetch_row()) { ?> 
+ 
+            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                
+      <?php
+}
 
 ?>
+    
       
             </select>  
   
  <input type="hidden" name="cmd" value="ricercapreferiti">
   <input type="submit" value="Cerca" onclick="return thisserchcliente(this.form)">
-</form> 
+</form> </div></div>
      
-<br><br><br>
-</article>
-
-
-
 
 <article>
 <?php

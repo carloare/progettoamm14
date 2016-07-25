@@ -1,5 +1,5 @@
-<!--HOME PAGE AZIENDA 
-WORK IN PROGRESS-->
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
    
     include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
@@ -7,10 +7,6 @@ WORK IN PROGRESS-->
 ?>
 
 
-<article>
-    <h1>HOME PAGE AZIENDA</h1>
-      <img src="/SardiniaInFood/images/attivita.png" alt="Smiley face" height="256" width="256"> 
-</article>
 
 <article>
 
@@ -139,7 +135,7 @@ echo $giudizio;
         <?php
         //conta il numero delle recensioni
 $numero_recensioni = UtenteFactory::contaRecensioni($id_azienda);
-        
+       
 $commenti_per_pagina = 10;
 
 $pagine_totali = ceil($numero_recensioni/10);

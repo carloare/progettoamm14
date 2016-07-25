@@ -85,7 +85,7 @@ class BaseController
 				}
 				else
 				{
-					$_SESSION['nome_completo_cliente'] = "<br> <div class='errore'></div><div class='messaggio-errore'>Il campo 'Nome Completo' contiene caratteri non validi</div>";
+					$_SESSION['nome_completo_cliente'] = "<br><div class='messaggio-errore'>Il campo 'Nome Completo' contiene caratteri non validi</div>";
 					$error_rec++;
 				}
 			}
@@ -172,7 +172,7 @@ class BaseController
 					}
 					else
 					{
-						$_SESSION['username_cliente'] = "<br> <div class='messaggio-errore'>Questo username &egrave; gi&agrave; stato utilizzato</div>";
+						$_SESSION['username_cliente'] = "<br> <div class='messaggio-errore'>Username non valido</div>";
 						$error_rec++;
 					}
 				}
@@ -222,7 +222,8 @@ class BaseController
        //nessun cliente può registrarsi con nome uguale a 'Username' e password uguale a 'Password'                    
                        if($username=='Username' AND $pass=='Password')         
                        { //gestire l'errore
-$error_form++; $error_rec++;
+$error_form++; 
+$error_rec++;
                        }
                       
                         
@@ -243,7 +244,7 @@ $error_form++; $error_rec++;
                                 
 if($error_form==0) //errore sui campi
 {
-			//	$_SESSION['errore'] = 1;
+				$_SESSION['errore'] = 2;
 }
 else //errore username/password
 {
@@ -507,7 +508,8 @@ else //errore username/password
           //nessun cliente può registrarsi con nome uguale a 'Username' e password uguale a 'Password'                    
                        if($username=='Username' AND $pass=='Password')         
                        { //gestire l'errore
-$error_form++; $error_rec++;
+$error_form++; 
+$error_rec++;
                        }
                                              
                                 
@@ -538,7 +540,7 @@ $error_form++; $error_rec++;
                                 
 if($error_form==0) //errore sui campi
 {
-				$_SESSION['errore'] = 1;
+				$_SESSION['errore'] = 2;
 }
 else //errore username/password
 {
@@ -1168,7 +1170,7 @@ if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 			$vd->setMenuFile("../view/in/menu_home_cliente.php");
 			$vd->setErrorFile("../view/in/error_in.php");
 			$vd->setContentFile("../view/in/cliente/home_page_cliente.php");
-			$vd->setFooterFile("../view/in/footer_empty.php");
+			$vd->setFooterFile("../view/in/footer_home_clienti.php");
 		}
 
 		// richiamo la vista

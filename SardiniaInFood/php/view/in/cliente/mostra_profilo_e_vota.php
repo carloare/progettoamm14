@@ -4,6 +4,7 @@
 <script type="text/javascript" src="/SardiniaInFood/js/preferiti.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/commenta.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/segnalazione.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <article>
 <?php 

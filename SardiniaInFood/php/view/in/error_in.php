@@ -23,11 +23,8 @@ switch ($errore) {
     case 1: 
     //errore in fase di ricerca. Campo citta vuoto e tipo di attività non indicato
    
-        ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Inserire dei parametri di ricerca" height="48" width="48" title="Inserire dei parametri di ricerca"> 
-    <h4>Errore inserire dei parametri di ricerca</h4>
-    </div>
+         ?>
+<div class="errore">Errore: sono stati inseriti dei caratteri non validi</div>
     <?php   
  
         break;
@@ -38,11 +35,8 @@ switch ($errore) {
     //errore campo commenta contiene caratteri non validi
    
        ?>
-        <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
-    <h4>Errore Il campo nome contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div></h4>
-    </div>
-    <?php     
+<div class="errore">Errore: inserire almeno un parametro per poter eseguire la ricerca</div>
+    <?php   
  
         break;
     
@@ -51,14 +45,11 @@ switch ($errore) {
     case 3: 
     //errore nessun risultato trovato
    
-        ?>
-         <div class="avviso">
-    <img src="/SardiniaInFood/images/avviso.png" alt="Nessun risultato &egrave; stato trovato" height="48" width="48" title="Nessun risultato &egrave; stato trovato"> 
-    <h4>ATTENZIONE nessun risultato trovato</h4>
-    </div>
+          ?>
+<div class="avviso">Nessun risultato &egrave; stato trovato</div>
     <?php   
  
-        break; 
+        break;
     
     
     

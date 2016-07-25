@@ -1,4 +1,7 @@
- <?php 
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+
+<?php 
  if (session_status() != 2) session_start();
 $azienda = $_SESSION['current_user'];
 $servizi = UtenteFactory::cercaServizi($azienda->getId());

@@ -1,8 +1,11 @@
-<?php
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+    
+    <?php
 include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 $_SESSION['step2']=1; //cancellare errori rimasti in sessione
 ?>
-<div id="box-form-registrazione">
+<div id="box-form">
 
     
         <h1 class="white">
@@ -16,7 +19,7 @@ Dati azienda
 </h3>
     
 <div>
-     <div class="form-registrazione">   
+     <div class="form-generic">   
     <!--registrazione azienda versione alpha-->
 
     <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">

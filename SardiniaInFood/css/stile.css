@@ -560,7 +560,7 @@ textarea {
 
 
 
-.dropbtn {
+.dropbutton {
     background-color: #4CAF50;
     color: white;
     padding: 16px;
@@ -596,6 +596,6 @@ textarea {
     display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropbutton {
     background-color: #3e8e41;
 }

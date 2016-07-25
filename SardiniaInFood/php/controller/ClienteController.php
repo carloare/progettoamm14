@@ -92,7 +92,7 @@ class ClienteController {
       $vd->setMenuFile('../view/in/menu_home_cliente.php'); 
      $vd->setContentFile('../view/in/cliente/home_page_cliente.php'); 
      $vd->setErrorFile('../view/in/error_in.php');
-    $vd->setFooterFile('../view/in/footer_empty.php'); 
+    $vd->setFooterFile('../view/in/footer_home_clienti.php'); 
 				
      
      // richiamo la vista
@@ -408,7 +408,7 @@ else
      $vd->setMenuFile('../view/in/menu_home_cliente.php');
      $vd->setContentFile('../view/in/cliente/home_page_cliente.php');
      $vd->setErrorFile('../view/in/error_in.php');
-     $vd->setFooterFile('../view/in/footer_empty.php');   
+     $vd->setFooterFile('../view/in/footer_home_clienti.php');   
      
      // richiamo la vista
      require_once '../view/Master.php';  
@@ -458,7 +458,7 @@ else
        $vd->setMenuFile("../view/in/menu_home_cliente.php");
        $vd->setContentFile("../view/in/cliente/home_page_cliente.php");
        $vd->setErrorFile("../view/in/error_in.php"); 
-       $vd->setFooterFile("../view/in/footer_empty.php");
+       $vd->setFooterFile("../view/in/footer_home_clienti.php");
      
         // richiamo la vista
         require_once "../view/Master.php"; 

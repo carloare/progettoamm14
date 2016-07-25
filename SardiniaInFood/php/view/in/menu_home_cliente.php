@@ -24,20 +24,16 @@ echo '
       <li>
         <a class="alert" href ="/SardiniaInFood/php/controller/ClienteController.php?cmd=cancella" title="cancella il mio profilo" onclick ="return confirm('Sei sicuro?');">CANCELLA PROFILO</a>
     </li>
-    <li>
+    
+
+    
+    <li class="logout">
  
         <a href="http://localhost/SardiniaInFood/php/index.php?page=0&logout" method="POST" title="Esci">LOGOUT</a>
 
     </li> 
-       <li>
-       <div id="main-menu">
-        <input type="image" src="/SardiniaInFood/images/bell.png" id="" alt="numero richiami" height="32" width="32" title="Numero richiami">
-       <?php
-       $numero_richiami = UtenteFactory::numeroRichiami();
-       echo $numero_richiami;
-       ?>
-       </div>
-       </li> 
+    
+    
         
     </ul>
 

@@ -15,7 +15,7 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
     <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
     <meta name="description" content="pagina master di SardiniaInFood">
    <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">
- <!-- <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">-->
+   <!--<link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">-->
   <link rel="icon" href="../images/favicon.png" sizes="16x16" type="image/png"> 
         <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
@@ -27,12 +27,24 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 <div id="top-header">
       <div class="container clearfix">
       <ul class="main-menu-top">
+         <?php if(!isset($_SESSION['current_user'])){ ?>
         <li>
-		      <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >ACCEDI</a>
+		      <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
         </li>
         <li>
 		      <a href="/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
         </li>
+        <?php
+        
+        } 
+        else 
+        {
+            ?><li>
+		      <a href="/SardiniaInFood/php/?page=0" title="Logout" >LOGOUT</a>
+        </li> <?php
+        }
+        
+        ?>
       </ul>
       </div>
     </div>

@@ -1,4 +1,7 @@
-<div id="box-form-login">
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+
+<div id="box-form">
     
     <h1 class="white">
 
@@ -11,7 +14,7 @@ Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato
     
 </p>
     
-    <div class="form-login">   
+    <div class="form-generic">   
     
     
 <form name="login_form" action="/SardiniaInFood/php/controller/BaseController.php" method="POST"> 
@@ -21,7 +24,7 @@ Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato
 <input type="password" name="password_cliente" value="Password" title="inserisci la tua password" onfocus="this.value=''" class="submitlogin" ><br>
  
   <input type="hidden" name="cmd" value="login_cliente">
- <input type="submit" class="submitlogin" name="submit" value="LOGIN"> 
+  <input type="submit" class="submitlogin" name="submit" value="LOGIN"> 
 </form> 
 </div>
 </div>

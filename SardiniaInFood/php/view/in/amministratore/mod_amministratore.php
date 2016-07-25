@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/SardiniaInFood/js/banna.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/richiamo.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/falso_richiamo.js"></script>
-
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 
 <?php

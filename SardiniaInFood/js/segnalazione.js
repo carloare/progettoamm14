@@ -5,7 +5,7 @@ $("input:image").click(function() {
   
  //prendo l'id associato all'commento
  
- id = this.id;
+ var id = this.id;
 
 
 $.ajax({//spedizione alla ClienteController per effettuare la segnalazione della recensione

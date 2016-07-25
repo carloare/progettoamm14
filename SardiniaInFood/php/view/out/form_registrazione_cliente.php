@@ -1,5 +1,7 @@
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
-<div id="box-form-registrazione">
+<div id="box-form">
 
     
         <h1 class="white">
@@ -12,7 +14,7 @@
 Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. 
 </p>
     
-    <div class="form-registrazione">   
+    <div class="form-generic">   
     
     
     <form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">

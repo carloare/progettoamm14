@@ -3,7 +3,7 @@ $(document).ready(function(){
 //Il JQUERY partirà al click sull'immgaine
 $("input:image.banna").click(function() {
 //prendo l'id associato all'azienda  
-  id = this.id;
+  var id = this.id;
  
  $.ajax({ //spedizione a AmministratoreController per bannare un cliente
               type: "POST",

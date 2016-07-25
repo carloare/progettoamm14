@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <h1>LOGIN AMMINISTRATORE</h1>
 

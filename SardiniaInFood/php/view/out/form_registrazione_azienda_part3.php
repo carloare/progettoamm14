@@ -1,4 +1,7 @@
-<div id="box-form-registrazione">
+<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+
+<div id="box-form">
 
     
         <h1 class="white">
@@ -11,7 +14,7 @@ Servizi offerti
 </h3>
     
 <div>
-     <div class="form-registrazione">   
+     <div class="form-generic">   
     
 <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
 
@@ -29,3 +32,4 @@ Servizi offerti
         <input class="submitrec" type="submit" value="Join">
     </form>
 </div></div>
+</div>

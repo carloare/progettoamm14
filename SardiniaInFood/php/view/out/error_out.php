@@ -29,11 +29,7 @@ switch ($errore) {
     //errore nella registrazione. L'utente che tenta di registrarsi è già presente nel database
     
         ?>
-        <div class="errore">
-           <div class="imgerror"> 
-    <img src="/SardiniaInFood/images/error.png" alt="Errore nella registrazione" height="48" width="48" title="Errore nell'inserimento dei dati"> 
-    </div><h4>Errore nella restrazione</h4>
-    </div>
+        <div class="errore">Errore nella restrazione</div>
     <?php   
  
         break;
@@ -75,11 +71,8 @@ switch ($errore) {
     case 6: 
     //alert nessun risultato trovato
    
-        ?>
-        <div class="avviso"><div class="imgerror"> 
-    <img src="/SardiniaInFood/images/avviso.png" alt="Nessun risultato &egrave; stato trovato" height="48" width="48" title="Nessun risultato &egrave; stato trovato"> 
-    </div><h4>ATTENZIONE nessun risultato trovato</h4>
-    </div>
+       ?>
+<div class="avviso">Nessun risultato &egrave; stato trovato</div>
     <?php   
  
         break;
