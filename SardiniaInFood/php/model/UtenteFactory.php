@@ -1600,7 +1600,7 @@ $mysqli->close();
 
     public static function segnalazione($id_recensione) { //mettere autocommit 
        
-        $id_utente=$_SESSION['current_user']->getId();
+       // $id_utente=$_SESSION['current_user']->getId();
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -1618,7 +1618,8 @@ $mysqli->close();
             $result = $mysqli->query($query);
 
            
-            
+             
+    $id_scrittore=UtenteFactory::cercaClientePerIdRecensione($id_recensione);
             
             if (!$result) {
                 error_log("[segnalazione] errore");
@@ -1630,7 +1631,7 @@ $mysqli->close();
            // }
      
                 //aggiornare Segnalazioni
-                $query=("INSERT INTO Segnalazioni(id_recensioni, id_clienti) VALUES ($id_recensione, $id_utente)");
+                $query=("INSERT INTO Segnalazioni(id_recensioni, id_clienti) VALUES ($id_recensione, $id_scrittore)");
    
    
    $result = $mysqli->query($query);
@@ -2051,8 +2052,9 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
             //funzione che cancella il profilo dell'azienda
     public static function deleteFavorite() {
         
-       $id_azienda = $_SESSION['id_azienda'];
+       $id_azienda = $_REQUEST['id_azienda'];
         $id_cliente = $_SESSION['current_user']->getId();
+ 
         
         //connessione al database
         $mysqli = new mysqli();
@@ -3201,7 +3203,8 @@ if ($mysqli->connect_error) {
 
 //visualizzare tutte le recensioni segnalate tranne quelle degli utenti bannati
 $results= $mysqli->query("
-SELECT Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, Recensioni.data, Recensioni.recensione, Recensioni.segnalato, Recensioni.valido
+SELECT Recensioni.id, Recensioni.id_aziende, Recensioni.id_clienti, 
+Recensioni.data, Recensioni.recensione, Recensioni.segnalato, Recensioni.valido
 FROM Recensioni
 JOIN Clienti ON Clienti.id = Recensioni.id_clienti
 JOIN Segnalazioni ON Segnalazioni.id_recensioni = Recensioni.id
@@ -3214,7 +3217,38 @@ return $results;
  
  }
         
+ 
+ /*ID SEGNALAZIONE
+  * ============================================================================
+  */
+    //funzione che restituisce l'id della segnalazione
+     public static function idSegnalazioni($id_recensione, $id_cliente) 
+            {
+     echo $id_recensione; echo '-';
+     echo $id_cliente;
+     
+     //connessione al database
+    $mysqli = new mysqli();
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
 
+
+if ($mysqli->connect_error) {
+    die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
+}
+
+//visualizzare tutte le recensioni segnalate tranne quelle degli utenti bannati
+$results = $mysqli->query("SELECT id FROM Segnalazioni WHERE id_recensioni=$id_recensione AND id_clienti=$id_cliente");
+
+
+$risultato = $results->fetch_row();
+$mysqli->close();
+
+           return $risultato[0];
+ 
+ }
+ 
+ 
+ 
  
 /** MOSTRA A UNA AZIENDA I SERVIZI SELEZIONABILI
  * ==============================================
@@ -3860,7 +3894,40 @@ $mysqli->close();
             }            
             
             
-            
+            /** CERCA IL CLIENTE ASSOCIATO ALL'ID PASSATO
+ * ==================================
+ */  
+     public static function cercaClientePerIdRecensione($id_recensione)
+ {
+    
+ //connessione al database
+    $mysqli = new mysqli();
+    
+    $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+    
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+    if (!isset($mysqli)) {
+            error_log("[''''''] impossibile inizializzare il database");
+            $mysqli->close();
+            return NULL;
+            }
+        else 
+            {                                                                  
+            // nessun errore
+            //formulazione della query SQL  
+            $query=("SELECT id_clienti FROM Recensioni WHERE id=$id_recensione");
+  
+        
+          
+        $result = $mysqli->query($query);
+      
+            $risultato = $result->fetch_row();
+$mysqli->close();
+var_dump ($risultato[0]);
+           return $risultato[0];
+          }
+          
+ }
             
          
          

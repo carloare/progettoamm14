@@ -176,8 +176,8 @@ while ($row = $attivita->fetch_row())
             <div class="box-statistiche">
               <div class="visualizzazioni">VISUALIZZAZIONI: <?php echo $visualizzazioni; ?></div>
               <div class="recensioni">RECENSIONI: <?php echo $numero_recensioni; ?></div>
-              <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
-              <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
+               <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php if($numero_voti>0) {echo $media_voto;} else {echo "-";} ?> / 5</div>
+              <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp;} else {echo "-";} ?> / 5</div>
             </div>
             <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
           </div>

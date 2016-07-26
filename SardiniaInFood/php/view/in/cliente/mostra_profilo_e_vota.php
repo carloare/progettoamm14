@@ -115,15 +115,16 @@
 $preferito_valido = UtenteFactory::preferitoValido($_REQUEST['id_azienda']);
     
     $_SESSION['id_azienda']=$_REQUEST['id_azienda'];
+    
+    
+    $current_id = $_SESSION['current_user']->getId();
     ?>
 
 
        <div id="card">
           <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
           <div class="box-contacts">
-           <h6><i>Tipo attivit&agrave;</i></h6> 
       <h2><?php echo $attivita; ?></h2>
-      <h6><i>Nome Azienda</i></h6>
       <h1><?php echo $nome_azienda; ?></h1>
       <h6><i>Indirizzo</i></h6>
       <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
@@ -270,30 +271,52 @@ else
            <div class="box-reviews">
             <?php if( $numero_recensioni > 0 ) { ?>
               
-               
               
             <h3><?php echo $numero_recensioni; ?> RECENSIONI</h3>
-            
-            
-            
+       
             <div class="box-gray">
                 
                 <?php  while($row =$recensioni->fetch_object()){ ?>
                 
               <div class="review">
                
-                  
                 <div class="userplusdate">
                     
-                  <?php echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername(); ?> 
+                  <?php echo $row->id_clienti; echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername(); ?> 
                     &bull; 
                         <?php echo $row->data; ?>
                 </div>
                 <div class="text">
                   <p><?php echo $row->recensione; ?></p> 
                 </div>
-              </div>
-                    <?php }?>
+                  
+                  
+                  
+                   <?php     
+      if($current_id!=$row->id_clienti)//non permettere a un cliente di segnalare un proprio messaggio
+    {
+     ?><!--se la recensione conetiene messaggi offensivi può essere segnalata con il flag
+     la segnalazione va nella funzione "segnalazione" qui sotto che aggiorna
+     la tabella Recensioni e la tabella Segnalazioni-->
+     
+     
+     <?php 
+    
+     $id_recensione= $row->id; $segnalato = UtenteFactory::segnalato($id_recensione, $current_id);
+ 
+   if($segnalato==0) {?>
+     
+     <div id="<?php echo $row->id; ?>">
+     <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="24" width="24" title="segnala questa recensione" onclick ="return confirm('Conferma la segnalazione?');"> 
+     </div>
+     
+         <?php } else {}
+    }          ?>    
+                </div>
+                 <?php    }?>
+                  
+                  
+                  
               
                </div>
 

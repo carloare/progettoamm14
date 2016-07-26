@@ -13,7 +13,10 @@ $("input:image").click(function() {
                 
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
-                document.getElementById("profile"+id).style.display='none';
+                
+                $("#profile"+id).toggle();
+                
+               // document.getElementById("profile"+id).style.display='none';
             }).fail(function() { alert("Errore: si è verificato un problema"); });
   
 });    

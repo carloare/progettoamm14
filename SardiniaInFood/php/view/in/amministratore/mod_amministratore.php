@@ -23,40 +23,55 @@ if($numero_recensioni_segnalate>0)
     <h1>MODERAZIONE RECENSIONI</h1> 
           <?php
 
-
 /**SONO ARRIVATO QUA**/
 
 $risultati=UtenteFactory::showSegnalazioni($primo, $segnalazioni_per_pagina);
+?> 
 
-
+    <?php
 while($row = $risultati->fetch_object()) {
     
     $id_cliente= $row->id_clienti;
     $recensione= $row->recensione;
     $data= $row->data;
     $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-    $recensione= $row->recensione;
-    $id_recensione=$row->id;
-?> 
+   $id_recensione=$row->id;
+    
+    
+    
+  
+    
+    $id_scrittore=UtenteFactory::cercaClientePerIdRecensione($id_recensione);
+    
+    
+    $id_segnalazione=UtenteFactory::idSegnalazioni($id_recensione, $id_scrittore);
+  
+   
+?>
  
- 
+ <div class="segnalazione<?php echo $id_segnalazione; ?>">  
           <div class="moderation-review">
+                          
             <p class="bold"><?php echo $name; ?></p>
             <p class="bold"><?php echo $data; ?> </p>
+            <p class="bold"><?php echo $id_segnalazione; ?></p>
             <p><?php echo $recensione; ?></p>
             <div class="actions">
-              <form class="form-banna"><input type="submit" value="BANNA" /></form>
-              <form class="form-richiamo"><input type="submit" value="RICHIAMO" /></form>
-              <form class="form-falso-richiamo"><input type="submit" value="FALSO RICHIAMO" /></form> 
+              <input type="submit" id="<?php echo $id_scrittore."-".$id_segnalazione; ?>"  class="banna" value="BANNA" >
+              <input type="submit" id="<?php echo $id_recensione."-".$id_segnalazione;?>" class="richiamo" value="RICHIAMO" >
+              <input type="submit"  id="<?php echo $id_recensione."-".$id_segnalazione; ?>" class="falso_richiamo" value="FALSO RICHIAMO" >
             </div>
+          </div>
           </div>             
-        </div>  
+       
       
 
 <?php
 
-}
+}?>
+ </div>  
 
+<?php
 if($segnalazioni_per_pagina>0 AND $pagine_totali>0 )
 {
 //link delle pagine
@@ -85,7 +100,9 @@ for($pagina=1; $pagina<=$pagine_totali; $pagina++)
     }
 }
 
-}}
+}
+
+}
 
 else
 {echo '<h1>non sono presenti segnalazioni sulle recensioni</h1>';}

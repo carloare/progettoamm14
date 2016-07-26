@@ -173,20 +173,22 @@ foreach($aziende_preferite as $azienda_preferita)
     }
             ?>
             
-             
-          <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+            <div id=profile<?php echo $id_azienda; ?> > 
+                
+<div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
           <div class="box-text">
-            <h2><?php echo $attivita; ?></h2>
-            <h3><?php echo $nome_azienda; ?></a></h3>
+            <h3><?php echo $attivita; ?></h3>
+            <h1><?php echo $nome_azienda; ?></h1>
             <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
             <div class="box-statistiche">
               <div class="visualizzazioni">VISUALIZZAZIONI: <?php echo $visualizzazioni; ?></div>
               <div class="recensioni">RECENSIONI: <?php echo $numero_recensioni; ?></div>
-              <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
-              <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
+              <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php if($numero_voti>0) {echo $media_voto;} else {echo "-";} ?> / 5</div>
+              <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp;} else {echo "-";} ?> / 5</div>
             </div>
             <div><input type="image" src="/SardiniaInFood/images/cancel.png" id="<?php echo $id_azienda;?>" class="cancella-preferito" alt="cancella dai preferiti" height="38" width="38" title="Cancella dai preferiti" />
             </div>
+        </div>       
             </div>
         </div>
     

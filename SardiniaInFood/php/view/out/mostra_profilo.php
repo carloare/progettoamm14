@@ -69,9 +69,7 @@
 <div id="card">
    <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-contacts">
-      <h6><i>Tipo attivit&agrave;</i></h6> 
       <h2><?php echo $attivita; ?></h2>
-      <h6><i>Nome Azienda</i></h6>
       <h1><?php echo $nome_azienda; ?></h1>
       <h6><i>Indirizzo</i></h6>
       <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>

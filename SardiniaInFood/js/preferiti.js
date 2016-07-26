@@ -8,7 +8,8 @@ $(document).ready(function(){
                 url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti",
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
-                document.getElementById("stella").style.display = 'none';
+                $("#inserisci_tra_i_preferiti").toggle();
+                //document.getElementById("stella").style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema"); });
 
         });

@@ -541,10 +541,10 @@ else
 * =============================SEGNALA========================================
 */    
    //segnala un commento inappropriato
-                public static function segnalazione($id)
+                public static function segnalazione($id_recensione)
     {
 
-    UtenteFactory::segnalazione($id);
+    UtenteFactory::segnalazione($id_recensione);
     
     }  
     
