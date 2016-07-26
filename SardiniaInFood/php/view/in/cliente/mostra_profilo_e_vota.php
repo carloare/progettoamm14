@@ -1,4 +1,3 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/vota.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/preferiti.js"></script>
@@ -70,10 +69,9 @@
 
 
     $titolo_qp = '';
-    $rapporto_qualita_prezzo = (int) $rapporto_qp; //prende la parte intera
-    if ($rapporto_qualita_prezzo >= 4)
+    if ($rapporto_qp >= 4)
         $titolo_qp = "Economico";
-    else if ($rapporto_qualita_prezzo >= 3 AND $rapporto_qualita_prezzo < 4)
+    else if ($rapporto_qp >= 3 AND $rapporto_qp < 4)
         $titolo_qp = "Moderato";
     else
         $titolo_qp = "Costoso";
@@ -114,7 +112,7 @@
     //in tal caso non visualizza l'immagine del pulsante
     $preferito_valido = 0;
 
-$preferito_valido = UtenteFactory::preferitoValido();
+$preferito_valido = UtenteFactory::preferitoValido($_REQUEST['id_azienda']);
     
     $_SESSION['id_azienda']=$_REQUEST['id_azienda'];
     ?>
@@ -123,13 +121,20 @@ $preferito_valido = UtenteFactory::preferitoValido();
        <div id="card">
           <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
           <div class="box-contacts">
-            <h2><?php echo $attivita; ?></h2>
-            <h1><?php echo $nome_azienda; ?></h1>
-            <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
-            <p class="format"><?php echo $telefono; ?></p>
-            <p class="format"><a href="#"><?php echo $email; ?></a></p>
-            <p class="format"><a href="#"><?php echo $sitoweb; ?></a></p>
-            <p class="format"><?php echo $descrizione; ?></p>
+           <h6><i>Tipo attivit&agrave;</i></h6> 
+      <h2><?php echo $attivita; ?></h2>
+      <h6><i>Nome Azienda</i></h6>
+      <h1><?php echo $nome_azienda; ?></h1>
+      <h6><i>Indirizzo</i></h6>
+      <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
+      <h6><i>Telefono</i></h6>
+      <p class="format"><?php echo $telefono; ?></p>
+      <h6><i>Email</i></h6>
+      <p class="format"><a href="#"><?php echo $email; ?></a></p>
+      <h6><i>Sito Web</i></h6>
+      <p class="format"><a href="#"><?php echo $sitoweb; ?></a></p>
+      <h6><i>Descrizione</i></h6>
+      <p class="format"><?php echo $descrizione; ?></p>
           </div>
           
           <?php if($preferito_valido=='VALID') { ?>
@@ -193,7 +198,7 @@ $preferito_valido = UtenteFactory::preferitoValido();
               <div class="box-sx">VOTO</div>
    
               
-              <div class="box-dx" title="<?php echo $titolo_m; ?>"><?php if ($numero_voti > 0) { echo number_format($media_voto, 1);} else {echo '-';} ?> / 5</div>
+              <div class="box-dx" title="<?php echo $titolo_m; ?>"><?php if($numero_voti != 0) { echo number_format($media_voto, 1);} else {echo '-';} ?> / 5</div>
               
        
     <?php  if($voto_valido=='VALID') { ?>
@@ -221,8 +226,8 @@ $preferito_valido = UtenteFactory::preferitoValido();
         <div class="box-feedback dx">
             
                             <div class="box-sx">RAPPORTO QUALIT&Agrave; / PREZZO</div>
-                                                         
-              <div class="box-dx dx" title="<?php echo $titolo_qp; ?>"><?php if ($titolo_qp > 0) { echo number_format($rapporto_qp, 1);} else {echo '-';} ?> / 5</div>
+                                                  
+              <div class="box-dx dx" title="<?php echo $titolo_qp; ?>"><?php if($numero_voti_qp != 0) { echo number_format($rapporto_qp, 1);} else {echo '-';} ?> / 5</div>
               
             
 <?php 
@@ -317,7 +322,7 @@ else
                 
               <div class="write-a-review">
                 <h3>SCRIVI UNA RECENSIONE</h3>
-                
+                <i>Gli autori dei commenti, e non SardiniaInFood, sono responsabili dei contenuti da loro inseriti</i>
                 
                <!--inserimento di una recensione, commento o un'opinione riguardante l'azienda-->
  <form id="recensione">

@@ -50,11 +50,11 @@ class BaseController
 
 			// valori inseriti dall"utente che si vuole registrare come cliente (POST)
 
-			$name = $_REQUEST['nome_completo'];
-			$username = $_REQUEST['username'];
-			$pass = $_REQUEST['password'];
-                        $pass_conferma= $_REQUEST['password_conferma'];
-			$email = $_REQUEST['email_personale'];
+			$name = trim($_REQUEST['nome_completo']);
+			$username = trim($_REQUEST['username']);
+			$pass = trim($_REQUEST['password']);
+                        $pass_conferma= trim($_REQUEST['password_conferma']);
+			$email = trim($_REQUEST['email_personale']);
 
 			$ruolo = $_REQUEST['ruolo'];
 
@@ -345,7 +345,7 @@ else //errore username/password
 			define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}$/");
 			define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
 			define("nome_azienda_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}/");
-			define("descrizione_regexpr", "/^[A-Za-z0-9., \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
+			define("descrizione_regexpr", "/^[A-Za-z0-9.,' \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
 			define("citta_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9-\s]+$/");
 			define("indirizzo_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9\s,'-]*$/");
 			define("telefono_regexpr", "/^[0-9]{5,15}$/");
@@ -570,8 +570,8 @@ else //errore username/password
 				$company_description = trim($_REQUEST['descrizione_azienda']);
 				$company_city = trim($_REQUEST['city_azienda']);
 				$company_address = trim($_REQUEST['address_azienda']);
-				$company_phone = $_REQUEST['phone_azienda'];
-				$company_web_site = $_REQUEST['sito_web_azienda'];
+				$company_phone = trim($_REQUEST['phone_azienda']);
+				$company_web_site = trim($_REQUEST['sito_web_azienda']);
 				$utente = $_SESSION['azienda'];
 				$error_rec = 0; //verifica la presenza di un generico errore
 
@@ -1161,8 +1161,8 @@ if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 
 			// salvo l'utente in sessione
 
-			$_SESSION['current_user'] = $utente;
 
+			$_SESSION['current_user'] = $utente;
 			// si sposta nella home page del cliente
 
 			$vd->setTitolo("SardiniaInFood");
@@ -1395,8 +1395,7 @@ if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 
 	// Funzione che permette il login del'amministratore
 
-	static
-	function login_amministratore($username, $password)
+	static function login_amministratore($username, $password)
 	{
 
 		// cerco l"utente nel database in base all"email e la password passati
@@ -1421,6 +1420,8 @@ if (isset($_SESSION['risultati'])) { unset($_SESSION['risultati']); }
 
 			$_SESSION['current_user'] = $utente;
 
+                   
+                    
 			// si sposta nella home page del cliente
 
 			$vd->setTitolo("SardiniaInFood");

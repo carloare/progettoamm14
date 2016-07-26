@@ -3,6 +3,8 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 ?>
 
        <?php
+       
+       
        $numero_richiami = UtenteFactory::numeroRichiami();
       
       switch ($numero_richiami) {

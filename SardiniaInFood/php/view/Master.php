@@ -27,6 +27,7 @@ include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 <div id="top-header">
       <div class="container clearfix">
       <ul class="main-menu-top">
+          
          <?php if(!isset($_SESSION['current_user'])){ ?>
         <li>
 		      <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
@@ -98,7 +99,19 @@ require "$error";
 
 </section>
             
-            <?php if(isset($_GET['page']) AND ($_GET['page']==0))
+            <?php
+            
+            
+            if(isset($_SESSION['current_user']))
+            {
+                $name= $_SESSION['current_user']->getUsername();
+            }
+            
+            if (!(isset($_GET['page']))) { $_GET['page'] = 1000;}
+            
+            if (!(isset($name))) { $name = 'Username';}
+                
+            if((isset($_GET['page']) AND ($_GET['page']==0) AND ($_GET['page']!=1000)) || isset($_SESSION['current_user']) AND ($name=='admin')/*!!*/ )
             { ?>
  <footer id="footer">
      <?php } 

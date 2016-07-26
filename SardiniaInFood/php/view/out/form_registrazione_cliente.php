@@ -1,4 +1,3 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <div id="box-form">
@@ -48,7 +47,7 @@ Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato
                 <input type="hidden" name="ruolo" value="0">
                 <input type="hidden" name="numero_richiami" value="0">
                 <input type="hidden" name="bannato" value="0">
-                <input type="submit" class="submitrec" value="INSCRIVITI">
+                <input type="submit" class="submitrec" value="ISCRIVITI">
                 
             </form> 
 

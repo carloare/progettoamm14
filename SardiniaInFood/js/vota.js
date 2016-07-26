@@ -45,8 +45,10 @@ $('.ratings_stars').bind('click', function() {
                 data: { voto : voto }
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
-                document.getElementById("vota_hearts"). style.display = 'none';
+                $("#vota_hearts").toggle();
+                //document.getElementsByClassName("box-byrating"). style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema. Il tuo voto è andato perso"); 
+                
     });		
-});
+}); 
 });

@@ -1,4 +1,3 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <?php 
@@ -16,16 +15,61 @@ $azienda = $_SESSION['current_user'];
    
    
    
-   <p><label for="tipo_incarichi_id">Tipo di incarico:</label></p>
-
-       
+   <p><label for="tipo_incarichi_id">Tipo di incarico:</label></p>       
         <select id="tipo_incarichi_id" name="tipo_incarichi_id" title="modifica l'incarico svolto">
-            <option <?php if($azienda->getTipo_incarichi_id() == 1 ) echo 'selected' ; ?> value='1'>Proprietario</option>
-                <option <?php if($azienda->getTipo_incarichi_id() == 2 ) echo 'selected' ; ?> value="2">Direttore Generale</option>
-                    <option <?php if($azienda->getTipo_incarichi_id() == 3 ) echo 'selected' ; ?> value="3">Consulente</option>
-                        <option <?php if($azienda->getTipo_incarichi_id() == 4 ) echo 'selected' ; ?> value="4">Altro</option>
+          
+       <?php
+
+if ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] != "-1"))
+	{
+	$id_incarichi = $_POST['tipo_incarichi_id'];
+	$nome_incarico = UtenteFactory::mostraIncarico($id_incarichi);
+        
+while ($row = $nome_incarico->fetch_row())
+	{ ?> 
+ 
+            <option value="<?php
+		echo $row[0]; ?>"><?php
+		echo $row[1]; ?></option>
                 
-            </select>
+      <?php
+	}
+        
+        }
+  
+ ?> 
+
+     
+<?php
+//prima entrata mostra tutti gli incarichi
+if ((!isset($_POST['tipo_incarichi_id'])) OR ($_POST['tipo_incarichi_id'] == "-1"))
+	{
+  ?>  <option value="-1">Con che tipo di incarico?</option> <?php
+	$incarichi=UtenteFactory::mostraElencoIncarichi(0);
+        
+	}
+elseif ((isset($_POST['tipo_incarichi_id'])) AND ($_POST['tipo_incarichi_id'] != "-1"))
+	{
+	$not_show = $_POST['tipo_incarichi_id'];
+	$incarichi=UtenteFactory::mostraElencoIncarichi($not_show);
+	}
+        
+       
+  while ($row = $incarichi->fetch_row())
+	{ ?> 
+ 
+            <option value="<?php
+		echo $row[0]; ?>"><?php
+		echo $row[1]; ?></option>
+                
+      <?php
+	}
+    
+   
+        
+?>       
+       
+   </select><?php if(isset($_SESSION['tipo_incarichi_id'])) echo $_SESSION['tipo_incarichi_id']; ?>
        
   
    

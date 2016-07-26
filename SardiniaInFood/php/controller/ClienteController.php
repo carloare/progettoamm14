@@ -140,8 +140,8 @@ class ClienteController {
  */               
               //permette dare un giudizio al rapporto qualità prezzo
        case 'rapporto_qualita_prezzo': 
-           $_SESSION['voto_qp'] = $_REQUEST['voto_qp'];
-                  self::rapportoQualitaPrezzo();
+            
+                  self::rapportoQualitaPrezzo($_REQUEST['voto_qp']);
                   break;     
   /*
  * ============================COMMENTA====================================================
@@ -495,10 +495,10 @@ else
 * ==========================RAPPORTO QUALITA PREZZO==================================
 */               
           //permette di esprimere un voto sul rapporto qualità prezzo
-   public static function rapportoQualitaPrezzo() 
+   public static function rapportoQualitaPrezzo($voto_qp) 
    { 
          
-       UtenteFactory::rapportoQualitaPrezzo();
+       UtenteFactory::rapportoQualitaPrezzo($voto_qp);
  
    }  
    

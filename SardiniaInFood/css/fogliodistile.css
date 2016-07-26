@@ -112,15 +112,16 @@ p.center.white {padding: 0px 40px 30px 40px; text-align: center; color: #fff;}
 #card .box-reviews .box-gray .write-a-review {margin: 32px 32px 0px 32px; width: 1072px; height: auto; float: left;}
 #recensione {width: 100%; height: auto; float: left;}
 #recensione textarea {resize:none; width: 99.4%; height: 50px; font-size: 14px;}
-#recensione input[type="button"] {border: 3px double #fff; width: 100%; line-height: 40px; text-align: center; background: #006699; display: inline-block; font-size:16px; color: #fff; cursor:pointer;}
-#recensione input[type="button"]:hover {background: #121212; color:#f9f9f9;}
+#recensione input[type="button"] {padding: 10px 0px; border: 3px double #fff; width: 100%; line-height: 40px; text-align: center; background: #3A5FCD; display: inline-block; font-size:16px; color: #fff; cursor:pointer;}
+#recensione input[type="button"]:hover {background: #4876FF; color:#f9f9f9;}
+/*>>>>>>>>>>>*/#card .box-contacts h6 {margin: 0px; padding: 0px; width: 100%; font-size: 16px; color: #424148; border-bottom: 2px solid #424148;}
 
 
 /* PREFERITI
 ========================================================================== */ 
 #card .bottone-preferiti {}
 #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 15px center; }
-#card .bottone-preferiti input[type="button"] { margin: 120px 20px 20px 20px; padding: 10px 10px 10px 40px; width: 230px;  float: right; cursor:pointer; background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 15px center; background-size: 32px 32px; color: #000; border: none; }
+#card .bottone-preferiti input[type="button"] { margin: 150px 20px 20px 20px; padding: 10px 10px 10px 40px; width: 230px;  float: right; cursor:pointer; background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 15px center; background-size: 32px 32px; color: #000; border: none; }
 
 
 /* RATING
@@ -150,6 +151,25 @@ div.voto { padding: 5px; width: 5%; margin-left: 45%; border-radius: 5px; backgr
  .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-left: 10px; padding: 15px 0px; border: none; width: 100px; text-align: center; background: #00a65e; display: inline-block; font-size:18px; color: #fff; cursor:pointer;}
 .form-home input[type="submit"]:hover, .form-cliente input[type="submit"]:hover, .form-ricerca input[type="submit"]:hover{border: none; background: #037b47;} 
 
+/* ADMINISTRATION
+========================================================================== */ 
+  .page-administration {margin-top: 40px; width: 100%; height: auto; float: left;}  
+  .page-administration h1 {text-align: center;} 
+  .page-administration .element {margin: 0px auto; margin-top: 20px; width: 650px; height: 50px; background: #b8cce4;}
+  .page-administration .element.odd {background: #dbe5f1;}
+  .page-administration .element .sx {margin: 10px 0px 10px 15px; width: 450px; height: 30px; font-size: 16px; color: #203247; line-height: 30px; float: left;}  
+  .page-administration .element .dx {margin: 10px 10px 10px 0px; width: 100px; height: 30px; font-size: 16px; color: #2a2a2a; background: #ccffcc; line-height: 30px; text-align: center; font-weight: bold; float: right;}
+  .page-administration .moderation-review {margin: 0px auto; margin-top: 20px; padding-top: 20px; width: 650px; height: auto; background: #e7e7e7;}
+  .page-administration .moderation-review p {margin: 0px 20px 5px 20px; padding-bottom: 10px; width: 610px; font-size: 12px; line-height: 18px;}
+  .page-administration .moderation-review p.bold {font-weight: bold;}
+  .page-administration .moderation-review .actions {margin: 0px auto; width: 650px; height: 50px;} 
+  .form-banna input[type="submit"] {border: none; width: 217px; height: 50px; background: #c3181e; text-align: center; display: inline-block; font-size:18px; color: #fff; float: left; cursor:pointer;}
+  .form-banna input[type="submit"]:hover {border: none; background: #ff0000;}
+  .form-richiamo input[type="submit"] {border: none; width: 216px; height: 50px; background: #b3b300; text-align: center; display: inline-block; font-size:18px; color: #fff; float: left; cursor:pointer;}
+  .form-richiamo input[type="submit"]:hover {border: none; background: #cccc00;}
+  .form-falso-richiamo input[type="submit"] {border: none; width: 217px; height: 50px; background: #005900; text-align: center; display: inline-block; font-size:18px; color: #fff; float: right; cursor:pointer;}
+  .form-falso-richiamo input[type="submit"]:hover {border: none; background: #008000;}
+  
 /* FOOTER
 ========================================================================== */ 
 #footer {padding: 30px 0px 15px 0px; width: 100%; height: auto; background: #fff; position: fixed; bottom: 0; left: 0;} 
@@ -182,13 +202,13 @@ h6.report {margin-top: 20px; font-size: 16px; background: url(../images/alert-se
 
 /* ERRORI
 ========================================================================== */ 
- div.errore { margin: 0 auto; margin-top: 20px; margin-bottom:100px; width: 778px; height: auto; background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
- div.messaggio-errore {margin: 0 auto; padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+ div.errore { margin: 0 auto; margin-top: 20px; margin-bottom:100px; width: 778px; height: auto; background: #D82726 url('/SardiniaInFood/images/error.png') 5px 8px no-repeat;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
+ div.messaggio-errore {margin: 0 auto; padding: 10px 0px 10px 20px; width: 400px;  background: #D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
 
 /* AVVISI
 ========================================================================== */ 
- div.avviso { margin: 0 auto; width: 778px; height: auto; background: url('/SardiniaInFood/images/avviso.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
- div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+ div.avviso { margin: 0 auto; width: 778px; height: auto; background: #D82726 url('/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
+ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: #D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
 
 /* IMMAGINI TIPO DI ATTIVITA (per Firefox)
 ========================================================================== */ 
@@ -392,7 +412,7 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background:url("/Sardin
     /* AVVISI
  ========================================================================== */ 
      div.avviso { font-size: 16px; width: 574px; background-size: 35px 35px;}
-     div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+     div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background:#D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
 
     /* IMMAGINI TIPO DI ATTIVITA
  ========================================================================== */ 
@@ -494,8 +514,8 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background:url("/Sardin
     
     /* PREFERITI
     ========================================================================== */ 
-    #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) no-repeat 29% center;}
-    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 29% center; }
+    #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) 29% center no-repeat;}
+    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) 29% center no-repeat; }
 
     /* CARD
   ========================================================================== */  
@@ -650,7 +670,7 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background:url("/Sardin
     /* PREFERITI
     ========================================================================== */ 
     #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) no-repeat 19% center;}
-    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 19% center; }
+    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) 19% center no-repeat ; }
 
     
     /* CARD

@@ -1014,10 +1014,7 @@ return $result;
         $id_cliente = $_SESSION['current_user']->getId();
         $voto = $_REQUEST['voto'];
         
-        
-        echo  $id_azienda ;
-         echo $id_cliente;
-         echo $voto;
+       
         
         
         $nuova_media = 0;
@@ -1040,7 +1037,7 @@ return $result;
 $mysqli->autocommit(FALSE);
 
          $query = ("INSERT INTO Voti (id_aziende , id_clienti, voto) VALUES ( $id_azienda, $id_cliente, $voto)");
-         echo $query;
+        
  $ctrl = $mysqli->query($query);
 
  
@@ -1075,7 +1072,7 @@ $mysqli->autocommit(FALSE);
             else
             {
             
-        $nuova_media = ($nuova_media + $voto) / 2;
+        $nuova_media = ($media_voto + $voto) / 2;
             }
 
         $query=("UPDATE Statistiche SET media_voto = $nuova_media WHERE id_aziende = $id_azienda");
@@ -1177,17 +1174,18 @@ $query = ("UPDATE Statistiche SET numero_preferenze = numero_preferenze + 1 WHER
  * =============================================================================
  */  
 //funzione che inserisce il voto sul rapporto qualità prezzo
-    public static function rapportoQualitaPrezzo() { 
+    public static function rapportoQualitaPrezzo($voto) { 
         
         $id_azienda = $_SESSION['id_azienda'];
         $id_cliente = $_SESSION['current_user']->getId();
-        $voto = $_SESSION['voto_qp']; 
-        echo 'è arrivato il voto';
-        echo $voto;
-        $nuova_madia_qp=0;
+           
+       
         
+        
+        $nuova_media_qp = 0;
+        
+   
 
-        
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);   
@@ -1198,81 +1196,80 @@ $query = ("UPDATE Statistiche SET numero_preferenze = numero_preferenze + 1 WHER
             $mysqli->close();
             return NULL;
             }
- else {
+            else
+            {
              
 $mysqli->autocommit(FALSE);
 
-        $query=("INSERT INTO `Qualita_Prezzo`(`id_aziende`, `id_clienti`, `voto`) VALUES ($id_azienda, $id_cliente, $voto)");
-
-
-         $ctrl = $mysqli->query($query);
+         $query = ("INSERT INTO Qualita_Prezzo (id_aziende , id_clienti, voto) VALUES ( $id_azienda, $id_cliente, $voto)");
         
+ $ctrl = $mysqli->query($query);
+
+ 
+       
         if(!$ctrl)
          {
-            
+         
              $mysqli->rollback();
          }
        
        else
        {
            
-           
-        $media_qp = $mysqli->query("SELECT media_rapporto_qualita_prezzo FROM Statistiche WHERE id_aziende = $id_azienda");     
+        $query=("SELECT media_rapporto_qualita_prezzo FROM Statistiche WHERE id_aziende = $id_azienda");     
              
-       
         
-                
-        $row =$media_qp->fetch_array();
+        $ctrl = $mysqli->query($query);
+        
+        $row = $ctrl->fetch_array();
 
-        $media_qp = $row[0];
+        $media_voto_qp = $row[0];
         
-          if(!$media_qp)
+          if(!$ctrl)
          {
              $mysqli->rollback();
          }
         
-            if($media_qp==0)
+            if($media_voto_qp==0)
             {
-                $nuova_madia_qp = $voto;
+                $nuova_media_qp = $voto;
             }
             else
             {
             
-        $nuova_madia_qp = ($nuova_madia_qp + $voto) / 2;
+        $nuova_media_qp = ($media_voto_qp + $voto) / 2;
             }
 
-       $ctrl = $mysqli->query("UPDATE Statistiche SET media_rapporto_qualita_prezzo = $nuova_madia_qp WHERE id_aziende = $id_azienda");
+        $query=("UPDATE Statistiche SET media_rapporto_qualita_prezzo = $nuova_media_qp WHERE id_aziende = $id_azienda");
 
-     
-        if(!$ctrl)
+    $ctrl = $mysqli->query($query);
+
+       if(!$ctrl)
          {
              $mysqli->rollback();
              echo ' Si è verificato un errore';
          }
        
-         $ctrl = $mysqli->query("UPDATE Statistiche SET numero_voti_qualita_prezzo = numero_voti_qualita_prezzo + 1 WHERE id_aziende = $id_azienda");
+       $query=("UPDATE Statistiche SET numero_voti_qualita_prezzo = numero_voti_qualita_prezzo + 1 WHERE id_aziende = $id_azienda");
 
-    
+    $ctrl = $mysqli->query($query);
 
         if(!$ctrl)
          {
              $mysqli->rollback();
              echo ' Si è verificato un errore';
          }
-         
-         
-       
        
        else
         {
             echo ' Grazie per aver inserito il tuo voto';
            
        }
-         $mysqli->commit();
+        $mysqli->commit();
  $mysqli->autocommit(TRUE);
         $mysqli->close();
     }
- }
+    }
     }
 /*
  * =============================================================================
@@ -2209,10 +2206,9 @@ $mysqli->close();
             
             //controlla che l'utente non abbia inserito l'azienda nella lista dei preferiti
     
-       public static function preferitoValido() 
+       public static function preferitoValido($id_azienda) 
             {
-        
-        $id_azienda = $_SESSION['id_azienda'];
+      
         $id_cliente = $_SESSION['current_user']->getId();
         
         
@@ -2602,7 +2598,7 @@ else {
             } else {
             // nessun errore
             //formulazione della query SQL  	
-            $query = ("SELECT COUNT(*) FROM Recensioni WHERE id_aziende = $id_azienda");
+            $query = ("SELECT COUNT(*) FROM Recensioni WHERE id_aziende = $id_azienda AND valido=0");
 
          $result = $mysqli->query($query);
       

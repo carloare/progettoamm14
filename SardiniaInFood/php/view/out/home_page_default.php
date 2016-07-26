@@ -155,7 +155,7 @@ if (isset($_SESSION['risultati']) AND $_SESSION['risultati'] != 'ZERO') {
               <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
               <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
             </div>
-            <a class="readmore" href='/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>' >MAGGIORI DETTAGLI</a>
+            <a class="readmore" href='/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>' >+ DETTAGLI</a>
           </div>
         </div>
             

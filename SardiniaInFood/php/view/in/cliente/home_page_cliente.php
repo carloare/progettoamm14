@@ -1,4 +1,3 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <?php 
@@ -180,7 +179,7 @@ while ($row = $attivita->fetch_row())
               <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
               <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
             </div>
-            <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>MAGGIORI DETTAGLI</a>
+            <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
           </div>
         </div>
             

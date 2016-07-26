@@ -36,9 +36,9 @@ $('.rapporto_qualita_prezzo_dollars').bind('click', function() {
     
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
-                document.getElementById("rapporto_qualita_prezzo"). style.display = 'none';
+                $("#rapporto_qualita_prezzo").toggle();
+                //document.getElementsByClassName("box-byrating dx"). style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema. Il tuo voto_qualitaprezzo è andato perso"); 
     });		
 });
 });
-
