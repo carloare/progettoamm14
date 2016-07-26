@@ -7,7 +7,7 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
       
       switch ($numero_richiami) {
     case 0:
-        ?> <h6 class="report">Non hai ricevuto nessuna segnalazione</h6>
+        ?> <h6 class="no-report"></h6>
        <?php break;
     case 1:
         ?> <h6 class="report">Hai ricevuto una segnalazione</h6>

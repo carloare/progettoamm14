@@ -8,129 +8,188 @@
 
 /* IMPORT OTHER CSS
 ========================================================================== */
-  @import url('reset.css');
-  
+@import url('reset.css');
+
 /* BASE STYLES
 ========================================================================== */
-  body {background: #fff; font-size: 14px; font-family: Arial, sans-serif; line-height: 20px; color: #121212;} 
-  a {text-decoration: none; color: blue;}
-  a:hover {color: red;}
-  img {margin: 0; padding: 0; border: 0; width: 100%; height: auto; display: block;}
-  h1, h2, h3, h4, h5, h6 { margin-bottom: 14px; font-weight: 400; line-height: 1.3em;}
-  h1 {font-size: 28px;}
-  h1.white {padding-top: 30px; text-align: center; font-size: 40px; color: #fff;}
-  h2 {font-size: 24px;}
-  h3 {font-size: 22px;}
-  h4 {font-size: 20px;}
-  h5 {font-size: 18px;}
-  h6 {font-size: 16px;}
-  p {}
-  p.center.white {padding: 0px 40px 30px 40px; text-align: center; color: #fff;}
-  
+body {background: #fff; font-size: 14px; font-family: Arial, sans-serif; line-height: 20px; color: #121212;} 
+a {text-decoration: none; color: blue;}
+a:hover {color: red;}
+img {margin: 0; padding: 0; border: 0; width: 100%; height: auto; display: block;}
+h1, h2, h3, h4, h5, h6 { margin-bottom: 14px; font-weight: 400; line-height: 1.3em;}
+h1 {font-size: 28px;}
+h1.white {padding-top: 30px; text-align: center; font-size: 40px; color: #fff;}
+h2 {font-size: 24px;}
+h3 {font-size: 22px;}
+h4 {font-size: 20px;}
+h5 {font-size: 18px;}
+h6 {font-size: 16px;}
+p {}
+p.center.white {padding: 0px 40px 30px 40px; text-align: center; color: #fff;}
+
 /* BASE CLEAR
 ========================================================================== */  
-  .clearfix:after {clear:both; content:""; display:block; font-size:0; height:0; line-height:0; visibility:hidden; width:0;}  
-  
+.clearfix:after {clear:both; content:""; display:block; font-size:0; height:0; line-height:0; visibility:hidden; width:0;}  
+
 /* BASE LAYOUT
 ========================================================================== */ 
-  .container {margin:0 auto; padding:0; border: 0; width: 1136px; height: auto; position:relative;}   
+.container {margin:0 auto; padding:0; border: 0; width: 1136px; height: auto; position:relative;}   
 
 /* FULL BACKGROUND IMAGE
 ========================================================================== */  
-  .fullbackgroundimage {width: 100%; height: 100%; top: 0; left: 0; position: fixed; z-index: -1;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}  
-  .fullbackgroundimage.home {background: url(../images/bk-home.jpg) no-repeat center top; }
-  
+.fullbackgroundimage {width: 100%; height: 100%; top: 0; left: 0; position: fixed; z-index: -1;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}  
+.fullbackgroundimage.home {background: url(../images/bk-home.jpg) no-repeat center top; }
+
 /* TOP HEADER
 ========================================================================== */    
-  #top-header {display: none;}   
-  
+#top-header {display: none;}   
+
 /* HEADER
 ========================================================================== */ 
-  #header {width: 100%; height: auto; background: #D82726; float: left;}
-  #logo {margin: 15px 0px; width: 250px; height: 50px; background: url(../images/logo.png) 0 0 repeat; float: left;}
-  #nav {margin:0; float: right;}
-  #mobnav-btn {display: none; height: 70px; background: url(../images/menu-responsive.png) no-repeat right top; cursor: pointer;}
-  .main-menu {width: auto; height: auto; float: right;}
-  .main-menu ul {list-style: none; margin:0; padding:0; text-align:center;}
-  .main-menu li { margin-right: 15px; display:inline;}
-  .main-menu li a {margin-top: 20px; padding: 0px 30px; height:40px; background: #a90000; line-height: 40px; color: #f9f9f9; display:inline-block;}     
-  .main-menu li.user a {background: #013044;}
-  .main-menu li.selected a {}
-  .main-menu li a:hover {background: #0b0b0b;}  
+#header {width: 100%; height: auto; background: #D82726; float: left;}
+#logo {margin: 15px 0px; width: 250px; height: 50px; background: url(../images/logo.png) 0 0 repeat; float: left;}
+#nav {margin:0; float: right;}
+#mobnav-btn {display: none; height: 70px; background: url(../images/menu-responsive.png) no-repeat right top; cursor: pointer;}
+.main-menu {width: auto; height: auto; float: right;}
+.main-menu ul {list-style: none; margin:0; padding:0; text-align:center;}
+.main-menu li { margin-right: 15px; display:inline;}
+.main-menu li a {margin-top: 20px; padding: 0px 30px; height:40px; background: #a90000; line-height: 40px; color: #f9f9f9; display:inline-block;}     
+.main-menu li.user a {background: #013044;}
+.main-menu li.selected a {}
+.main-menu li a:hover {background: #0b0b0b;}  
 
 /* CONTENT
 ========================================================================== */
-  #wrapper-content {width: 100%; height: auto; float: left; margin-bottom: 200px;}
-   /*margin bottom mi serve al livello cellulare*/
-   
+#wrapper-content {width: 100%; height: auto; float: left; margin-bottom: 200px;}
+/*margin bottom mi serve al livello cellulare*/
+
 /* LIST
 ========================================================================== */
 
-  .preview-card {margin-top: 20px; padding-bottom: 0px; width: 100%; height: auto; position: relative; float: left; background-color: rgba(255, 255, 255,0.6);}
-  .preview-card .box-img {margin: 20px 0px 0px 20px; width: 280px; height: auto; float: left; }
-  .preview-card .box-text {margin: 20px; width: 796px; height: auto; float: right; }
-  .preview-card .box-text h2 {margin-bottom: 10px; font-size: 10px;} 
-  .preview-card .box-text h3 {margin-bottom: 10px; font-size: 18px;}
-  .preview-card .box-text h4 {margin-bottom: 10px; font-size: 14px;}  
-  .preview-card .box-text .box-statistiche {margin-top: 7px; width: 796px; height: auto; float: right;}
-  .preview-card .box-text .box-statistiche .visualizzazioni {width: 388px; height: auto; line-height: 40px; text-indent: 10px; background: red; float: left;}
-  .preview-card .box-text .box-statistiche .recensioni {width: 388px; height: auto; line-height: 40px; text-indent: 10px; background:  #3b5998; float: right;}
-  .preview-card .box-text .box-statistiche .media-voto {margin-top: 20px; width: 388px; height: auto; line-height: 40px; text-indent: 10px; background:  #feb841; float: left;}
-  .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 388px; height: auto; line-height: 40px; text-indent: 10px; background: #85bb65; float: right;}
-  .preview-card .box-text a.readmore {margin-top: 20px; padding: 10px; width: 120px; height: auto; font-size: 14px; text-align: center; color: #f0f0f0; background: #121212; display:block;float: right; cursor:pointer;}
-  .preview-card .box-text a.readmore:hover {background: #cc0000;}   
-  
+.preview-card {margin-top: 20px; padding-bottom: 0px; width: 100%; height: auto; position: relative; float: left; background-color: rgba(255, 255, 255,0.6);}
+.preview-card.no-trasparent {background-color: rgba(240, 240, 240, 1); }
+.preview-card .box-img {margin: 20px 0px 0px 20px; width: 280px; height: auto; float: left; }
+.preview-card .box-text {margin: 20px; width: 796px; height: auto; float: right; }
+.preview-card .box-text h2 {margin-bottom: 10px; font-size: 10px;} 
+.preview-card .box-text h3 {margin-bottom: 10px; font-size: 18px;}
+.preview-card .box-text h4 {margin-bottom: 10px; font-size: 14px;}  
+.preview-card .box-text .box-statistiche {margin-top: 7px; width: 796px; height: auto; float: right;}
+.preview-card .box-text .box-statistiche .visualizzazioni {width: 388px; height: auto; line-height: 40px; text-indent: 10px; background: #cccc00; float: left;}
+.preview-card .box-text .box-statistiche .recensioni {width: 388px; height: auto; line-height: 40px; text-indent: 10px; background:  #6666ff; float: right;}
+.preview-card .box-text .box-statistiche .media-voto {margin-top: 20px; width: 388px; height: auto; line-height: 40px; text-indent: 10px; background:  #FF3333; float: left;}
+.preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 388px; height: auto; line-height: 40px; text-indent: 10px; background: #85bb65; float: right;}
+.preview-card .box-text a.readmore {margin-top: 20px; padding: 10px; width: 120px; height: auto; font-size: 14px; text-align: center; color: #f0f0f0; background: #121212; display:block;float: right; cursor:pointer;}
+.preview-card .box-text a.readmore:hover {background: #cc0000;}   
+.preview-card .box-text .cancella-preferito {margin: 20px; width: auto; float: right; cursor:pointer;}
+
+
+/* CARD
+========================================================================== */  
+#card {margin-top: 50px; width: 100%; height: auto; float: left;}
+#card .box-img {width: 558px; height: auto; float: left;}
+#card .box-contacts {width: 558px; height: auto; float: right;}
+#card .box-contacts h1 {font-size: 24px;}
+#card .box-contacts h2 {margin-top: 30px; font-size: 14px;}  
+#card .box-contacts h4 {font-size: 18px;}
+#card .box-services {margin-top: 20px; width: 100%; height: auto; float: left;}
+#card .box-services h3 {padding: 10px 0px; width: 100%; font-size: 24px; color: #39b54a; border-bottom: 4px double #39b54a;}
+#card .box-services .box-gray {padding-bottom: 32px; width: 100%; height: auto; background: #f7f7f7; float: left;} 
+#card .box-services .box-gray .service {margin: 32px 0px 0px 32px; width: 336px; height: 40px; line-height: 40px; background: url('../images/no-check.png') no-repeat left top; font-size: 14px; text-indent: 50px; float: left;}
+#card .box-services .box-gray .service.green {background: url('../images/check.png') no-repeat left top;}
+#card .box-feedback {margin-top: 40px; width: 548px; height: auto; background: #FF3333; float: left;}
+#card .box-feedback.dx {width: 548px; background: #008d46; float: right;}
+#card .box-feedback .box-sx {width: auto; line-height: 60px; text-indent: 20px; color: #fff; float: left;}
+#card .box-feedback .box-dx {margin: 10px; width: 80px; height: 40px; line-height: 40px; background: #990000; text-align: center; color: #fff; float: right;}
+#card .box-feedback .box-dx.dx {background: #006633;}
+#card .box-feedback .box-byrating {margin: 0px 10px 10px 10px; width: 528px; height: 50px; background: #DE9AA4; float: left;}
+#card .box-feedback .box-byrating.dx {background: #AFCFAA;} 
+#card .box-reviews {margin-top: 20px; width: 100%; height: auto; float: right;}
+#card .box-reviews h3 {padding: 10px 0px; width: 100%; font-size: 24px; color: #006699; border-bottom: 4px double #006699;}
+#card .box-reviews .box-gray {padding-bottom: 32px; width: 100%; height: auto; background: #f7f7f7; float: left;}
+#card .box-reviews .box-gray .review {margin: 32px 32px 0px 32px; width: 1072px; height: auto; float: left;}
+#card .box-reviews .box-gray .review .userplusdate {width: 100%; height: 32px; line-height: 32px; background: url('../images/user.png') no-repeat left top; text-indent: 40px; float: left;} 
+#card .box-reviews .box-gray .review .text {margin: 5px 40px 0px 40px; width: auto; height: auto; float: left;}
+#card .box-reviews .box-gray .write-a-review {margin: 32px 32px 0px 32px; width: 1072px; height: auto; float: left;}
+#recensione {width: 100%; height: auto; float: left;}
+#recensione textarea {resize:none; width: 99.4%; height: 50px; font-size: 14px;}
+#recensione input[type="button"] {border: 3px double #fff; width: 100%; line-height: 40px; text-align: center; background: #006699; display: inline-block; font-size:16px; color: #fff; cursor:pointer;}
+#recensione input[type="button"]:hover {background: #121212; color:#f9f9f9;}
+
+
+/* PREFERITI
+========================================================================== */ 
+#card .bottone-preferiti {}
+#card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 15px center; }
+#card .bottone-preferiti input[type="button"] { margin: 120px 20px 20px 20px; padding: 10px 10px 10px 40px; width: 230px;  float: right; cursor:pointer; background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 15px center; background-size: 32px 32px; color: #000; border: none; }
+
+
+/* RATING
+========================================================================== */   
+.ratings { overflow: visible; padding: 10px; position: relative; width: 180px; height: 100px; }
+.ratings_stars { background: url('/SardiniaInFood/images/cuore-vuoto.png') no-repeat; float: left; height: 28px; padding: 2px; width: 32px; }
+.ratings_over { background: url('/SardiniaInFood/images/cuore-pieno.png') no-repeat; }
+.product { font: 10px verdana, sans-serif;  margin: 0 auto 40px auto; width: 180px;  height:100px; }   
+
+/* RAPPORTO QUALITA PREZZO
+========================================================================== */ 
+.rapporto_qualita_prezzo { overflow: visible; padding: 10px; position: relative; width: 180px; height: 100px; }
+.rapporto_qualita_prezzo_dollars { background: url('/SardiniaInFood/images/money (1).png') no-repeat; float: left; height: 28px; padding: 2px; width: 32px; }
+.rapporto_qualita_prezzo_over { background: url('/SardiniaInFood/images/money.png') no-repeat; }
+div.voto { padding: 5px; width: 5%; margin-left: 45%; border-radius: 5px; background-color: #45A049; }
+.product2 {   font: 10px verdana, sans-serif; margin: 0 auto 40px auto; width: 180px; height:100px; }   
+
+
+
 /* BOX FORM HOME
 ========================================================================== */ 
-  /*>>>>>>>>>>*/ #box-form-home, #box-form-cliente, #box-form-preferiti {margin: 0 auto; margin-top: 50px; margin-bottom: 20px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
-  .form-home, .form-cliente, .form-ricerca {margin: 0 auto; width: 760px; }
-  /*>>>>>>>>>>*/ .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"] {padding: 15px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block;}   
-  .form-home input[type="text"]:hover, .form-cliente input[type="text"]:hover , .form-ricerca input[type="text"]:hover{background: #f7f7f7;}
-  /*>>>>>>>>>>*/ .form-home select,.form-cliente select ,.form-ricerca select{margin-left: 10px; padding: 12px 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 300px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
-  /*>>>>>>>>>>*/ .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-left: 10px; padding: 15px 0px; border: none; width: 100px; text-align: center; background: #00a65e; display: inline-block; font-size:18px; color: #fff; cursor:pointer;}
-  .form-home input[type="submit"]:hover, .form-cliente input[type="submit"]:hover, .form-ricerca input[type="submit"]:hover{border: none; background: #037b47;} 
-  
+ #box-form-home, #box-form-cliente, #box-form-preferiti {margin: 0 auto; margin-top: 50px; margin-bottom: 20px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat; }
+.form-home, .form-cliente, .form-ricerca {margin: 0 auto; width: 760px; }
+ .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"] {padding: 15px; border: none; background: #f9f9f9; width: 300px; font-size: 18px; display: inline-block;}   
+.form-home input[type="text"]:hover, .form-cliente input[type="text"]:hover , .form-ricerca input[type="text"]:hover{background: #f7f7f7;}
+ .form-home select,.form-cliente select ,.form-ricerca select{margin-left: 10px; padding: 12px 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 300px; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
+ .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-left: 10px; padding: 15px 0px; border: none; width: 100px; text-align: center; background: #00a65e; display: inline-block; font-size:18px; color: #fff; cursor:pointer;}
+.form-home input[type="submit"]:hover, .form-cliente input[type="submit"]:hover, .form-ricerca input[type="submit"]:hover{border: none; background: #037b47;} 
+
 /* FOOTER
 ========================================================================== */ 
-  #footer {padding: 30px 0px 15px 0px; width: 100%; height: auto; background: #fff; position: fixed; bottom: 0; left: 0;} 
-  #footer.no-fixed {background: #f0f0f0; position: relative; float: left;}
-    .main-menu-footer {width: auto; height: auto; float: left;}
-  .main-menu-footer.right {float: right;}
-  .main-menu-footer ul {list-style: none; margin:0; padding:0;}
-  .main-menu-footer li {display:inline;}
-  .main-menu-footer li a {margin-right: 10px; padding: 0px; font-size: 12px; line-height: 18px; color: #121212; font-weight: bold;}
-  .main-menu-footer li a.validCSS3 {width: 88px; height: 31px; background: url(../images/w3c-css.png) 0 0 no-repeat; display: inline-block;}
-  .main-menu-footer li a.validHTML5 {width: 88px; height: 31px; background: url(../images/w3c-html.png) 0 0 no-repeat; display: inline-block;}     
-  .main-menu-footer li a:hover {text-decoration: underline;}
-  h6.report {margin-top: 20px; font-size: 16px;}
-  
-   /* FORM GENERICO
-========================================================================== */ 
-     #box-form {margin: 0 auto; margin-top: 50px; margin-bottom: 20px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat;}
-     .form-generic {margin: 0 auto; width: 800px;}
-  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
-  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+#footer {padding: 30px 0px 15px 0px; width: 100%; height: auto; background: #fff; position: fixed; bottom: 0; left: 0;} 
+#footer.no-fixed {background: #f0f0f0; position: relative; float: left;}
+.main-menu-footer {width: auto; height: auto; float: left;}
+.main-menu-footer.right {float: right;}
+.main-menu-footer ul {list-style: none; margin:0; padding:0;}
+.main-menu-footer li {display:inline;}
+.main-menu-footer li a {margin-right: 10px; padding: 0px; font-size: 12px; line-height: 18px; color: #121212; font-weight: bold;}
+.main-menu-footer li a.validCSS3 {width: 88px; height: 31px; background: url(../images/w3c-css.png) 0 0 no-repeat; display: inline-block;}
+.main-menu-footer li a.validHTML5 {width: 88px; height: 31px; background: url(../images/w3c-html.png) 0 0 no-repeat; display: inline-block;}     
+.main-menu-footer li a:hover {text-decoration: underline;}
+h6.report {margin-top: 20px; font-size: 16px; background: url(../images/alert-segnalazioni.png) 0 0 no-repeat; text-indent: 54px; line-height: 48px;}
 
-  /*>>>>>>>>>>*/.form-generic select {margin: 10px; padding: 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 98%; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
-  /*>>>>>>>>>>*/.form-generic input[type="text"] {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }   
-  /*>>>>>>>>>>*/.form-generic textarea{margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }  
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px;} 
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitlogin {margin: 30px 10px 10px 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px;} 
-  /*>>>>>>>>>>*/.form-generic input[type="email"]{margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
-  /*>>>>>>>>>>*/.form-generic input[type="checkbox"] { margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
-   /*>>>>>>>>>>*/ p.submitrec { padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
-   /*>>>>>>>>>>*/.form-generic input[type="submit"] { margin: 10px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
- 
-   /* ERRORI
+/* FORM GENERICO
 ========================================================================== */ 
-  /*>>>>>>>>>>*/ div.errore { margin: 0 auto; margin-top: 20px; margin-bottom:100px; width: 778px; height: auto; background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto; padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
-  
-   /* AVVISI
+#box-form {margin: 0 auto; margin-top: 50px; margin-bottom: 20px; padding-bottom: 30px; width: 860px; height: auto; background: url('../images/bg-black.png') 0 0 repeat;}
+.form-generic {margin: 0 auto; width: 800px;}
+ h3.white {text-align: center; font-size: 22px; color: #fff;}
+ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+.form-generic select {margin: 10px; padding: 12px; border: 0 !important; -webkit-appearance: none; -moz-appearance: none; background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat; width: 98%; background-color: #f9f9f9; text-overflow: ""; font-size: 18px; display: inline-block; cursor: pointer;}
+.form-generic input[type="text"] {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }   
+.form-generic textarea{margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; }  
+.form-generic input[type="password"].submitrec {margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px;} 
+.form-generic input[type="password"].submitlogin {margin: 30px 10px 10px 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px;} 
+.form-generic input[type="email"]{margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
+.form-generic input[type="checkbox"] { margin: 10px; padding: 12px; border: none; background: #f9f9f9; width: 95%; font-size: 18px; } 
+ p.submitrec { padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
+.form-generic input[type="submit"] { margin: 10px;  padding: 11px 0px; border: none; width: 100px; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
+
+/* ERRORI
 ========================================================================== */ 
-  /*>>>>>>>>>>*/ div.avviso { margin: 0 auto; width: 778px; height: auto; background: url('/SardiniaInFood/images/avviso.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
-  
+ div.errore { margin: 0 auto; margin-top: 20px; margin-bottom:100px; width: 778px; height: auto; background: url('/SardiniaInFood/images/error.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
+ div.messaggio-errore {margin: 0 auto; padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+
+/* AVVISI
+========================================================================== */ 
+ div.avviso { margin: 0 auto; width: 778px; height: auto; background: url('/SardiniaInFood/images/avviso.png') no-repeat #D82726 5px 8px;  background-size: 40px 40px; padding: 1em; padding-left: 3.5em; border: 2px solid #D82726; color: #f7f7f7; font-size: 18px;}
+ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+
 /* IMMAGINI TIPO DI ATTIVITA (per Firefox)
 ========================================================================== */ 
 select#tipo_attivita_id option[value="-1"]   {}
@@ -176,84 +235,58 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background:url("/Sardin
 
 /* DROPBOX MENU AZIENDA
 ========================================================================== */ 
-
-.main-menu li .dropdown .dropdown-content a {
-    margin-top: 0px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
-}
-
-.dropbutton {
-    background-color: #A90000;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    width: 280px;
-    
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-}
-
-
-.dropdown-content a {
-    color: black;
-   /* padding: 12px 16px;*/
-    text-decoration: none;
-    display: block;
-    width: 280px;
-    height: 40px; 
-}
-
+.main-menu li .dropdown .dropdown-content a { margin-top: 0px; }
+.dropdown { position: relative; display: inline-block; z-index: 1; }
+.dropbutton { width: 280px; padding: 10px; background-color: #A90000; color: white; font-size: 16px; border: none; cursor: pointer; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: #f9f9f9; min-width: 160px; }
+.dropdown-content a {  color: black; text-decoration: none; display: block; width: 280px; height: 40px; }
 .dropdown-content a:hover {background-color: #0B0B0B}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbutton {
-    background-color: #0B0B0B;
-}
-
-
-
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown:hover .dropbutton { background-color: #0B0B0B; }
 
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) { 
 
-  /* BASE LAYOUT
+    /* BASE LAYOUT
+  ========================================================================== */ 
+    .container {width: 960px;}
+
+    /* TOP HEADER
+    ========================================================================== */    
+    #top-header {display: none;}  
+
+    /* LIST
+    ========================================================================== */
+    .preview-card .box-img {width: 200px;}
+    .preview-card .box-text {width: 700px;} 
+    .preview-card .box-text .box-statistiche {width: 700px;}
+    .preview-card .box-text .box-statistiche .visualizzazioni {width: 340px;}
+    .preview-card .box-text .box-statistiche .recensioni {width: 340px;}
+    .preview-card .box-text .box-statistiche .media-voto {width: 340px;}
+    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {width: 340px;}  
+
+    /* PREFERITI
 ========================================================================== */ 
-  .container {width: 960px;}
-  
-/* TOP HEADER
-========================================================================== */    
-  #top-header {display: none;}  
-  
-  /* LIST
-  ========================================================================== */
-  .preview-card .box-img {width: 200px;}
-  .preview-card .box-text {width: 700px;} 
-  .preview-card .box-text .box-statistiche {width: 700px;}
-  .preview-card .box-text .box-statistiche .visualizzazioni {width: 340px;}
-  .preview-card .box-text .box-statistiche .recensioni {width: 340px;}
-  .preview-card .box-text .box-statistiche .media-voto {width: 340px;}
-  .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {width: 340px;}  
-  
-/* FOOTER
-========================================================================== */ 
-#footer {margin-top: 100px; float: left;}          
-  
+#card .bottone-preferiti input[type="button"] { margin-top: 60px; }
+
+
+    
+    /* CARD
+  ========================================================================== */  
+    #card .box-img {width: 460px;}
+    #card .box-contacts {width: 460px;}
+    #card .box-services .box-gray .service {width: 277px;}
+    #card .box-feedback {width: 460px;}
+    #card .box-feedback.dx {width: 460px;}
+    #card .box-feedback .box-byrating {width: 440px;}
+    #card .box-reviews .box-gray .review {width: 896px;}
+    #card .box-reviews .box-gray .write-a-review {width: 896px;}
+    #recensione textarea {width: 99.3%;} 
+
+    /* FOOTER
+    ========================================================================== */ 
+    #footer {margin-top: 100px; float: left;}          
+
 
 } 
 
@@ -262,129 +295,146 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background:url("/Sardin
 
 
 @media screen and (min-width: 768px) and (max-width: 1023px) { 
-  
-  /* BASE LAYOUT
-========================================================================== */ 
-  .container {width: 650px;}
-     
-/* TOP HEADER
-========================================================================== */    
-  #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
-  .main-menu-top {margin: 0 auto; background: red; height: auto;}
-  .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
-  .main-menu-top li {display:inline;}
-  .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
-  .main-menu-top li a:hover {background: #7a7a7a;}     
-  
-/* HEADER
-========================================================================== */   
-  #nav {margin: -75px 0px 0px 0px; width: 100%;}
-  #mobnav-btn {width: 40px; display: block; float: right;}
-  .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
-  .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
-  .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
-  .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
-  .main-menu li.user a {display: none;}
-  .main-menu ul a {padding-left: 10px;} 
 
- /* LOGOUT
-========================================================================== */ 
-.main-menu li.logout a {display: none;}
+    /* BASE LAYOUT
+  ========================================================================== */ 
+    .container {width: 650px;}
 
-/* BOX FORM HOME
-========================================================================== */ 
-  /*>>>>>>>>>>*/ #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 650px;} 
-  .form-home, .form-cliente, .form-ricerca {width: 650px;}
-  /*>>>>>>>>>>*/ .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"] {margin-left: 15px; width: 596px; font-size: 14px; display: block;}   
-  /*>>>>>>>>>>*/ .form-home select,.form-cliente select ,.form-ricerca select{margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 620px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/ .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;}
-  .form-home input[type="submit"]:hover, .form-cliente input[type="submit"]:hover, .form-ricerca input[type="submit"]:hover{margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;} 
+    /* TOP HEADER
+    ========================================================================== */    
+    #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
+    .main-menu-top {margin: 0 auto; background: red; height: auto;}
+    .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
+    .main-menu-top li {display:inline;}
+    .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
+    .main-menu-top li a:hover {background: #7a7a7a;}     
 
-/* LIST
-========================================================================== */
-  .preview-card .box-img {display: none}
-  .preview-card .box-text {width: 610px;} 
-  .preview-card .box-text .box-statistiche {width: 610px;}
-  .preview-card .box-text .box-statistiche .visualizzazioni {width: 295px;}
-  .preview-card .box-text .box-statistiche .recensioni {width: 295px;}
-  .preview-card .box-text .box-statistiche .media-voto {width: 295px;}
-  .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {width: 295px;}   
-  
-/* FOOTER
-========================================================================== */ 
- /*>>>>>>>>>>*/ #footer {margin-top: 50px; float: left;}     
- /*>>>>>>>>>>*/ h6.report {font-size: 14px;}
- 
- /* FORM GENERICO
-========================================================================= */ 
+    /* HEADER
+    ========================================================================== */   
+    #nav {margin: -75px 0px 0px 0px; width: 100%;}
+    #mobnav-btn {width: 40px; display: block; float: right;}
+    .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
+    .main-menu.xactive {display: block!important;}
+    .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
+    .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
+    .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
+    .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
+    .main-menu li.user a {display: none;}
+    .main-menu ul a {padding-left: 10px;} 
+
+    /* LOGOUT
+   ========================================================================== */ 
+    .main-menu li.logout a {display: none;}
+
+    /* BOX FORM HOME
+    ========================================================================== */ 
+     #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 650px;} 
+    .form-home, .form-cliente, .form-ricerca {width: 650px;}
+     .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"] {margin-left: 15px; width: 596px; font-size: 14px; display: block;}   
+     .form-home select,.form-cliente select ,.form-ricerca select{margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 620px; font-size: 14px; display: block;}
+     .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;}
+    .form-home input[type="submit"]:hover, .form-cliente input[type="submit"]:hover, .form-ricerca input[type="submit"]:hover{margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block;} 
+
+    /* LIST
+    ========================================================================== */
+    .preview-card .box-img {display: none}
+    .preview-card .box-text {width: 610px;} 
+    .preview-card .box-text .box-statistiche {width: 610px;}
+    .preview-card .box-text .box-statistiche .visualizzazioni {width: 295px;}
+    .preview-card .box-text .box-statistiche .recensioni {width: 295px;}
+    .preview-card .box-text .box-statistiche .media-voto {width: 295px;}
+    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {width: 295px;}   
+
+    
+    /* PREFERITI
+    ========================================================================== */ 
+    #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) no-repeat 37% center;}
+    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 37% center; }
+
+    /* CARD
+  ========================================================================== */  
+    #card .box-img {width: 200px;}
+    #card .box-contacts {width: 420px;}
+    #card .box-services .box-gray .service {width: 277px;}
+    #card .box-feedback {width: 650px;}
+    #card .box-feedback.dx {margin-top: 40px; width: 650px; float: left;}
+    #card .box-feedback .box-byrating {width: 630px;}
+    #card .box-reviews .box-gray .review {width: 586px;}
+    #card .box-reviews .box-gray .write-a-review {width: 586px;}
+    #recensione textarea {width: 98.8%;}  
+
+    /* FOOTER
+    ========================================================================== */ 
+     #footer {margin-top: 50px; float: left;}     
+     h6.report {font-size: 14px;}
+
+    /* FORM GENERICO
+   ========================================================================= */ 
     #box-form {margin-top: 50px; width: 650px;}
 
-  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff}
-  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+     h3.white {text-align: center; font-size: 22px; color: #fff}
+     span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+    .form-generic select {margin-top: 10px; margin-left: 15px; padding: 8px 8px; width: 620px; font-size: 14px; display: block;}
+    .form-generic input[type="text"] {margin-left: 15px; width: 596px; font-size: 14px; display: block;}
+    .form-generic textarea{margin-left: 15px; width: 596px; font-size: 14px; display: block; }  
+    .form-generic input[type="password"].submitrec {margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
+    .form-generic input[type="password"].submitlogin { margin-left: 15px; width: 596px; font-size: 14px; display: block;}
+    .form-generic input[type="email"]{margin-left: 15px; width: 596px; font-size: 14px; display: block; } 
+    .form-generic input[type="checkbox"] { margin-left: 15px; width: 596px; font-size: 14px; display: block; } 
+     p.submitrec { padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
+    .form-generic input[type="submit"] { margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
 
-  /*>>>>>>>>>>*/.form-generic select {margin-top: 10px; margin-left: 15px; padding: 8px 8px; width: 620px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/.form-generic input[type="text"] {margin-left: 15px; width: 596px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/.form-generic textarea{margin-left: 15px; width: 596px; font-size: 14px; display: block; }  
-    /*>>>>>>>>>>*/.form-generic input[type="password"].submitrec {margin-left: 15px; width: 596px; font-size: 14px; display: block;} 
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitlogin { margin-left: 15px; width: 596px; font-size: 14px; display: block;}
-    /*>>>>>>>>>>*/.form-generic input[type="email"]{margin-left: 15px; width: 596px; font-size: 14px; display: block; } 
-  /*>>>>>>>>>>*/.form-generic input[type="checkbox"] { margin-left: 15px; width: 596px; font-size: 14px; display: block; } 
-   /*>>>>>>>>>>*/ p.submitrec { padding: 15px 0px 0px 15px; font-size: 18px; color: #fff; }
-   /*>>>>>>>>>>*/.form-generic input[type="submit"] { margin-top: 20px; margin-left: 15px; width: 620px; font-size: 14px; display: block; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
- 
-   /* ERRORI LOGIN
-========================================================================== */ 
-  /*>>>>>>>>>>*/ div.errore { font-size: 16px; width: 574px; background-size: 35px 35px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {padding-top: 5px; width: 350px; background-size: 25px 25px;}
-  
-   /* AVVISI
-========================================================================== */ 
-  /*>>>>>>>>>>*/ div.avviso { font-size: 16px; width: 574px; background-size: 35px 35px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
-  
-   /* IMMAGINI TIPO DI ATTIVITA
-========================================================================== */ 
-select#tipo_attivita_id option[value="-1"]   {}
+    /* ERRORI LOGIN
+ ========================================================================== */ 
+     div.errore { font-size: 16px; width: 574px; background-size: 35px 35px;}
+     div.messaggio-errore {padding-top: 5px; width: 350px; background-size: 25px 25px;}
 
-select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-  
-select#tipo_attivita_id_preferiti option[value="-1"]   {}
+    /* AVVISI
+ ========================================================================== */ 
+     div.avviso { font-size: 16px; width: 574px; background-size: 35px 35px;}
+     div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
 
-select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    /* IMMAGINI TIPO DI ATTIVITA
+ ========================================================================== */ 
+    select#tipo_attivita_id option[value="-1"]   {}
+
+    select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+
+    select#tipo_attivita_id_preferiti option[value="-1"]   {}
+
+    select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
 }   
 
 
@@ -393,130 +443,147 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5p
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
 
-  /* BASE LAYOUT
-========================================================================== */ 
-  .container {width: 420px;}
-  
-/* TOP HEADER
-========================================================================== */    
-  #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
-  .main-menu-top {margin: 0 auto; background: red; height: auto;}
-  .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
-  .main-menu-top li {display:inline;}
-  .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
-  .main-menu-top li a:hover {background: #7a7a7a;}      
+    /* BASE LAYOUT
+  ========================================================================== */ 
+    .container {width: 420px;}
 
-/* HEADER
-========================================================================== */   
-  #nav {margin: -75px 0px 0px 0px; width: 100%;}
-  #mobnav-btn {width: 40px; display: block; float: right;}
-  .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
-  .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
-  .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
-  .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
-  .main-menu li.user a {display: none;}
-  .main-menu ul a {padding-left: 10px;} 
-  
-  /* LOGOUT
-========================================================================== */ 
-.main-menu li.logout a {display: none;}
-  
-/* BOX FORM HOME
-========================================================================== */ 
-     /*>>>>>>>>>>*/ #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 420px;} 
-  .form-home, .form-cliente, .form-ricerca {width: 420px;}
-  /*>>>>>>>>>>*/ .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"]{margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
-  /*>>>>>>>>>>*/ .form-home select,.form-cliente select ,.form-ricerca select{margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 390px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/ .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block;}  
-  /*>>>>>>>>>>*/ h6.report {font-size: 12px;}
-  
-/* LIST
-========================================================================== */
-  .preview-card .box-img {display: none}
-  .preview-card .box-text {width: 380px;} 
-  .preview-card .box-text .box-statistiche {width: 380px;}
-  .preview-card .box-text .box-statistiche .visualizzazioni {width: 380px;}
-  .preview-card .box-text .box-statistiche .recensioni {margin-top: 20px; width: 380px; float: left;}
-  .preview-card .box-text .box-statistiche .media-voto {width: 380px;}
-  .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 380px; float: left;}    
-  
-/* FOOTER
-========================================================================== */
- /*>>>>>>>>>>*/ #footer {margin-top: 50px; float: left;}  
-  .main-menu-footer.right {margin-top: 30px; float: left;} 
+    /* TOP HEADER
+    ========================================================================== */    
+    #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
+    .main-menu-top {margin: 0 auto; background: red; height: auto;}
+    .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
+    .main-menu-top li {display:inline;}
+    .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
+    .main-menu-top li a:hover {background: #7a7a7a;}      
 
-   /* FORM GENERALE
-========================================================================== */ 
-   #box-form {margin: 0 auto; margin-top: 50px; width: 420px;}
+    /* HEADER
+    ========================================================================== */   
+    #nav {margin: -75px 0px 0px 0px; width: 100%;}
+    #mobnav-btn {width: 40px; display: block; float: right;}
+    .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
+    .main-menu.xactive {display: block!important;}
+    .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
+    .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
+    .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
+    .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
+    .main-menu li.user a {display: none;}
+    .main-menu ul a {padding-left: 10px;} 
 
-   /* FORM GENERICO
-========================================================================== */ 
-  /*>>>>>>>>>>*/ #box-form {margin: 0 auto; margin-top: 50px; margin-bottom: 200px; width: 420px;}
-  /*>>>>>>>>>> h3.white {text-align: center; font-size: 22px; color: #fff;}*/
-  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
-  /*>>>>>>>>>>*/.form-generic select {margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 390px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/.form-generic input[type="text"]  {margin-left: 15px; width: 366px; font-size: 14px; display: block;}  
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitrec {margin-left: 15px; width: 366px; font-size: 14px; display: block;} 
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitlogin { margin-left: 15px; width: 366px; font-size: 14px; display: block;} 
-  /*>>>>>>>>>>*/.form-generic textarea {margin-left: 15px; width: 366px; font-size: 14px; display: block;}         
-  /*>>>>>>>>>>*/.form-generic input[type="email"] {margin-left: 15px; width: 366px; font-size: 14px; display: block;}      
-  /*>>>>>>>>>>*/.form-generic input[type="checkbox"] {margin-left: 15px; width: 366px; font-size: 14px; display: block;}  
-  /*>>>>>>>>>>*/.form-generic input[type="submit"] {margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
- 
-   /* ERRORI LOGIN
-========================================================================== */ 
-  /*>>>>>>>>>>*/ div.errore { font-size: 14px; width: 353px;  background-size: 35px 35px; background-color: yellow;}
-  /*>>>>>>>>>> */ div.messaggio-errore {padding-top: 5px; width: 300px; background-size: 25px 25px;}
-  
-  /* AVVISI
-========================================================================== */ 
-  /*>>>>>>>>>>*/ div.avviso { font-size: 14px; width: 353px;  background-size: 35px 35px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
-  
-  /* IMMAGINI TIPO DI ATTIVITA
-========================================================================== */ 
-select#tipo_attivita_id option[value="-1"]   {}
+    /* LOGOUT
+  ========================================================================== */ 
+    .main-menu li.logout a {display: none;}
 
-select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-  
+    /* BOX FORM HOME
+    ========================================================================== */ 
+     #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 420px;} 
+    .form-home, .form-cliente, .form-ricerca {width: 420px;}
+     .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"]{margin-left: 15px; width: 366px; font-size: 14px; display: block;}   
+     .form-home select,.form-cliente select ,.form-ricerca select{margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 390px; font-size: 14px; display: block;}
+     .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block;}  
+     h6.report {font-size: 12px;}
 
-select#tipo_attivita_id_preferiti option[value="-1"]   {}
+    /* LIST
+    ========================================================================== */
+    .preview-card .box-img {display: none}
+    .preview-card .box-text {width: 380px;} 
+    .preview-card .box-text .box-statistiche {width: 380px;}
+    .preview-card .box-text .box-statistiche .visualizzazioni {width: 380px;}
+    .preview-card .box-text .box-statistiche .recensioni {margin-top: 20px; width: 380px; float: left;}
+    .preview-card .box-text .box-statistiche .media-voto {width: 380px;}
+    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 380px; float: left;}  
+    
+    /* PREFERITI
+    ========================================================================== */ 
+    #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) no-repeat 29% center;}
+    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 29% center; }
 
-select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    /* CARD
+  ========================================================================== */  
+    #card .box-img {width: 420px;}
+    #card .box-contacts {margin-top: 10px; width: 420px; float: left;}
+    #card .box-services .box-gray .service {width: 356px;}
+    #card .box-feedback {width: 420px;}
+    #card .box-feedback.dx {margin-top: 40px; width: 420px; float: left;}
+    #card .box-feedback .box-byrating {width: 400px;}
+    #card .box-reviews .box-gray .review {width: 356px;}
+    #card .box-reviews .box-gray .write-a-review {width: 356px;}
+    #recensione textarea {width: 98.2%;} 
+
+    /* FOOTER
+    ========================================================================== */
+     #footer {margin-top: 50px; float: left;}  
+    .main-menu-footer.right {margin-top: 30px; float: left;} 
+
+    /* FORM GENERALE
+ ========================================================================== */ 
+    #box-form {margin: 0 auto; margin-top: 50px; width: 420px;}
+
+    /* FORM GENERICO
+ ========================================================================== */ 
+     #box-form {margin: 0 auto; margin-top: 50px; margin-bottom: 200px; width: 420px;}
+    /*>>>>>>>>>> h3.white {text-align: center; font-size: 22px; color: #fff;}*/
+     span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+    .form-generic select {margin-top: 20px; margin-left: 15px; padding: 11px 8px; width: 390px; font-size: 14px; display: block;}
+    .form-generic input[type="text"]  {margin-left: 15px; width: 366px; font-size: 14px; display: block;}  
+    .form-generic input[type="password"].submitrec {margin-left: 15px; width: 366px; font-size: 14px; display: block;} 
+    .form-generic input[type="password"].submitlogin { margin-left: 15px; width: 366px; font-size: 14px; display: block;} 
+    .form-generic textarea {margin-left: 15px; width: 366px; font-size: 14px; display: block;}         
+    .form-generic input[type="email"] {margin-left: 15px; width: 366px; font-size: 14px; display: block;}      
+    .form-generic input[type="checkbox"] {margin-left: 15px; width: 366px; font-size: 14px; display: block;}  
+    .form-generic input[type="submit"] {margin-top: 20px; margin-left: 15px; width: 390px; font-size: 14px; display: block; } /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
+
+    /* ERRORI LOGIN
+ ========================================================================== */ 
+     div.errore { font-size: 14px; width: 353px;  background-size: 35px 35px; background-color: yellow;}
+    /*>>>>>>>>>> */ div.messaggio-errore {padding-top: 5px; width: 300px; background-size: 25px 25px;}
+
+    /* AVVISI
+  ========================================================================== */ 
+     div.avviso { font-size: 14px; width: 353px;  background-size: 35px 35px;}
+     div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+
+    /* IMMAGINI TIPO DI ATTIVITA
+  ========================================================================== */ 
+    select#tipo_attivita_id option[value="-1"]   {}
+
+    select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+
+
+    select#tipo_attivita_id_preferiti option[value="-1"]   {}
+
+    select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
 }
 
 
@@ -525,128 +592,153 @@ select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5p
 
 @media screen and (max-width: 479px) {
 
-  /* BASE STYLES
-========================================================================== */
-  h1.white {font-size: 30px;}
+    /* BASE STYLES
+  ========================================================================== */
+    h1.white {font-size: 30px;}
 
-  /* BASE LAYOUT
-========================================================================== */ 
-  .container {width: 280px;} 
-  
-/* TOP HEADER
-========================================================================== */    
-  #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
-  .main-menu-top {margin: 0 auto; background: red; height: auto;}
-  .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
-  .main-menu-top li {display:inline;}
-  .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
-  .main-menu-top li a:hover {background: #7a7a7a;}   
-  
-/* HEADER
-========================================================================== */
-  #logo {margin: 20px 0px;  width: 200px; height: 40px; background: url(images/mob-logo.png) 0 0 repeat;}
-  #nav {margin: -75px 0px 0px 0px; width: 100%;}
-  #mobnav-btn {width: 40px; display: block; float: right;}
-  .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
-  .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
-  .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
-  .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
-  .main-menu li.user a {display: none;}
-  .main-menu ul a {padding-left: 10px;} 
-  
-  /* LOGOUT
-========================================================================== */ 
-.main-menu li.logout a {display: none;}
-  
-/* BOX FORM HOME
-========================================================================== */ 
-   /*>>>>>>>>>>*/ #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 280px;}
-  .form-home, .form-cliente, .form-ricerca {width: 280px;}
-  /*>>>>>>>>>>*/ .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"]{margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
-  /*>>>>>>>>>>*/ .form-home select,.form-cliente select ,.form-ricerca select{margin-left: 15px; margin-top: 20px; padding: 11px 8px; width: 250px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/ .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/ h6.report {font-size: 12px;}
-  
-/* LIST
-========================================================================== */
-  .preview-card .box-img {display: none}
-  .preview-card .box-text {width: 240px;} 
-  .preview-card .box-text .box-statistiche {width: 240px; font-size: 12px;}
-  .preview-card .box-text .box-statistiche .visualizzazioni {width: 240px;}
-  .preview-card .box-text .box-statistiche .recensioni {margin-top: 20px; width: 240px; float: left;}
-  .preview-card .box-text .box-statistiche .media-voto {width: 240px;}
-  .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 240px; float: left;}     
-  
-/* FOOTER
-========================================================================== */ 
-  /*>>>>>>>>>>*/  #footer {margin-top: 50px; float: left;} 
-  .main-menu-footer.right {margin-top: 30px; float: left;} 
+    /* BASE LAYOUT
+  ========================================================================== */ 
+    .container {width: 280px;} 
 
-   /* FORM GENERICO
-========================================================================== */ 
-  /*>>>>>>>>>>*/ #box-form {margin-top: 50px; padding-top: 50px; width: 280px;}
-  /*>>>>>>>>>>*/ h3.white {text-align: center; font-size: 22px; color: #fff;}
-  /*>>>>>>>>>>*/ span.submitrec {text-align: center; font-size: 22px; color: #fff;}
-  /*>>>>>>>>>>*/.form-generic select {margin-left: 15px; margin-top: 20px; padding: 11px 8px; width: 250px; font-size: 14px; display: block;}
-  /*>>>>>>>>>>*/.form-generic input[type="text"]  {margin-left: 15px; width: 226px; font-size: 14px; display: block;}  
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;} 
-  /*>>>>>>>>>>*/.form-generic input[type="password"].submitlogin { margin-left: 15px; width: 226px; font-size: 14px; display: block;} 
-  /*>>>>>>>>>>*/.form-generic textarea {margin-left: 15px; width: 226px; font-size: 14px; display: block;}         
-  /*>>>>>>>>>>*/.form-generic input[type="email"] {margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
-  /*>>>>>>>>>>*/.form-generic input[type="checkbox"] {margin-left: 15px; width: 226px; font-size: 14px; display: block;}  
-  /*>>>>>>>>>>*/.form-generic input[type="submit"] {margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
-  
-   /* ERRORI LOGIN
-========================================================================== */ 
-  /*>>>>>>>>>>*/ div.errore { font-size: 14px; width: 212px; background-size: 30px 30px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {padding-top: 5px; padding-left: 15px; width: 250px;  font-size: 14px; background-size: 20px 20px;}
-  
-  /* AVVISI
-========================================================================== */
-  /*>>>>>>>>>>*/ div.avviso { font-size: 14px; width: 212px; background-size: 30px 30px;}
-  /*>>>>>>>>>>*/ div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
-  
-/* IMMAGINI TIPO DI ATTIVITA
-========================================================================== */ 
-select#tipo_attivita_id option[value="-1"]   {}
+    /* TOP HEADER
+    ========================================================================== */    
+    #top-header {width: 100%; height: 40px; background: #000; display: inline-block; float: left; z-index: 9999;}
+    .main-menu-top {margin: 0 auto; background: red; height: auto;}
+    .main-menu-top ul {list-style: none; margin:0; padding:0; text-align:center;}
+    .main-menu-top li {display:inline;}
+    .main-menu-top li a {margin: 5px 0px 5px 5px; padding: 0px 20px; height:30px; background: #4a4a4a; line-height: 30px; font-size: 12px; color: #f9f9f9; display:inline-block; float: right;}     
+    .main-menu-top li a:hover {background: #7a7a7a;}   
 
-select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    /* HEADER
+    ========================================================================== */
+    #logo {margin: 20px 0px;  width: 200px; height: 40px; background: url(images/mob-logo.png) 0 0 repeat;}
+    #nav {margin: -75px 0px 0px 0px; width: 100%;}
+    #mobnav-btn {width: 40px; display: block; float: right;}
+    .main-menu {margin-top: 0px; padding-bottom: 20px; width: 100%!important; display: none;}
+    .main-menu.xactive {display: block!important;}
+    .main-menu li {margin-left: 0px; float: none!important; display: block!important; width: 100%!important; text-align:left;}
+    .main-menu li a {margin-top: 0px; float: none!important; padding: 0px 0px 0px 10px; height: 40px; background: none; line-height: 40px; color: #fff; border-bottom: 1px solid #e7e7e7; display: block;}
+    .main-menu li a:hover {border-bottom: 1px solid #e7e7e7; color: #fff;}
+    .main-menu li.selected a {border-bottom: 2px solid #fff; color: #fff;}
+    .main-menu li.user a {display: none;}
+    .main-menu ul a {padding-left: 10px;} 
 
-select#tipo_attivita_id_preferiti option[value="-1"]   {}
+    /* LOGOUT
+  ========================================================================== */ 
+    .main-menu li.logout a {display: none;}
 
-select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
-select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    /* BOX FORM HOME
+    ========================================================================== */ 
+     #box-form-home, #box-form-cliente, #box-form-preferiti {margin-top: 50px; width: 280px;}
+    .form-home, .form-cliente, .form-ricerca {width: 280px;}
+     .form-home input[type="text"], .form-cliente input[type="text"], .form-ricerca input[type="text"]{margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
+     .form-home select,.form-cliente select ,.form-ricerca select{margin-left: 15px; margin-top: 20px; padding: 11px 8px; width: 250px; font-size: 14px; display: block;}
+     .form-home input[type="submit"], .form-cliente input[type="submit"], .form-ricerca input[type="submit"]{margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
+     h6.report {font-size: 12px;}
+
+    /* LIST
+    ========================================================================== */
+    .preview-card .box-img {display: none}
+    .preview-card .box-text {width: 240px;} 
+    .preview-card .box-text h3 {display: inline; line-height: 24px;}
+    .preview-card .box-text .box-statistiche {width: 240px; font-size: 12px;}
+    .preview-card .box-text .box-statistiche .visualizzazioni {width: 240px;}
+    .preview-card .box-text .box-statistiche .recensioni {margin-top: 20px; width: 240px; float: left;}
+    .preview-card .box-text .box-statistiche .media-voto {width: 240px;}
+    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {margin-top: 20px; width: 240px; float: left;}     
+
+    /* PREFERITI
+    ========================================================================== */ 
+    #card .bottone-preferiti input[type="button"] {margin:0 auto; margin-top: 30px; margin-bottom: 30px; width: 100%; float: left; background: #FFFF66  url(/SardiniaInFood/images/star.png) no-repeat 19% center;}
+    #card .bottone-preferiti input[type="button"]:hover {background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 19% center; }
+
+    
+    /* CARD
+  ========================================================================== */  
+    #card .box-img {width: 280px;}
+    #card .box-contacts {margin-top: 10px; width: 280px; float: left;}
+    #card .box-services h3 {font-size: 14px;}
+    #card .box-services .box-gray .service {width: 216px;}
+    #card .box-feedback {font-size: 10px; width: 280px;}
+    #card .box-feedback.dx {margin-top: 40px; width: 280px; float: left;}
+    #card .box-feedback .box-byrating {width: 260px;}
+    #card .box-reviews h3 {font-size: 14px;}
+    #card .box-reviews .box-gray {padding-bottom: 10px;}
+    #card .box-reviews .box-gray .review {margin: 10px 10px 0px 10px; width: 260px;}
+    #card .box-reviews .box-gray .review .userplusdate {padding: 10px 0px; width: 100%; height: auto; font-size: 12px; line-height: 18px; background: none; text-indent: 0;}   
+    #card .box-reviews .box-gray .review .text {margin: 5px 10px 0px 10px; font-size: 12px; line-height: 18px;}
+    #card .box-reviews .box-gray .write-a-review {margin: 10px 10px 0px 10px; width: 260px;}
+    #recensione textarea {width: 97.3%;}  
+
+    /* FOOTER
+    ========================================================================== */ 
+      #footer {margin-top: 50px; float: left;} 
+    .main-menu-footer.right {margin-top: 30px; float: left;} 
+
+
+    /* FORM GENERICO
+ ========================================================================== */ 
+     #box-form {margin-top: 50px; padding-top: 50px; width: 280px;}
+     h3.white {text-align: center; font-size: 22px; color: #fff;}  
+     span.submitrec {text-align: center; font-size: 22px; color: #fff;}
+    .form-generic select {margin-left: 15px; margin-top: 20px; padding: 11px 8px; width: 250px; font-size: 14px; display: block;}
+    .form-generic input[type="text"]  {margin-left: 15px; width: 226px; font-size: 14px; display: block;}  
+    .form-generic input[type="password"].submitrec {margin-left: 15px; width: 226px; font-size: 14px; display: block;} 
+    .form-generic input[type="password"].submitlogin { margin-left: 15px; width: 226px; font-size: 14px; display: block;} 
+    .form-generic textarea {margin-left: 15px; width: 226px; font-size: 14px; display: block;}         
+    .form-generic input[type="email"] {margin-left: 15px; width: 226px; font-size: 14px; display: block;}      
+    .form-generic input[type="checkbox"] {margin-left: 15px; width: 226px; font-size: 14px; display: block;}  
+    .form-generic input[type="submit"] {margin-left: 15px; margin-top: 20px; width: 250px; font-size: 14px; display: block;}
+
+    /* ERRORI LOGIN
+ ========================================================================== */ 
+     div.errore { font-size: 14px; width: 212px; background-size: 30px 30px;}
+     div.messaggio-errore {padding-top: 5px; padding-left: 15px; width: 250px;  font-size: 14px; background-size: 20px 20px;}
+
+    /* AVVISI
+  ========================================================================== */
+     div.avviso { font-size: 14px; width: 212px; background-size: 30px 30px;}
+     div.messaggio-errore {margin: 0 auto;  padding: 10px 0px 10px 20px; width: 400px;  background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px; background-size: 30px 30px; text-align: center; font-size: 18px; color: #f9f9f9; background-color: #D82726;}
+
+    /* IMMAGINI TIPO DI ATTIVITA
+    ========================================================================== */ 
+    select#tipo_attivita_id option[value="-1"]   {}
+
+    select#tipo_attivita_id option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="2"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="3"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="4"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="5"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="6"] {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="7"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="8"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="9"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="10"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="11"]  {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="12"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="13"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="14"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="15"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id option[value="17"]   {  background-position: 5px 1px; background-size: 20px 20px; }
+
+    select#tipo_attivita_id_preferiti option[value="-1"]   {}
+
+    select#tipo_attivita_id_preferiti option[value="1"]    { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="2"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="3"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="4"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="5"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="6"]  { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="7"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="8"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="9"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="10"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="11"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="12"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="13"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="14"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="15"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="16"]   { background-position: 5px 1px; background-size: 20px 20px; }
+    select#tipo_attivita_id_preferiti option[value="17"]   { background-position: 5px 1px; background-size: 20px 20px; }
 }

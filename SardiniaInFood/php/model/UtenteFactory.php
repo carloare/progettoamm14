@@ -1435,9 +1435,9 @@ $result = $mysqli->query($query);
 
  //funzione che conta il numero delle views
 
-    public static function updateViewsAzienda() {
+    public static function updateViewsAzienda($id_azienda) {
        
-        $id_azienda = $_SESSION['id_azienda'];
+       
         //connessione al database
         $mysqli = new mysqli();
         $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
@@ -1552,7 +1552,7 @@ $utente->setNumeroRichiami($row->numero_richiami);
  * =============================================================================
  */   
  
-    //funzione che restituisce le ultime 5 recensioni
+    //funzione che restituisce le ultime recensioni
      public static function ultimeRecensioni($id_azienda) 
             {
    //connessione al database
@@ -2097,10 +2097,10 @@ $mysqli->close();
  */  
     //controlla che l'utente corrente non abbia già espressio il proprio voto
     
-       public static function votoValido() 
+       public static function votoValido($id_azienda) 
             {
         
-        $id_azienda = $_SESSION['id_azienda'];
+      
         $id_cliente = $_SESSION['current_user']->getId();
         
         
@@ -2156,10 +2156,10 @@ $mysqli->close();
             
             //controlla che l'utente corrente non abbia già espressio il proprio voto
     
-       public static function rapportoValido() 
+       public static function rapportoValido($id_azienda) 
             {
         
-       $id_azienda = $_SESSION['id_azienda'];
+       
         $id_cliente = $_SESSION['current_user']->getId();
         
         
@@ -3785,9 +3785,87 @@ $mysqli->close();
     
     
     
+    /*
+ * =============================================================================
+ * --------------------------------CONTA VOTI---------------------------------
+ * =============================================================================
+ */  
+    //conta il numero di voti ricevuti da un'azienda
     
+       public static function contaVoti($id_azienda) 
+            {
+        
+        
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaVoti] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+                
+      
+                
+                
+                
+            $query = ("SELECT COUNT(*) FROM Voti WHERE id_aziende = $id_azienda");
+
+         $result = $mysqli->query($query);
+      
+            $risultato = $result->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+            }
+            } 
               
-              
+ /*
+ * =============================================================================
+ * --------------------------------CONTA VOTI QP---------------------------------
+ * =============================================================================
+ */  
+    //conta il numero di voti sul rapporto qualità prezzo ricevuti da un'azienda
+    
+       public static function contaVotiQP($id_azienda) 
+            {
+        
+        
+        //connessione al database
+        $mysqli = new mysqli();
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name); 
+        
+
+    // suppongo di aver creato mysqli e di aver chiamato la connect
+        if (!isset($mysqli)) {
+            error_log("[contaVotiQP] impossibile inizializzare il database");
+            $mysqli->close();
+            return null;
+            } else {
+            // nessun errore
+            //formulazione della query SQL  	
+                
+      
+                
+                
+                
+            $query = ("SELECT COUNT(*) FROM Qualita_Prezzo WHERE id_aziende = $id_azienda");
+
+         $result = $mysqli->query($query);
+      
+            $risultato = $result->fetch_row();
+$mysqli->close();
+           return $risultato[0];
+            }
+            }            
+            
+            
+            
+            
          
          
 }

@@ -120,7 +120,8 @@ while ($row = $attivita->fetch_row())
  
      foreach($aziende as $azienda)
          {?>
-<div class="preview-card"><?php
+<div class="preview-card no-trasparent">
+        <?php
        
    //di ogni risultato mostro un mini-profilo
     $nome_azienda = $azienda->getNomeAzienda(); 
@@ -171,7 +172,7 @@ while ($row = $attivita->fetch_row())
           <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
           <div class="box-text">
             <h2><?php echo $attivita; ?></h2>
-            <h3><a href="/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
+            <h3><a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
             <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
             <div class="box-statistiche">
               <div class="visualizzazioni">VISUALIZZAZIONI: <?php echo $visualizzazioni; ?></div>
@@ -179,7 +180,7 @@ while ($row = $attivita->fetch_row())
               <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
               <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
             </div>
-            <a class="readmore" href='/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>' >MAGGIORI DETTAGLI</a>
+            <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>MAGGIORI DETTAGLI</a>
           </div>
         </div>
             

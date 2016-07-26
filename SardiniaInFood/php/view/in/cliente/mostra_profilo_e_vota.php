@@ -6,294 +6,237 @@
 <script type="text/javascript" src="/SardiniaInFood/js/segnalazione.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 
-<article>
-<?php 
-/*
- * in questa pagina viene mostrato il profilo di un'azienda.
- */
+
+    <?php
+    /*
+     * in questa pagina viene mostrato il profilo di un'azienda.
+     */
 
 
-include_once '../model/UtenteFactory.php';
-include_once '../model/Azienda.php';
-include_once '../model/Utente.php';
-include_once '../model/Cliente.php';
+    include_once '../model/UtenteFactory.php';
+    include_once '../model/Azienda.php';
+    include_once '../model/Utente.php';
+    include_once '../model/Cliente.php';
 
 
-if (session_status() != 2) session_start();
+    if (session_status() != 2)
+        session_start();
 
 
-$current_id = $_SESSION['current_user']->getId();
+    $current_id = $_SESSION['current_user']->getId();
 
 //cerca l'azienda usando il suo id
-$azienda_to_show = UtenteFactory::cercaAziendaPerId($_REQUEST['id_azienda']); 
+    $azienda_to_show = UtenteFactory::cercaAziendaPerId($_REQUEST['id_azienda']);
 
-
-
- 
-$nome_azienda = $azienda_to_show->getNomeAzienda();
-$descrizione = $azienda_to_show->getDescrizione();
+    $nome_azienda = $azienda_to_show->getNomeAzienda();
+    $descrizione = $azienda_to_show->getDescrizione();
     $citta = $azienda_to_show->getCitta();
-    $indirizzo = $azienda_to_show->getIndirizzo();     
-     $id_azienda = $azienda_to_show->getId();
-     $id_attivita=$azienda_to_show->getTipo_attivita_id();
-     
-     $telefono = $azienda_to_show->getTelefono();
-     $email = $azienda_to_show->getEmail();
-     $sitoweb =$azienda_to_show->getSitoWeb();
-     
-  $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+    $indirizzo = $azienda_to_show->getIndirizzo();
 
-  
-    //id_azienda in sessione per poter eseguire nelle funzioni UtenteFactory
-    //corrispondenti ai servizi offerti sotto
-    $_SESSION['id_azienda'] = $id_azienda;
-   
+    $telefono = $azienda_to_show->getTelefono();
+    $email = $azienda_to_show->getEmail();
+    $sitoweb = $azienda_to_show->getSitoWeb();
+
+
+    $id_attivita = $azienda_to_show->getTipo_attivita_id();
+    //cerca a seconda dell'id attivita l'effettiva attività svolta   
+    $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+    //verifica che l'azienda offra dei servizi
+    $numero_servizi = UtenteFactory::verificaServiziOfferti($_REQUEST['id_azienda']);
+    //cerca i servizi offerti dall'azienda
+    $result = UtenteFactory::cercaServiziAzienda($_REQUEST['id_azienda']);
+
+
+
+    //creazione del titolo della media_voto in funzione del valore di media_voto
+    $media_voto = UtenteFactory::mediaVoto($_REQUEST['id_azienda']);
+
+
+    //creazione del titolo media voto
+
+    $rapporto_qp = UtenteFactory::rapportoQP($_REQUEST['id_azienda']);
+
+
+
+    $titolo_m = '';
+    if ($media_voto >= 4)
+        $titolo_m = "Alle persone piace questo posto";
+    else if ($media_voto >= 3 AND $media_voto < 4)
+        $titolo_m = "Le persone hanno pareri contrastanti su questo posto";
+    else
+        $titolo_m = "Alle persono non piace questo posto";
+
+    //creazione del titolo rapporto_qp 
+
+
+    $titolo_qp = '';
+    $rapporto_qualita_prezzo = (int) $rapporto_qp; //prende la parte intera
+    if ($rapporto_qualita_prezzo >= 4)
+        $titolo_qp = "Economico";
+    else if ($rapporto_qualita_prezzo >= 3 AND $rapporto_qualita_prezzo < 4)
+        $titolo_qp = "Moderato";
+    else
+        $titolo_qp = "Costoso";
+
+
+
+
+
+    //recensioni
+    $recensioni = UtenteFactory::ultimeRecensioni($_REQUEST['id_azienda']);
+
+
+
+    //numero recensioni
+    $numero_recensioni = UtenteFactory::contaRecensioni($_REQUEST['id_azienda']);
+
+    //conta i voti ricevuti dall'azienda 
+    $numero_voti = UtenteFactory::contaVoti($_REQUEST['id_azienda']);
+
+    if($numero_voti==0) {$titolo_m = 'nessun voto ricevuto';}
+    
+
+    //conta i voti del rapporto qualità prezzo ricevuti dall'azienda 
+    $numero_voti_qp = UtenteFactory::contaVotiQP($_REQUEST['id_azienda']);
+
+    if($numero_voti_qp==0) {$titolo_qp = 'nessun voto ricevuto';}
+    
+    
     //aggiorna il numero delle visualizzazioni nella tabella Statistiche
-  UtenteFactory::updateViewsAzienda();
-  
-   //creazione dell'istruzione per visualizzare una
-  //immagine di una specifica attività
-  //con mostraAttivitaSelezionata ottengo:
-  //-l'attività svolta
-  //-il nome dell'immagine
-  //-il titolo del tag img
-  $url = '<img src="/SardiniaInFood/images/';
-  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
-  $url .= '" alt="Immagine attivit&agrave;"';
-  $url .= 'title=';
-  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
-  $url .= '>';
+    UtenteFactory::updateViewsAzienda($_REQUEST['id_azienda']);
 
+//verfica che l'utente non abbia già votato
+    $voto_valido = UtenteFactory::votoValido($_REQUEST['id_azienda']); 
     
-  //creazione del titolo della media_voto in funzione del valore di media_voto
-  $media_voto=UtenteFactory::mediaVoto($id_azienda);  
-  
-  if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
-  else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
-  else $titolo_m="Alle persono non piace questo posto";
-  
-  //creazione del titolo rapporto_qp in funzione del valore di rapporto_qp
+    $rapporto_valido = UtenteFactory::rapportoValido($_REQUEST['id_azienda']);
+    
+    //verifica che l'azienda non sia già stata inserita nella lista dei preferiti
+    //in tal caso non visualizza l'immagine del pulsante
+    $preferito_valido = 0;
 
-  $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
-  
-  $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
-  if($rapporto_qualita_prezzo>=4) $titolo_qp="Costoso";
-  else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_qp="Moderato";
-  else $titolo_qp="Economico";
-  
-  
-   
-
-  
-        
-    //visualizzo i risultati
-    echo '<div class="results">';
+$preferito_valido = UtenteFactory::preferitoValido();
     
-    
-    
-   echo $url; //immagine
-   
-   //nome azienda
-echo '<br>';
-    echo $nome_azienda;
-
-    //descrizione
-    echo '<br>';
-    echo $descrizione;
-    
-    
-    //indirizzo, citta
-    echo '<br>';
-          echo '<img src="/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
-
-    echo "$indirizzo"; echo' , '; echo $citta;
-    //tipo attività
-    echo '<br>';
-    echo $attivita;
-   
-     //voto qualità prezzo
-    
-     echo "<div title='$titolo_qp'>";
-    for($i=0; $i<$rapporto_qualita_prezzo; $i++)
-    {
-        echo '$';
-    }
-    for(; $i<5; $i++)
-    {
-        echo '&#8364;';
-    }
-    echo '</div>';
-    
-    
-    
-    
-   
-  //recapiti
-   echo '<br>';
-     echo '<img src="/SardiniaInFood/images/telephone.png" alt="telefono" title="telefono" height="16" width="16">';
-    echo " $telefono"; 
-     echo '  <img src="/SardiniaInFood/images/email.png" alt="email" title="email" height="16" width="16">';
-    echo " $email";
-    echo '  <img src="/SardiniaInFood/images/web.png" alt="sito web" title="sito web" height="16" width="16">';
-    echo " $sitoweb";
-     echo "<br>";
-//servizi dell'azienda
-    
-   $result = UtenteFactory::cercaServiziAzienda($id_azienda);
-   
-  
-//Recuperara valori 
-while($row = $result->fetch_row()){
-echo "$row[0] :";
-        if($row[1]==1)
-            echo " Si";
-       else
-           echo " No";
-echo "<br>";
-}
- 
-    
-    
-    
-     //voto medio
-echo "<div title='$titolo_m'>";
-echo $media_voto;
-echo "</div>";
+    $_SESSION['id_azienda']=$_REQUEST['id_azienda'];
+    ?>
 
 
-
-    //ultime recensioni inserite
-    echo '<div class="lasts_comments">';
-    
- $recensioni = UtenteFactory::ultimeRecensioni($id_azienda);                                  
-
- 
-
- 
- //pe ogni risultato mostra data chi ha recensito e la recensione
-while($row = $recensioni->fetch_object()) {
-
-   
-    
-    
-    echo '<div class="recensione">'; 
-   echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
-   // print $row->id;
-   // print $row->id_aziende;
-    echo $row->id;
-    echo ' ' ;
-    
-    print $row->data;
-    echo ' ';
-   echo $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-   echo ' ha scritto: ';
-    print $row->recensione;
-    //echo ' ';
-   
-    if($current_id!=$row->id_clienti)//non permettere a un cliente di segnalare un proprio messaggio
-    {
-     ?><!--se la recensione conetiene messaggi offensivi può essere segnalata con il flag
-     la segnalazione va nella funzione "segnalazione" qui sotto che aggiorna
-     la tabella Recensioni e la tabella Segnalazioni-->
-     
-     
-     
-     <?php 
-    
-     $id_recensione= $row->id; $segnalato = UtenteFactory::segnalato($id_recensione, $current_id);
- 
-   if($segnalato==0) {?>
-     
-     <div id="<?php echo $row->id; ?>">
-     <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="16" width="16" title="segnala" onclick ="return confirm('Conferma la segnalazione?');"> 
-     </div>
-     
-         <?php } else {}
-    }
-   echo '</div>';
-       
-   
-   
-   
-   
-   
-   
-   
-}  
- 
- 
- 
- 
- echo'</div>';
-   
-   
-   
-   
- 
- 
- 
- 
- echo '<section id="hearts">';
-echo "<br>";
-echo "<br>";
-//verifica che l'utente corrente non abbia già espresso il suo voto. 
-$voto_valido = 0;
-
-$voto_valido = UtenteFactory::votoValido();
-
-echo $voto_valido;
-
-
-echo "<br>";
-if($voto_valido=='VALID') {
-   
-    
-//rating che corrisponde al voto che si vuole dare a un'azienda
-echo '<section">
-<div id="vota_hearts">
-        <h4>Esprimi il tuo voto</h4>
-        <div class="product">         
-         <div id="rating_1" class="ratings">
+       <div id="card">
+          <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+          <div class="box-contacts">
+            <h2><?php echo $attivita; ?></h2>
+            <h1><?php echo $nome_azienda; ?></h1>
+            <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
+            <p class="format"><?php echo $telefono; ?></p>
+            <p class="format"><a href="#"><?php echo $email; ?></a></p>
+            <p class="format"><a href="#"><?php echo $sitoweb; ?></a></p>
+            <p class="format"><?php echo $descrizione; ?></p>
+          </div>
+          
+          <?php if($preferito_valido=='VALID') { ?>
+          <div class="bottone-preferiti">
+         
+             <input type="button" value = "AGGIUNGI AI PREFERITI" alt="Aggiungi ai preferiti" id="inserisci_tra_i_preferiti" />
+              
+              
+          </div>
+          <?php } else {} ?>
+          
+          
+          <div class="box-services">
+              
+             <h3>SERVIZI</h3>
+           
+            <div class="box-gray">
             
-                <div class="star_1 ratings_stars" title="scarso"></div>
-                <div class="star_2 ratings_stars" title="mediocre"></div>
-                <div class="star_3 ratings_stars" title="sufficiente"></div>
-                <div class="star_4 ratings_stars" title="buono"></div>
-                <div class="star_5 ratings_stars" title="ottimo"></div>
+             <?php if($numero_servizi == 1) { ?>
                 
-            </div>
-            </div>
-</div>';
-       
-}
-else
-{}
-echo '</section>';
-
-
-
-
-
-
- echo '<section id="qualityprice">';
-echo "<br>";
-echo "<br>";
-//verifica che l'utente corrente non abbia già espresso il suo voto. 
-$rapporto_valido = 0;
-
-$rapporto_valido = UtenteFactory::rapportoValido();
-
-echo $rapporto_valido;
-
-echo "<br>";
-if($rapporto_valido=='VALID') {
+             <?php while($row = $result->fetch_row()) { 
+                 
+              if($row[1]==1) { ?>
+                
+              <div class="service green"><?php  echo $row[0]; ?></div>   
+              
+              <?php } 
+              
+              if($row[1]==0) {  ?>
+              
+                <div class="service"><?php  echo $row[0]; ?></div>  
+                
+              <?php } 
+              
+              } 
+              
+              } 
+            
+            if($numero_servizi == 0) { 
+                
+              $services =  UtenteFactory::listaServizi(); ?>
+             
+            
+             
+                 <?php  while ($row = $services->fetch_row()) { ?>
+              
+               <div class="service"><?php  echo $row[1]; ?></div>
+               
+              <?php } }?>
+               
+               
+             
+             </div>
+             
+          </div>
+          
+          
+          <div class="box-feedback">
    
+              
+              <div class="box-sx">VOTO</div>
+   
+              
+              <div class="box-dx" title="<?php echo $titolo_m; ?>"><?php if ($numero_voti > 0) { echo number_format($media_voto, 1);} else {echo '-';} ?> / 5</div>
+              
+       
+    <?php  if($voto_valido=='VALID') { ?>
+   <!--rating che corrisponde al voto che si vuole dare a un'azienda-->
+   <div class="box-byrating">
+      <div id="vota_hearts">
+         <div class="product">
+            <div id="rating_1" class="ratings">
+               <div class="star_1 ratings_stars" title="scarso"></div>
+               <div class="star_2 ratings_stars" title="mediocre"></div>
+               <div class="star_3 ratings_stars" title="sufficiente"></div>
+               <div class="star_4 ratings_stars" title="buono"></div>
+               <div class="star_5 ratings_stars" title="ottimo"></div>
+            </div>
+         </div>
+      </div>
+       </div>
+      <?php }
+         else
+         {}  ?>
+   
+</div>
+          
+          
+        <div class="box-feedback dx">
+            
+                            <div class="box-sx">RAPPORTO QUALIT&Agrave; / PREZZO</div>
+                                                         
+              <div class="box-dx dx" title="<?php echo $titolo_qp; ?>"><?php if ($titolo_qp > 0) { echo number_format($rapporto_qp, 1);} else {echo '-';} ?> / 5</div>
+              
+            
+<?php 
+
+
+if($rapporto_valido=='VALID') { ?>
+                    <!--rating che corrisponde al voto che si vuole dare a un'azienda-->
+                    
+                    
+                    <div class="box-byrating dx">
+                  
+                        <div id= "rapporto_qualita_prezzo">
     
-//rating che corrisponde al rapporto qualità prezzo che si vuole dare a un'azienda
-echo '<section id="vota_dollars">
-<div id= "rapporto_qualita_prezzo">
-    
-        <h4>Esprimi il tuo voto_qp</h4>
+        
         <div class="product2">         
             <div id="rating_2" class="rapporto_qualita_prezzo">
                 <div class="dollar_1 rapporto_qualita_prezzo_dollars" title="scarso"></div>
@@ -303,57 +246,93 @@ echo '<section id="vota_dollars">
                 <div class="dollar_5 rapporto_qualita_prezzo_dollars" title="ottimo"></div>
         </div>
          </div>
-
-</div>';
-       
-}
+</div>
+</div>
+<?php }
 else
-{}
-echo '</section>';
+{} ?>
+                        
+                        
+            
+                    
+                    
+                    
+                    
+            </div> 
 
+          
+          
+           <div class="box-reviews">
+            <?php if( $numero_recensioni > 0 ) { ?>
+              
+               
+              
+            <h3><?php echo $numero_recensioni; ?> RECENSIONI</h3>
+            
+            
+            
+            <div class="box-gray">
+                
+                <?php  while($row =$recensioni->fetch_object()){ ?>
+                
+              <div class="review">
+               
+                  
+                <div class="userplusdate">
+                    
+                  <?php echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername(); ?> 
+                    &bull; 
+                        <?php echo $row->data; ?>
+                </div>
+                <div class="text">
+                  <p><?php echo $row->recensione; ?></p> 
+                </div>
+              </div>
+                    <?php }?>
+              
+               </div>
 
-
-
-echo '<section id="qualityprice">';
-echo "<br>";
-echo "<br>";
-//verifica che l'utente corrente non abbia già espresso il suo voto. 
-$preferito_valido = 0;
-
-$preferito_valido = UtenteFactory::preferitoValido();
-
-echo $preferito_valido;
-
-
-
-echo "<br>";
-if($preferito_valido=='VALID') {
-//inserimente dell'azienda nella lista dei preferiti
-//e aggiornamento del numero delle preferenze nella tabella
-//delle Statistiche
-  echo '<section id="stella">
-<h4>Inserisci nella lista dei preferiti</h4>
-<input id="inserisci_tra_i_preferiti" type="image" src="/SardiniaInFood/images/star.png" title = "aggiungi alla lista dei preferiti" alt="Aggiungi ai preferiti" height=32px width=32px>';
-}
-else
-{}
-echo '</section>';
-
-  
-  
-
-    ?>
-    
-<!--inserimento di una recensione, commento o un'opinione riguardante l'azienda-->
+            
+            <?php } 
+            
+            if( $numero_recensioni == 0 ) { ?>
+            
+            <h3>RECENSIONI</h3>
+            <div class="review">
+                <div class="userplusdate">
+                    
+                 
+                </div>
+                <div class="text">
+                  <i>nessuna recensione inserita</i> 
+                </div>
+              </div>
+              <?php } ?>
+                
+                
+                <!--inserimento di una recensione, commento o un'opinione riguardante l'azienda-->
+ 
+                
+                
+                
+              <div class="write-a-review">
+                <h3>SCRIVI UNA RECENSIONE</h3>
+                
+                
+               <!--inserimento di una recensione, commento o un'opinione riguardante l'azienda-->
  <form id="recensione">
-     <h3>Voui inserire una tua recensione?</h3>
+    
   <div>
  <textarea  name="comments"  id="comments" rows="5" cols="20" maxlength="150" title="Voui inserire una tua recensione?"></textarea>
-   </div><?php if (isset($_SESSION['recensione'])) echo $_SESSION['recensione']; ?>
-<input type="button" value="Invia" name="submit" id="submit"> 
+  <?php if (isset($_SESSION['recensione'])) echo $_SESSION['recensione']; ?> </div>
+     <div>
+<span><input type="button" value="INVIA RECENSIONE" name="submit" id="submit"></span>
+     </div>
 </form>
-    
-
-
-
-</article> 
+                
+                
+                
+              </div>
+           
+          </div> 
+ </div> 

@@ -18,7 +18,7 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
     $clienti_registrate = UtenteFactory::contaClienti(); echo $clienti_registrate;?>
     
     
-    <h4>Numero recensioni: </h4>
+    <h4>Numero totale recensioni: </h4>
     <?php //numero commenti (il nome contaRecensioni è già stato usato)
     $numero_recensioni = UtenteFactory::contaCommenti(); echo $numero_recensioni;?>  
      
@@ -28,13 +28,13 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
     $numero_accessi = UtenteFactory::contaVisualizzazioni(); echo $numero_accessi;?>
      
          
-    <h4>Numero recensioni per azienda: </h4>
+    <h4>Media recensioni per azienda: </h4>
     <?php //numero recensioni per azienda
     $media = $numero_recensioni/$aziende_registrate; echo number_format($media,2); ?>
      
     
     
-    <h4>Numero recensioni per cliente: </h4>
+    <h4>Media recensioni per cliente: </h4>
     <?php //numero recensioni per azienda
     $media = $numero_recensioni/$clienti_registrate; echo number_format($media,2); ?>
     

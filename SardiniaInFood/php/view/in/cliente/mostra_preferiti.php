@@ -76,7 +76,7 @@ while ($row = $attivita->fetch_row()) { ?>
 </form> </div></div>
      
 
-<article>
+
 <?php
 
            //salva l'utente corrente
@@ -125,91 +125,77 @@ else {
 foreach($aziende_preferite as $azienda_preferita)
 {
 
- 
-  
-  $nome_azienda = $azienda_preferita->getNomeAzienda();
-$descrizione = $azienda_preferita->getDescrizione();
+ ?>
+   <div class="preview-card no-trasparent">
+        <?php
+       
+   //di ogni risultato mostro un mini-profilo
+    $nome_azienda = $azienda_preferita->getNomeAzienda(); 
     $citta = $azienda_preferita->getCitta();
     $indirizzo = $azienda_preferita->getIndirizzo();     
-     $id_azienda = $azienda_preferita->getId();
-     $id_attivita=$azienda_preferita->getTipo_attivita_id();
-     
-     $telefono = $azienda_preferita->getTelefono();
-     $email = $azienda_preferita->getEmail();
-     $sitoweb =$azienda_preferita->getSitoWeb();
-     
-  $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+    $id_azienda = $azienda_preferita->getId();
+    $visualizzazioni=UtenteFactory::numeroVisualizzazioni($id_azienda); 
+    $id_attivita=$azienda_preferita->getTipo_attivita_id(); 
 
-  
-    //id_azienda in sessione per poter eseguire nelle funzioni UtenteFactory
-    //corrispondenti ai servizi offerti sotto
-    $_SESSION['id_azienda'] = $id_azienda;
-   
-   
-  
-   //creazione dell'istruzione per visualizzare una
-  //immagine di una specifica attività
-  //con mostraAttivitaSelezionata ottengo:
-  //-l'attività svolta
-  //-il nome dell'immagine
-  //-il titolo del tag img
-  $url = '<img src="/SardiniaInFood/images/';
-  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita); //!!!!!!!uso cercaAttività e non un'altra funzione perchè altrimenti creerei sostanzialemente due funzioni identiche 
-  $url .= '" alt="Immagine attivit&agrave;"';
-  $url .= 'title=';
-  $url .= UtenteFactory::mostraAttivitaSelezionata($id_attivita);
-  $url .= '>';
 
+    //cerca a seconda dell'id attivita l'effettiva attività svolta   
+    $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
+
+    //creazione del titolo della media_voto in funzione del valore di media_voto
+    $media_voto=UtenteFactory::mediaVoto($id_azienda);  
+    $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
+    $numero_recensioni = UtenteFactory::contaRecensioni($id_azienda);
     
-  //creazione del titolo della media_voto in funzione del valore di media_voto
-  $media_voto=UtenteFactory::mediaVoto($id_azienda);  
+    $numero_voti = UtenteFactory::numeroVoti($id_azienda);
+    $numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
+    
+    if($numero_voti>0)
+    {
+  $titolo_m="";
+  if($media_voto>=4) $titolo_m.=" Alle persone piace questo posto";
+  else if($media_voto>=3 AND $media_voto<4) $titolo_m.=" Le persone hanno pareri contrastanti su questo posto";
+  else $titolo_m.=" Alle persono non piace questo posto";
+    }
+    else
+    {
+        $titolo_m="Non ha ricevuto nessun voto";
+    }
   
-  if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
-  else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
-  else $titolo_m="Alle persono non piace questo posto";
-  
-  //creazione del titolo rapporto_qp in funzione del valore di rapporto_qp
-
-  $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
-  
-  $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
-  if($rapporto_qualita_prezzo>=4) $titolo_qp="Costoso";
-  else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_qp="Moderato";
-  else $titolo_qp="Economico";
-  
-   
-  
-  echo "    
-        <div id=profile$id_azienda> 
+    if($numero_voti_qp>0)
+    {
+  $titolo_qp="";   
+  if($rapporto_qp>=5) $titolo_qp.=" economico";
+  else if($rapporto_qp>=3 AND $rapporto_qp<4) $titolo_qp.=" moderato";
+  else $titolo_qp.= " costoso";
+    }
+    else
+    {
+        $titolo_qp="Non ha ricevuto nessun voto";
+    }
+            ?>
             
-$url 
-        <h2>
-        $nome_azienda     
-        </h2>    
-        <p>
-        $indirizzo         
-       
-        $citta 
-            <br>
-    $attivita
-
-<br>
-$telefono
-<br>
-$email
-<br>
-$sitoweb
-
+             
+          <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+          <div class="box-text">
+            <h2><?php echo $attivita; ?></h2>
+            <h3><?php echo $nome_azienda; ?></a></h3>
+            <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
+            <div class="box-statistiche">
+              <div class="visualizzazioni">VISUALIZZAZIONI: <?php echo $visualizzazioni; ?></div>
+              <div class="recensioni">RECENSIONI: <?php echo $numero_recensioni; ?></div>
+              <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php echo $media_voto; ?> / 5</div>
+              <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php echo $rapporto_qp; ?> / 5</div>
+            </div>
+            <div><input type="image" src="/SardiniaInFood/images/cancel.png" id="<?php echo $id_azienda;?>" class="cancella-preferito" alt="cancella dai preferiti" height="38" width="38" title="Cancella dai preferiti" />
+            </div>
+            </div>
+        </div>
     
     
-        ";  
-  ?>          
-
-<input type="image" src="/SardiniaInFood/images/arrows.png" id="<?php echo $id_azienda;?>" alt="cancella dai preferiti" height="32" width="32" title="Cancella dai preferiti">
- 
+    
+    
 <?php    
-echo "</div>";
-  
+
   
  
 //azzero il filtro
@@ -223,4 +209,4 @@ $citta = NULL;
 
 }
 ?>
-</article>
+

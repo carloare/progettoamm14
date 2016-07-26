@@ -98,8 +98,15 @@ require "$error";
 
 </section>
             
-            
+            <?php if(isset($_GET['page']) AND ($_GET['page']==0))
+            { ?>
  <footer id="footer">
+     <?php } 
+     else
+     { ?>
+         <footer id="footer" class="no-fixed">
+    <?php } ?>
+     
       <div class="container clearfix">
       <?php $content=$vd->getFooterFile(); require "$content"; ?>
         
