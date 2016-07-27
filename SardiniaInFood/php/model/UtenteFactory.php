@@ -1008,11 +1008,11 @@ return $result;
  * =============================================================================
  */  
 //funzione che permette di dare un voto a un'azienda
-    public static function vota() { 
+    public static function vota($voto) { 
         
         $id_azienda = $_SESSION['id_azienda'];
         $id_cliente = $_SESSION['current_user']->getId();
-        $voto = $_REQUEST['voto'];
+       
         
        
         
@@ -1115,10 +1115,10 @@ $mysqli->autocommit(FALSE);
  * =============================================================================
  */  
   //funzione che inserisce un'azienda tra i preferiti
-    public static function inserisciTraIPreferiti() {
+    public static function inserisciTraIPreferiti($id_azienda) {
         
         
-        $id_azienda = $_SESSION['id_azienda'];
+     
         $id_cliente = $_SESSION['current_user']->getId();
         //connessione al database
         $mysqli = new mysqli();
@@ -1277,7 +1277,8 @@ $mysqli->autocommit(FALSE);
  * =============================================================================
  */  
     //funzione inserisce nel database una recensione, commento o opinione sull'azienda
-    public static function commenta() { 
+    //public static function commenta()
+    public static function commenta($comments) { 
         
           
 $data = date("d/m/Y");
@@ -1299,8 +1300,8 @@ $data = date("d/m/Y");
             {
 
 $stmt= $mysqli->prepare("INSERT INTO Recensioni(id_aziende, id_clienti, data, recensione, segnalato,valido) VALUES (?,?,?,?,?,?)");
-
-$stmt->bind_param('iissii', $_SESSION['id_azienda'],$_SESSION['current_user']->getId(), $data, $_REQUEST['comments'],$zero,$zero);
+                                                                                            //$_REQUEST['comments']
+$stmt->bind_param('iissii', $_SESSION['id_azienda'],$_SESSION['current_user']->getId(), $data, $comments,$zero,$zero);
 $stmt->execute();
 
 if($stmt)
@@ -2050,9 +2051,9 @@ Aziende.ruolo FROM Aziende JOIN Preferiti ON Aziende.id=Preferiti.id_aziende WHE
  * =============================================================================
  */  
             //funzione che cancella il profilo dell'azienda
-    public static function deleteFavorite() {
+    public static function deleteFavorite($id_azienda) {
         
-       $id_azienda = $_REQUEST['id_azienda'];
+      
         $id_cliente = $_SESSION['current_user']->getId();
  
         
@@ -3015,7 +3016,7 @@ else {$mysqli->close(); return 'SI';}
                $indirizzo=$utente->getIndirizzo();
                 $telefono=$utente->getTelefono();
                 $sito_web=$utente->getSitoWeb();
-                echo'uf: ';
+              
              
               
                
@@ -3080,7 +3081,7 @@ else {$mysqli->close(); return 'SI';}
             } else {
                 
                 $id_azienda = $utente->getId();
-                echo $id_azienda;
+                
   if(isset($_SESSION['servizi']))
       {
            $form_servizi=$_SESSION['servizi'];
@@ -3103,13 +3104,13 @@ else {$mysqli->close(); return 'SI';}
 
               if (in_array($id_static_servizio, $form_servizi)) {
                   
-                  echo "OK";
+                 
                
 // echo "<input style='vertical-align:middle;' type='checkbox' name='mete_di_viaggio[]' value='$id_mdv_less_plus' checked='checked'/><span style='color: #009900;'>$nomeMDV</span><br />";
               $query = "UPDATE Aziende_Servizi SET valore=1 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
                   $result = $mysqli->query($query);
                   
-                  } else {     ECHO "nO";                
+                  } else {                     
                 //echo "<input style='vertical-align:middle;' type='checkbox' name='mete_di_viaggio[]' value='$id_mdv_less_plus' /><span style='color: #009900;'>$nomeMDV</span><br />";
               $query = "UPDATE Aziende_Servizi SET valore=0 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
                   $result = $mysqli->query($query);
@@ -3224,8 +3225,7 @@ return $results;
     //funzione che restituisce l'id della segnalazione
      public static function idSegnalazioni($id_recensione, $id_cliente) 
             {
-     echo $id_recensione; echo '-';
-     echo $id_cliente;
+
      
      //connessione al database
     $mysqli = new mysqli();
@@ -3923,7 +3923,6 @@ $mysqli->close();
       
             $risultato = $result->fetch_row();
 $mysqli->close();
-var_dump ($risultato[0]);
            return $risultato[0];
           }
           

@@ -54,7 +54,6 @@ while($row = $risultati->fetch_object()) {
                           
             <p class="bold"><?php echo $name; ?></p>
             <p class="bold"><?php echo $data; ?> </p>
-            <p class="bold"><?php echo $id_segnalazione; ?></p>
             <p><?php echo $recensione; ?></p>
             <div class="actions">
               <input type="submit" id="<?php echo $id_scrittore."-".$id_segnalazione; ?>"  class="banna" value="BANNA" >

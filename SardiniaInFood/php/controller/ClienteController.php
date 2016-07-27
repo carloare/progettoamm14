@@ -133,6 +133,8 @@ class ClienteController {
  */         
               //permette di inserire un'azienda tra le preferite
      case 'inseriscitraipreferiti': 
+        
+         
                   self::inserisciTraIPreferiti();
                   break;          
   /*
@@ -141,7 +143,7 @@ class ClienteController {
               //permette dare un giudizio al rapporto qualità prezzo
        case 'rapporto_qualita_prezzo': 
             
-                  self::rapportoQualitaPrezzo($_REQUEST['voto_qp']);
+                  self::rapportoQualitaPrezzo();
                   break;     
   /*
  * ============================COMMENTA====================================================
@@ -175,9 +177,9 @@ class ClienteController {
                  //segnala un commento inopportuno
       case 'segnalazionerecensione':         
               
-          $id_recensione=$_REQUEST['id'];
+          
          
-                self::segnalazione($id_recensione);
+                self::segnalazione();
                 break;            
               
               
@@ -475,8 +477,8 @@ else
                 //permette di votare 
    public static function vota() 
    { 
-         
-       UtenteFactory::vota();
+          $voto = $_REQUEST['voto'];
+       UtenteFactory::vota($voto);
  
    } 
                 
@@ -487,17 +489,17 @@ else
     //permette di inserire l'azienda tra i preferiti
   public static function inserisciTraIPreferiti() 
    {
-     
-     UtenteFactory::inserisciTraIPreferiti();
+     $id_azienda = $_REQUEST['id_azienda'];
+     UtenteFactory::inserisciTraIPreferiti($id_azienda);
 
   }            
          /*
 * ==========================RAPPORTO QUALITA PREZZO==================================
 */               
           //permette di esprimere un voto sul rapporto qualità prezzo
-   public static function rapportoQualitaPrezzo($voto_qp) 
+   public static function rapportoQualitaPrezzo() 
    { 
-         
+         $voto_qp=$_REQUEST['voto_qp'];
        UtenteFactory::rapportoQualitaPrezzo($voto_qp);
  
    }  
@@ -510,9 +512,10 @@ else
    { 
          
      
-      $_REQUEST['comments']= htmlentities($_REQUEST['comments']);
-       
-       UtenteFactory::commenta();
+      //$_REQUEST['comments']= htmlentities($_REQUEST['comments']);
+       $comments= htmlentities($_REQUEST['comments']);
+       //UtenteFactory::commenta();
+       UtenteFactory::commenta($comments);
        
       
        
@@ -541,9 +544,9 @@ else
 * =============================SEGNALA========================================
 */    
    //segnala un commento inappropriato
-                public static function segnalazione($id_recensione)
+                public static function segnalazione()
     {
-
+$id_recensione=$_REQUEST['id'];
     UtenteFactory::segnalazione($id_recensione);
     
     }  
@@ -582,8 +585,8 @@ else
      //permette di cancellare un'azienda inserita nella lista dei preferiti
    public static function deleteFavorite() 
    {
-      
-       UtenteFactory::deleteFavorite();
+       $id_azienda = $_REQUEST['id_azienda'];
+       UtenteFactory::deleteFavorite($id_azienda);
       
   }
   

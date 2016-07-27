@@ -2,14 +2,13 @@ $(document).ready(function(){
     
 //Il JQUERY partirà al click sull'immgaine
 $("input:submit.falso_richiamo").click(function() {
-//prendo l'id associato all'azienda  
+//id recensione + id segnalazione 
   var id = this.id;
-
+//splitto gli id
  var vector = id.split("-"); 
- 
-                //da qui in poi potete usare l'id recuperato per fare qualcosa
-                        //in questo caso faccio apparire un alert con dentro l'id recuperato.
- 
+   //ottengo
+ //vector[0] è l'id della recensione
+ //vector[1] è l'id della segnalazione
           
  
  $.ajax({ //spedizione a AmministratoreController per bannare un cliente

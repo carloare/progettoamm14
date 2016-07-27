@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/SardiniaInFood/js/vota.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/preferiti.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/aggiungi_ai_preferiti.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/commenta.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/segnalazione.js"></script>
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
@@ -114,7 +114,7 @@
 
 $preferito_valido = UtenteFactory::preferitoValido($_REQUEST['id_azienda']);
     
-    $_SESSION['id_azienda']=$_REQUEST['id_azienda'];
+   // $_SESSION['id_azienda']=$_REQUEST['id_azienda'];
     
     
     $current_id = $_SESSION['current_user']->getId();
@@ -136,13 +136,17 @@ $preferito_valido = UtenteFactory::preferitoValido($_REQUEST['id_azienda']);
       <p class="format"><a href="#"><?php echo $sitoweb; ?></a></p>
       <h6><i>Descrizione</i></h6>
       <p class="format"><?php echo $descrizione; ?></p>
-          </div>
+          </div> 
+          
+         
           
           <?php if($preferito_valido=='VALID') { ?>
-          <div class="bottone-preferiti">
-         
-             <input type="button" value = "AGGIUNGI AI PREFERITI" alt="Aggiungi ai preferiti" id="inserisci_tra_i_preferiti" />
-              
+          
+          
+          <div id="bottone-preferiti<?php echo $_REQUEST['id_azienda']; ?>">
+         <div class="bottone-preferiti">
+             <input type="button" value = "AGGIUNGI AI PREFERITI" alt="Aggiungi ai preferiti" id="<?php echo $_REQUEST['id_azienda']; ?>" />
+          </div>
               
           </div>
           <?php } else {} ?>
@@ -282,7 +286,7 @@ else
                
                 <div class="userplusdate">
                     
-                  <?php echo $row->id_clienti; echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername(); ?> 
+                  <?php echo $nome=UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername(); ?> 
                     &bull; 
                         <?php echo $row->data; ?>
                 </div>

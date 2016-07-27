@@ -1,4 +1,5 @@
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="/SardiniaInFood/js/aggiungi_preferiti_da_lista.js"></script>
 
 <?php 
     
@@ -8,7 +9,8 @@
 
     include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
    
-   
+    
+
     if (session_status() != 2) session_start();
     ?>
 
@@ -130,7 +132,14 @@ while ($row = $attivita->fetch_row())
     $visualizzazioni=UtenteFactory::numeroVisualizzazioni($id_azienda); 
     $id_attivita=$azienda->getTipo_attivita_id(); 
 
+//verifica che l'azienda non sia già stata inserita nella lista dei preferiti
+    //in tal caso non visualizza l'immagine del pulsante
+    $preferito_valido = 0;
 
+$preferito_valido = UtenteFactory::preferitoValido($id_azienda);
+    
+$_SESSION['id_azienda'] = $id_azienda;
+    
     //cerca a seconda dell'id attivita l'effettiva attività svolta   
     $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
 
@@ -178,6 +187,13 @@ while ($row = $attivita->fetch_row())
               <div class="recensioni">RECENSIONI: <?php echo $numero_recensioni; ?></div>
                <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php if($numero_voti>0) {echo $media_voto;} else {echo "-";} ?> / 5</div>
               <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp;} else {echo "-";} ?> / 5</div>
+            </div>
+            <div id="preferito_da_lista<?php echo $id_azienda; ?>">
+           <?php if($preferito_valido=='VALID') { ?>
+               
+            <input type="image" src="/SardiniaInFood/images/star.png" title = "aggiungi alla lista dei preferiti" id="<?php echo $id_azienda; ?>" alt="Aggiungi ai preferiti" height=32px width=32px>
+            <?php } else {} ?>
+                
             </div>
             <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
           </div>
