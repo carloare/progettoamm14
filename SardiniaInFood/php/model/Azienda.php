@@ -1,9 +1,9 @@
 <?php
 include_once 'Utente.php';
-
 /*
 * Classe che rappresenta un generica azienda
 */
+
 class Azienda extends Utente
 
 	{
@@ -46,13 +46,9 @@ class Azienda extends Utente
 	/*
 	* Costruttore
 	*/
-	public
-
-	function __construct()
+	public function __construct()
 		{
-
 		// richiamiamo il costruttore della superclasse
-
 		parent::__construct();
 		$this->setRuolo(Utente::Azienda);
 		}
@@ -203,5 +199,4 @@ class Azienda extends Utente
 		$this->sito_web = $sito_web;
 		}
 	}
-
 ?>

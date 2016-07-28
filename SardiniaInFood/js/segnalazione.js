@@ -16,7 +16,7 @@ $.ajax({//spedizione alla ClienteController per effettuare la segnalazione della
                 
                 //WORK IN PROGRESS
            }).done(function(messaggio) {
-               alert("Messaggio:" + messaggio);
+ alert("Messaggio:" + messaggio);
              
                document.getElementById(id).style.display='none';
             }).fail(function() { alert("Errore: si è verificato un problema"); });

@@ -2,8 +2,8 @@
 /*
 * Classe che rappresenta i servizi offerti dall'azienda
 */
-class Servizio
 
+class Servizio
 	{
 	/*
 	* Tipo di servizio svolto
@@ -13,6 +13,7 @@ class Servizio
 	* Identificatore del servizio
 	*/
 	private $id;
+        
 	/**
 	 * Costruttore
 	 */
@@ -61,6 +62,5 @@ class Servizio
 		$this->id = $intVal;
 		}
 	}
-
 ?>
 

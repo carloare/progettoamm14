@@ -2,8 +2,8 @@
 /*
 * Classe che rappresenta un generico utente del sistema
 */
-class Utente
 
+class Utente
 	{
 	/*
 	* Costante che definisce il ruolo cliente
@@ -156,6 +156,4 @@ class Utente
 			}
 		}
 	}
-
 ?>
-

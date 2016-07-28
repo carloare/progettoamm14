@@ -37,15 +37,20 @@ $('.ratings_stars').bind('click', function() {
                     var voto = 4; 
                  if(selezionato =="star_5 ratings_stars ratings_over")
                     var voto = 5; 
-                  
+                
+     var id_azienda =  $('.box-services').attr("id");         
+     
+          
             $.ajax({ 
                 type: "POST",
                 url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=vota",
                 
-                data: { voto : voto }
+                data: { voto : voto, id_azienda : id_azienda }
+                
             }).done(function(messaggio) {
-                alert("Messaggio:" + messaggio);
-                $("#vota_hearts").toggle();
+                //alert("Messaggio:" + messaggio);
+                $("#rating1").toggle();
+                $("#vota_hearts").html("Grazie per aver votato");
                 //document.getElementsByClassName("box-byrating"). style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema. Il tuo voto è andato perso"); 
                 

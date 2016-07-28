@@ -46,7 +46,30 @@ and open the template in the editor.
             <li>Utilizzo di javascript (per mezzo di jQuery)</li>
             <li>Utilizzo del pattern MVC</li>
             <li>Due ruoli: lettore e bibliotecario</li>
-            <li>transazioni</li>
+            <li>transazioni: ci sono 9 transizioni implementate nella classe 'UtenteFactory'. Due transizioni
+            sono dentro la funzione 'CreaUtente'. La prima riguarda la creazione di un nuovo cliente, per cui
+            analizzando l'indirizzo email si va a verificare che chi cerca di effettuare una nuova iscrizione
+            non sia stato bannato precedentemente, si verifica se l'indirizzo email non sia già presente
+            nel database e infine se le due query danno esito negativo si va effettivamente a registrare il nuovo
+            cliente.
+            Nella stessa funzione si va anche a creare una nuova azienda. Anche in questo caso si va prima a 
+            verificare che l'indirizzo email non sia già presente nel database, in caso negativo si crea
+            la nuova anzienda che va anche inserita nelle tabelle che riguardano le statistiche e i servizi offerti.
+            Altre tre transizioni si trovano nelle funzioni 'rapportoQualitaPrezzo', 'vota', 'inserisciTraIPreferiti'
+            le quali funzionano in modo pressochè idetico. Le prime due inseriscono un voto rispettivamente nelle tabelle 'Qualita_Prezzo'
+            e 'Voti', la terza indica la preferenza nella tabella 'Preferiti', e poi, tutte e tre, vanno ad aggiornare 
+            la tabella 'Statistiche'.
+            Un'altra segnalazione è presente nella funzione 'segnalazione' che nella tabella 'Recensioni' annota come
+            segnalata una recensione e poi la inserisce nella tabella 'Segnalazioni'.
+            Altre due transizioni si trovano nelle funzioni 'banna' e 'richiama'. La prima funzione 
+            aggiorna la funzione 'Clienti', per impostare come bannato un cliente, e poi va a rendere non valide le sue
+            recensioni andando ad aggiornare la tabella 'Recensioni'. La seconda funzione invece va a inserire il 
+            richiamo nella tabella 'Clienti', e poi andando a analizzare il numero dei precedenti richiami
+            va a bannare il cliente.
+            L'ultima transizione si trova nella funzione 'cancellaRecensione' dove per prima cosa viene reso non valida
+            una recensione agendo sulla tabella 'Recensioni' e poi si va a cancellarla dalla tabella 'Segnalazioni' usando il suo id.
+            </li>
+
             <li>funzionalità ajax</li>
         </ul>
         <h2>Accesso all'applicazione</h2>

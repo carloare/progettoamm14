@@ -27,16 +27,19 @@ $('.rapporto_qualita_prezzo_dollars').bind('click', function() {
                     var voto_qp = 4; 
                  if(selezionato =="dollar_5 rapporto_qualita_prezzo_dollars rapporto_qualita_prezzo_over")
                     var voto_qp = 5; 
-             
+     
+     var id_azienda =  $('.box-services').attr("id");
+    
             $.ajax({
                 type: "POST",
                 url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=rapporto_qualita_prezzo",
                    
-                data: { voto_qp : voto_qp }
+                data: { voto_qp : voto_qp, id_azienda : id_azienda }
     
             }).done(function(messaggio) {
-                alert("Messaggio:" + messaggio);
-                $("#rapporto_qualita_prezzo").toggle();
+                //alert("Messaggio:" + messaggio);
+                $("#rating2").toggle();
+                $("#rapporto_qualita_prezzo").html("Grazie per aver votato");
                 //document.getElementsByClassName("box-byrating dx"). style.display = 'none';
             }).fail(function() { alert("Errore: si è verificato un problema. Il tuo voto_qualitaprezzo è andato perso"); 
     });		

@@ -3,7 +3,7 @@
 <?php 
  if (session_status() != 2) session_start();
 $azienda = $_SESSION['current_user'];
-$servizi = UtenteFactory::cercaServizi($azienda->getId());
+$servizi = UtenteFactory::cercaServiziAzienda($azienda->getId());
 ?>
 
 <!--
@@ -16,7 +16,15 @@ $servizi = UtenteFactory::cercaServizi($azienda->getId());
 
 
 <!--verifica se l'azienda offre dei servizi -->
-
+<div id="box-form">
+    <h1 class="white">
+        Modifica i servizi che offre la tua azienda
+    </h1>
+    <h3 class="white" >
+        Servizi offerti
+    </h3>
+    <div>
+        <div class="form-generic">
 <form action="/SardiniaInFood/php/controller/AziendaController.php" method="POST">
     
 
@@ -27,7 +35,7 @@ $servizi = UtenteFactory::cercaServizi($azienda->getId());
     
     
 
-        <?php $servizi = UtenteFactory::mostraServizi();
+        <?php $servizi = UtenteFactory::cercaServiziAzienda($id_azienda);
        
     
         
@@ -35,14 +43,14 @@ $servizi = UtenteFactory::cercaServizi($azienda->getId());
         
 
         
-         if ($row[0]==1) 
+         if ($row[1]==1) 
       {?>
-          <input type="checkbox" name="servizi[]" value="<?php echo $row[2]; ?>" checked='checked' /><span><?php echo $row[1];?></span> <br>      
+          <input type="checkbox" name="servizi[]" value="<?php echo $row[1]; ?>" checked='checked' /><span class="submitrec"><?php echo $row[0];?></span> <br>      
   <?php    }
           
       else
       {?>
-       <input type="checkbox" name="servizi[]" value="<?php echo $row[2]; ?>" /><span><?php echo $row[1]; ?></span> <br>      
+       <input type="checkbox" name="servizi[]" value="<?php echo $row[1]; ?>" /><span class="submitrec"><?php echo $row[0]; ?></span> <br>      
  <?php }
         }
         
@@ -54,7 +62,7 @@ $servizi = UtenteFactory::cercaServizi($azienda->getId());
     while ($row = $servizi->fetch_row()) { ?>
  
                 
-         <input type="checkbox" name="servizi[]" value="<?php echo $row[0]; ?>" /><span><?php echo $row[1];?></span><br>       
+         <input type="checkbox" name="servizi[]" value="<?php echo $row[0]; ?>" /><span class="submitrec"><?php echo $row[1];?></span><br>       
        <?php }
         }
         
@@ -73,6 +81,8 @@ $servizi = UtenteFactory::cercaServizi($azienda->getId());
 
         <br>    
 <input type="hidden" name="cmd" value="update_servizi">
-<input type="submit" value="Aggiorna">
+<input type="submit" class="submitrec" value="Aggiorna">
     </form>
+       </div>
+    </div>
 </div>

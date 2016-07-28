@@ -87,7 +87,14 @@ switch ($errore) {
     </div>
     <?php   
    
-    
+     case 7: 
+    //errore nessun risultato trovato
+   
+        ?>
+        <div class="errore"> 
+    <h4>Nessun risultato</h4>
+    </div>
+<?php
     
     
 

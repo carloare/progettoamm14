@@ -1,9 +1,9 @@
 <?php
 include_once 'Utente.php';
-
 /*
 * Classe che rappresenta un generico cliente
 */
+
 class Cliente extends Utente
 
 	{
@@ -11,6 +11,12 @@ class Cliente extends Utente
 	* Numero richiami
 	*/
 	private $numero_richiami;
+        
+        /*
+	* bannato
+	*/
+	private $bannato;
+        
 	/*
 	* Costruttore
 	*/
@@ -34,14 +40,20 @@ class Cliente extends Utente
 	/*
 	* Imposta il numero dei richiami a carica del cliente
 	*/
-	public
-
-	function setNumeroRichiami($numero_richiami)
+	public function setNumeroRichiami($numero_richiami)
 		{
 		$this->numero_richiami = $numero_richiami;
 		return true;
 		}
+                
+        /*
+	* Restituisce il numeri di richiami a carico del cliente
+	*/
+	public function getBannato()
+		{
+		return $this->bannato;
+		}
+                
 	}
-
 ?>
 

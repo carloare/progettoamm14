@@ -1,136 +1,151 @@
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
-   
     include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
-
 ?>
 
 
-
-<article>
-
-    
-
-   <?php
-   echo '<img src="/SardiniaInFood/images/star-black-fivepointed-shape.png" alt="numero preferenze" title="numero preferenze" height="64" width="64">';
-    $preferenze = UtenteFactory::contaPreferenze();
-    echo $preferenze;
-    echo '<br><br>';
-   ?>
-    
-    
-    <section id="views">   
-<!--mostra i risultati delle statistiche-->
-
-
-<?php
+<?php 
 if (session_status() != 2) session_start();
 $azienda = $_SESSION['current_user'];
-//da passare in caso di modifica del profilo
-$id_azienda = $azienda->getId();
-
-//usato nelle visualizzazione delle statistiche
-$views = UtenteFactory::numeroVisualizzazioni($id_azienda);
-
-echo '<img src="/SardiniaInFood/images/eye.png" alt="numero visualizzazioni" title="numero visualizzazioni" height="64" width="64">';
-echo $views;
-echo '<br><br>';
-
 ?>
 
-</section>  
+<section id="wrapper-content">
+      <div class="container clearfix">
+        <div id="company">
 
-    <section id="rating">   
+<h1><?php echo $azienda->getNomeAzienda(); ?></h1>
+
+
+ <div class="box-user-interaction">
+            <div class="box-user-activity preferiti">
+              <h2>PREFERITI</h2>
+              <p>
+                <?php
+  //numero preferneze
+    $preferenze = UtenteFactory::contaPreferenze();
+    echo $preferenze;
     
-<!--<img src="/FoodAdvisor/images/heart347.png" alt="Like" height="64" width="64" title="rating"> -->
-
+   ?>  
+              </p>
+            </div>
+     
+            <div class="box-user-activity views">
+              <h2>VIEWS</h2>
+              <p>
+           <?php
+$id_azienda = $azienda->getId();
+//numero visualizzazioni
+$views = UtenteFactory::numeroVisualizzazioni($id_azienda);
+echo $views;
+?>       
+                  
+              </p>
+            </div>
+            <div class="box-user-activity voto">
+              <h2>VOTO</h2>
+              <p>
+                  
 <?php
  //nella tabella Voti vado a ricercare tutti i voti dati per una stessa azienda
-echo '<img src="/SardiniaInFood/images/heart.png" alt="media voto" title="media voto" height="64" width="64">';
-    $giudizio = UtenteFactory::mediaVoto($id_azienda);
-    
+    $giudizio = UtenteFactory::mediaVoto($id_azienda);    
 if($giudizio==0)
 {
     echo '<br>';
         echo $azienda->getNomeAzienda();
-        echo ' non ha ricevuto ancora nessun voto';
-        echo '<br><br>';
+        echo ' -';
+        
 }
 else
 {
    
 echo $giudizio;
-  echo '<br><br>';
+  
 }
 
-?>
-</section> 
+?>                  
+                  
+                  
+              </p>
+            </div>
+     
+     
+     
+     
+     
+            <div class="box-user-activity rapportoqualitaprezzo">
+              <h2>QUALIT&Agrave; / PREZZO</h2>
+              <p><?php
+ //nella tabella Voti vado a ricercare tutti i voti dati per una stessa azienda
+    $giudizio = UtenteFactory::rapportoQP($id_azienda);
+    if($giudizio==0)
+{
+    echo '<br>';
+        echo $azienda->getNomeAzienda();
+        echo ' -';
+  
+}
+else
+{
+    echo $giudizio;
+  
+}
+
+?></p>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+   
 <?php
-    
+    /*
  $numero_voti=UtenteFactory::numeroVoti($id_azienda);
 
  echo '<br><br>numero voti v: ';
 echo $numero_voti;
-  echo '<br><br>';
-?>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</section>  
+  echo '<br><br>';*/
+?>   
 
-    <section id="rating2">   
-    
-<!--<img src="/FoodAdvisor/images/heart347.png" alt="Like" height="64" width="64" title="rating"> -->
+
 
 <?php
- //nella tabella Voti vado a ricercare tutti i voti dati per una stessa azienda
-echo '<img src="/SardiniaInFood/images/money-bag-with-dollar-symbol.png" alt="media rapporto qualit&agrave; prezzo" title="media rapporto qualit&agrave; prezzo" height="64" width="64">';
-    $giudizio = UtenteFactory::rapportoQP($id_azienda);
-    
-if($giudizio==0)
-{
-    echo '<br>';
-        echo $azienda->getNomeAzienda();
-        echo ' non ha ricevuto ancora nessun voto';
-        echo '<br><br>';
-}
-else
-{
-    
-echo $giudizio;
-  echo '<br><br>';
-}
-
-?>
-</section> 
-<?php
-     $numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
+     /*$numero_voti_qp = UtenteFactory::numeroVotiQP($id_azienda);
      echo '<br><br>numero voti qp: ';
      echo  $numero_voti_qp;
-  echo '<br><br>';
+  echo '<br><br>';*/
 ?>
 
 
-
-</article>
-
-
-<article>
-    <h1 id="paginazione">Recensioni ricevute</h1>
-</article>
-
-<article>
- <img src="/SardiniaInFood/images/speech-bubbles-comment-option.png" alt="recensioni" title="recensioni" height="64" width="64">
+            
+            
+            
 
 
-    <div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+     
+    
         <?php
         //conta il numero delle recensioni
 $numero_recensioni = UtenteFactory::contaRecensioni($id_azienda);
@@ -143,28 +158,65 @@ $pagina_corrente=(!(isset($_REQUEST['pagex'])) ? 1 : (int)$_REQUEST['pagex']);
 
 $primo = ($pagina_corrente - 1) * $commenti_per_pagina;
 
-
-
-
+?>
+ <div id="top-recensioni" class="box-reviews">
+            
+            <h3><?php echo $numero_recensioni; ?> RECENSIONI</h3>
+<?php
 
 $risultati=UtenteFactory::showRecensioni($id_azienda, $primo, $commenti_per_pagina);
 
+
+
 while($row = $risultati->fetch_object()) {
 
-    $data= $row->data;
-    echo $data;
-    echo ' ';
     
-   $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
-   echo $name;
- echo ' ha scritto: ';
-
-    $recensione= $row->recensione;
+    ?>
+    
+    <div class="box-gray">                          
+              <div class="review">
+                <div class="userplusdate">
+                  <?php $name = UtenteFactory::cercaClientePerId($row->id_clienti)->getUsername();
+   echo $name; ?> &bull; <?php echo $data= $row->data; ?> 
+                </div>
+                <div class="text">
+                  <p>
+                      <?php
+                   $recensione= $row->recensione;
     echo $recensione;
-    echo '<br>';
+    ?>
+                  </p>
+                </div>
+              </div>
+              
+            </div> 
+    <?php
+    
+
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+              
+             
+          
+            <br><br>
+<div id="paginazione" class="showcase_pagination">
+    <span>Pagine totali: <?php echo $pagine_totali; ?> </span> &nbsp;
+    
+<?php
 
 if($commenti_per_pagina>0 AND $pagine_totali>0 )
 {
@@ -173,7 +225,8 @@ for($pagina=1; $pagina<=$pagine_totali; $pagina++)
 {
     if($pagina_corrente==$pagina)
     {
-        echo "<p>".$pagina_corrente."</p>";
+        ?><em class="current"> <?php echo $pagina; ?></em><?php
+       
        
     }
     else
@@ -198,30 +251,21 @@ for($pagina=1; $pagina<=$pagine_totali; $pagina++)
 
 
 
-
-
-
-
-
-
-
-
-
-        
-
-
 ?>
    
- 
+   </div>
+   
+   
+                       
+          </div>
+          
+          
+                           
+        </div>    
+      </div>
+    </section>
    
    
    
    
-   
-   
-   
-   
-   
-   
-    </div>
-</article>
+    

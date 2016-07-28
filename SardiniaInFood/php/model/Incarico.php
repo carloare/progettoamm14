@@ -3,8 +3,8 @@
 * Classe che rappresenta l'incarico ricoperto dentro l'azienda da chi effettua 
 * l'iscrizione nell'applicazione
 */
-class Incarico
 
+class Incarico
 	{
 	/*
 	* Tipo di incarico svolto
@@ -14,6 +14,7 @@ class Incarico
 	* Identificatore dell'utente
 	*/
 	private $id;
+        
 	/**
 	 * Costruttore
 	 */
@@ -62,5 +63,4 @@ class Incarico
 		$this->id = $intVal;
 		}
 	}
-
 ?>

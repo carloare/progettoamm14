@@ -1,14 +1,10 @@
+<!--pagina che contiene una scheda con il profilo di un'azienda a cui si può accedere dalla home page-->
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
    include_once '../model/UtenteFactory.php';
    include_once '../model/Azienda.php';
    include_once '../model/Utente.php';
-   
-   /*
-    * in questa pagina viene mostrato il profilo di un'azienda.
-    */
-   
-   //cerca l'azienda usando il suo id
+   //generazione del profilo dell'azienda di cui si vuole mostrare il profilo
    $azienda_to_show = UtenteFactory::cercaAziendaPerId($_REQUEST['id_azienda']); 
    $nome_azienda = $azienda_to_show->getNomeAzienda();
    $descrizione = $azienda_to_show->getDescrizione();
@@ -17,55 +13,39 @@
    $telefono = $azienda_to_show->getTelefono();
    $email = $azienda_to_show->getEmail();
    $sitoweb =$azienda_to_show->getSitoWeb();
-   
    $id_attivita=$azienda_to_show->getTipo_attivita_id();
-   //cerca a seconda dell'id attivita l'effettiva attività svolta   
+   //cerca l'effettiva attività svolta dall'azienda   
    $attivita = UtenteFactory::mostraAttivitaSelezionata($id_attivita);
    //verifica che l'azienda offra dei servizi
    $numero_servizi = UtenteFactory::verificaServiziOfferti($_REQUEST['id_azienda']);
    //cerca i servizi offerti dall'azienda
    $result = UtenteFactory::cercaServiziAzienda($_REQUEST['id_azienda']);
-   //creazione del titolo della media_voto in funzione del valore di media_voto
+   //media voto
    $media_voto=UtenteFactory::mediaVoto($_REQUEST['id_azienda']);  
-   //creazione del titolo media voto
-   $rapporto_qp = UtenteFactory::rapportoQP($_REQUEST['id_azienda']); 
-     
-   
-     $titolo_m='';
-     if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
-     else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
-     else $titolo_m="Alle persono non piace questo posto";
-     
-     //creazione del titolo rapporto_qp 
-   
-     
-     $titolo_qp='';
-     $rapporto_qualita_prezzo= (int)$rapporto_qp; //prende la parte intera
-     if($rapporto_qualita_prezzo>=4) $titolo_qp="Economico";
-     else if($rapporto_qualita_prezzo>=3 AND $rapporto_qualita_prezzo<4) $titolo_qp="Moderato";
-     else $titolo_qp="Costoso";
-     
-     
-     
-     //ultima recensione inserita
-     $recensione= UtenteFactory::ultimaRecensione($_REQUEST['id_azienda']);
-     
-     
-     
-     //numero recensioni
-     $numero_recensioni = UtenteFactory::contaRecensioni($_REQUEST['id_azienda']);
-       
-    //conta i voti ricevuti dall'azienda 
-     $numero_voti = UtenteFactory::contaVoti($_REQUEST['id_azienda']);
-     
-     
-     //conta i voti del rapporto qualità prezzo ricevuti dall'azienda 
-     $numero_voti_qp = UtenteFactory::contaVotiQP($_REQUEST['id_azienda']);
-     
-         //aggiorna il numero delle visualizzazioni nella tabella Statistiche
-    UtenteFactory::updateViewsAzienda($_REQUEST['id_azienda']);
-     
+   //media voto per il rapporto qualità / prezzo
+   $rapporto_qp = UtenteFactory::rapportoQP($_REQUEST['id_azienda']);
+   //titolo che sintetizza il voto ricevuto
+   $titolo_m='';
+   if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
+   else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
+   else $titolo_m="Alle persono non piace questo posto";
+   //titolo che sintetizza il voto ricevuto
+   $rapporto_qp; 
+   if($rapporto_qp>=4) $titolo_qp="Economico";
+   else if($rapporto_qp>=3 AND $$rapporto_qp<4) $titolo_qp="Moderato";
+   else $titolo_qp="Costoso";
+   //restituisce l'ultima recensione ricevuta dall'azienda
+   $recensione= UtenteFactory::ultimaRecensione($_REQUEST['id_azienda']);
+   //numero recensioni ricevute
+   $numero_recensioni = UtenteFactory::contaRecensioni($_REQUEST['id_azienda']);       
+   //numero voti per voti e rapporto qualità / prezzo
+   $numero_voti = UtenteFactory::contaVoti($_REQUEST['id_azienda']);  
+   $numero_voti_qp = UtenteFactory::contaVotiQP($_REQUEST['id_azienda']);
+   //aggiorna il numero delle visualizzazioni nella tabella Statistiche
+   UtenteFactory::updateViewsAzienda($_REQUEST['id_azienda']);
    ?>
+
+
 <div id="card">
    <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-contacts">
@@ -85,6 +65,8 @@
    <div class="box-services">
       <h3>SERVIZI</h3>
       <div class="box-gray">
+        <!--se l'azienda ha dei servizi questi devono essere messi in evidenza
+        rispetto ai servizi che non sono offerti-->
          <?php if($numero_servizi == 1) {?>
          <?php while($row = $result->fetch_row()) { 
             if($row[1]==1)
@@ -98,9 +80,10 @@
          <?php }
             } 
              ?>
-         <?php } else { 
-            $services =  UtenteFactory::listaServizi();
-            
+         <?php }
+         //se l'azienda non ha servizi viene mostrata la lista dei servizi
+         else { 
+            $services =  UtenteFactory::listaServizi();            
             while ($row = $services->fetch_row()) { ?>
          <div class="service"><?php  echo $row[1]; ?></div>
          <?php } }?>
@@ -123,6 +106,7 @@
       <?php } ?>
    </div>
    <div class="box-reviews">
+       <!--se l'azienda ha ricevuto almento una recensione, l'ultima recensione deve essere inserita nella scheda-->
       <?php if( $numero_recensioni > 0 ) { ?>
       <h3>ULTIMA RECENSIONE DI <?php echo $numero_recensioni; ?></h3>
       <div class="box-gray">

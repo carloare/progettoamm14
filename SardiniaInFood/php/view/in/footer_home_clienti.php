@@ -12,10 +12,10 @@ include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
         ?> <h6 class="no-report"></h6>
        <?php break;
     case 1:
-        ?> <h6 class="report">Hai ricevuto una segnalazione</h6>
+        ?> <h6 class="report">Hai ricevuto un richiamo</h6>
        <?php break;
     case 2:
-        ?> <h6 class="report">Hai ricevuto due segnalazioni</h6>
+        ?> <h6 class="report">Hai ricevuto due richiami</h6>
        <?php break;
 } 
        
