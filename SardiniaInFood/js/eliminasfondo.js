@@ -1,5 +1,5 @@
-$(document).ready(function(){
+$(document).ready(function() {
     //togliere immagine di sfondo
-  $(".fullbackgroundimage").css('background-image', 'none');
- 
+    $(".fullbackgroundimage").css('background-image', 'none');
+
 });

@@ -1,8 +1,18 @@
 <?php
+
 /*
 * Classe che controlla il punto di accesso dell'applicazione
 */
-include_once 'view/ViewDescriptor.php';
+
+
+   include_once 'view/ViewDescriptor.php';
+   include_once 'model/Utente.php';
+   include_once 'model/UtenteFactory.php';
+   include_once 'model/Azienda.php';
+   
+   if (session_status() != 2) session_start();
+
+   $_SESSION['visible_logout'] = 1000;
 
 // punto unico di accesso
 
@@ -39,14 +49,15 @@ class FrontController
 
 				// home page visualizzata di default
 
-			case 0:
+			case 0:                            
 				$vd->setMenuFile('view/out/menu_home_page.php'); //menu 
 				$vd->setContentFile('view/out/home_page_default.php'); //home page default
 				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
 				$vd->setFooterFile('view/out/footer_home_page.php'); //footer
-				if (isset($_POST['logout']))
+				if ((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) 
 				{
-					session_destroy();
+                                                                        
+                                    session_destroy();
 				}
 
 				break;
@@ -105,25 +116,26 @@ class FrontController
 
 			require_once 'view/Master.php';
 
-		}
-		else
-		{
-			self::write404();
-		}
+		} 
+		
 	}
 
 	/*ERRORI*/
-	public static
-
-	function write404()
+	public static function write404()
 	{
+            $vd = new ViewDescriptor();
+            
+            $vd->setTitolo("Errore SardegnaInFood");
+            $vd->setLogoFile('view/out/logo.php');
+            $vd->setMenuFile('view/out/menu_back.php');
+            $vd->setContentFile('view/out/errore404.php'); 
+            $vd->setErrorFile('view/out/error_empty.php');
+	    $vd->setFooterFile('view/out/footer_empty.php');
+           
+           require_once 'view/Master.php';
 	}
 
-	public static
-
-	function write403()
-	{
-	}
+	
 }
 
 ?>

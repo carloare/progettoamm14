@@ -7,8 +7,7 @@ include_once '../model/Azienda.php';
 include_once '../model/Cliente.php';
 include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
 
-if (session_status() != 2)
-    session_start();
+   if (session_status() != 2) session_start();
 
 if (isset($_REQUEST['cmd']))
     BaseController::handleInput();
@@ -746,6 +745,9 @@ class BaseController
             $vd->setErrorFile("../view/in/error_in.php");
             $vd->setContentFile("../view/in/cliente/home_page_cliente.php");
             $vd->setFooterFile("../view/in/footer_home_clienti.php");
+            
+            unset($_SESSION['visible_logout']);
+            $_SESSION['visible_logout']=0;
         }
 
         require_once "../view/Master.php";
@@ -820,6 +822,9 @@ class BaseController
             $vd->setErrorFile("../view/in/error_in.php");
             $vd->setContentFile("../view/in/azienda/home_page_azienda.php");
             $vd->setFooterFile("../view/in/footer_empty.php");
+            
+            unset($_SESSION['visible_logout']);
+            $_SESSION['visible_logout']=1;
         }
         // richiamo la vista
         require_once "../view/Master.php";
@@ -916,6 +921,9 @@ class BaseController
             $vd->setErrorFile("../view/in/amministratore/error_amministratore.php");
             $vd->setContentFile("../view/in/amministratore/home_page_amministratore.php");
             $vd->setFooterFile("../view/in/amministratore/footer_empty.php");
+            
+            unset($_SESSION['visible_logout']);
+            $_SESSION['visible_logout']=2;
         }
 
         require_once "../view/Master.php";

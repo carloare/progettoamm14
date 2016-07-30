@@ -5,7 +5,10 @@
 
 class Amministratore
 {
-    
+    /*
+    * Costante che definisce il ruolo azienda
+    */
+    const Amministratore = 2;
     /*
      * Identificatore dell'utente
      */
@@ -22,6 +25,10 @@ class Amministratore
      * Password per l'autenticazione
      */
     private $password;
+    /*
+    * Il ruolo dell'amministratore
+    */ 
+    private $ruolo;
     
     public function __construct()
     {
@@ -95,6 +102,27 @@ class Amministratore
     {
         $this->password = $password;
         return true;
+    }
+    /*
+	* Imposta un ruolo dell'amministratore
+	*/
+	public function setRuolo($ruolo)
+		{
+		switch ($ruolo)
+			{
+		case self::Amministratore:
+			$this->ruolo = $ruolo;
+			return true;
+		default:
+			return false;
+			}
+		}
+    /*
+    * Restituisce un intero corrispondente al ruolo
+    */
+    public function getRuolo()
+    {
+    return $this->ruolo;
     }
 }
 ?>

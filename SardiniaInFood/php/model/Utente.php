@@ -34,7 +34,7 @@ class Utente
 	*/
 	private $email_personale;
 	/*
-	* Il ruolo dell'utente nell'applicazione.
+	* Il ruolo dell'utente nell'applicazione
 	*/
 	private $ruolo;
         

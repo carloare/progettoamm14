@@ -128,8 +128,8 @@ class UtenteFactory {
                     //e inizializzo la tabella Statistiche          
                     $query = ("INSERT INTO Statistiche(id_aziende, visualizzazioni, media_voto, numero_voti, media_rapporto_qualita_prezzo, numero_voti_qualita_prezzo, numero_preferenze) VALUES ($id_nuova_azienda, 0, 0, 0, 0, 0, 0)");
                     $result = $mysqli->query($query);
-                    if (isset($_REQUEST['servizi'])) {
-                        $form_servizi = $_REQUEST['servizi'];
+                    if (isset($_SESSION['servizi'])) {
+                        $form_servizi = $_SESSION['servizi'];
                         //creo un arrey con tutti i servizi impostati che hanno valore 0
                         //non checcati
                         $static_servizi = array();
@@ -233,6 +233,7 @@ class UtenteFactory {
             $utente->setEmailPersonale($email_personale);
             $utente->setRuolo($ruolo);
             $utente->setNumeroRichiami($numero_richiami);
+            $utente->setBannato($bannato);
             $mysqli->close();
             return $utente;
         }
@@ -568,7 +569,7 @@ class UtenteFactory {
             return NULL;
         } else {
             //query
-            $query = "SELECT Servizi.tipo, Aziende_Servizi.valore FROM Aziende_Servizi JOIN Servizi ON Servizi.id = Aziende_Servizi.id_servizi AND Aziende_Servizi.id_aziende =$id_azienda";
+            $query = "SELECT Servizi.tipo, Aziende_Servizi.valore, Servizi.id FROM Aziende_Servizi JOIN Servizi ON Servizi.id = Aziende_Servizi.id_servizi AND Aziende_Servizi.id_aziende =$id_azienda";
             $result = $mysqli->query($query);
             $mysqli->close();
             return $result;
@@ -660,7 +661,7 @@ class UtenteFactory {
             if (!$result) {
                 $mysqli->rollback();
             } else {
-                echo ' È stata inserita nella lista dei preferiti';
+            
             }
             $mysqli->commit();
             $mysqli->autocommit(TRUE);
@@ -820,7 +821,7 @@ class UtenteFactory {
             return NULL;
         } else {
             //query
-            $query = "SELECT media_rapporto_qualita_prezzo FROM Statistiche WHERE id_aziende=$id_azienda";
+            $query = "SELECT media_rapporto_qualita_prezzo FROM Statistiche WHERE id_aziende = $id_azienda";
             $result = $mysqli->query($query);
             $row = $result->fetch_array();
             $rapporto_qp = $row[0];
@@ -1178,7 +1179,9 @@ class UtenteFactory {
 ========================================================================== */
     //funzione che cancella il profilo dell'azienda inserita nella lista dei preferiti
     public static function deleteFavorite($id_azienda) {
+        
         $id_cliente = $_SESSION['current_user']->getId();
+        
         //creo istanza mysqli
         $mysqli = new mysqli();
         //connessione al db
@@ -1192,9 +1195,9 @@ class UtenteFactory {
             //query
             $results = $mysqli->query("DELETE FROM Preferiti WHERE id_clienti=$id_cliente AND id_aziende=$id_azienda");
             if ($results) {
-                print 'La cancellazione è avvenuta in modo corretto';
+             
             } else {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+              
                 echo 'Si è verificato un errore';
                 return NULL;
             }
@@ -1527,7 +1530,7 @@ class UtenteFactory {
                 $mysqli->close();
                 return NULL;
             }
-            $ctrl = $stmt->bind_result($id, $username, $password, $nome_completo);
+            $ctrl = $stmt->bind_result($id, $username, $password, $nome_completo, $ruolo);
             if (!$ctrl) {
                 error_log("[cercaAmministratore] errore nel bind dei parametri in output");
                 $mysqli->close();
@@ -1548,6 +1551,7 @@ class UtenteFactory {
             $utente->setNomeCompleto($nome_completo);
             $utente->setUsername($username);
             $utente->setPassword($password);
+            $utente->setRuolo(2);
             $mysqli->close();
             return $utente;
         }
@@ -1726,22 +1730,32 @@ class UtenteFactory {
         } else {
         //query  
             $id_azienda = $utente->getId();
-            if (isset($_SESSION['servizi'])) {
-                $form_servizi = $_SESSION['servizi'];
+            if (isset($_SESSION['update_servizi'])) {
+               
+            //   var_dump($_REQUEST['servizi']);
+                $form_servizi = $_SESSION['update_servizi'];
+             
                 $static_servizi = array();
                 $query = "SELECT id FROM Servizi";
                 $result = $mysqli->query($query);
+    
                 $index_array_servizi = 0;
+                
                 while ($row = $result->fetch_row()) {
+                    
                     $id_servizio = $row[0];
                     $static_servizi[$index_array_servizi] = $id_servizio;
                     $index_array_servizi = $index_array_servizi + 1;
+                    
                 }
                 foreach ($static_servizi as $id_static_servizio) {
+                    
                     if (in_array($id_static_servizio, $form_servizi)) {
                         $query = "UPDATE Aziende_Servizi SET valore=1 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
                         $result = $mysqli->query($query);
+                        
                     } else {
+                        
                         $query = "UPDATE Aziende_Servizi SET valore=0 WHERE id_aziende=$id_azienda AND id_servizi = '$id_static_servizio'";
                         $result = $mysqli->query($query);
                     }
@@ -2295,3 +2309,4 @@ class UtenteFactory {
     }
 }
 ?>
+

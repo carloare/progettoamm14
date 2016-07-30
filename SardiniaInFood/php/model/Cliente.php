@@ -45,9 +45,16 @@ class Cliente extends Utente
 		$this->numero_richiami = $numero_richiami;
 		return true;
 		}
-                
         /*
-	* Restituisce il numeri di richiami a carico del cliente
+	* Imposta se l'utente è bannato
+	*/
+	public function setBannato($bannato)
+		{
+		$this->bannato = $bannato;
+		return true;
+		}        
+        /*
+	* Restituisce se l'utente è bananto
 	*/
 	public function getBannato()
 		{

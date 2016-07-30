@@ -3,7 +3,6 @@
 fra tutte le aziende registrate in SardiniaInFood, la seconda contiene gli eventuali risultati
 della ricerca; qui permette già di inserire le aziende nella lista dei preferiti-->
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/gestione_preferiti_da_lista.js"></script>
 <?php     
    include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';    
    include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
@@ -126,7 +125,8 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
                ?>       
     
     
-   <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+   <div class="box-img">
+       <a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-text">
       <h2><?php echo $attivita; ?></h2>
       <h3><a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
@@ -141,23 +141,32 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
       <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
       
       
-      <div class="favorites">
+      <div class="favorites" >
          
-         <?php echo $preferito_valido; if($preferito_valido==0) { ?> 
-          <!--bottone per inserire nella lista dei preferiti-->
-           <input type="image" src="/SardiniaInFood/images/add.png" title="aggiungi ai miei preferiti" id="<?php echo $preferito_valido; ?>-<?php echo $id_azienda; ?>" alt="Aggiungi ai preferiti" height=32px width=32px>
-         
-         <?php $preferito_valido=1;  } else { ?>
-           <!--bottone per togliere dalla lista dei preferiti-->
-           <input type="image" src="/SardiniaInFood/images/remove.png" title="togli dalla lista dei preferiti" id="<?php echo $preferito_valido; ?>-<?php echo $id_azienda; ?>" alt="Togli dai preferiti" height=32px width=32px>
+         <?php  if($preferito_valido==0) { ?> 
           
-          <?php $preferito_valido=0; } ?>      
-       
-      
-      
-   
+          
+          <!--bottone per inserire nella lista dei preferiti-->
+          <form class="add" action="/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti" method="POST">
+           <input type="hidden" id="id_azienda"  name="id_azienda" value="<?php echo $id_azienda; ?>">
+           <input type="submit" class="add" value="" name="submit" id="submit">
+           
+         </form>
+          
+          
+          
+         <?php } else { ?>
+          
+          
+           <form class="remove" action="/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito" method="POST">
+    <input type="hidden" id="id_azienda"  name="id_azienda" value="<?php echo $id_azienda; ?>">
+                <input type="submit" class="remove" value="" name="submit" id="submit">
+         </form>
+          
+          
+          <?php } ?> 
    </div>
-</div>
+</div>   
 <?php  
    }
    }

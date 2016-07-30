@@ -13,7 +13,6 @@
       <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
       <meta name="description" content="pagina master di SardiniaInFood">
       <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">
-      <!--<link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/stile.css">-->
       <link rel="icon" href="http://localhost/SardiniaInFood/images/favicon.png" sizes="16x16" type="image/png">
       <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
       <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
@@ -25,24 +24,25 @@
              
              
             <ul class="main-menu-top">
-               <?php if( !isset($_SESSION['current_user']) /*OR (isset($_SESSION['current_user']->getBannato()==1))*/ ) { ?>
+               <?php    
+             
+               //azienda, amministratore o un cliente che non è bannato
+               if (isset($_SESSION['visible_logout']) AND ($_SESSION['visible_logout']==0) OR ($_SESSION['visible_logout']==1) OR ($_SESSION['visible_logout']==2))
+                {
+               ?>                
+               <li>
+                  <a href="/SardiniaInFood/php/?page=0&logout" title="Logout" >LOGOUT</a>
+               </li>
+               <?php }
+               //altrimenti
+                    else { ?>
                <li>
                   <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
                </li>
                <li>
                   <a href="/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
                </li>
-               <?php
-                  } 
-                  else 
-                  {
-                  ?>
-               <li>
-                  <a href="/SardiniaInFood/php/?page=0" title="Logout" >LOGOUT</a>
-               </li>
-               <?php
-                  }
-                          ?>
+              <?php } ?>
             </ul>
          </div>
       </div>
@@ -84,16 +84,10 @@
       
       
       <?php
-         if(isset($_SESSION['current_user']))
-         {
-             $name= $_SESSION['current_user']->getUsername();
-         }
-         
-         if (!(isset($_GET['page']))) { $_GET['page'] = 1000;}
-         
-         if (!(isset($name))) { $name = 'Username';}
              
-         if((isset($_GET['page']) AND ($_GET['page']==0) AND ($_GET['page']!=1000)) || (isset($_SESSION['current_user']) AND ($name=='admin'))/*!!*/ )
+         if (!(isset($_GET['page']))) { $_GET['page'] = 1000;}         
+                   
+         if((isset($_GET['page']) AND ($_GET['page']==0) AND ($_GET['page']!=1000)) || (isset($_SESSION['visible_logout']) AND ($_SESSION['visible_logout']==2)))
          { ?>
       <footer id="footer">
       <?php } 

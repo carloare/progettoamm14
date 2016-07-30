@@ -149,8 +149,8 @@ class AziendaController
     {
         define("nome_completo_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
         define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
-        define("username_regexpr", "/^[A-Za-z0-9 ]{3,20}$/");
-        define("password_regexpr", "/^[a-zA-Z0-9]+$/");
+        define("username_regexpr", "/^[A-Za-z0-9\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}$/");
+        define("password_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9]+$/");
         $name = trim($_REQUEST['nome_completo_azienda']);
         $task = trim($_REQUEST['tipo_incarichi_id']);
         $mail = trim($_REQUEST['email_personale_azienda']);
@@ -166,11 +166,11 @@ class AziendaController
             if (1 === preg_match(nome_completo_regexpr, $name)) {
                 $utente->setNomeCompleto($name);
             } else {
-                $_SESSION['nome_completo_azienda'] = "<br> <div id='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['nome_completo_azienda'] = "<br> <div class='messaggio-errore'>Il campo nome completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['nome_completo_azienda'] = "<br><div id='messaggio-errore'>Il campo nome completo &egrave; vuoto</div>";
+            $_SESSION['nome_completo_azienda'] = "<br><div class='messaggio-errore'>Il campo nome completo &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($task)) {
@@ -178,7 +178,7 @@ class AziendaController
             $utente->setTipo_incarichi_id($task);
         }
         if ($task == "-1") {
-            $_SESSION['tipo_incarichi_id'] = "<br><div id='messaggio-errore'>Il campo tipo di incarico non &egrave; stato schelto</div>";
+            $_SESSION['tipo_incarichi_id'] = "<br><div class='messaggio-errore'>Il campo tipo di incarico non &egrave; stato schelto</div>";
             $error_rec++;
         }
         if (!empty($mail)) {
@@ -188,15 +188,15 @@ class AziendaController
                 if ($valido == 'SI') {
                     $utente->setEmailPersonale($mail);
                 } else {
-                    $_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
+                    $_SESSION['email_personale_azienda'] = "<br><div class='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
                     $error_rec++;
                 }
             } else {
-                $_SESSION['email_personale_azienda'] = "<br> <div id='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
+                $_SESSION['email_personale_azienda'] = "<br> <div class='messaggio-errore'>Questo indirizzo email non &egrave; valido.<br>Verifica eventuali errori di battitura.<br>Esempio email valida: email@esempio.com</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+            $_SESSION['email_personale_azienda'] = "<br><div class='messaggio-errore'>Il campo email &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($username)) {
@@ -206,15 +206,15 @@ class AziendaController
                 if ($valido == 'SI') {
                     $utente->setUsername($username);
                 } else {
-                    $_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
+                    $_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Questo Username &egrave; gi&agrave; stato utilizzato<br>scegline un altro</div>";
                     $error_rec++;
                 }
             } else {
-                $_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Il campo username completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['username_azienda'] = "<br><div id='messaggio-errore'>Il campo username completo &egrave; vuoto</div>";
+            $_SESSION['username_azienda'] = "<br><div class='messaggio-errore'>Il campo username completo &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($pass)) {
@@ -222,14 +222,13 @@ class AziendaController
             if (1 === preg_match(password_regexpr, $pass)) {
                 $utente->setPassword($pass);
             } else {
-                $_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['password_azienda'] = "<br><div class='messaggio-errore'>Il campo password non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['password_azienda'] = "<br><div id='messaggio-errore'>Il campo password &egrave; vuoto</div>";
+            $_SESSION['password_azienda'] = "<br><div class='messaggio-errore'>Il campo password &egrave; vuoto</div>";
             $error_rec++;
         }
-        echo $error_rec;
         if ($error_rec == 0) {
             $update = UtenteFactory::updateProfiloPersonale($id, $utente);
             if ($update == 'INSUCCESSO') {
@@ -257,12 +256,11 @@ class AziendaController
     //modifica la parte propria del profilo azienda
     public static function updateProfiloAzienda()
     {
-        define("nome_azienda_regexpr", "/^[a-zA-Z \xE0\xE8\xE9\xEC\xF2\xF9]{3,64}/");
-        define("descrizione_regexpr", "/^[A-Za-z0-9., \xE0\xE8\xE9\xEC\xF2\xF9]{1,150}$/");
-        define("citta_regexpr", "/^[a-zA-Z-\s]+$/");
-        define("indirizzo_regexpr", "/^[a-zA-Z0-9\s,'-]*$/");
-        //define("telefono_regexpr", "/^[0-9]{5,15}$/");
-        define("sito_web_regexpr", "/^((?:http(?:s)?\:\/\/)?[a-zA-Z0-9_-]+(?:.[a-zA-Z0-9_-]+)*.[a-zA-Z]{2,4}(?:\/[a-zA-Z0-9_]+)*(?:\/[a-zA-Z0-9_]+.[a-zA-Z]{2,4}(?:\?[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)?)?(?:\&[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)*)$/");
+        define("nome_azienda_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9 ]{3,64}/");
+        define("descrizione_regexpr", "/^[A-Za-z0-9.,' \xE0\xE8\xE9\xEC\xF2\xF9]{1,250}$/");
+        define("citta_regexpr", "/^[a-zA-Z\xE0\xE8\xE9\xEC\xF2\xF9-\s]+$/");
+        define("indirizzo_regexpr", "/^[a-zA-Z0-9\xE0\xE8\xE9\xEC\xF2\xF9\s,'-]*$/");
+        define("sito_web_regexpr", "/^((?:http(?:s)?\:\/\/)?[a-zA-Z0-9_-]+(?:.[a-zA-Z0-9_-]+)*.[a-zA-Z]{2,4}(?:\/[a-zA-Z0-9_]+)*(?:\/[a-zA-Z0-9_]+.[a-zA-Z]{2,4}(?:\?[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)?)?(?:\&[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+)*)$/");       
         define("email_personale_regexpr", "/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/");
         $company_name = trim($_REQUEST['name_azienda']);
         $company_type = $_REQUEST['tipo_attivita_id'];
@@ -281,11 +279,11 @@ class AziendaController
             if (1 === preg_match(nome_azienda_regexpr, $company_name)) {
                 $utente->setNomeAzienda($company_name);
             } else {
-                $_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['name_azienda'] = "<br><div class='messaggio-errore'>Il campo nome azienda completo contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['name_azienda'] = "<br><div id='messaggio-errore'>Il campo nome azienda completo &egrave; vuoto</div>";
+            $_SESSION['name_azienda'] = "<br><div class='messaggio-errore'>Il campo nome azienda completo &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_type)) {
@@ -293,7 +291,7 @@ class AziendaController
             $utente->setTipo_attivita_id($company_type);
         }
         if ($company_type == "-1") {
-            $_SESSION['tipo_attivita_id'] = "<br><div id='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.</div>";
+            $_SESSION['tipo_attivita_id'] = "<br><div class='messaggio-errore'>Il campo tipo di attivit&agrave; non &egrave; stata schelta.</div>";
             $error_rec++;
         }
         if (!empty($company_email)) {
@@ -303,15 +301,15 @@ class AziendaController
                 if ($valido == 'SI') {
                     $utente->setEmail($company_email);
                 } else {
-                    $_SESSION['email_personale_azienda'] = "<br><div id='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
+                    $_SESSION['email_personale_azienda'] = "<br><div class='messaggio-errore'>Questa email &egrave; gi&agrave; stato utilizzata<br></div>";
                     $error_rec++;
                 }
             } else {
-                $_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
+                $_SESSION['company_mail_azienda'] = "<br><div class='messaggio-errore'>Il campo email non &egrave; valido. email@esempio.com</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['company_mail_azienda'] = "<br><div id='messaggio-errore'>Il campo email &egrave; vuoto</div>";
+            $_SESSION['company_mail_azienda'] = "<br><div class='messaggio-errore'>Il campo email &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_description)) {
@@ -321,14 +319,14 @@ class AziendaController
             } else {
                 $contacaratteri = strlen($company_description);
                 if ($contacaratteri >= 150) {
-                    $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.<br>Il campo contiene $contacaratteri caratteri</div>";
+                    $_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo descrizione non &egrave; valido.<br>Il campo contiene $contacaratteri caratteri</div>";
                 } else {
-                    $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione non &egrave; valido.</div>";
+                    $_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo descrizione non &egrave; valido.</div>";
                 }
                 $error_rec++;
             }
         } else {
-            $_SESSION['descrizione_azienda'] = "<br><div id='messaggio-errore'>Il campo descrizione &egrave; vuoto</div>";
+            $_SESSION['descrizione_azienda'] = "<br><div class='messaggio-errore'>Il campo descrizione &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_city)) {
@@ -336,25 +334,23 @@ class AziendaController
             if (1 === preg_match(citta_regexpr, $company_city)) {
                 $utente->setCitta($company_city);
             } else {
-                $_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['city_azienda'] = "<br><div class='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['city_azienda'] = "<br><div id='messaggio-errore'>Il campo citt&agrave; &egrave; vuoto</div>";
+            $_SESSION['city_azienda'] = "<br><div class='messaggio-errore'>Il campo citt&agrave; &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_address)) {
             unset($_SESSION['address_azienda']);
             if (1 === preg_match(indirizzo_regexpr, $company_address)) {
-                echo 'ac';
-                echo $company_address;
                 $utente->setIndirizzo($company_address);
             } else {
-                $_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['address_azienda'] = "<br><div class='messaggio-errore'>Il campo indirizzo non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['address_azienda'] = "<br><div id='messaggio-errore'>Il campo indirizzo &egrave; vuoto</div>";
+            $_SESSION['address_azienda'] = "<br><div class='messaggio-errore'>Il campo indirizzo &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_phone)) {
@@ -362,11 +358,11 @@ class AziendaController
             if (is_numeric($company_phone)) {
                 $utente->setTelefono($company_phone);
             } else {
-                $_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['phone_azienda'] = "<br><div class='messaggio-errore'>Il campo telefono non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['phone_azienda'] = "<br><div id='messaggio-errore'>Il campo telefono &egrave; vuoto</div>";
+            $_SESSION['phone_azienda'] = "<br><div class='messaggio-errore'>Il campo telefono &egrave; vuoto</div>";
             $error_rec++;
         }
         if (!empty($company_web_site)) {
@@ -374,18 +370,18 @@ class AziendaController
             if (1 === preg_match(sito_web_regexpr, $company_web_site)) {
                 $utente->setSitoWeb($company_web_site);
             } else {
-                $_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['sito_web_azienda'] = "<br><div class='messaggio-errore'>Il campo del sito web non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
-            $_SESSION['sito_web_azienda'] = "<br><div id='messaggio-errore'>Il campo del sito web &egrave; vuoto</div>";
+            $_SESSION['sito_web_azienda'] = "<br><div class='messaggio-errore'>Il campo del sito web &egrave; vuoto</div>";
             $error_rec++;
         }
         if ($error_rec == 0) {
             $update = UtenteFactory::updateProfiloAzienda($id, $utente);
-            if ($update == 'INSUCCESSO') {
+            if ($update == 1) {
                 $_SESSION['errore'] = 6;
-            } elseif ($update == 'SUCCESSO') {
+            } elseif ($update == 0) {
                 $_SESSION['errore'] = 5;
             }
         }
@@ -409,14 +405,14 @@ class AziendaController
     public static function updateServizi()
     {
         //arrivano i servizi modificati
-        if (isset($_REQUEST['servizi'])) {
-            $_SESSION['servizi'] = $_REQUEST['servizi'];
+        if (isset($_REQUEST['update_servizi'])) {
+            $_SESSION['update_servizi'] = $_REQUEST['update_servizi'];
         }
         // effettua la registrazione dell'azienda
         $update = UtenteFactory::updateServizi();
-        if ($update == 'INSUCCESSO') {
+        if ($update == 1) {
             $_SESSION['errore'] = 6;
-        } elseif ($update == 'SUCCESSO') {
+        } elseif ($update == 0) {
             $_SESSION['errore'] = 5;
         }
         $vd = new ViewDescriptor();

@@ -2,7 +2,7 @@
 include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
 ?>
 
- <ul class="main-menu">
+
         <li>     
              <a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=show_preferiti" title="mostra i miei preferiti" method="POST">PREFERITI</a>
         </li>
@@ -35,6 +35,6 @@ echo '
     
     
         
-    </ul>
+   
 
     

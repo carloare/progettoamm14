@@ -68,6 +68,8 @@
       }?>
 </div>
 
+
+<div id="paginazione" class="showcase_pagination">
 <?php
    if($segnalazioni_per_pagina>0 AND $pagine_totali>0 )
    {
@@ -76,15 +78,15 @@
    {
        if($pagina_corrente==$pagina)
        {
-           echo "<p>".$pagina_corrente."</p>";       
+            ?> <div id="current-page"><?php echo $pagina; ?></div> <?php       
        }
        else
        {        
        ?>
-<form action="/SardiniaInFood/php/controller/AmministratoreController.php#paginazione" method="POST">        
+<form class="bottom-pagination" action="/SardiniaInFood/php/controller/AmministratoreController.php#paginazione" method="POST">        
    <input type="hidden" name="cmd" value="showsegnalazioni">
    <input type="hidden" name="pagex" value="<?php echo $pagina; ?>">        
-   <input type="submit" value="<?php echo $pagina; ?>">    
+   <div class="other-page"><input type="submit" value="<?php echo $pagina; ?>"></div>    
 </form>
 <?php   
    }
@@ -94,4 +96,4 @@
     else
    {echo '<h1>non sono presenti segnalazioni sulle recensioni</h1>';}
    ?>
-   
+</div>

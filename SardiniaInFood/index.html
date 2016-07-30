@@ -36,6 +36,20 @@ and open the template in the editor.
             <li>vedere alcune statistiche che riguardano l'applicazione</li>
             <li>moderare le recensioni</li>
         </ul>
+        
+        <p>Funzionamento:<br>
+        Per poter ricevere le recensioni e i voti sul servizio offerto, un'azienda dovrà prima iscriversi lei stessa sull'applicazione. La registrazione è divisa in tre parti;<br>
+        la prima riguarda i dati di chi sta effettuando effettuando la registrazione, la seconda parte riguarda i dati del profilo propri dell'azienda e <br>
+        infine i servizi offerti. 
+        Un utente se non loggato potrà fare delle ricerche e vedere il profilo delle varie aziende, i voti ricevuti e l'ultima recensione inserita, <br> 
+        solo un utente loggato può, oltre a vedere il profilo di un'azienda, esprimere il proprio voto, inserire un commento e eventualmente inserire
+        l'azienda nella propria lista dei preferiti.
+        L'amministratore dell'applicazione oltre a vedere le statistiche del sito web, potrà moderare le recensioni inserite dei clienti.
+        Un cliente può subire un richiamo per un commento ritenuto offensivo, per un massimo di tre richiami dopo di che verrà automaticamente bannato.
+        Un cliente può essere bannato direttamente.
+        Ci potranno essere poi dei casi in cui un commento non è ritenuto offensivo per cui non si prende nessun provvedimento in merito.
+        </p>
+        
         <h2>Requisiti del progetto</h2>
         <p>
             Il progetto implementa tutti i requisiti proposti:
@@ -45,7 +59,7 @@ and open the template in the editor.
             <li>Utilizzo di PHP e MySQL</li>
             <li>Utilizzo di javascript (per mezzo di jQuery)</li>
             <li>Utilizzo del pattern MVC</li>
-            <li>Due ruoli: lettore e bibliotecario</li>
+            <li>Tre ruoli: cliente, azienda e amministratore</li>
             <li>transazioni: ci sono 9 transizioni implementate nella classe 'UtenteFactory'. Due transizioni
             sono dentro la funzione 'CreaUtente'. La prima riguarda la creazione di un nuovo cliente, per cui
             analizzando l'indirizzo email si va a verificare che chi cerca di effettuare una nuova iscrizione
@@ -76,11 +90,8 @@ and open the template in the editor.
          <ul>
             <li>account azienda - </li>
             <li>account cliente - </li>
+            <li>account amministratore - </li>
         </ul>
-        <p>Cliccare <a href="#">qui</a> per accedere all'applicazione.</p>
-<p>&egrave; possibile visualizzare il codice sorgente del progetto: <a href="#">https://github.com/</a></p>
-
-        
         <div>
             <h1>PROGETTO AMM: SardiniaInFood</h1>
             <form name="page" action="php/index.php" method="GET">
@@ -88,5 +99,7 @@ and open the template in the editor.
                 <input type="submit" value="LOGIN AL PROGETTO">
             </form>
         </div>
+        <p>Cliccare <a href="#">qui</a> per accedere all'applicazione.</p>
+        <p>&egrave; possibile visualizzare il codice sorgente del progetto: <a href="#">https://github.com/</a></p>       
     </body>
 </html>

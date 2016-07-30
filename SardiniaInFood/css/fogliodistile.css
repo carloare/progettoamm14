@@ -1,2947 +1,3031 @@
-/* 
-  Document   : fogliodistile
-  Created on : 24-mag-2016, 17.24.27
-  Author   : amm
-  Description:
-    Purpose of the stylesheet follows.
+/*
+Document   : fogliodistile
+Created on : 24-mag-2016, 17.24.27
+Author   : amm
+Description:
+Purpose of the stylesheet follows.
 */
 /* IMPORT OTHER CSS
 ========================================================================== */
-
 @import url('reset.css');
 /* BASE STYLES
 ========================================================================== */
-
 body {
-    background: #fff;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    line-height: 20px;
-    color: #121212;
+background: #fff;
+font-size: 14px;
+font-family: Arial, sans-serif;
+line-height: 20px;
+color: #121212;
 }
 a {
-    text-decoration: none;
-    color: blue;
+text-decoration: none;
+color: blue;
 }
 a:hover {
-    color: red;
+color: red;
 }
 img {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: 100%;
-    height: auto;
-    display: block;
+margin: 0;
+padding: 0;
+border: 0;
+width: 100%;
+height: auto;
+display: block;
 }
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 14px;
-    font-weight: 400;
-    line-height: 1.3em;
+margin-bottom: 14px;
+font-weight: 400;
+line-height: 1.3em;
 }
 h1 {
-    font-size: 28px;
+font-size: 28px;
 }
 h1.white {
-    padding-top: 30px;
-    text-align: center;
-    font-size: 40px;
-    color: #fff;
+padding-top: 30px;
+text-align: center;
+font-size: 40px;
+color: #fff;
 }
 h2 {
-    font-size: 24px;
+font-size: 24px;
 }
 h3 {
-    font-size: 22px;
+font-size: 22px;
 }
 h4 {
-    font-size: 20px;
+font-size: 20px;
 }
 h5 {
-    font-size: 18px;
+font-size: 18px;
 }
 h6 {
-    font-size: 16px;
+font-size: 16px;
 }
-p {} p.center.white {
-    padding: 0px 40px 30px 40px;
-    text-align: center;
-    color: #fff;
+p {
+}
+p.center.white {
+padding: 0px 40px 30px 40px;
+text-align: center;
+color: #fff;
 }
 /* BASE CLEAR
 ========================================================================== */
-
 .clearfix:after {
-    clear: both;
-    content: "";
-    display: block;
-    font-size: 0;
-    height: 0;
-    line-height: 0;
-    visibility: hidden;
-    width: 0;
+clear: both;
+content: "";
+display: block;
+font-size: 0;
+height: 0;
+line-height: 0;
+visibility: hidden;
+width: 0;
 }
 /* BASE LAYOUT
 ========================================================================== */
-
 .container {
-    margin: 0 auto;
-    padding: 0;
-    border: 0;
-    width: 1136px;
-    height: auto;
-    position: relative;
+margin: 0 auto;
+padding: 0;
+border: 0;
+width: 1136px;
+height: auto;
+position: relative;
 }
 /* FULL BACKGROUND IMAGE
 ========================================================================== */
-
 .fullbackgroundimage {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    z-index: -1;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+position: fixed;
+z-index: -1;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
 .fullbackgroundimage.home {
-    background: url(../images/bk-home.jpg) no-repeat center top;
+background: url(../images/bk-home.jpg) no-repeat center top;
 }
 /* TOP HEADER
 ========================================================================== */
-
 #top-header {
-    display: none;
+display: none;
 }
 /* HEADER
 ========================================================================== */
-
 #header {
-    width: 100%;
-    height: auto;
-    background: #D82726;
-    float: left;
+width: 100%;
+height: auto;
+background: #D82726;
+float: left;
+z-index: 1;
 }
 #logo {
-    margin: 15px 0px;
-    width: 250px;
-    height: 50px;
-    background: url(../images/logo.png) 0 0 repeat;
-    float: left;
+margin: 15px 0px;
+width: 250px;
+height: 50px;
+background: url(../images/logo.png) 0 0 repeat;
+float: left;
 }
 #nav {
-    margin: 0;
-    float: right;
+margin: 0;
+margin-top: 20px;
+float: right;
 }
 #mobnav-btn {
-    display: none;
-    margin-top: 15px;
-    width: 40px;
-    height: 40px;
-    background: #a90000 url(../images/menu-responsive.png) no-repeat right top;
-    cursor: pointer;
+display: none;
+height: 40px;
+width: 40px;
+background: #a90000 url('../images/menu-responsive.png') no-repeat right top;
+cursor: pointer;
+}
+.mobnav-subarrow {
+display: none;
 }
 .main-menu {
-    width: auto;
-    height: auto;
-    float: right;
+margin: 0;
+padding: 0;
+list-style: none;
 }
 .main-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+position: absolute;
+left: 0;
+display: none;
+margin: 0;
+padding: 0;
+z-index: 2;
 }
 .main-menu li {
-    margin-right: 15px;
-    display: inline;
+margin-left: 15px;
+float: left;
+display: block;
+background: #a90000;
+position: relative;
+}
+.main-menu li.blue {
+background: #0560a9;
+}
+.main-menu li.blue:hover {
+background: #627aad;
+}
+.main-menu li.user {
+background: #013044;
+}
+.main-menu li:hover {
+background: #cc081e;
 }
 .main-menu li a {
-    margin-top: 20px;
-    padding: 0px 30px;
-    height: 40px;
-    background: #a90000;
-    line-height: 40px;
-    color: #f9f9f9;
-    display: inline-block;
+display: block;
+padding: 11px 20px;
+text-decoration: none;
+text-align: left;
+color: #fff;
 }
-.main-menu li.user a {
-    background: #013044;
+.main-menu li a:hover {
+color: #ffffff;
 }
-.main-menu li.selected a {} .main-menu li a:hover {
-    background: #0b0b0b;
+.main-menu li.selected {
+background: #121212;
+}
+.main-menu ul li {
+margin-left: 0px;
+width: 280px;
+float: left;
+background: #a90000;
+border-left: 1px solid #e8e8e8;
+border-right: 1px solid #e8e8e8;
+border-bottom: 1px solid #e8e8e8;
+font: 12px sans-serif;
+font-weight: bold;
+}
+.main-menu ul li:first-child {
+border-top: 1px solid #e8e8e8;
+}
+.main-menu ul li:hover {
+background: #cc081e;
+}
+.main-menu ul a {
+display: block;
+color: #fff;
+}
+.main-menu ul a:hover {
+text-indent: 5px;
+color: #fff;
+}
+.main-menu li:hover > ul {
+display: block;
+}
+.main-menu a {
+display: block;
+position: relative;
 }
 /* CONTENT
 ========================================================================== */
-
 #wrapper-content {
-    width: 100%;
-    height: auto;
-    float: left;
-    margin-bottom: 200px;
+width: 100%;
+height: auto;
+float: left;
+margin-bottom: 200px;
+z-index: 1;
 }
-
 /* LIST
 ========================================================================== */
-
 .preview-card {
-    margin-top: 20px;
-    padding-bottom: 0px;
-    width: 100%;
-    height: auto;
-    position: relative;
-    float: left;
-    background-color: rgba(255, 255, 255, 0.6);
+margin-top: 20px;
+padding-bottom: 0px;
+width: 100%;
+height: auto;
+position: relative;
+float: left;
+background-color: rgba(255, 255, 255, 0.6);
 }
 .preview-card.no-trasparent {
-    background-color: rgba(240, 240, 240, 1);
+background-color: rgba(240, 240, 240, 1);
 }
 .preview-card .box-img {
-    margin: 20px 0px 0px 20px;
-    width: 280px;
-    height: auto;
-    float: left;
+margin: 20px 0px 0px 20px;
+width: 280px;
+height: auto;
+float: left;
 }
 .preview-card .box-text {
-    margin: 20px;
-    width: 796px;
-    height: auto;
-    float: right;
+margin: 20px;
+width: 796px;
+height: auto;
+float: right;
 }
 .preview-card .box-text h2 {
-    margin-bottom: 10px;
-    font-size: 10px;
+margin-bottom: 10px;
+font-size: 10px;
 }
 .preview-card .box-text h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
+margin-bottom: 10px;
+font-size: 18px;
 }
 .preview-card .box-text h4 {
-    margin-bottom: 10px;
-    font-size: 14px;
+margin-bottom: 10px;
+font-size: 14px;
 }
 .preview-card .box-text .box-statistiche {
-    margin-top: 7px;
-    width: 796px;
-    height: auto;
-    float: right;
+margin-top: 7px;
+width: 796px;
+height: auto;
+float: right;
 }
 .preview-card .box-text .box-statistiche .visualizzazioni {
-    width: 388px;
-    height: auto;
-    line-height: 40px;
-    text-indent: 10px;
-    background: #cccc00;
-    float: left;
+width: 388px;
+height: auto;
+line-height: 40px;
+text-indent: 10px;
+background: #cccc00;
+float: left;
 }
 .preview-card .box-text .box-statistiche .recensioni {
-    width: 388px;
-    height: auto;
-    line-height: 40px;
-    text-indent: 10px;
-    background: #6666ff;
-    float: right;
+width: 388px;
+height: auto;
+line-height: 40px;
+text-indent: 10px;
+background: #6666ff;
+float: right;
 }
 .preview-card .box-text .box-statistiche .media-voto {
-    margin-top: 20px;
-    width: 388px;
-    height: auto;
-    line-height: 40px;
-    text-indent: 10px;
-    background: #FF3333;
-    float: left;
+margin-top: 20px;
+width: 388px;
+height: auto;
+line-height: 40px;
+text-indent: 10px;
+background: #FF3333;
+float: left;
 }
 .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
-    margin-top: 20px;
-    width: 388px;
-    height: auto;
-    line-height: 40px;
-    text-indent: 10px;
-    background: #85bb65;
-    float: right;
-}
-.preview-card .box-text input[type="image"] {
-    margin: 20px;
-    display: block;
-    float: right;
-    cursor: pointer;
+margin-top: 20px;
+width: 388px;
+height: auto;
+line-height: 40px;
+text-indent: 10px;
+background: #85bb65;
+float: right;
 }
 .preview-card .box-text a.readmore {
-    margin-top: 20px;
-    padding: 10px;
-    width: 120px;
-    height: auto;
-    font-size: 14px;
-    text-align: center;
-    color: #f0f0f0;
-    background: #121212;
-    display: block;
-    float: right;
-    cursor: pointer;
+margin-top: 20px;
+padding: 10px;
+width: 120px;
+height: auto;
+font-size: 14px;
+text-align: center;
+color: #f0f0f0;
+background: #121212;
+display: block;
+float: right;
+cursor: pointer;
 }
 .preview-card .box-text a.readmore:hover {
-    background: #cc0000;
+background: #cc0000;
 }
 .preview-card .box-text .cancella-preferito {
-    margin: 20px;
-    width: auto;
-    float: right;
-    cursor: pointer;
+margin: 20px;
+width: auto;
+float: right;
+cursor: pointer;
 }
-
-
-
 /* COMPANY
-========================================================================== */ 
-  #company {margin-top: 50px; width: 100%; height: auto; float: left;}
-  #company h1 {text-align: center;} 
-  #company .box-user-interaction {margin-top: 20px; padding-bottom: 32px; width: 100%; height: auto; background: #f0f0f0; float: left;}
-  #company .box-user-interaction .box-user-activity {margin: 32px 0px 0px 32px; width: 244px; height: 140px; float: left;}
-  #company .box-user-interaction .box-user-activity.preferiti {background: #fad421;}
-  #company .box-user-interaction .box-user-activity.views {background: #d55bc2;}
-  #company .box-user-interaction .box-user-activity.voto {background: #4075cb;}
-  #company .box-user-interaction .box-user-activity.rapportoqualitaprezzo {background: #38aa40;}
-  #company .box-user-interaction .box-user-activity h2 {border-bottom: 2px solid #f0f0f0; color: #121212; text-align: center; font-size: 16px; line-height: 40px; font-weight: bold;}
-  #company .box-user-interaction .box-user-activity p {text-align: center; line-height: 70px; font-weight: bold; font-size: 34px;}
-  #company .box-reviews {margin-top: 30px; width: 100%; height: auto; float: right;}
-  #company .box-reviews h3 {padding: 10px 0px; width: 100%; font-size: 24px; color: #006699; border-bottom: 4px double #006699;}
-  #company .box-reviews .box-gray {padding-bottom: 32px; width: 100%; height: auto; background: #f7f7f7; float: left;}
-  #company .box-reviews .box-gray .review {margin: 32px 32px 0px 32px; width: 1072px; height: auto; float: left;}
-  #company .box-reviews .box-gray .review .userplusdate {width: 100%; height: 32px; line-height: 32px; background: url('../images/user.png') no-repeat left top; text-indent: 40px; float: left;} 
-  #company .box-reviews .box-gray .review .text {margin: 5px 40px 0px 40px; width: auto; height: auto; float: left;}
-  
-  
+========================================================================== */
+#company {
+margin-top: 50px;
+width: 100%;
+height: auto;
+float: left;
+}
+#company h1 {
+text-align: center;
+}
+#company .box-user-interaction {
+margin-top: 20px;
+padding-bottom: 32px;
+width: 100%;
+height: auto;
+background: #f0f0f0;
+float: left;
+}
+#company .box-user-interaction .box-user-activity {
+margin: 32px 0px 0px 32px;
+width: 244px;
+height: 140px;
+float: left;
+}
+#company .box-user-interaction .box-user-activity.preferiti {
+background: #fad421;
+}
+#company .box-user-interaction .box-user-activity.views {
+background: #d55bc2;
+}
+#company .box-user-interaction .box-user-activity.votoazienda {
+background: #4075cb;
+}
+#company .box-user-interaction .box-user-activity.rapportoqualitaprezzo {
+background: #38aa40;
+}
+#company .box-user-interaction .box-user-activity h2 {
+border-bottom: 2px solid #f0f0f0;
+color: #121212;
+text-align: center;
+font-size: 16px;
+line-height: 40px;
+font-weight: bold;
+}
+#company .box-user-interaction .box-user-activity p {
+text-align: center;
+line-height: 70px;
+font-weight: bold;
+font-size: 34px;
+}
+#company .box-reviews {
+margin-top: 30px;
+width: 100%;
+height: auto;
+float: right;
+}
+#company .box-reviews h3 {
+padding: 10px 0px;
+width: 100%;
+font-size: 24px;
+color: #006699;
+border-bottom: 4px double #006699;
+}
+#company .box-reviews .box-gray {
+padding-bottom: 32px;
+width: 100%;
+height: auto;
+background: #f7f7f7;
+float: left;
+}
+#company .box-reviews .box-gray .review {
+margin: 32px 32px 0px 32px;
+width: 1072px;
+height: auto;
+float: left;
+}
+#company .box-reviews .box-gray .review .userplusdate {
+width: 100%;
+height: 32px;
+line-height: 32px;
+background: url('../images/user.png') no-repeat left top;
+text-indent: 40px;
+float: left;
+}
+#company .box-reviews .box-gray .review .text {
+margin: 5px 40px 0px 40px;
+width: auto;
+height: auto;
+float: left;
+}
 /* PAGINATION
-========================================================================== */  
-  .showcase_pagination {margin-top: 30px; width: 100%; background: #fff; cursor: default; float: left;}
-  .showcase_pagination input[type="submit"], .showcase_pagination span, .showcase_pagination em {padding: 0.2em 0.5em; display: block; float: left; margin-right: 1px;}    
-  .showcase_pagination span {padding: 0.2em 0.5em 0.2em 0em;}
-  .showcase_pagination .current {font-style: normal; background: #006699; color: #fff; border: 1px solid #006699;}
-  .showcase_pagination input[type="submit"] {text-decoration: none; color: #bbb; border: 1px solid #bbb;}
-  .showcase_pagination input[type="submit"]:hover, .showcase_pagination a:focus {color: #fff; border-color: #006699; background: #006699;}
-  * html .showcase_pagination {height: 1%;}
-  *:first-child + html .showcase_pagination {overflow: hidden;}
-
-
+========================================================================== */
+.showcase_pagination {
+margin-top: 30px;
+width: 100%;
+cursor: default;
+float: left;
+}
+.showcase_pagination #current-page {
+margin-right: 1px;
+width: 30px;
+height: 30px;
+line-height: 30px;
+text-align: center;
+background: #006699;
+color: #fff;
+float: left;
+}
+.showcase_pagination .other-page {
+margin-right: 1px;
+width: 30px;
+height: 30px;
+line-height: 30px;
+text-align: center;
+background: #999;
+float: left;
+}
+.showcase_pagination .other-page:hover {
+background: #6a6a6a;
+}
+.showcase_pagination .other-page input[type="submit"] {
+border: none;
+background: none;
+padding: 6px;
+color: #fff;
+cursor: pointer;
+}
 /* CARD
 ========================================================================== */
-
 #card {
-    margin-top: 50px;
-    width: 100%;
-    height: auto;
-    float: left;
+margin-top: 50px;
+width: 100%;
+height: auto;
+float: left;
 }
 #card .box-img {
-    width: 558px;
-    height: auto;
-    float: left;
+width: 558px;
+height: auto;
+float: left;
 }
 #card .box-contacts {
-    width: 558px;
-    height: auto;
-    float: right;
+width: 558px;
+height: auto;
+float: right;
 }
 #card .box-contacts h1 {
-    font-size: 24px;
+font-size: 24px;
 }
 #card .box-contacts h2 {
-    margin-top: 30px;
-    font-size: 14px;
+margin-top: 30px;
+font-size: 14px;
 }
 #card .box-contacts h4 {
-    font-size: 18px;
+font-size: 18px;
 }
 #card .box-contacts h6 {
-    padding: 15px 0px 0px 0px;
-    width: 100%;
-    font-size: 16px;
-    line-height: 22px;
-    color: black;
-    border-bottom: 1px dotted black;
+padding: 15px 0px 0px 0px;
+width: 100%;
+font-size: 16px;
+line-height: 22px;
+color: black;
+border-bottom: 1px dotted black;
 }
 #card .box-contacts p.format {
-    padding: 0;
+padding: 0;
 }
 #card .box-services {
-    margin-top: 20px;
-    width: 100%;
-    height: auto;
-    float: left;
+margin-top: 20px;
+width: 100%;
+height: auto;
+float: left;
 }
 #card .box-services h3 {
-    padding: 10px 0px;
-    width: 100%;
-    font-size: 24px;
-    color: #39b54a;
-    border-bottom: 4px double #39b54a;
+padding: 10px 0px;
+width: 100%;
+font-size: 24px;
+color: #39b54a;
+border-bottom: 4px double #39b54a;
 }
 #card .box-services .box-gray {
-    padding-bottom: 32px;
-    width: 100%;
-    height: auto;
-    background: #f7f7f7;
-    float: left;
+padding-bottom: 32px;
+width: 100%;
+height: auto;
+background: #f7f7f7;
+float: left;
 }
 #card .box-services .box-gray .service {
-    margin: 32px 0px 0px 32px;
-    width: 336px;
-    height: 40px;
-    line-height: 40px;
-    background: url('../images/no-check.png') no-repeat left top;
-    font-size: 14px;
-    text-indent: 50px;
-    float: left;
+margin: 32px 0px 0px 32px;
+width: 336px;
+height: 40px;
+line-height: 40px;
+background: url('../images/no-check.png') no-repeat left top;
+font-size: 14px;
+text-indent: 50px;
+float: left;
 }
 #card .box-services .box-gray .service.green {
-    background: url('../images/check.png') no-repeat left top;
+background: url('../images/check.png') no-repeat left top;
 }
 #card .box-feedback {
-    margin-top: 40px;
-    width: 548px;
-    height: auto;
-    background: #FF3333;
-    float: left;
+margin-top: 40px;
+width: 548px;
+height: auto;
+background: #FF3333;
+float: left;
 }
 #card .box-feedback.dx {
-    width: 548px;
-    background: #008d46;
-    float: right;
+width: 548px;
+background: #008d46;
+float: right;
 }
 #card .box-feedback .box-sx {
-    width: auto;
-    line-height: 60px;
-    text-indent: 20px;
-    color: #fff;
-    float: left;
+width: auto;
+line-height: 60px;
+text-indent: 20px;
+color: #fff;
+float: left;
 }
 #card .box-feedback .box-dx {
-    margin: 10px;
-    width: 80px;
-    height: 40px;
-    line-height: 40px;
-    background: #990000;
-    text-align: center;
-    color: #fff;
-    float: right;
+margin: 10px;
+width: 80px;
+height: 40px;
+line-height: 40px;
+background: #990000;
+text-align: center;
+color: #fff;
+float: right;
 }
 #card .box-feedback .box-dx.dx {
-    background: #006633;
+background: #006633;
 }
 #card .box-feedback .box-byrating {
-    margin: 0px 10px 10px 10px;
-    width: 528px;
-    height: 50px;
-    background: #DE9AA4;
-    float: left;
-    text-align: center;
-    line-height: 50px;
-    font-size: 20px;
-    color: #252e36;
+margin: 0px 10px 10px 10px;
+width: 528px;
+height: 50px;
+background: #DE9AA4;
+float: left;
+text-align: center;
+line-height: 50px;
+font-size: 20px;
+color: #252e36;
 }
 #card .box-feedback .box-byrating.dx {
-    background: #AFCFAA;
+background: #AFCFAA;
 }
 #card .box-reviews {
-    margin-top: 20px;
-    width: 100%;
-    height: auto;
-    float: right;
+margin-top: 20px;
+width: 100%;
+height: auto;
+float: right;
 }
 #card .box-reviews h3 {
-    padding: 10px 0px;
-    width: 100%;
-    font-size: 24px;
-    color: #006699;
-    border-bottom: 4px double #006699;
+padding: 10px 0px;
+width: 100%;
+font-size: 24px;
+color: #006699;
+border-bottom: 4px double #006699;
 }
 #card .box-reviews .box-gray {
-    padding-bottom: 32px;
-    width: 100%;
-    height: auto;
-    background: #f7f7f7;
-    float: left;
+padding-bottom: 32px;
+width: 100%;
+height: auto;
+background: #f7f7f7;
+float: left;
 }
 #card .box-reviews .box-gray .review {
-    margin: 32px 32px 0px 32px;
-    width: 1072px;
-    height: auto;
-    float: left;
+margin: 32px 32px 0px 32px;
+width: 1072px;
+height: auto;
+float: left;
 }
 #card .box-reviews .box-gray .review .userplusdate {
-    width: 100%;
-    height: 32px;
-    line-height: 32px;
-    background: url('../images/user.png') no-repeat left top;
-    text-indent: 40px;
-    float: left;
+width: 100%;
+height: 32px;
+line-height: 32px;
+background: url('../images/user.png') no-repeat left top;
+text-indent: 40px;
+float: left;
 }
 #card .box-reviews .box-gray .review .text {
-    margin: 5px 40px 0px 40px;
-    width: auto;
-    height: auto;
-    float: left;
+margin: 5px 40px 0px 40px;
+width: auto;
+height: auto;
+float: left;
 }
 #card .box-reviews .box-gray .write-a-review {
-    margin: 32px 32px 0px 32px;
-    width: 1072px;
-    height: auto;
-    float: left;
+margin: 32px 32px 0px 32px;
+width: 1072px;
+height: auto;
+float: left;
 }
 #card .box-reviews .box-gray input[type="image"] {
-    float: right;
+float: right;
+}
+.add input[type="submit"] {
+margin-top: 20px;
+margin-right: 20px;
+width: auto;
+height: 40px;
+line-height: 53px;
+text-indent: 43px;
+float: right;
+cursor: pointer;
+background: url(../images/add.png) 10px 0px no-repeat;
+background-size: 40px 40px;
+color: #000;
+border: none;
+cursor: pointer;
+}
+.remove input[type="submit"] {
+margin-top: 20px;
+margin-right: 20px;
+width: auto;
+height: 40px;
+line-height: 53px;
+text-indent: 43px;
+float: right;
+cursor: pointer;
+background: url(../images/remove.png) 10px 0px no-repeat;
+background-size: 40px 40px;
+color: #000;
+border: none;
+cursor: pointer;
 }
 #recensione {
-    width: 100%;
-    height: auto;
-    float: left;
+width: 100%;
+height: auto;
+float: left;
 }
 #recensione textarea {
-    resize: none;
-    width: 99.4%;
-    height: 50px;
-    font-size: 14px;
+resize: none;
+width: 99.4%;
+height: 50px;
+font-size: 14px;
 }
 #recensione input[type="submit"] {
-    padding: 10px 0px;
-    border: 3px double #fff;
-    width: 100%;
-    line-height: 40px;
-    text-align: center;
-    background: #3A5FCD;
-    display: inline-block;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
+padding: 10px 0px;
+border: 3px double #fff;
+width: 100%;
+line-height: 40px;
+text-align: center;
+background: #3A5FCD;
+display: inline-block;
+font-size: 16px;
+color: #fff;
+cursor: pointer;
 }
 #recensione input[type="submit"]:hover {
-    background: #4876FF;
-    color: #f9f9f9;
+background: #4876FF;
+color: #f9f9f9;
 }
 /* PREFERITI
 ========================================================================== */
-
 #card .bottone-preferiti {
-    margin-top: 30px;
-    width: 100%;
-    height: auto;
-    float: right;
+margin-top: 30px;
+width: 100%;
+height: auto;
+float: right;
 }
 #card .bottone-preferiti input[type="button"] {
-    width: 230px;
-    height: 46px;
-    line-height: 46px;
-    text-indent: 35px;
-    float: right;
-    cursor: pointer;
-    background: #FFFF66 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
-    background-size: 32px 32px;
-    color: #000;
-    border: none;
+width: 230px;
+height: 46px;
+line-height: 46px;
+text-indent: 35px;
+float: right;
+cursor: pointer;
+background: #FFFF66 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
+background-size: 32px 32px;
+color: #000;
+border: none;
 }
 #card .bottone-preferiti input[type="button"]:hover {
-    background: #FFFF33 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
+background: #FFFF33 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
 }
 /* RATING
 ========================================================================== */
-
 .ratings {
-    overflow: visible;
-    padding: 10px;
-    position: relative;
-    width: 180px;
-    height: 100px;
+overflow: visible;
+padding: 10px;
+position: relative;
+width: 180px;
+height: 100px;
 }
 .ratings_stars {
-    background: url('/SardiniaInFood/images/cuore-vuoto.png') no-repeat;
-    float: left;
-    height: 28px;
-    padding: 2px;
-    width: 32px;
+background: url('/SardiniaInFood/images/cuore-vuoto.png') no-repeat;
+float: left;
+height: 28px;
+padding: 2px;
+width: 32px;
 }
 .ratings_over {
-    background: url('/SardiniaInFood/images/cuore-pieno.png') no-repeat;
+background: url('/SardiniaInFood/images/cuore-pieno.png') no-repeat;
 }
 .product {
-    font: 10px verdana, sans-serif;
-    margin: 0 auto 40px auto;
-    width: 180px;
-    height: 100px;
+font: 10px verdana, sans-serif;
+margin: 0 auto 40px auto;
+width: 180px;
+height: 100px;
 }
 /* RAPPORTO QUALITA PREZZO
 ========================================================================== */
-
 .rapporto_qualita_prezzo {
-    overflow: visible;
-    padding: 10px;
-    position: relative;
-    width: 180px;
-    height: 100px;
+overflow: visible;
+padding: 10px;
+position: relative;
+width: 180px;
+height: 100px;
 }
 .rapporto_qualita_prezzo_dollars {
-    background: url('/SardiniaInFood/images/money (1).png') no-repeat;
-    float: left;
-    height: 28px;
-    padding: 2px;
-    width: 32px;
+background: url('/SardiniaInFood/images/money (1).png') no-repeat;
+float: left;
+height: 28px;
+padding: 2px;
+width: 32px;
 }
 .rapporto_qualita_prezzo_over {
-    background: url('/SardiniaInFood/images/money.png') no-repeat;
+background: url('/SardiniaInFood/images/money.png') no-repeat;
 }
-div.voto {
-    padding: 5px;
-    width: 5%;
-    margin-left: 45%;
-    border-radius: 5px;
-    background-color: #45A049;
+.voto {
+padding: 5px;
+width: 5%;
+margin-left: 45%;
+border-radius: 5px;
+background-color: #45A049;
 }
 .product2 {
-    font: 10px verdana, sans-serif;
-    margin: 0 auto 40px auto;
-    width: 180px;
-    height: 100px;
+font: 10px verdana, sans-serif;
+margin: 0 auto 40px auto;
+width: 180px;
+height: 100px;
 }
 /* BOX FORM HOME
 ========================================================================== */
-
 #box-form-home,
 #box-form-cliente,
 #box-form-preferiti {
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    padding-bottom: 30px;
-    width: 860px;
-    height: auto;
-    background: url('../images/bg-black.png') 0 0 repeat;
+margin: 0 auto;
+margin-top: 50px;
+margin-bottom: 20px;
+padding-bottom: 30px;
+width: 860px;
+height: auto;
+background: url('../images/bg-black.png') 0 0 repeat;
 }
 .form-home,
 .form-cliente,
 .form-ricerca {
-    margin: 0 auto;
-    width: 760px;
+margin: 0 auto;
+width: 760px;
 }
 .form-home input[type="text"],
 .form-cliente input[type="text"],
 .form-ricerca input[type="text"] {
-    padding: 15px;
-    border: none;
-    background: #f9f9f9;
-    width: 300px;
-    font-size: 18px;
-    display: inline-block;
+padding: 15px;
+border: none;
+background: #f9f9f9;
+width: 300px;
+font-size: 18px;
+display: inline-block;
 }
 .form-home input[type="text"]:hover,
 .form-cliente input[type="text"]:hover,
 .form-ricerca input[type="text"]:hover {
-    background: #f7f7f7;
+background: #f7f7f7;
 }
 .form-home select,
 .form-cliente select,
 .form-ricerca select {
-    margin-left: 10px;
-    padding: 12px 12px;
-    border: 0 !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
-    width: 300px;
-    background-color: #f9f9f9;
-    text-overflow: "";
-    font-size: 18px;
-    display: inline-block;
-    cursor: pointer;
+margin-left: 10px;
+padding: 12px 12px;
+border: 0 !important;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
+width: 300px;
+background-color: #f9f9f9;
+text-overflow: "";
+font-size: 18px;
+display: inline-block;
+cursor: pointer;
 }
 .form-home input[type="submit"],
 .form-cliente input[type="submit"],
 .form-ricerca input[type="submit"] {
-    margin-left: 10px;
-    padding: 15px 0px;
-    border: none;
-    width: 100px;
-    text-align: center;
-    background: #00a65e;
-    display: inline-block;
-    font-size: 18px;
-    color: #fff;
-    cursor: pointer;
+margin-left: 10px;
+padding: 15px 0px;
+border: none;
+width: 100px;
+text-align: center;
+background: #00a65e;
+display: inline-block;
+font-size: 18px;
+color: #fff;
+cursor: pointer;
 }
 .form-home input[type="submit"]:hover,
 .form-cliente input[type="submit"]:hover,
 .form-ricerca input[type="submit"]:hover {
-    border: none;
-    background: #037b47;
+border: none;
+background: #037b47;
 }
 /* ADMINISTRATION
 ========================================================================== */
-
 .page-administration {
-    margin-top: 40px;
-    width: 100%;
-    height: auto;
-    float: left;
+margin-top: 40px;
+width: 100%;
+height: auto;
+float: left;
 }
 .page-administration h1 {
-    text-align: center;
+text-align: center;
 }
 .page-administration .element {
-    margin: 0px auto;
-    margin-top: 20px;
-    width: 650px;
-    height: 50px;
-    background: #b8cce4;
+margin: 0px auto;
+margin-top: 20px;
+width: 650px;
+height: 50px;
+background: #b8cce4;
 }
 .page-administration .element.odd {
-    background: #dbe5f1;
+background: #dbe5f1;
 }
 .page-administration .element .sx {
-    margin: 10px 0px 10px 15px;
-    width: 450px;
-    height: 30px;
-    font-size: 16px;
-    color: #203247;
-    line-height: 30px;
-    float: left;
+margin: 10px 0px 10px 15px;
+width: 450px;
+height: 30px;
+font-size: 16px;
+color: #203247;
+line-height: 30px;
+float: left;
 }
 .page-administration .element .dx {
-    margin: 10px 10px 10px 0px;
-    width: 100px;
-    height: 30px;
-    font-size: 16px;
-    color: #2a2a2a;
-    background: #ccffcc;
-    line-height: 30px;
-    text-align: center;
-    font-weight: bold;
-    float: right;
+margin: 10px 10px 10px 0px;
+width: 100px;
+height: 30px;
+font-size: 16px;
+color: #2a2a2a;
+background: #ccffcc;
+line-height: 30px;
+text-align: center;
+font-weight: bold;
+float: right;
 }
 .page-administration .moderation-review {
-    margin: 0px auto;
-    margin-top: 20px;
-    padding-top: 20px;
-    width: 650px;
-    height: auto;
-    background: #e7e7e7;
+margin: 0px auto;
+margin-top: 20px;
+padding-top: 20px;
+width: 650px;
+height: auto;
+background: #e7e7e7;
 }
 .page-administration .moderation-review p {
-    margin: 0px 20px 5px 20px;
-    padding-bottom: 10px;
-    width: 610px;
-    font-size: 12px;
-    line-height: 18px;
+margin: 0px 20px 5px 20px;
+padding-bottom: 10px;
+width: 610px;
+font-size: 12px;
+line-height: 18px;
 }
 .page-administration .moderation-review p.bold {
-    font-weight: bold;
+font-weight: bold;
 }
 .page-administration .moderation-review .actions {
-    margin: 0px auto;
-    width: 650px;
-    height: 50px;
+margin: 0px auto;
+width: 650px;
+height: 50px;
 }
 .form-banna input[type="submit"] {
-    border: none;
-    width: 217px;
-    height: 50px;
-    background: #c3181e;
-    text-align: center;
-    display: inline-block;
-    font-size: 18px;
-    color: #fff;
-    float: left;
-    cursor: pointer;
+border: none;
+width: 217px;
+height: 50px;
+background: #c3181e;
+text-align: center;
+display: inline-block;
+font-size: 18px;
+color: #fff;
+float: left;
+cursor: pointer;
 }
 .form-banna input[type="submit"]:hover {
-    border: none;
-    background: #ff0000;
+border: none;
+background: #ff0000;
 }
 .form-richiamo input[type="submit"] {
-    border: none;
-    width: 216px;
-    height: 50px;
-    background: #b3b300;
-    text-align: center;
-    display: inline-block;
-    font-size: 18px;
-    color: #fff;
-    float: left;
-    cursor: pointer;
+border: none;
+width: 216px;
+height: 50px;
+background: #b3b300;
+text-align: center;
+display: inline-block;
+font-size: 18px;
+color: #fff;
+float: left;
+cursor: pointer;
 }
 .form-richiamo input[type="submit"]:hover {
-    border: none;
-    background: #cccc00;
+border: none;
+background: #cccc00;
 }
 .form-falso-richiamo input[type="submit"] {
-    border: none;
-    width: 217px;
-    height: 50px;
-    background: #005900;
-    text-align: center;
-    display: inline-block;
-    font-size: 18px;
-    color: #fff;
-    float: right;
-    cursor: pointer;
+border: none;
+width: 217px;
+height: 50px;
+background: #005900;
+text-align: center;
+display: inline-block;
+font-size: 18px;
+color: #fff;
+float: right;
+cursor: pointer;
 }
 .form-falso-richiamo input[type="submit"]:hover {
-    border: none;
-    background: #008000;
+border: none;
+background: #008000;
 }
 /* FOOTER
 ========================================================================== */
-
 #footer {
-    padding: 30px 0px 15px 0px;
-    width: 100%;
-    height: auto;
-    background: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+padding: 30px 0px 15px 0px;
+width: 100%;
+height: auto;
+background: #fff;
+position: fixed;
+bottom: 0;
+left: 0;
 }
 #footer.no-fixed {
-    background: #f0f0f0;
-    position: relative;
-    float: left;
+background: #f0f0f0;
+position: relative;
+float: left;
 }
 .main-menu-footer {
-    width: auto;
-    height: auto;
-    float: left;
+width: auto;
+height: auto;
+float: left;
 }
 .main-menu-footer.right {
-    float: right;
+float: right;
 }
 .main-menu-footer ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 .main-menu-footer li {
-    display: inline;
+display: inline;
 }
 .main-menu-footer li a {
-    margin-right: 10px;
-    padding: 0px;
-    font-size: 12px;
-    line-height: 18px;
-    color: #121212;
-    font-weight: bold;
+margin-right: 10px;
+padding: 0px;
+font-size: 12px;
+line-height: 18px;
+color: #121212;
+font-weight: bold;
 }
 .main-menu-footer li a.validCSS3 {
-    width: 88px;
-    height: 31px;
-    background: url(../images/w3c-css.png) 0 0 no-repeat;
-    display: inline-block;
+width: 88px;
+height: 31px;
+background: url(../images/w3c-css.png) 0 0 no-repeat;
+display: inline-block;
 }
 .main-menu-footer li a.validHTML5 {
-    width: 88px;
-    height: 31px;
-    background: url(../images/w3c-html.png) 0 0 no-repeat;
-    display: inline-block;
+width: 88px;
+height: 31px;
+background: url(../images/w3c-html.png) 0 0 no-repeat;
+display: inline-block;
 }
 .main-menu-footer li a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 h6.report {
-    margin-top: 20px;
-    font-size: 16px;
-    background: url(../images/alert-segnalazioni.png) 0 0 no-repeat;
-    text-indent: 54px;
-    line-height: 48px;
+margin-top: 20px;
+font-size: 16px;
+background: url(../images/alert-segnalazioni.png) 0 0 no-repeat;
+text-indent: 54px;
+line-height: 48px;
 }
 /* FORM GENERICO
 ========================================================================== */
-
 #box-form {
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    padding-bottom: 30px;
-    width: 860px;
-    height: auto;
-    background: url('../images/bg-black.png') 0 0 repeat;
+margin: 0 auto;
+margin-top: 50px;
+margin-bottom: 20px;
+padding-bottom: 30px;
+width: 860px;
+height: auto;
+background: url('../images/bg-black.png') 0 0 repeat;
 }
 .form-generic {
-    margin: 0 auto;
-    width: 800px;
+margin: 0 auto;
+width: 800px;
 }
 h3.white {
-    text-align: center;
-    font-size: 22px;
-    color: #fff;
+text-align: center;
+font-size: 22px;
+color: #fff;
 }
 span.submitrec {
-    text-align: center;
-    font-size: 22px;
-    color: #fff;
+text-align: center;
+font-size: 22px;
+color: #fff;
 }
 .form-generic select {
-    margin: 10px;
-    padding: 12px;
-    border: 0 !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
-    width: 98%;
-    background-color: #f9f9f9;
-    text-overflow: "";
-    font-size: 18px;
-    display: inline-block;
-    cursor: pointer;
+margin: 10px;
+padding: 12px;
+border: 0 !important;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
+width: 98%;
+background-color: #f9f9f9;
+text-overflow: "";
+font-size: 18px;
+display: inline-block;
+cursor: pointer;
 }
 .form-generic input[type="text"] {
-    margin: 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 .form-generic textarea {
-    margin: 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 .form-generic input[type="password"].submitrec {
-    margin: 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 .form-generic input[type="password"].submitlogin {
-    margin: 30px 10px 10px 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 30px 10px 10px 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 .form-generic input[type="email"] {
-    margin: 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 .form-generic input[type="checkbox"] {
-    margin: 10px;
-    padding: 12px;
-    border: none;
-    background: #f9f9f9;
-    width: 95%;
-    font-size: 18px;
+margin: 10px;
+padding: 12px;
+border: none;
+background: #f9f9f9;
+width: 95%;
+font-size: 18px;
 }
 p.submitrec {
-    padding: 15px 0px 0px 15px;
-    font-size: 18px;
-    color: #fff;
+padding: 15px 0px 0px 15px;
+font-size: 18px;
+color: #fff;
 }
 .form-generic input[type="submit"] {
-    margin: 10px;
-    padding: 11px 0px;
-    border: none;
-    width: 100px;
-    text-align: center;
-    background: #00a65e;
-    font-size: 18px;
-    color: #fff;
-    cursor: pointer;
+margin: 10px;
+padding: 11px 0px;
+border: none;
+width: 100px;
+text-align: center;
+background: #00a65e;
+font-size: 18px;
+color: #fff;
+cursor: pointer;
 }
-
 /* ERRORI
 ========================================================================== */
+.errore,
+.avviso,
+.successo {
+margin: 0 auto;
+width: 740px;
+height: auto;
+background-size: 40px 40px;
+padding: 1em;
+padding-left: 100px;
+border: 2px solid #D82726;
+color: #f7f7f7;
+font-size: 18px;
+}
+.errore {
+background: #D82726 url('/SardiniaInFood/images/error.png') 5px 8px no-repeat;
+background-size: 40px 40px;
+}
+.avviso {
+background: #D82726 url('/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;
+background-size: 40px 40px;
+}
+.successo {
+background: #D82726 url('/SardiniaInFood/images/successo.png') 5px 8px no-repeat;
+background-size: 40px 40px;
+}
+.messaggio-errore {
+float: left;
 
-div.errore {
-    margin: 0 auto;
-    width: 778px;
-    height: auto;
-    background: #D82726 url('/SardiniaInFood/images/error.png') 5px 8px no-repeat;
-    background-size: 40px 40px;
-    padding: 1em;
-    padding-bottom: 0px;
-    padding-left: 3.5em;
-    border: 2px solid #D82726;
-    color: #f7f7f7;
-    font-size: 18px;
-}
-div.messaggio-errore {
-    margin: 0 auto;
-    padding: 10px 0px 10px 20px;
-    width: 400px;
-    background: #D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat;
-    background-size: 40px 40px;
-    padding: 1em;
-    padding-left: 3.5em;
-    border: 2px solid #D82726;
-    color: #f9f9f9;
-    font-size: 18px;
-}
-/* AVVISI
-========================================================================== */
-
-div.avviso {
-    margin: 0 auto;
-    width: 778px;
-    height: auto;
-    background: #D82726 url('/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;
-    background-size: 40px 40px;
-    padding: 1em;
-    padding-left: 3.5em;
-    border: 2px solid #D82726;
-    color: #f7f7f7;
-    font-size: 18px;
-}
-div.messaggio-errore {
-    margin: 0 auto;
-    padding: 10px 0px 10px 20px;
-    width: 400px;
-    background: #D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat;
-    background-size: 30px 30px;
-    text-align: center;
-    font-size: 18px;
-    color: #f9f9f9;
-    background-color: #D82726;
+width: 100%;
+background: #D82726 url('/SardiniaInFood/images/error-advise.png') 2px 0px no-repeat;
+background-size: 40px 40px;
+border: 2px solid #D82726;
+color: #f9f9f9;
+text-align: center;
+font-size: 18px;
+clear: both;
 }
 /* IMMAGINI TIPO DI ATTIVITA (per Firefox)
 ========================================================================== */
-
-select#tipo_attivita_id option[value="-1"] {} 
-
+select#tipo_attivita_id option[value="-1"] {
+}
 select#tipo_attivita_id option[value="1"] {
-    background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="2"] {
-    background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="3"] {
-    background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="4"] {
-    background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="5"] {
-    background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="6"] {
-    background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="7"] {
-    background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="8"] {
-    background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="9"] {
-    background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="10"] {
-    background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="11"] {
-    background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="12"] {
-    background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="13"] {
-    background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="14"] {
-    background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="15"] {
-    background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="16"] {
-    background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="17"] {
-    background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
-select#tipo_attivita_id_preferiti option[value="-1"] {} 
-
+select#tipo_attivita_id_preferiti option[value="-1"] {
+}
 select#tipo_attivita_id_preferiti option[value="1"] {
-    background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="2"] {
-    background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="3"] {
-    background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="4"] {
-    background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="5"] {
-    background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="6"] {
-    background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="7"] {
-    background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="8"] {
-    background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="9"] {
-    background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="10"] {
-    background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="11"] {
-    background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="12"] {
-    background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="13"] {
-    background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="14"] {
-    background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="15"] {
-    background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="16"] {
-    background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="17"] {
-    background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
-    padding-left: 100px;
-    padding-top: 5px;
-    background-size: 25px 25px;
+background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
+padding-left: 100px;
+padding-top: 5px;
+background-size: 25px 25px;
 }
 /* DROPBOX MENU AZIENDA
 ========================================================================== */
-
 .main-menu li .dropdown .dropdown-content a {
-    margin-top: 0px;
+margin-top: 0px;
 }
 .dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
+position: relative;
+display: inline-block;
+z-index: 1;
 }
 .dropbutton {
-    width: 280px;
-    padding: 10px;
-    background-color: #A90000;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+width: 260px;
+padding: 10px;
+background-color: #A90000;
+color: white;
+font-size: 16px;
+border: none;
+cursor: pointer;
 }
 .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
+display: none;
+position: absolute;
+right: 0;
+background-color: #f9f9f9;
+min-width: 160px;
 }
 .dropdown-content a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    width: 280px;
-    height: 40px;
+color: black;
+text-decoration: none;
+display: block;
+width: 280px;
+height: 40px;
 }
 .dropdown-content a:hover {
-    background-color: #0B0B0B
+background-color: #0B0B0B;
 }
 .dropdown:hover .dropdown-content {
-    display: block;
+display: block;
 }
 .dropdown:hover .dropbutton {
-    background-color: #0B0B0B;
+background-color: #0B0B0B;
 }
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
-    /* BASE LAYOUT
+/* BASE LAYOUT
 ========================================================================== */
-    
-    .container {
-        width: 960px;
-    }
-    /* TOP HEADER
+.container {
+width: 960px;
+}
+/* TOP HEADER
 ========================================================================== */
-    
-    #top-header {
-        display: none;
-    }
-    /* LIST
+#top-header {
+display: none;
+}
+/* COMPANY
 ========================================================================== */
-    
-    .preview-card .box-img {
-        width: 200px;
-    }
-    .preview-card .box-text {
-        width: 700px;
-    }
-    .preview-card .box-text .box-statistiche {
-        width: 700px;
-    }
-    .preview-card .box-text .box-statistiche .visualizzazioni {
-        width: 340px;
-    }
-    .preview-card .box-text .box-statistiche .recensioni {
-        width: 340px;
-    }
-    .preview-card .box-text .box-statistiche .media-voto {
-        width: 340px;
-    }
-    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
-        width: 340px;
-    }
-    /* PREFERITI
+#company .box-user-interaction .box-user-activity {
+width: 200px;
+}
+#company .box-user-interaction .box-user-activity h2 {
+font-size: 14px;
+}
+#company .box-user-interaction .box-user-activity p {
+font-size: 24px;
+}
+#company .box-reviews .box-gray .review {
+width: 896px;
+}
+/* LIST
 ========================================================================== */
-    
-    #card .bottone-preferiti input[type="button"] {
-        margin-top: 60px;
-    }
-    
-    /* COMPANY
-========================================================================== */ 
-  #company .box-user-interaction .box-user-activity { width: 200px;}
-  #company .box-user-interaction .box-user-activity h2 {font-size: 14px;}
-  #company .box-user-interaction .box-user-activity p {font-size: 24px;}
-  #company .box-reviews .box-gray .review {width: 896px;}
-    /* CARD
+.preview-card .box-img {
+width: 200px;
+}
+.preview-card .box-text {
+width: 700px;
+}
+.preview-card .box-text .box-statistiche {
+width: 700px;
+}
+.preview-card .box-text .box-statistiche .visualizzazioni {
+width: 340px;
+}
+.preview-card .box-text .box-statistiche .recensioni {
+width: 340px;
+}
+.preview-card .box-text .box-statistiche .media-voto {
+width: 340px;
+}
+.preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
+width: 340px;
+}
+/* PREFERITI
 ========================================================================== */
-    
-    #card .box-img {
-        width: 460px;
-    }
-    #card .box-contacts {
-        width: 460px;
-    }
-    #card .box-services .box-gray .service {
-        width: 277px;
-    }
-    #card .box-feedback {
-        width: 460px;
-    }
-    #card .box-feedback.dx {
-        width: 460px;
-    }
-    #card .box-feedback .box-byrating {
-        width: 440px;
-    }
-    #card .box-reviews .box-gray .review {
-        width: 896px;
-    }
-    #card .box-reviews .box-gray .write-a-review {
-        width: 896px;
-    }
-    #recensione textarea {
-        width: 99.3%;
-    }   
-    /* FOOTER
+#card .bottone-preferiti input[type="button"] {
+margin-top: 60px;
+}
+/* CARD
 ========================================================================== */
-    
-    #footer {
-        margin-top: 100px;
-        float: left;
-    }
+#card .box-img {
+width: 460px;
+}
+#card .box-contacts {
+width: 460px;
+}
+#card .box-services .box-gray .service {
+width: 277px;
+}
+#card .box-feedback {
+width: 460px;
+}
+#card .box-feedback.dx {
+width: 460px;
+}
+#card .box-feedback .box-byrating {
+width: 440px;
+}
+#card .box-reviews .box-gray .review {
+width: 896px;
+}
+#card .box-reviews .box-gray .write-a-review {
+width: 896px;
+}
+#recensione textarea {
+width: 99.3%;
+}
+/* FOOTER
+========================================================================== */
+#footer {
+margin-top: 100px;
+float: left;
+}
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* BASE LAYOUT
+/* BASE LAYOUT
 ========================================================================== */
-    
-    .container {
-        width: 650px;
-    }
-    /* TOP HEADER
+.container {
+width: 650px;
+}
+/* TOP HEADER
 ========================================================================== */
-    
-    #top-header {
-        width: 100%;
-        height: 40px;
-        background: #000;
-        display: inline-block;
-        float: left;
-        z-index: 9999;
-    }
-    .main-menu-top {
-        margin: 0 auto;
-        background: red;
-        height: auto;
-    }
-    .main-menu-top ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-    .main-menu-top li {
-        display: inline;
-    }
-    .main-menu-top li a {
-        margin: 5px 0px 5px 5px;
-        padding: 0px 20px;
-        height: 30px;
-        background: #4a4a4a;
-        line-height: 30px;
-        font-size: 12px;
-        color: #f9f9f9;
-        display: inline-block;
-        float: right;
-    }
-    .main-menu-top li a:hover {
-        background: #7a7a7a;
-    }
-    /* HEADER
+#top-header {
+width: 100%;
+height: 40px;
+background: #000;
+display: inline-block;
+float: left;
+z-index: 9999;
+}
+.main-menu-top {
+margin: 0 auto;
+background: red;
+height: auto;
+}
+.main-menu-top ul {
+list-style: none;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+.main-menu-top li {
+display: inline;
+}
+.main-menu-top li a {
+margin: 5px 0px 5px 5px;
+padding: 0px 20px;
+height: 30px;
+background: #4a4a4a;
+line-height: 30px;
+font-size: 12px;
+color: #f9f9f9;
+display: inline-block;
+float: right;
+}
+.main-menu-top li a:hover {
+background: #7a7a7a;
+}
+/* HEADER
 ========================================================================== */
-    
-    #nav {
-        margin: -75px 0px 0px 0px;
-        width: 100%;
-        padding-bottom: 20px; margin: -60px 0px 0px 0px; width: 100%;
-    }
-    #mobnav-btn {
-        width: 40px;
-        display: block;
-        float: right;
-    }
-    .main-menu {
-        margin-top: 0px;
-        padding-bottom: 20px;
-        width: 100%!important;
-        display: none;
-    }
-    .main-menu.xactive {
-        display: block!important;
-    }
-    .main-menu li {
-        margin-left: 0px;
-        float: none!important;
-        display: block!important;
-        width: 100%!important;
-        text-align: left;
-    }
-    .main-menu li a {
-        margin-top: 0px;
-        float: none!important;
-        padding: 0px 0px 0px 10px;
-        height: 40px;
-        background: none;
-        line-height: 40px;
-        color: #fff;
-        border-bottom: 1px solid #e7e7e7;
-        display: block;
-    }
-    .main-menu li a:hover {
-        border-bottom: 1px solid #e7e7e7;
-        color: #fff;
-    }
-    .main-menu li.selected a {
-        border-bottom: 2px solid #fff;
-        color: #fff;
-    }
-    .main-menu li.user a {
-        display: none;
-    }
-    .main-menu ul a {
-        padding-left: 10px;
-    }
-    
-    
-    /* LOGOUT
+#nav {
+padding-bottom: 20px;
+margin: -60px 0px 0px 0px;
+width: 100%;
+}
+#mobnav-btn {
+display: block;
+float: right;
+}
+.mobnav-subarrow {
+display: block;
+background-image: url('../images/piu_meno.png');
+height: 20px;
+width: 30px;
+background-position: top left !important;
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+}
+.main-menu {
+margin-top: 60px;
+width: 100%!important;
+display: none;
+}
+.main-menu.xactive {
+display: block!important;
+}
+.main-menu li {
+margin-left: 0px;
+margin-top: 1px;
+float: none!important;
+display: block!important;
+width: 650px !important;
+border: 0;
+}
+.main-menu li a {
+float: none!important;
+}
+.main-menu ul {
+position: static!important;
+display: none!important;
+}
+.main-menu ul li {
+width: auto;
+margin: 0;
+padding: 0;
+border: 0;
+font: 12px sans-serif;
+font-weight: bold;
+float: left;
+}
+.main-menu ul li:hover {
+background: #f0f0f0;
+}
+.main-menu ul li:first-child {
+border: 0;
+}
+.main-menu ul a {
+padding-left: 20px;
+}
+.xpopdrop ul {
+display: block!important;
+}
+/* LOGOUT
 ========================================================================== */
-    
-    .main-menu li.logout a {
-        display: none;
-    }
-    
-     #mobnav-btn {display: block; float: right;}
-  .mobnav-subarrow {display: block;background-image:url('../images/piu_meno.png'); height: 20px; width: 30px; background-position: top left !important; position: absolute; top: 10px; right: 10px; cursor: pointer;} 
-  .main-menu {margin-top: 60px; width: 100%!important; display: none; /*PER DARE UN BORDO --> background: #ccc;*/}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; margin-top: 1px; float: none!important; display: block!important; width: 650px !important; border: 0;}
-  .main-menu li a {float: none!important;}
-  .main-menu li.selected {background: #cc081f;}
-  .main-menu ul {position:static!important; display: none!important;}   
-  .main-menu ul li {width:auto; margin: 0; padding: 0; border:0; font: 12px sans-serif; font-weight: bold; float:left;}
-  .main-menu ul li:hover {background: #f0f0f0;}
-  .main-menu ul li:first-child {border:0;}
-  .main-menu ul a {padding-left: 20px;}
-  .xpopdrop ul {display: block!important;}
-  
-    /* BOX FORM HOME
+.main-menu li.logout a {
+display: none;
+}
+/* BOX FORM #HOME
 ========================================================================== */
-    
-    #box-form-home,
-    #box-form-cliente,
-    #box-form-preferiti {
-        margin-top: 50px;
-        width: 650px;
-    }
-    .form-home,
-    .form-cliente,
-    .form-ricerca {
-        width: 650px;
-    }
-    .form-home input[type="text"],
-    .form-cliente input[type="text"],
-    .form-ricerca input[type="text"] {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home select,
-    .form-cliente select,
-    .form-ricerca select {
-        margin-top: 20px;
-        margin-left: 15px;
-        padding: 11px 8px;
-        width: 620px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home input[type="submit"],
-    .form-cliente input[type="submit"],
-    .form-ricerca input[type="submit"] {
-        margin-top: 20px;
-        margin-left: 15px;
-        width: 620px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home input[type="submit"]:hover,
-    .form-cliente input[type="submit"]:hover,
-    .form-ricerca input[type="submit"]:hover {
-        margin-top: 20px;
-        margin-left: 15px;
-        width: 620px;
-        font-size: 14px;
-        display: block;
-    }
-    /* LIST
-========================================================================== */
-    
-    .preview-card .box-img {
-        display: none
-    }
-    .preview-card .box-text {
-        width: 610px;
-    }
-    .preview-card .box-text .box-statistiche {
-        width: 610px;
-    }
-    .preview-card .box-text .box-statistiche .visualizzazioni {
-        width: 295px;
-    }
-    .preview-card .box-text .box-statistiche .recensioni {
-        width: 295px;
-    }
-    .preview-card .box-text .box-statistiche .media-voto {
-        width: 295px;
-    }
-    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
-        width: 295px;
-    }
-    
-    
+#box-form-home,
+#box-form-cliente,
+#box-form-preferiti {
+margin-top: 50px;
+width: 650px;
+}
+.form-home,
+.form-cliente,
+.form-ricerca {
+width: 650px;
+}
+.form-home input[type="text"],
+.form-cliente input[type="text"],
+.form-ricerca input[type="text"] {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-home select,
+.form-cliente select,
+.form-ricerca select {
+margin-top: 20px;
+margin-left: 15px;
+padding: 11px 8px;
+width: 620px;
+font-size: 14px;
+display: block;
+}
+.form-home input[type="submit"],
+.form-cliente input[type="submit"],
+.form-ricerca input[type="submit"] {
+margin-top: 20px;
+margin-left: 15px;
+width: 620px;
+font-size: 14px;
+display: block;
+}
+.form-home input[type="submit"]:hover,
+.form-cliente input[type="submit"]:hover,
+.form-ricerca input[type="submit"]:hover {
+margin-top: 20px;
+margin-left: 15px;
+width: 620px;
+font-size: 14px;
+display: block;
+}
 /* COMPANY
 ========================================================================== */
-  #company h1 {font-size: 22px;} 
-  #company .box-user-interaction .box-user-activity { width: 586px;}
-  #company .box-reviews .box-gray .review {width: 586px;}
-  
-    /* PREFERITI
+#company h1 {
+font-size: 22px;
+}
+#company .box-user-interaction .box-user-activity {
+width: 586px;
+}
+#company .box-reviews .box-gray .review {
+width: 586px;
+}
+/* LIST
 ========================================================================== */
-    
-    #card .bottone-preferiti input[type="button"] {
-        margin: 0 auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        width: 100%;
-        float: left;
-        background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
-    }
-    #card .bottone-preferiti input[type="button"]:hover {
-        background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
-    }
-    
-    /* CARD
+.preview-card .box-img {
+display: none;
+}
+.preview-card .box-text {
+width: 610px;
+}
+.preview-card .box-text .box-statistiche {
+width: 610px;
+}
+.preview-card .box-text .box-statistiche .visualizzazioni {
+width: 295px;
+}
+.preview-card .box-text .box-statistiche .recensioni {
+width: 295px;
+}
+.preview-card .box-text .box-statistiche .media-voto {
+width: 295px;
+}
+.preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
+width: 295px;
+}
+/* PREFERITI
 ========================================================================== */
-    
-    #card .box-img {
-        width: 200px;
-    }
-    #card .box-contacts {
-        width: 420px;
-    }
-    #card .box-services .box-gray .service {
-        width: 277px;
-    }
-    #card .box-feedback {
-        width: 650px;
-    }
-    #card .box-feedback.dx {
-        margin-top: 40px;
-        width: 650px;
-        float: left;
-    }
-    #card .box-feedback .box-byrating {
-        width: 630px;
-    }
-    #card .box-reviews .box-gray .review {
-        width: 586px;
-    }
-    #card .box-reviews .box-gray .write-a-review {
-        width: 586px;
-    }
-    #recensione textarea {
-        width: 98.8%;
-    }
-    /* FOOTER
+#card .bottone-preferiti input[type="button"] {
+margin: 0 auto;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 100%;
+float: left;
+background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
+}
+#card .bottone-preferiti input[type="button"]:hover {
+background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
+}
+/* CARD
 ========================================================================== */
-    
-    #footer {
-        margin-top: 50px;
-        float: left;
-    }
-    h6.report {
-        font-size: 14px;
-    }
-    /* FORM GENERICO
+#card .box-img {
+width: 200px;
+}
+#card .box-contacts {
+width: 420px;
+}
+#card .box-services .box-gray .service {
+width: 277px;
+}
+#card .box-feedback {
+width: 650px;
+}
+#card .box-feedback.dx {
+margin-top: 40px;
+width: 650px;
+float: left;
+}
+#card .box-feedback .box-byrating {
+width: 630px;
+}
+#card .box-reviews .box-gray .review {
+width: 586px;
+}
+#card .box-reviews .box-gray .write-a-review {
+width: 586px;
+}
+#recensione textarea {
+width: 98.8%;
+}
+/* FOOTER
+========================================================================== */
+#footer {
+margin-top: 50px;
+float: left;
+}
+h6.report {
+font-size: 14px;
+}
+/* FORM GENERICO
 ========================================================================= */
-    
-    #box-form {
-        margin-top: 50px;
-        width: 650px;
-    }
-    h3.white {
-        text-align: center;
-        font-size: 22px;
-        color: #fff
-    }
-    span.submitrec {
-        text-align: center;
-        font-size: 22px;
-        color: #fff;
-    }
-    .form-generic select {
-        margin-top: 10px;
-        margin-left: 15px;
-        padding: 8px 8px;
-        width: 620px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="text"] {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic textarea {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitrec {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitlogin {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="email"] {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="checkbox"] {
-        margin-left: 15px;
-        width: 596px;
-        font-size: 14px;
-        display: block;
-    }
-    p.submitrec {
-        padding: 15px 0px 0px 15px;
-        font-size: 18px;
-        color: #fff;
-    }
-    .form-generic input[type="submit"] {
-        margin-top: 20px;
-        margin-left: 15px;
-        width: 620px;
-        font-size: 14px;
-        display: block;
-    }
-    /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
-    /* ERRORI LOGIN
+#box-form {
+margin-top: 50px;
+width: 650px;
+}
+h3.white {
+text-align: center;
+font-size: 22px;
+color: #fff;
+}
+span.submitrec {
+text-align: center;
+font-size: 22px;
+color: #fff;
+}
+.form-generic select {
+margin-top: 10px;
+margin-left: 15px;
+padding: 8px 8px;
+width: 620px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="text"] {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-generic textarea {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitrec {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitlogin {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="email"] {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="checkbox"] {
+margin-left: 15px;
+width: 596px;
+font-size: 14px;
+display: block;
+}
+p.submitrec {
+padding: 15px 0px 0px 15px;
+font-size: 18px;
+color: #fff;
+}
+.form-generic input[type="submit"] {
+margin-top: 20px;
+margin-left: 15px;
+width: 620px;
+font-size: 14px;
+display: block;
+}
+/* ERRORI
 ========================================================================== */
-    
-    div.errore {
-        font-size: 16px;
-        width: 574px;
-        background-size: 35px 35px;
-    }
-    div.messaggio-errore {
-        padding-top: 5px;
-        width: 350px;
-        background-size: 25px 25px;
-    }
-    /* AVVISI
+.errore,
+.avviso,
+.successo {
+font-size: 16px;
+width: 530px;
+background-size: 35px 35px;
+}
+messaggio-errore {
+padding-top: 5px;
+width: 350px;
+background-size: 25px 25px;
+}
+/* IMMAGINI TIPO DI ATTIVITA
 ========================================================================== */
-    
-    div.avviso {
-        font-size: 16px;
-        width: 574px;
-        background-size: 35px 35px;
-    }
-    div.messaggio-errore {
-        margin: 0 auto;
-        padding: 10px 0px 10px 20px;
-        width: 400px;
-        background: #D82726 url('/SardiniaInFood/images/error-advise.png') 5px 5px no-repeat;
-        background-size: 30px 30px;
-        text-align: center;
-        font-size: 18px;
-        color: #f9f9f9;
-        background-color: #D82726;
-    }
-    /* IMMAGINI TIPO DI ATTIVITA
-========================================================================== */
-    
-    select#tipo_attivita_id option[value="-1"] {} 
-    
-    select#tipo_attivita_id option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="-1"] {} 
-    
-    select#tipo_attivita_id_preferiti option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
+select#tipo_attivita_id option[value="-1"] {
+}
+select#tipo_attivita_id option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="-1"] {
+}
+select#tipo_attivita_id_preferiti option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
 }
 @media screen and (min-width: 480px) and (max-width: 767px) {
-    /* BASE LAYOUT
-  ========================================================================== */
-    
-    .container {
-        width: 420px;
-    }
-    /* TOP HEADER
-  ========================================================================== */
-    
-    #top-header {
-        width: 100%;
-        height: 40px;
-        background: #000;
-        display: inline-block;
-        float: left;
-        z-index: 9999;
-    }
-    .main-menu-top {
-        margin: 0 auto;
-        background: red;
-        height: auto;
-    }
-    .main-menu-top ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-    .main-menu-top li {
-        display: inline;
-    }
-    .main-menu-top li a {
-        margin: 5px 0px 5px 5px;
-        padding: 0px 20px;
-        height: 30px;
-        background: #4a4a4a;
-        line-height: 30px;
-        font-size: 12px;
-        color: #f9f9f9;
-        display: inline-block;
-        float: right;
-    }
-    .main-menu-top li a:hover {
-        background: #7a7a7a;
-    }
-    /* HEADER
-  ========================================================================== */
-    
-    #nav {
-        margin: -75px 0px 0px 0px;
-        width: 100%;
-        padding-bottom: 20px; margin: -60px 0px 0px 0px; width: 100%;
-    }
-    #mobnav-btn {
-        width: 40px;
-        display: block;
-        float: right;
-    }
-    .main-menu {
-        margin-top: 0px;
-        padding-bottom: 20px;
-        width: 100%!important;
-        display: none;
-    }
-    .main-menu.xactive {
-        display: block!important;
-    }
-    .main-menu li {
-        margin-left: 0px;
-        float: none!important;
-        display: block!important;
-        width: 100%!important;
-        text-align: left;
-    }
-    .main-menu li a {
-        margin-top: 0px;
-        float: none!important;
-        padding: 0px 0px 0px 10px;
-        height: 40px;
-        background: none;
-        line-height: 40px;
-        color: #fff;
-        border-bottom: 1px solid #e7e7e7;
-        display: block;
-    }
-    .main-menu li a:hover {
-        border-bottom: 1px solid #e7e7e7;
-        color: #fff;
-    }
-    .main-menu li.selected a {
-        border-bottom: 2px solid #fff;
-        color: #fff;
-    }
-    .main-menu li.user a {
-        display: none;
-    }
-    .main-menu ul a {
-        padding-left: 10px;
-    }
-    /* LOGOUT
-  ========================================================================== */
-    
-    .main-menu li.logout a {
-        display: none;
-    }
-    
-    #mobnav-btn {display: block; float: right;}
-  .mobnav-subarrow {display: block;background-image:url('../images/piu_meno.png'); height: 20px; width: 30px; background-position: top left !important; position: absolute; top: 10px; right: 10px; cursor: pointer;} 
-  .main-menu {margin-top: 60px; width: 100%!important; display: none; /*PER DARE UN BORDO --> background: #ccc;*/}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; margin-top: 1px; float: none!important; display: block!important; width: 420px !important; border-top: none;}
-  .main-menu li a {float: none!important;}
-  .main-menu li.selected {background: #cc081f;}
-  .main-menu ul {background: #f7f7f7; position:static!important; display: none!important;}   
-  .main-menu ul li {width:auto; margin: 0; padding: 0; border:0; font: 12px sans-serif; font-weight: bold; float:left;}
-  .main-menu ul li:hover {background: #f0f0f0;}
-  .main-menu ul li:first-child {border:0;}
-  .main-menu ul a {padding-left: 20px;}
-  .xpopdrop ul {display: block!important;}
-  
-    /* BOX FORM HOME
-  ========================================================================== */
-    
-    #box-form-home,
-    #box-form-cliente,
-    #box-form-preferiti {
-        margin-top: 50px;
-        width: 420px;
-    }
-    .form-home,
-    .form-cliente,
-    .form-ricerca {
-        width: 420px;
-    }
-    .form-home input[type="text"],
-    .form-cliente input[type="text"],
-    .form-ricerca input[type="text"] {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home select,
-    .form-cliente select,
-    .form-ricerca select {
-        margin-top: 20px;
-        margin-left: 15px;
-        padding: 11px 8px;
-        width: 390px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home input[type="submit"],
-    .form-cliente input[type="submit"],
-    .form-ricerca input[type="submit"] {
-        margin-top: 20px;
-        margin-left: 15px;
-        width: 390px;
-        font-size: 14px;
-        display: block;
-    }
-    h6.report {
-        font-size: 12px;
-    }
-    /* LIST
-  ========================================================================== */
-    
-    .preview-card .box-img {
-        display: none
-    }
-    .preview-card .box-text {
-        width: 380px;
-    }
-    .preview-card .box-text .box-statistiche {
-        width: 380px;
-    }
-    .preview-card .box-text .box-statistiche .visualizzazioni {
-        width: 380px;
-    }
-    .preview-card .box-text .box-statistiche .recensioni {
-        margin-top: 20px;
-        width: 380px;
-        float: left;
-    }
-    .preview-card .box-text .box-statistiche .media-voto {
-        width: 380px;
-    }
-    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
-        margin-top: 20px;
-        width: 380px;
-        float: left;
-    }
-    /* PREFERITI
-  ========================================================================== */
-    
-    #card .bottone-preferiti input[type="button"] {
-        margin: 0 auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        width: 100%;
-        float: left;
-        background: #FFFF66 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
-    }
-    #card .bottone-preferiti input[type="button"]:hover {
-        background: #FFFF33 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
-    }
-    
-    
+/* BASE LAYOUT
+========================================================================== */
+.container {
+width: 420px;
+}
+/* TOP HEADER
+========================================================================== */
+#top-header {
+width: 100%;
+height: 40px;
+background: #000;
+display: inline-block;
+float: left;
+z-index: 9999;
+}
+.main-menu-top {
+margin: 0 auto;
+background: red;
+height: auto;
+}
+.main-menu-top ul {
+list-style: none;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+.main-menu-top li {
+display: inline;
+}
+.main-menu-top li a {
+margin: 5px 0px 5px 5px;
+padding: 0px 20px;
+height: 30px;
+background: #4a4a4a;
+line-height: 30px;
+font-size: 12px;
+color: #f9f9f9;
+display: inline-block;
+float: right;
+}
+.main-menu-top li a:hover {
+background: #7a7a7a;
+}
+/* HEADER
+========================================================================== */
+/* HEADER
+========================================================================== */
+#nav {
+padding-bottom: 20px;
+margin: -60px 0px 0px 0px;
+width: 100%;
+}
+#mobnav-btn {
+display: block;
+float: right;
+}
+.mobnav-subarrow {
+display: block;
+background-image: url('../images/piu_meno.png');
+height: 20px;
+width: 30px;
+background-position: top left !important;
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+}
+.main-menu {
+margin-top: 60px;
+width: 100%!important;
+display: none;
+/*PER DARE UN BORDO --> background: #ccc;*/;
+}
+.main-menu.xactive {
+display: block!important;
+}
+.main-menu li {
+margin-left: 0px;
+margin-top: 1px;
+float: none!important;
+display: block!important;
+width: 420px !important;
+border-top: none;
+}
+.main-menu li a {
+float: none!important;
+}
+.main-menu ul {
+background: #f7f7f7;
+position: static!important;
+display: none!important;
+}
+.main-menu ul li {
+width: auto;
+margin: 0;
+padding: 0;
+border: 0;
+font: 12px sans-serif;
+font-weight: bold;
+float: left;
+}
+.main-menu ul li:hover {
+background: #f0f0f0;
+}
+.main-menu ul li:first-child {
+border: 0;
+}
+.main-menu ul a {
+padding-left: 20px;
+}
+.xpopdrop ul {
+display: block!important;
+}
+/* LOGOUT
+========================================================================== */
+.main-menu li.logout a {
+display: none;
+}
+/* BOX FORM HOME
+========================================================================== */
+#box-form-home,
+#box-form-cliente,
+#box-form-preferiti {
+margin-top: 50px;
+width: 420px;
+}
+.form-home,
+.form-cliente,
+.form-ricerca {
+width: 420px;
+}
+.form-home input[type="text"],
+.form-cliente input[type="text"],
+.form-ricerca input[type="text"] {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-home select,
+.form-cliente select,
+.form-ricerca select {
+margin-top: 20px;
+margin-left: 15px;
+padding: 11px 8px;
+width: 390px;
+font-size: 14px;
+display: block;
+}
+.form-home input[type="submit"],
+.form-cliente input[type="submit"],
+.form-ricerca input[type="submit"] {
+margin-top: 20px;
+margin-left: 15px;
+width: 390px;
+font-size: 14px;
+display: block;
+}
+h6.report {
+font-size: 12px;
+}
 /* COMPANY
-========================================================================== */ 
-  #company h1 {font-size: 20px;} 
-  #company .box-user-interaction .box-user-activity { width: 356px;}
-  #company .box-user-interaction .box-user-activity h2 {font-size: 14px;}
-  #company .box-user-interaction .box-user-activity p {font-size: 24px;}
-  #company .box-reviews .box-gray .review {width: 356px;}  
-  #company .box-reviews .box-gray .review .userplusdate {padding: 10px 0px; width: 100%; height: auto; font-size: 12px; line-height: 18px; background: none; text-indent: 0;}     
-  #company .box-reviews .box-gray .review .text {margin: 5px 10px 0px 10px; font-size: 12px; line-height: 18px;}
-  
-  
-    /* CARD
-  ========================================================================== */
-    
-    #card .box-img {
-        width: 420px;
-    }
-    #card .box-contacts {
-        margin-top: 10px;
-        width: 420px;
-        float: left;
-    }
-    #card .box-services .box-gray .service {
-        width: 356px;
-    }
-    #card .box-feedback {
-        width: 420px;
-    }
-    #card .box-feedback.dx {
-        margin-top: 40px;
-        width: 420px;
-        float: left;
-    }
-    #card .box-feedback .box-byrating {
-        width: 400px;
-    }
-    #card .box-reviews .box-gray .review {
-        width: 356px;
-    }
-    #card .box-reviews .box-gray .write-a-review {
-        width: 356px;
-    }
-    #recensione textarea {
-        width: 98.2%;
-    }
-    /* FOOTER
-  ========================================================================== */
-    
-    #footer {
-        margin-top: 50px;
-        float: left;
-    }
-    .main-menu-footer.right {
-        margin-top: 30px;
-        float: left;
-    }
-    /* FORM GENERALE
- ========================================================================== */
-    
-    #box-form {
-        margin: 0 auto;
-        margin-top: 50px;
-        width: 420px;
-    }
-    /* FORM GENERICO
- ========================================================================== */
-    
-    #box-form {
-        margin: 0 auto;
-        margin-top: 50px;
-        margin-bottom: 200px;
-        width: 420px;
-    }
-    span.submitrec {
-        text-align: center;
-        font-size: 22px;
-        color: #fff;
-    }
-    .form-generic select {
-        margin-top: 20px;
-        margin-left: 15px;
-        padding: 11px 8px;
-        width: 390px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="text"] {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitrec {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitlogin {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic textarea {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="email"] {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="checkbox"] {
-        margin-left: 15px;
-        width: 366px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="submit"] {
-        margin-top: 20px;
-        margin-left: 15px;
-        width: 390px;
-        font-size: 14px;
-        display: block;
-    }
-    /*{margin: 15px 15px 0px 15px;  padding: 12px 0px; border: none; width: 97%; text-align: center; background: #00a65e; font-size:18px; color: #fff; cursor:pointer; }*/
-    /* ERRORI LOGIN
- ========================================================================== */
-    
-    div.errore {
-        font-size: 14px;
-        width: 353px;
-        background-size: 35px 35px;
-        background-color: #d82726;
-    }
-    div.messaggio-errore {
-        padding-top: 5px;
-        width: 300px;
-        background-size: 25px 25px;
-    }
-    /* AVVISI
-  ========================================================================== */
-    
-    div.avviso {
-        font-size: 14px;
-        width: 353px;
-        background-size: 35px 35px;
-    }
-    div.messaggio-errore {
-        margin: 0 auto;
-        padding: 10px 0px 10px 20px;
-        width: 400px;
-        background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px;
-        background-size: 30px 30px;
-        text-align: center;
-        font-size: 18px;
-        color: #f9f9f9;
-        background-color: #D82726;
-    }
-    /* IMMAGINI TIPO DI ATTIVITA
-  ========================================================================== */
-    
-    select#tipo_attivita_id option[value="-1"] {} 
-    
-    select#tipo_attivita_id option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="-1"] {} 
-    
-    select#tipo_attivita_id_preferiti option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
+========================================================================== */
+#company h1 {
+font-size: 20px;
+}
+#company .box-user-interaction .box-user-activity {
+width: 356px;
+}
+#company .box-user-interaction .box-user-activity h2 {
+font-size: 14px;
+}
+#company .box-user-interaction .box-user-activity p {
+font-size: 24px;
+}
+#company .box-reviews .box-gray .review {
+width: 356px;
+}
+#company .box-reviews .box-gray .review .userplusdate {
+padding: 10px 0px;
+width: 100%;
+height: auto;
+font-size: 12px;
+line-height: 18px;
+background: none;
+text-indent: 0;
+}
+#company .box-reviews .box-gray .review .text {
+margin: 5px 10px 0px 10px;
+font-size: 12px;
+line-height: 18px;
+}
+/* LIST
+========================================================================== */
+.preview-card .box-img {
+display: none;
+}
+.preview-card .box-text {
+width: 380px;
+}
+.preview-card .box-text .box-statistiche {
+width: 380px;
+}
+.preview-card .box-text .box-statistiche .visualizzazioni {
+width: 380px;
+}
+.preview-card .box-text .box-statistiche .recensioni {
+margin-top: 20px;
+width: 380px;
+float: left;
+}
+.preview-card .box-text .box-statistiche .media-voto {
+width: 380px;
+}
+.preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
+margin-top: 20px;
+width: 380px;
+float: left;
+}
+/* PREFERITI
+========================================================================== */
+#card .bottone-preferiti input[type="button"] {
+margin: 0 auto;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 100%;
+float: left;
+background: #FFFF66 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
+}
+#card .bottone-preferiti input[type="button"]:hover {
+background: #FFFF33 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
+}
+/* CARD
+========================================================================== */
+#card .box-img {
+width: 420px;
+}
+#card .box-contacts {
+margin-top: 10px;
+width: 420px;
+float: left;
+}
+#card .box-services .box-gray .service {
+width: 356px;
+}
+#card .box-feedback {
+width: 420px;
+}
+#card .box-feedback.dx {
+margin-top: 40px;
+width: 420px;
+float: left;
+}
+#card .box-feedback .box-byrating {
+width: 400px;
+}
+#card .box-reviews .box-gray .review {
+width: 356px;
+}
+#card .box-reviews .box-gray .write-a-review {
+width: 356px;
+}
+#recensione textarea {
+width: 98.2%;
+}
+/* FOOTER
+========================================================================== */
+#footer {
+margin-top: 50px;
+float: left;
+}
+.main-menu-footer.right {
+margin-top: 30px;
+float: left;
+}
+/* FORM GENERALE
+========================================================================== */
+#box-form {
+margin: 0 auto;
+margin-top: 50px;
+width: 420px;
+}
+/* FORM GENERICO
+========================================================================== */
+#box-form {
+margin: 0 auto;
+margin-top: 50px;
+margin-bottom: 200px;
+width: 420px;
+}
+span.submitrec {
+text-align: center;
+font-size: 22px;
+color: #fff;
+}
+.form-generic select {
+margin-top: 20px;
+margin-left: 15px;
+padding: 11px 8px;
+width: 390px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="text"] {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitrec {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitlogin {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic textarea {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="email"] {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="checkbox"] {
+margin-left: 15px;
+width: 366px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="submit"] {
+margin-top: 20px;
+margin-left: 15px;
+width: 390px;
+font-size: 14px;
+display: block;
+}
+/* ERRORI LOGIN
+========================================================================== */
+.errore,
+.avviso,
+.successo {
+font-size: 14px;
+width: 300px;
+background-size: 35px 35px;
+background-color: #d82726;
+}
+.messaggio-errore {
+margin: 0 auto;
+padding-top: 5px;
+width: 300px;
+background-size: 25px 25px;
+}
+/* IMMAGINI TIPO DI ATTIVITA
+========================================================================== */
+select#tipo_attivita_id option[value="-1"] {
+}
+select#tipo_attivita_id option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="-1"] {
+}
+select#tipo_attivita_id_preferiti option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
 }
 @media screen and (max-width: 479px) {
-    /* BASE STYLES
-  ========================================================================== */
-    
-    h1.white {
-        font-size: 30px;
-    }
-    /* BASE LAYOUT
-  ========================================================================== */
-    
-    .container {
-        width: 280px;
-    }
-    /* TOP HEADER
-  ========================================================================== */
-    
-    #top-header {
-        width: 100%;
-        height: 40px;
-        background: #000;
-        display: inline-block;
-        float: left;
-        z-index: 9999;
-    }
-    .main-menu-top {
-        margin: 0 auto;
-        background: red;
-        height: auto;
-    }
-    .main-menu-top ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-    .main-menu-top li {
-        display: inline;
-    }
-    .main-menu-top li a {
-        margin: 5px 0px 5px 5px;
-        padding: 0px 20px;
-        height: 30px;
-        background: #4a4a4a;
-        line-height: 30px;
-        font-size: 12px;
-        color: #f9f9f9;
-        display: inline-block;
-        float: right;
-    }
-    .main-menu-top li a:hover {
-        background: #7a7a7a;
-    }
-    /* HEADER
-  ========================================================================== */
-    
-    #logo {
-        margin: 20px 0px;
-        width: 200px;
-        height: 40px;
-        background: url(images/mob-logo.png) 0 0 repeat;
-    }
-    #nav {
-        margin: -75px 0px 0px 0px;
-        width: 100%;
-        padding-bottom: 20px; margin: -60px 0px 0px 0px; width: 100%;
-    }
-    #mobnav-btn {
-        width: 40px;
-        display: block;
-        float: right;
-    }
-    .main-menu {
-        margin-top: 0px;
-        padding-bottom: 20px;
-        width: 100%!important;
-        display: none;
-    }
-    .main-menu.xactive {
-        display: block!important;
-    }
-    .main-menu li {
-        margin-left: 0px;
-        float: none!important;
-        display: block!important;
-        width: 100%!important;
-        text-align: left;
-    }
-    .main-menu li a {
-        margin-top: 0px;
-        float: none!important;
-        padding: 0px 0px 0px 10px;
-        height: 40px;
-        background: none;
-        line-height: 40px;
-        color: #fff;
-        border-bottom: 1px solid #e7e7e7;
-        display: block;
-    }
-    .main-menu li a:hover {
-        border-bottom: 1px solid #e7e7e7;
-        color: #fff;
-    }
-    .main-menu li.selected a {
-        border-bottom: 2px solid #fff;
-        color: #fff;
-    }
-    .main-menu li.user a {
-        display: none;
-    }
-    .main-menu ul a {
-        padding-left: 10px;
-    }
-    /* LOGOUT
-  ========================================================================== */
-    
-    .main-menu li.logout a {
-        display: none;
-    }
-    
-    #mobnav-btn {display: block; float: right;}
-  .mobnav-subarrow {display: block;background-image:url('../images/piu_meno.png'); height: 20px; width: 30px; background-position: top left !important; position: absolute; top: 10px; right: 10px; cursor: pointer;} 
-  .main-menu {margin-top: 60px; width: 100%!important; display: none; /*PER DARE UN BORDO --> background: #ccc;*/}
-  .main-menu.xactive {display: block!important;}
-  .main-menu li {margin-left: 0px; margin-top: 1px; float: none!important; display: block!important; width: 280px !important; border-top: none;}
-  .main-menu li a {float: none!important;}
-  .main-menu li.selected {background: #cc081f;}
-  .main-menu ul {background: #f7f7f7; position:static!important; display: none!important;}   
-  .main-menu ul li {width:auto; margin: 0; padding: 0; border:0; font: 12px sans-serif; font-weight: bold; float:left;}
-  .main-menu ul li:hover {background: #f0f0f0;}
-  .main-menu ul li:first-child {border:0;}
-  .main-menu ul a {padding-left: 20px;}
-  .xpopdrop ul {display: block!important;}
-  
-    /* BOX FORM HOME
-  ========================================================================== */
-    
-    #box-form-home,
-    #box-form-cliente,
-    #box-form-preferiti {
-        margin-top: 50px;
-        width: 280px;
-    }
-    .form-home,
-    .form-cliente,
-    .form-ricerca {
-        width: 280px;
-    }
-    .form-home input[type="text"],
-    .form-cliente input[type="text"],
-    .form-ricerca input[type="text"] {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home select,
-    .form-cliente select,
-    .form-ricerca select {
-        margin-left: 15px;
-        margin-top: 20px;
-        padding: 11px 8px;
-        width: 250px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-home input[type="submit"],
-    .form-cliente input[type="submit"],
-    .form-ricerca input[type="submit"] {
-        margin-left: 15px;
-        margin-top: 20px;
-        width: 250px;
-        font-size: 14px;
-        display: block;
-    }
-    h6.report {
-        font-size: 12px;
-    }
-    /* LIST
-  ========================================================================== */
-    
-    .preview-card .box-img {
-        display: none
-    }
-    .preview-card .box-text {
-        width: 240px;
-    }
-    .preview-card .box-text h3 {
-        display: inline;
-        line-height: 24px;
-    }
-    .preview-card .box-text .box-statistiche {
-        width: 240px;
-        font-size: 12px;
-    }
-    .preview-card .box-text .box-statistiche .visualizzazioni {
-        width: 240px;
-    }
-    .preview-card .box-text .box-statistiche .recensioni {
-        margin-top: 20px;
-        width: 240px;
-        float: left;
-    }
-    .preview-card .box-text .box-statistiche .media-voto {
-        width: 240px;
-    }
-    .preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
-        margin-top: 20px;
-        width: 240px;
-        float: left;
-    }
-    
-    /* COMPANY
+/* BASE STYLES
 ========================================================================== */
-  #company h1 {font-size: 20px;}  
-  #company .box-user-interaction .box-user-activity { width: 216px;}
-  #company .box-user-interaction .box-user-activity h2 {font-size: 14px;}
-  #company .box-user-interaction .box-user-activity p {font-size: 20px;}
-  #company .box-reviews .box-gray .review {width: 216px;}  
-  #company .box-reviews .box-gray .review .userplusdate {padding: 10px 0px; width: 100%; height: auto; font-size: 12px; line-height: 18px; background: none; text-indent: 0;}     
-  #company .box-reviews .box-gray .review .text {margin: 5px 10px 0px 10px; font-size: 12px; line-height: 18px;}
-  
-    /* PREFERITI
-  ========================================================================== */
-    
-    #card .bottone-preferiti input[type="button"] {
-        margin: 0 auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        width: 100%;
-        float: left;
-        background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 19% center;
-    }
-    #card .bottone-preferiti input[type="button"]:hover {
-        background: #FFFF33 url(/SardiniaInFood/images/star.png) 19% center no-repeat;
-    }
-    /* CARD
-  ========================================================================== */
-    
-    #card .box-img {
-        width: 280px;
-    }
-    #card .box-contacts {
-        margin-top: 10px;
-        width: 280px;
-        float: left;
-    }
-    #card .box-services h3 {
-        font-size: 14px;
-    }
-    #card .box-services .box-gray .service {
-        width: 216px;
-    }
-    #card .box-feedback {
-        font-size: 10px;
-        width: 280px;
-    }
-    #card .box-feedback.dx {
-        margin-top: 40px;
-        width: 280px;
-        float: left;
-    }
-    #card .box-feedback .box-byrating {
-        width: 260px;
-    }
-    #card .box-reviews h3 {
-        font-size: 14px;
-    }
-    #card .box-reviews .box-gray {
-        padding-bottom: 10px;
-    }
-    #card .box-reviews .box-gray .review {
-        margin: 10px 10px 0px 10px;
-        width: 260px;
-    }
-    #card .box-reviews .box-gray .review .userplusdate {
-        padding: 10px 0px;
-        width: 100%;
-        height: auto;
-        font-size: 12px;
-        line-height: 18px;
-        background: none;
-        text-indent: 0;
-    }
-    #card .box-reviews .box-gray .review .text {
-        margin: 5px 10px 0px 10px;
-        font-size: 12px;
-        line-height: 18px;
-    }
-    #card .box-reviews .box-gray .write-a-review {
-        margin: 10px 10px 0px 10px;
-        width: 260px;
-    }
-    #recensione textarea {
-        width: 97.3%;
-    }
-    /* FOOTER
-  ========================================================================== */
-    
-    #footer {
-        margin-top: 50px;
-        float: left;
-    }
-    .main-menu-footer.right {
-        margin-top: 30px;
-        float: left;
-    }
-    .page-administration .element {
-        width: 280px;
-    }
-    .page-administration .element .sx {
-        width: 180px;
-        font-size: 11px;
-    }
-    .page-administration .element .dx {
-        width: 60px;
-        font-size: 11px;
-    }
-    /* FORM GENERICO
- ========================================================================== */
-    
-    #box-form {
-        margin-top: 50px;
-        padding-top: 50px;
-        width: 280px;
-    }
-    h3.white {
-        text-align: center;
-        font-size: 22px;
-        color: #fff;
-    }
-    span.submitrec {
-        text-align: center;
-        font-size: 22px;
-        color: #fff;
-    }
-    .form-generic select {
-        margin-left: 15px;
-        margin-top: 20px;
-        padding: 11px 8px;
-        width: 250px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="text"] {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitrec {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="password"].submitlogin {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic textarea {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="email"] {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="checkbox"] {
-        margin-left: 15px;
-        width: 226px;
-        font-size: 14px;
-        display: block;
-    }
-    .form-generic input[type="submit"] {
-        margin-left: 15px;
-        margin-top: 20px;
-        width: 250px;
-        font-size: 14px;
-        display: block;
-    }
-    /* ERRORI LOGIN
- ========================================================================== */
-    
-    div.errore {
-        font-size: 14px;
-        width: 212px;
-        background-size: 30px 30px;
-    }
-    div.messaggio-errore {
-        padding-top: 5px;
-        padding-left: 15px;
-        width: 250px;
-        font-size: 14px;
-        background-size: 20px 20px;
-    }
-    /* AVVISI
-  ========================================================================== */
-    
-    div.avviso {
-        font-size: 14px;
-        width: 212px;
-        background-size: 30px 30px;
-    }
-    div.messaggio-errore {
-        margin: 0 auto;
-        padding: 10px 0px 10px 20px;
-        width: 400px;
-        background: url('/SardiniaInFood/images/error-advise.png') no-repeat #D82726 5px 5px;
-        background-size: 30px 30px;
-        text-align: center;
-        font-size: 18px;
-        color: #f9f9f9;
-        background-color: #D82726;
-    }
-    /* IMMAGINI TIPO DI ATTIVITA
-  ========================================================================== */
-    
-    select#tipo_attivita_id option[value="-1"] {} 
-    
-    select#tipo_attivita_id option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="-1"] {} 
-    
-    select#tipo_attivita_id_preferiti option[value="1"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="2"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="3"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="4"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="5"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="6"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="7"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="8"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="9"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="10"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="11"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="12"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="13"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="14"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="15"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="16"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
-    select#tipo_attivita_id_preferiti option[value="17"] {
-        background-position: 5px 1px;
-        background-size: 20px 20px;
-    }
+h1.white {
+font-size: 30px;
+}
+/* BASE LAYOUT
+========================================================================== */
+.container {
+width: 280px;
+}
+/* TOP HEADER
+========================================================================== */
+#top-header {
+width: 100%;
+height: 40px;
+background: #000;
+display: inline-block;
+float: left;
+z-index: 9999;
+}
+.main-menu-top {
+margin: 0 auto;
+background: red;
+height: auto;
+}
+.main-menu-top ul {
+list-style: none;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+.main-menu-top li {
+display: inline;
+}
+.main-menu-top li a {
+margin: 5px 0px 5px 5px;
+padding: 0px 20px;
+height: 30px;
+background: #4a4a4a;
+line-height: 30px;
+font-size: 12px;
+color: #f9f9f9;
+display: inline-block;
+float: right;
+}
+.main-menu-top li a:hover {
+background: #7a7a7a;
+}
+/* HEADER
+========================================================================== */
+#logo {
+margin: 20px 0px;
+width: 200px;
+height: 40px;
+background: url(../images/mob-logo.png) 0 0 repeat;
+}
+#nav {
+padding-bottom: 20px;
+margin: -60px 0px 0px 0px;
+width: 100%;
+}
+/* NAVIGATION ------------------------------------------------------------*/
+#mobnav-btn {
+display: block;
+float: right;
+}
+.mobnav-subarrow {
+display: block;
+background-image: url('../images/piu_meno.png');
+height: 20px;
+width: 30px;
+background-position: top left !important;
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+}
+.main-menu {
+margin-top: 60px;
+width: 100%!important;
+display: none;
+}
+.main-menu.xactive {
+display: block!important;
+}
+.main-menu li {
+margin-left: 0px;
+margin-top: 1px;
+float: none!important;
+display: block!important;
+width: 280px !important;
+border-top: none;
+}
+.main-menu li a {
+float: none!important;
+}
+.main-menu ul {
+background: #f7f7f7;
+position: static!important;
+display: none!important;
+}
+.main-menu ul li {
+width: auto;
+margin: 0;
+padding: 0;
+border: 0;
+font: 12px sans-serif;
+font-weight: bold;
+float: left;
+}
+.main-menu ul li:hover {
+background: #f0f0f0;
+}
+.main-menu ul li:first-child {
+border: 0;
+}
+.main-menu ul a {
+padding-left: 20px;
+}
+.xpopdrop ul {
+display: block!important;
+}
+/* LOGOUT
+========================================================================== */
+.main-menu li.logout a {
+display: none;
+}
+/* BOX FORM HOME
+========================================================================== */
+#box-form-home,
+#box-form-cliente,
+#box-form-preferiti {
+margin-top: 50px;
+width: 280px;
+}
+.form-home,
+.form-cliente,
+.form-ricerca {
+width: 280px;
+}
+.form-home input[type="text"],
+.form-cliente input[type="text"],
+.form-ricerca input[type="text"] {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-home select,
+.form-cliente select,
+.form-ricerca select {
+margin-left: 15px;
+margin-top: 20px;
+padding: 11px 8px;
+width: 250px;
+font-size: 14px;
+display: block;
+}
+.form-home input[type="submit"],
+.form-cliente input[type="submit"],
+.form-ricerca input[type="submit"] {
+margin-left: 15px;
+margin-top: 20px;
+width: 250px;
+font-size: 14px;
+display: block;
+}
+h6.report {
+font-size: 12px;
+}
+/* COMPANY
+========================================================================== */
+#company h1 {
+font-size: 20px;
+}
+#company .box-user-interaction .box-user-activity {
+width: 216px;
+}
+#company .box-user-interaction .box-user-activity h2 {
+font-size: 14px;
+}
+#company .box-user-interaction .box-user-activity p {
+font-size: 20px;
+}
+#company .box-reviews .box-gray .review {
+width: 216px;
+}
+#company .box-reviews .box-gray .review .userplusdate {
+padding: 10px 0px;
+width: 100%;
+height: auto;
+font-size: 12px;
+line-height: 18px;
+background: none;
+text-indent: 0;
+}
+#company .box-reviews .box-gray .review .text {
+margin: 5px 10px 0px 10px;
+font-size: 12px;
+line-height: 18px;
+}
+/* LIST
+========================================================================== */
+.preview-card .box-img {
+display: none;
+}
+.preview-card .box-text {
+width: 240px;
+}
+.preview-card .box-text h3 {
+display: inline;
+line-height: 24px;
+}
+.preview-card .box-text .box-statistiche {
+width: 240px;
+font-size: 12px;
+}
+.preview-card .box-text .box-statistiche .visualizzazioni {
+width: 240px;
+}
+.preview-card .box-text .box-statistiche .recensioni {
+margin-top: 20px;
+width: 240px;
+float: left;
+}
+.preview-card .box-text .box-statistiche .media-voto {
+width: 240px;
+}
+.preview-card .box-text .box-statistiche .rapporto-qualita-prezzo {
+margin-top: 20px;
+width: 240px;
+float: left;
+}
+/* PREFERITI
+========================================================================== */
+#card .bottone-preferiti input[type="button"] {
+margin: 0 auto;
+margin-top: 30px;
+margin-bottom: 30px;
+width: 100%;
+float: left;
+background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 19% center;
+}
+#card .bottone-preferiti input[type="button"]:hover {
+background: #FFFF33 url(/SardiniaInFood/images/star.png) 19% center no-repeat;
+}
+/* CARD
+========================================================================== */
+#card .box-img {
+width: 280px;
+}
+#card .box-contacts {
+margin-top: 10px;
+width: 280px;
+float: left;
+}
+#card .box-services h3 {
+font-size: 14px;
+}
+#card .box-services .box-gray .service {
+width: 216px;
+}
+#card .box-feedback {
+font-size: 10px;
+width: 280px;
+}
+#card .box-feedback.dx {
+margin-top: 40px;
+width: 280px;
+float: left;
+}
+#card .box-feedback .box-byrating {
+width: 260px;
+}
+#card .box-reviews h3 {
+font-size: 14px;
+}
+#card .box-reviews .box-gray {
+padding-bottom: 10px;
+}
+#card .box-reviews .box-gray .review {
+margin: 10px 10px 0px 10px;
+width: 260px;
+}
+#card .box-reviews .box-gray .review .userplusdate {
+padding: 10px 0px;
+width: 100%;
+height: auto;
+font-size: 12px;
+line-height: 18px;
+background: none;
+text-indent: 0;
+}
+#card .box-reviews .box-gray .review .text {
+margin: 5px 10px 0px 10px;
+font-size: 12px;
+line-height: 18px;
+}
+#card .box-reviews .box-gray .write-a-review {
+margin: 10px 10px 0px 10px;
+width: 260px;
+}
+#recensione textarea {
+width: 97.3%;
+}
+/* FOOTER
+========================================================================== */
+#footer {
+margin-top: 50px;
+float: left;
+}
+.main-menu-footer.right {
+margin-top: 30px;
+float: left;
+}
+.page-administration .element {
+width: 280px;
+}
+.page-administration .element .sx {
+width: 180px;
+font-size: 11px;
+}
+.page-administration .element .dx {
+width: 60px;
+font-size: 11px;
+}
+/* FORM GENERICO
+========================================================================== */
+#box-form {
+margin-top: 50px;
+padding-top: 50px;
+width: 280px;
+}
+h3.white {
+text-align: center;
+font-size: 22px;
+color: #fff;
+}
+span.submitrec {
+text-align: center;
+font-size: 22px;
+color: #fff;
+}
+.form-generic select {
+margin-left: 15px;
+margin-top: 20px;
+padding: 11px 8px;
+width: 250px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="text"] {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitrec {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="password"].submitlogin {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic textarea {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="email"] {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="checkbox"] {
+margin-left: 15px;
+width: 226px;
+font-size: 14px;
+display: block;
+}
+.form-generic input[type="submit"] {
+margin-left: 15px;
+margin-top: 20px;
+width: 250px;
+font-size: 14px;
+display: block;
+}
+/* ERRORI LOGIN
+========================================================================== */
+.errore,
+.avviso,
+.successo {
+font-size: 14px;
+width: 160px;
+background-size: 30px 30px;
+}
+.messaggio-errore {
+padding-top: 5px;
+padding-left: 15px;
+width: 250px;
+font-size: 14px;
+background-size: 20px 20px;
+}
+/* IMMAGINI TIPO DI ATTIVITA
+========================================================================== */
+select#tipo_attivita_id option[value="-1"] {
+}
+select#tipo_attivita_id option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="-1"] {
+}
+select#tipo_attivita_id_preferiti option[value="1"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="2"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="3"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="4"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="5"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="6"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="7"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="8"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="9"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="10"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="11"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="12"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="13"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="14"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="15"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="16"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
+select#tipo_attivita_id_preferiti option[value="17"] {
+background-position: 5px 1px;
+background-size: 20px 20px;
+}
 }

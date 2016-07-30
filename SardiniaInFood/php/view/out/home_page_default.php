@@ -6,7 +6,9 @@ della ricerca-->
    include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';
    include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
    include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
+   
    if (session_status() != 2) session_start();
+   
    ?>
 <div id="box-form-home">
    <h1 class="white">
@@ -57,9 +59,12 @@ della ricerca-->
 </div>
 
 
-<?php //se ci sono stati dei risultati nella ricerca con il form fatto sopra
+<?php 
+         
+//se ci sono stati dei risultati nella ricerca con il form fatto sopra
    if (isset($_SESSION['risultati']) AND $_SESSION['risultati'] != 'ZERO') {    
    //passaggio dei risultati
+   
    	$aziende = $_SESSION['risultati'];        
         //di ogni risultato viene mostrato un mini-profilo con alcune statistiche     
         foreach($aziende as $azienda)

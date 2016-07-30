@@ -11,10 +11,6 @@
      $_SESSION['id_azienda'] = $_REQUEST['id_azienda'];     
      }
    
-   
-if(!isset($_REQUEST['id_azienda'])) { ?> <script type="text/javascript" src="/SardiniaInFood/js/scroll_pagina.js"></script> <?php }?>
-
-<?php
    include_once '../model/UtenteFactory.php';
    include_once '../model/Azienda.php';
    include_once '../model/Utente.php';
@@ -45,7 +41,7 @@ if(!isset($_REQUEST['id_azienda'])) { ?> <script type="text/javascript" src="/Sa
    //media voto
    $media_voto = UtenteFactory::mediaVoto($id_azienda);
    //media voto per il rapporto qualità / prezzo
-   $rapporto_qp = UtenteFactory::rapportoQP($id_azienda);
+   $rapporto_qp = UtenteFactory::rapportoQP($id_azienda); 
    //titolo che sintetizza il voto ricevuto
    $titolo_m = '';
    if ($media_voto >= 4)
@@ -151,7 +147,7 @@ if(!isset($_REQUEST['id_azienda'])) { ?> <script type="text/javascript" src="/Sa
          {}  ?>   
    </div>
    <div class="box-feedback dx">
-      <div class="box-sx">RAPPORTO QUALIT&Agrave; / PREZZO</div>
+      <div class="box-sx">RAPPORTO QUALIT&Agrave; / PREZZO</div> 
       <div class="box-dx dx" title="<?php echo $titolo_qp; ?>"><?php if($numero_voti_qp != 0) { echo number_format($rapporto_qp, 1);} else {echo '-';} ?> / 5</div>
       <?php 
          if($rapporto_valido=='VALID') { ?>

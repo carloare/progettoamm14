@@ -1,24 +1,22 @@
-$(document).ready(function(){
+$(document).ready(function() {
     
+    $("input:submit.banna").click(function() {
+        //id dello scrittore della recensione + id segnalazione  
+        var id = this.id;
 
-$("input:submit.banna").click(function() {
-//id dello scrittore della recensione + id segnalazione  
-  var id = this.id;
- 
- $.ajax({ //spedizione a AmministratoreController per bannare un cliente
-              type: "POST",
-                url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=banna",
-                data: "id_cliente="+id,
-                dataType: "text"
-                
-            }).done(function(messaggio) {
-               //fa il toggle su tutte le recensioni mandate da uno stesso cliente
-               $(".cancella"+id).toggle();
+        $.ajax({ //spedizione a AmministratoreController per bannare un cliente
+            type: "POST",
+            url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=banna",
+            data: "id_cliente=" + id,
+            dataType: "text"
 
-            }).fail(function() { alert("Errore: si è verificato un problema");
+        }).done(function(messaggio) {
+            //fa il toggle su tutte le recensioni mandate da uno stesso cliente
+            $(".cancella" + id).toggle();
+
+        }).fail(function() {
+            alert("Errore: si è verificato un problema");
         });
-  
-});
-});
 
-
+    });
+});

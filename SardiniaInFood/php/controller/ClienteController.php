@@ -325,8 +325,26 @@ class ClienteController
     {
         $id_azienda = $_REQUEST['id_azienda'];
         UtenteFactory::inserisciTraIPreferiti($id_azienda);
+       
+        self::showHomePageCliente();
+       ?> <script type="text/javascript" src="/SardiniaInFood/js/scroll_lista.js"></script> <?php
     }
 
+    
+    
+/* CANCELLA PREFERITI
+========================================================================== */
+    //permette di cancellare un'azienda inserita nella lista dei preferiti
+    public static function deleteFavorite()
+    {
+        $id_azienda = $_REQUEST['id_azienda'];
+        UtenteFactory::deleteFavorite($id_azienda);
+             
+        self::showHomePageCliente();
+         ?> <script type="text/javascript" src="/SardiniaInFood/js/scroll_lista.js"></script> <?php
+     
+    }
+    
     
 /* RAPPORTO QUALITA - PREZZO
 ========================================================================== */
@@ -351,7 +369,8 @@ class ClienteController
      
         if(strlen($comments) > 0)
         {        
-        UtenteFactory::commenta($comments, $id_azienda);        
+        UtenteFactory::commenta($comments, $id_azienda); 
+        ?> <script type="text/javascript" src="/SardiniaInFood/js/scroll_pagina.js"></script> <?php
         }
         //funzione che fa il fix del numero delle visualizzazioni.
         //Di norma al caricamento di 'mostra_profilo_e_vota.php' viene aggiornato il numero delle visualizzazioni dell'azienda corrispondente.
@@ -369,6 +388,15 @@ class ClienteController
         $vd->setFooterFile("../view/in/footer_empty.php");
       
         require_once "../view/Master.php";
+        
+        if(strlen($comments) > 0)
+        {        
+        ?> <script type="text/javascript" src="/SardiniaInFood/js/scroll_pagina.js"></script> <?php
+        }
+        else 
+            {
+            ?> <script type="text/javascript" src="/SardiniaInFood/js/no_scroll_pagina.js"></script> <?php
+            }
         
     }
 
@@ -410,17 +438,6 @@ class ClienteController
         $vd->setFooterFile("../view/in/footer_empty.php");
  
         require_once "../view/Master.php";
-    }
-
-    
-    
-/* CANCELLA PREFERITI
-========================================================================== */
-    //permette di cancellare un'azienda inserita nella lista dei preferiti
-    public static function deleteFavorite()
-    {
-        $id_azienda = $_REQUEST['id_azienda'];
-        UtenteFactory::deleteFavorite($id_azienda);
     }
 
     

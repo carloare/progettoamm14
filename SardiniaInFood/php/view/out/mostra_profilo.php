@@ -29,10 +29,10 @@
    if($media_voto>=4) $titolo_m="Alle persone piace questo posto";
    else if($media_voto>=3 AND $media_voto<4) $titolo_m="Le persone hanno pareri contrastanti su questo posto";
    else $titolo_m="Alle persono non piace questo posto";
-   //titolo che sintetizza il voto ricevuto
-   $rapporto_qp; 
+   //titolo che sintetizza il voto ricevuto 
+   $titolo_qp='';
    if($rapporto_qp>=4) $titolo_qp="Economico";
-   else if($rapporto_qp>=3 AND $$rapporto_qp<4) $titolo_qp="Moderato";
+   else if($rapporto_qp>=3 AND $rapporto_qp<4) $titolo_qp="Moderato";
    else $titolo_qp="Costoso";
    //restituisce l'ultima recensione ricevuta dall'azienda
    $recensione= UtenteFactory::ultimaRecensione($_REQUEST['id_azienda']);

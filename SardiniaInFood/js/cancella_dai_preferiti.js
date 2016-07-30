@@ -1,25 +1,25 @@
-$(document).ready(function(){
-    
-//Il JQUERY partirà al click sull'immgaine
-$("input:image").click(function() {
-//prendo l'id associato all'azienda  
-  var id = this.id;
- 
- $.ajax({ //spedizione alla ClienteController per essere cancellato dai preferiti
-                type: "POST",
-                url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito",
-                data: "id_azienda="+id,
-                dataType: "text"
-                
-            }).done(function(messaggio) {
-                alert("Messaggio:" + messaggio);
-                
-                $("#profile"+id).toggle();
-                
-               // document.getElementById("profile"+id).style.display='none';
-            }).fail(function() { alert("Errore: si è verificato un problema"); });
-  
-});    
+$(document).ready(function() {
+
+    //Il JQUERY partirà al click sull'immgaine
+    $("input:image").click(function() {
+        //prendo l'id associato all'azienda  
+        var id = this.id;
+
+        $.ajax({ //spedizione alla ClienteController per essere cancellato dai preferiti
+            type: "POST",
+            url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito",
+            data: "id_azienda=" + id,
+            dataType: "text"
+
+        }).done(function(messaggio) {
+
+
+            $("#profile" + id).toggle();
+
+            // document.getElementById("profile"+id).style.display='none';
+        }).fail(function() {
+            alert("Errore: si è verificato un problema");
+        });
+
+    });
 });
-
-
