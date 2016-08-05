@@ -1,6 +1,6 @@
 <?php
-   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
-   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
+   include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
+   include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
    ?> 
 <!DOCTYPE html>
 <html lang="it">
@@ -12,10 +12,10 @@
       <meta name="author" content="Carlo Aresu">
       <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
       <meta name="description" content="pagina master di SardiniaInFood">
-      <link rel="stylesheet" type="text/css" href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/css/fogliodistile.css">
-      <script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
-      <script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/menu-responsive.js"></script>
-      <link rel="icon" href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/images/favicon.png" sizes="16x16" type="image/png">
+      <link rel="stylesheet" type="text/css" href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/css/fogliodistile.css">
+      <script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+      <script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/menu-responsive.js"></script>
+      <link rel="icon" href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/favicon.png" sizes="16x16" type="image/png">
    </head>
    <body>
       <div class="fullbackgroundimage home"></div>
@@ -31,16 +31,16 @@
                 {
                ?>                
                <li>
-                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=0&logout" title="Logout" >LOGOUT</a>
+                  <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=0&logout" title="Logout" >LOGOUT</a>
                </li>
                <?php }
                //altrimenti
                     else { ?>
                <li>
-                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
+                  <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
                </li>
                <li>
-                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
+                  <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
                </li>
               <?php } ?>
             </ul>
