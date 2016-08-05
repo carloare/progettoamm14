@@ -20,7 +20,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `Servizi` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tipo` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 )";
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 
 if (mysqli_query($conn, $sql)) {
     echo "Table Servizi created successfully";
