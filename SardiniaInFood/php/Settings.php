@@ -28,8 +28,8 @@ if (mysqli_query($conn, $sql)) {
     echo "Error creating table: " . mysqli_error($conn);
 }
 
-
-if ($result = mysqli_query("SELECT * FROM Servizi")) {
+    
+if ($result = mysqli_query($conn, "SELECT * FROM Servizi")) {
     $number_servizi = $result->num_rows;
     echo "Numero servizi: ".$number_servizi;
 }
