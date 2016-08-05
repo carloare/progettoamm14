@@ -10,6 +10,9 @@ if (mysqli_connect_errno()) {
     exit();
 } else echo "ciao";
 
+if ($result = $mysqli->query("SELECT * FROM Servizi")) {
+    printf("Select returned %d rows.\n", $result->num_rows);
+
 class Settings
 {
     public static $db_host = 'localhost';
