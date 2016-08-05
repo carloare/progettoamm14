@@ -65,6 +65,9 @@ class FrontController
 				// form di registrazione del cliente
 
 			case 1:
+                             session_destroy();
+                             session_start();
+                             
 				$vd->setMenuFile('view/out/menu_back.php'); //menu del form di registrazione del cliente
 				$vd->setContentFile('view/out/form_registrazione_cliente.php'); //form per la registrazione di un nuovo cliente
 				$vd->setErrorFile('view/out/error_out.php');
@@ -83,6 +86,9 @@ class FrontController
 				// form di registrazione dell'azienda
 
 			case 3:
+                             session_destroy();
+                             session_start();
+                             
 				$vd->setMenuFile('view/out/menu_back.php'); //menu registrazione azienda
 				$vd->setContentFile('view/out/form_registrazione_azienda_part1.php'); //form per la registrazione di una nuova azienda (parte 1 di 3)
 				$vd->setErrorFile('view/out/error_out.php');

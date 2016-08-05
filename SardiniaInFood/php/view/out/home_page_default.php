@@ -6,9 +6,10 @@ della ricerca-->
    include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';
    include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
    include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php';
-   
-   if (session_status() != 2) session_start();
-   
+
+if (session_status() != 2)
+    session_start();
+
    ?>
 <div id="box-form-home">
    <h1 class="white">

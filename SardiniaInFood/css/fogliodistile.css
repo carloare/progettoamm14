@@ -1018,7 +1018,7 @@ height: auto;
 background: url('../images/bg-black.png') 0 0 repeat;
 }
 .form-generic {
-margin: 0 auto;
+margin: 0px 30px;
 width: 800px;
 }
 h3.white {
@@ -1032,77 +1032,49 @@ font-size: 22px;
 color: #fff;
 }
 .form-generic select {
-margin: 10px;
-padding: 12px;
+margin-bottom: 5px;
+padding: 12px 0px;
 border: 0 !important;
 -webkit-appearance: none;
 -moz-appearance: none;
 background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
-width: 98%;
+width: 100%;
 background-color: #f9f9f9;
 text-overflow: "";
+text-indent: 10px;
 font-size: 18px;
 display: inline-block;
 cursor: pointer;
 }
-.form-generic input[type="text"] {
-margin: 10px;
-padding: 12px;
+.form-generic input[type="text"],
+.form-generic textarea,
+.form-generic input[type="password"].submitrec,
+.form-generic input[type="password"].submitlogin,
+.form-generic input[type="email"],
+.form-generic input[type="checkbox"]
+{
+margin-bottom: 5px;
+padding: 12px 0px;
 border: none;
+text-indent: 10px;
 background: #f9f9f9;
-width: 95%;
-font-size: 18px;
-}
-.form-generic textarea {
-margin: 10px;
-padding: 12px;
-border: none;
-background: #f9f9f9;
-width: 95%;
-font-size: 18px;
-}
-.form-generic input[type="password"].submitrec {
-margin: 10px;
-padding: 12px;
-border: none;
-background: #f9f9f9;
-width: 95%;
-font-size: 18px;
-}
-.form-generic input[type="password"].submitlogin {
-margin: 30px 10px 10px 10px;
-padding: 12px;
-border: none;
-background: #f9f9f9;
-width: 95%;
-font-size: 18px;
-}
-.form-generic input[type="email"] {
-margin: 10px;
-padding: 12px;
-border: none;
-background: #f9f9f9;
-width: 95%;
-font-size: 18px;
-}
-.form-generic input[type="checkbox"] {
-margin: 10px;
-padding: 12px;
-border: none;
-background: #f9f9f9;
-width: 95%;
+width: 100%;
 font-size: 18px;
 }
 p.submitrec {
-padding: 15px 0px 0px 15px;
+margin-top: 15px;
+width: 100%;
+padding: 12px 0px;
 font-size: 18px;
+text-indent: 10px;
 color: #fff;
+float: left;
 }
 .form-generic input[type="submit"] {
-margin: 10px;
-padding: 11px 0px;
+margin-top: 20px;
+padding: 12px 0px;
 border: none;
-width: 100px;
+width: 100%;
 text-align: center;
 background: #00a65e;
 font-size: 18px;
@@ -1138,15 +1110,13 @@ background-size: 40px 40px;
 }
 .messaggio-errore {
 float: left;
-
 width: 100%;
-background: #D82726 url('/SardiniaInFood/images/error-advise.png') 2px 0px no-repeat;
+padding: 12px 0px;
+background: #D82726 url('/SardiniaInFood/images/error-advise.png') 2px 2px no-repeat;
 background-size: 40px 40px;
-border: 2px solid #D82726;
 color: #f9f9f9;
 text-align: center;
-font-size: 18px;
-clear: both;
+font-size: 16px;
 }
 /* IMMAGINI TIPO DI ATTIVITA (per Firefox)
 ========================================================================== */
@@ -1756,43 +1726,17 @@ text-align: center;
 font-size: 22px;
 color: #fff;
 }
-.form-generic select {
-margin-top: 10px;
-margin-left: 15px;
-padding: 8px 8px;
-width: 620px;
-font-size: 14px;
-display: block;
+.form-generic {
+width: 590px;
 }
 .form-generic input[type="text"] {
-margin-left: 15px;
-width: 596px;
 font-size: 14px;
-display: block;
 }
 .form-generic textarea {
-margin-left: 15px;
-width: 596px;
 font-size: 14px;
-display: block;
 }
 .form-generic input[type="password"].submitrec {
-margin-left: 15px;
-width: 596px;
 font-size: 14px;
-display: block;
-}
-.form-generic input[type="password"].submitlogin {
-margin-left: 15px;
-width: 596px;
-font-size: 14px;
-display: block;
-}
-.form-generic input[type="email"] {
-margin-left: 15px;
-width: 596px;
-font-size: 14px;
-display: block;
 }
 .form-generic input[type="checkbox"] {
 margin-left: 15px;
@@ -1800,18 +1744,7 @@ width: 596px;
 font-size: 14px;
 display: block;
 }
-p.submitrec {
-padding: 15px 0px 0px 15px;
-font-size: 18px;
-color: #fff;
-}
-.form-generic input[type="submit"] {
-margin-top: 20px;
-margin-left: 15px;
-width: 620px;
-font-size: 14px;
-display: block;
-}
+
 /* ERRORI
 ========================================================================== */
 .errore,
@@ -1821,11 +1754,7 @@ font-size: 16px;
 width: 530px;
 background-size: 35px 35px;
 }
-messaggio-errore {
-padding-top: 5px;
-width: 350px;
-background-size: 25px 25px;
-}
+
 /* IMMAGINI TIPO DI ATTIVITA
 ========================================================================== */
 select#tipo_attivita_id option[value="-1"] {
@@ -2245,19 +2174,13 @@ float: left;
 margin-top: 30px;
 float: left;
 }
-/* FORM GENERALE
-========================================================================== */
-#box-form {
-margin: 0 auto;
-margin-top: 50px;
-width: 420px;
-}
+
 /* FORM GENERICO
 ========================================================================== */
 #box-form {
 margin: 0 auto;
 margin-top: 50px;
-margin-bottom: 200px;
+margin-bottom: 20px;
 width: 420px;
 }
 span.submitrec {
@@ -2265,43 +2188,21 @@ text-align: center;
 font-size: 22px;
 color: #fff;
 }
-.form-generic select {
-margin-top: 20px;
-margin-left: 15px;
-padding: 11px 8px;
-width: 390px;
-font-size: 14px;
-display: block;
+.form-generic {
+margin: 0px 20px;
+width: 380px;
 }
 .form-generic input[type="text"] {
-margin-left: 15px;
-width: 366px;
 font-size: 14px;
-display: block;
 }
 .form-generic input[type="password"].submitrec {
-margin-left: 15px;
-width: 366px;
 font-size: 14px;
-display: block;
 }
 .form-generic input[type="password"].submitlogin {
-margin-left: 15px;
-width: 366px;
 font-size: 14px;
-display: block;
 }
 .form-generic textarea {
-margin-left: 15px;
-width: 366px;
 font-size: 14px;
-display: block;
-}
-.form-generic input[type="email"] {
-margin-left: 15px;
-width: 366px;
-font-size: 14px;
-display: block;
 }
 .form-generic input[type="checkbox"] {
 margin-left: 15px;
@@ -2309,13 +2210,7 @@ width: 366px;
 font-size: 14px;
 display: block;
 }
-.form-generic input[type="submit"] {
-margin-top: 20px;
-margin-left: 15px;
-width: 390px;
-font-size: 14px;
-display: block;
-}
+
 /* ERRORI LOGIN
 ========================================================================== */
 .errore,
@@ -2326,12 +2221,7 @@ width: 300px;
 background-size: 35px 35px;
 background-color: #d82726;
 }
-.messaggio-errore {
-margin: 0 auto;
-padding-top: 5px;
-width: 300px;
-background-size: 25px 25px;
-}
+
 /* IMMAGINI TIPO DI ATTIVITA
 ========================================================================== */
 select#tipo_attivita_id option[value="-1"] {
@@ -2819,43 +2709,24 @@ text-align: center;
 font-size: 22px;
 color: #fff;
 }
-.form-generic select {
-margin-left: 15px;
-margin-top: 20px;
-padding: 11px 8px;
-width: 250px;
-font-size: 14px;
-display: block;
+.form-generic {
+margin: 0px 20px;
+width: 240px;
 }
 .form-generic input[type="text"] {
-margin-left: 15px;
-width: 226px;
-font-size: 14px;
-display: block;
+font-size: 12px;
+}
+.form-generic select {
+font-size: 12px;
 }
 .form-generic input[type="password"].submitrec {
-margin-left: 15px;
-width: 226px;
-font-size: 14px;
-display: block;
+font-size: 12px;
 }
 .form-generic input[type="password"].submitlogin {
-margin-left: 15px;
-width: 226px;
-font-size: 14px;
-display: block;
+font-size: 12px;
 }
 .form-generic textarea {
-margin-left: 15px;
-width: 226px;
 font-size: 14px;
-display: block;
-}
-.form-generic input[type="email"] {
-margin-left: 15px;
-width: 226px;
-font-size: 14px;
-display: block;
 }
 .form-generic input[type="checkbox"] {
 margin-left: 15px;
@@ -2864,12 +2735,16 @@ font-size: 14px;
 display: block;
 }
 .form-generic input[type="submit"] {
-margin-left: 15px;
-margin-top: 20px;
-width: 250px;
-font-size: 14px;
-display: block;
+font-size: 12px;
 }
+
+.messaggio-errore {
+background: #D82726;
+background-size: none;
+font-size: 12px;
+}
+
+
 /* ERRORI LOGIN
 ========================================================================== */
 .errore,
@@ -2879,13 +2754,7 @@ font-size: 14px;
 width: 160px;
 background-size: 30px 30px;
 }
-.messaggio-errore {
-padding-top: 5px;
-padding-left: 15px;
-width: 250px;
-font-size: 14px;
-background-size: 20px 20px;
-}
+
 /* IMMAGINI TIPO DI ATTIVITA
 ========================================================================== */
 select#tipo_attivita_id option[value="-1"] {

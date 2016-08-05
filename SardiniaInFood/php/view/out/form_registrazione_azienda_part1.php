@@ -51,7 +51,7 @@ Un utente che vuole registrare la propria azienda deve prima inserire i propri d
             <?php
                }
                ?>       
-         </select>
+         </select> <?php if (isset($_SESSION['tipo_incarichi_id'])) echo $_SESSION['tipo_incarichi_id']; ?> 
                   
          
          <p class="submitrec"><label for="email_personale_azienda">Email</label></p>

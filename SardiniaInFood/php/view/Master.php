@@ -27,7 +27,7 @@
                <?php    
              
                //azienda, amministratore o un cliente che non è bannato
-               if (isset($_SESSION['visible_logout']) AND ($_SESSION['visible_logout']==0) OR ($_SESSION['visible_logout']==1) OR ($_SESSION['visible_logout']==2))
+               if (isset($_SESSION['visible_logout']) AND (($_SESSION['visible_logout']==0) OR ($_SESSION['visible_logout']==1) OR ($_SESSION['visible_logout']==2)))
                 {
                ?>                
                <li>
