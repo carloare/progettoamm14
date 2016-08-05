@@ -29,7 +29,7 @@ if (mysqli_query($conn, $sql)) {
 }
 
 
-if ($result = $mysqli->query("SELECT * FROM Servizi")) {
+if ($result = mysqli_query("SELECT * FROM Servizi")) {
     $number_servizi = $result->num_rows;
     echo "Numero servizi: ".$number_servizi;
 }
