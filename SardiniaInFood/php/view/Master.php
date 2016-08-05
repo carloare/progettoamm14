@@ -31,16 +31,16 @@
                 {
                ?>                
                <li>
-                  <a href="/SardiniaInFood/php/?page=0&logout" title="Logout" >LOGOUT</a>
+                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=0&logout" title="Logout" >LOGOUT</a>
                </li>
                <?php }
                //altrimenti
                     else { ?>
                <li>
-                  <a href="/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
+                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=2" title="Login clienti" >LOGIN</a>
                </li>
                <li>
-                  <a href="/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
+                  <a href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/?page=1" title="Iscriviti" >ISCRIVITI</a>
                </li>
               <?php } ?>
             </ul>
