@@ -1,5 +1,5 @@
 <?php
-   echo basename(__DIR__);
+   echo basename(__DIR__) . "/../php/Settings.php";
    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
    ?> 
