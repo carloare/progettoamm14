@@ -2,6 +2,14 @@
 
 //Classe con le credenziali per l'accesso al database
 
+$mysqli = new mysqli("localhost", "aresuCarlo", "falco808", "amm14_aresuCarlo");
+
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+} else echo "ciao";
+
 class Settings
 {
     public static $db_host = 'localhost';
