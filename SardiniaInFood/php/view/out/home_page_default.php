@@ -3,9 +3,9 @@
 fra tutte le aziende registrate in SardiniaInFood, la seconda contiene gli eventuali risultati
 della ricerca-->
 <?php
-   include_once '../model/Utente.php';
-   include_once '../model/UtenteFactory.php';
-   include_once '../model/Azienda.php';
+   include_once '../../model/Utente.php';
+   include_once '../../model/UtenteFactory.php';
+   include_once '../../model/Azienda.php';
 
 if (session_status() != 2)
     session_start();
