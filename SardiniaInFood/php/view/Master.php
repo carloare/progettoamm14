@@ -1,6 +1,6 @@
 <?php
    include_once 'ViewDescriptor.php';
-   include_once basename(__DIR__) . '/SardiniaInFood/php/Settings.php';
+   include_once '../Settings.php';
    ?> 
 <!DOCTYPE html>
 <html lang="it">
