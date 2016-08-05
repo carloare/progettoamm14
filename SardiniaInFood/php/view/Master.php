@@ -1,6 +1,6 @@
 <?php
    include_once 'ViewDescriptor.php';
-   include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
+   include_once $_SERVER["DOCUMENT_ROOT"] . '/SardiniaInFood/php/Settings.php';
    ?> 
 <!DOCTYPE html>
 <html lang="it">
