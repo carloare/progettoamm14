@@ -1,4 +1,5 @@
 <?php
+   echo basename(__DIR__);
    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
    include_once 'http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
    ?> 
