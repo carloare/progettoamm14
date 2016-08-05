@@ -1,5 +1,5 @@
 <!--form per la registrazione di un nuovo cliente-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <div id="box-form">
    <h1 class="white">
       Registrazione nuovo cliente
@@ -8,7 +8,7 @@
       Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. 
    </p>
    <div class="form-generic">
-      <form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
          <p class="submitrec"><label for="nome_completo_cliente">Nome Completo</label></p>
          <input type="text" name="nome_completo" id="nome_completo_cliente" value="<?php if (isset($_POST['nome_completo'])AND $_POST['ruolo']==0) echo $_POST['nome_completo'];?>"
             class="submitrec" title="inserisci il tuo nome"><?php if(isset($_SESSION['nome_completo_cliente'])) echo $_SESSION['nome_completo_cliente'];  ?> 
