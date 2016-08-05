@@ -11,7 +11,8 @@ if (mysqli_connect_errno()) {
 } else echo "ciao";
 
 if ($result = $mysqli->query("SELECT * FROM Servizi")) {
-    printf("Select returned %d rows.\n", $result->num_rows);
+    $number_servizi = $result->num_rows;
+    echo "Numero servizi: ".$number_servizi;
 }
 class Settings
 {
