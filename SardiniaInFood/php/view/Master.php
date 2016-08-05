@@ -12,10 +12,10 @@
       <meta name="author" content="Carlo Aresu">
       <meta name="keywords" content="ProgettoAMM AMM SardiniaInFood">
       <meta name="description" content="pagina master di SardiniaInFood">
-      <link rel="stylesheet" type="text/css" href="http://localhost/SardiniaInFood/css/fogliodistile.css">
-      <link rel="icon" href="http://localhost/SardiniaInFood/images/favicon.png" sizes="16x16" type="image/png">
-      <script type="text/javascript" src="http://localhost/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
-      <script type="text/javascript" src="http://localhost/SardiniaInFood/js/menu-responsive.js"></script>
+      <link rel="stylesheet" type="text/css" href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/css/fogliodistile.css">
+      <link rel="icon" href="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/images/favicon.png" sizes="16x16" type="image/png">
+      <script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+      <script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/menu-responsive.js"></script>
    </head>
    <body>
       <div class="fullbackgroundimage home"></div>
