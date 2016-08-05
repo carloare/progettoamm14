@@ -1,6 +1,6 @@
 <?php
    include_once 'ViewDescriptor.php';
-   include_once basename(__DIR__) . '/../Settings.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
    ?> 
 <!DOCTYPE html>
 <html lang="it">
