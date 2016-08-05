@@ -20,7 +20,7 @@ if (session_status() != 2)
    </p>
    <!--form di ricerca tra tutte le aziende iscritte in SardiniaInFood-->
    <div class="form-home">
-      <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
          <input type="text" name="citta" onfocus="this.value=''" value="<?php if(isset($_POST['citta'])) { echo $_POST['citta']; } else { echo "Dove";} ?> " 
             title="inserisci il luogo dove fare la ricerca" size="24">      
          <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
