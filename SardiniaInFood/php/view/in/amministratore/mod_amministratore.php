@@ -94,6 +94,6 @@
    }
    } 
     else
-   {echo '<h1>non sono presenti segnalazioni sulle recensioni</h1>';}
+   {echo '<div class="avviso">non sono presenti segnalazioni sulle recensioni</div>';}
    ?>
 </div>
