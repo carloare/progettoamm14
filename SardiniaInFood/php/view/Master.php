@@ -1,5 +1,5 @@
 <?php
-   include_once 'ViewDescriptor.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
    include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
    ?> 
 <!DOCTYPE html>
