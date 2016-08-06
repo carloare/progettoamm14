@@ -1,7 +1,7 @@
 
         <li class="blue">
  
-        <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=home" title="torna alla home dell'amministratore" method="POST">HOME</a>
+        <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=home" title="torna alla home dell'amministratore" method="POST">BACK</a>
 
     </li> 
     <li class="blue">
