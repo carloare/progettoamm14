@@ -1,9 +1,9 @@
 <!--pagina che contiene una scheda con il profilo di un'azienda a cui può accedere un cliente loggato-->
-<script type="text/javascript" src="/SardiniaInFood/js/vota.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/aggiungi_ai_preferiti.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/segnalazione.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/vota.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/aggiungi_ai_preferiti.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/segnalazione.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 
 <?php  
  if(isset($_REQUEST['id_azienda'])) 
@@ -11,10 +11,10 @@
      $_SESSION['id_azienda'] = $_REQUEST['id_azienda'];     
      }
    
-   include_once '../model/UtenteFactory.php';
-   include_once '../model/Azienda.php';
-   include_once '../model/Utente.php';
-   include_once '../model/Cliente.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Cliente.php';
    if (session_status() != 2)
        session_start();
    
@@ -81,7 +81,7 @@
 
     ?>
 <div id="card">
-   <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+   <div class="box-img"><a href=""><img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-contacts">
       <h2><?php echo $attivita; ?></h2>
       <h1><?php echo $nome_azienda; ?></h1>
@@ -215,7 +215,7 @@
          <h3>SCRIVI UNA RECENSIONE</h3>
          <i>Gli autori dei commenti, e non SardiniaInFood, sono responsabili dei contenuti da loro inseriti</i>
          <!--inserimento di una recensione, commento o un'opinione riguardante l'azienda-->
-         <form id="recensione" action="/SardiniaInFood/php/controller/ClienteController.php?cmd=commenta" method="POST">
+         <form id="recensione" action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=commenta" method="POST">
             <div>
                <textarea  name="comments"  id="comments" rows="5" cols="20" maxlength="150" title="Voui inserire una tua recensione?"></textarea>
                <?php if (isset($_SESSION['recensione'])) echo $_SESSION['recensione']; ?> 
