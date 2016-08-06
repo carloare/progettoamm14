@@ -4,9 +4,9 @@ fra tutte le aziende registrate in SardiniaInFood, la seconda contiene gli event
 della ricerca; qui permette già di inserire le aziende nella lista dei preferiti-->
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php     
-   include_once '/home/amm/development/SardiniaInFood/php/model/Utente.php';    
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
-   include_once '/home/amm/development/SardiniaInFood/php/model/Azienda.php'; 
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';    
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/php/model/Azienda.php'; 
    if (session_status() != 2) session_start();
    ?>
 <div id="box-form-cliente">
