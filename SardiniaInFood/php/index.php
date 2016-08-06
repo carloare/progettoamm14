@@ -33,7 +33,7 @@ class FrontController
 		// di default. Da qui si accede alle varie funzionalità.
 
 		$vd->setTitolo("Home SardegnaInFood");
-		$vd->setLogoFile('view/out/logo.php');
+		$vd->setLogoFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/logo.php');
 		
                 $value = $_GET['page'];
 		
