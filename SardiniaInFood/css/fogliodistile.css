@@ -2211,6 +2211,12 @@ font-size: 14px;
 display: block;
 }
 
+.messaggio-errore {
+background: #D82726;
+background-size: none;
+font-size: 14px;
+}
+
 /* ERRORI LOGIN
 ========================================================================== */
 .errore,
