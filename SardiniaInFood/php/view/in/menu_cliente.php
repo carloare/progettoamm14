@@ -49,7 +49,7 @@ if($_REQUEST['cmd']!='profileandvote' AND $_REQUEST['cmd']!='show_preferiti')
 echo '
      <li>
         <li>     
-             <a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=show_preferiti" title="mostra i miei preferiti" method="POST">Preferiti</a>
+             <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=show_preferiti" title="mostra i miei preferiti" method="POST">Preferiti</a>
         </li>
     </li>
 ';
@@ -64,7 +64,7 @@ else
 
     <div id="uscita">
        <li>
-        <a class="alert" href ="/SardiniaInFood/php/controller/ClienteController.php?cmd=cancella" title="cancella il mio profilo" onclick ="return confirm('Sei sicuro?');">Cancella profilo</a>
+        <a class="alert" href ="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=cancella" title="cancella il mio profilo" onclick ="return confirm('Sei sicuro?');">Cancella profilo</a>
     </li>
     <li>
  
