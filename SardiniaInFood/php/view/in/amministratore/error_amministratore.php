@@ -25,7 +25,7 @@ switch ($errore) {
    
         ?>
         <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="Inserire dei parametri di ricerca" height="48" width="48" title="Inserire dei parametri di ricerca"> 
+    <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png" alt="Inserire dei parametri di ricerca" height="48" width="48" title="Inserire dei parametri di ricerca"> 
     <h4>Errore inserire dei parametri di ricerca</h4>
     </div>
     <?php   
@@ -39,7 +39,7 @@ switch ($errore) {
    
        ?>
         <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
+    <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
     <h4>Errore Il campo nome contiene caratteri non validi.<br>Verifica eventuali errori di battitura.</div></h4>
     </div>
     <?php     
@@ -53,7 +53,7 @@ switch ($errore) {
    
         ?>
         <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
+    <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
     <h4>Errore nessun risultato trovato</h4>
     </div>
     <?php   
@@ -67,7 +67,7 @@ switch ($errore) {
    
         ?>
         <div class="errore">
-    <img src="/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
+    <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png" alt="errore nessun risultato trovato" height="48" width="48" title="errore nessun risultato trovato"> 
     <h4>Inserire dei parametri di ricerca</h4>
     </div>
     <?php   
