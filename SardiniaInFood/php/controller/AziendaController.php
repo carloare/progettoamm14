@@ -1,10 +1,10 @@
 <?php
 //controller dell'azienda
-include_once '../view/ViewDescriptor.php';
-include_once '../model/UtenteFactory.php';
-include_once '../model/Azienda.php';
-include_once '../model/Utente.php';
-include_once '/home/amm/development/SardiniaInFood/php/Settings.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/ViewDescriptor.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/Settings.php';
 
 if (session_status() != 2)
     session_start();
