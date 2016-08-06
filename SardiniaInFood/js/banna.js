@@ -6,7 +6,7 @@ $(document).ready(function() {
 
         $.ajax({ //spedizione a AmministratoreController per bannare un cliente
             type: "POST",
-            url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=banna",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=banna",
             data: "id_cliente=" + id,
             dataType: "text"
 
