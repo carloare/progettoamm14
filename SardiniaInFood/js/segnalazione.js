@@ -10,7 +10,7 @@ $(document).ready(function() {
 
         $.ajax({ //spedizione alla ClienteController per effettuare la segnalazione della recensione
             type: "POST",
-            url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=segnalazionerecensione",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=segnalazionerecensione",
             data: "id=" + id,
             dataType: "text"
 
