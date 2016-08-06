@@ -1,5 +1,5 @@
 <!--form di login per il cliente-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <div id="box-form">
    <h1 class="white">
       Login Cliente
