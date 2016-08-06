@@ -2,7 +2,7 @@
 Un utente che vuole registrare la propria azienda deve prima inserire i propri dati personali-->
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    ?>
 <div id="box-form">
    <h1 class="white">
