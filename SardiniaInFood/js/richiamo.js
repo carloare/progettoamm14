@@ -12,7 +12,7 @@ $(document).ready(function() {
         //vector[1] è l'id della segnalazione
         $.ajax({ //spedizione a AmministratoreController per bannare un cliente
             type: "POST",
-            url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=richiama",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=richiama",
             data: "id_recensione=" + vector[0],
             dataType: "text"
 
