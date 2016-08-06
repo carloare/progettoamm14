@@ -30,7 +30,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=rapporto_qualita_prezzo",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=rapporto_qualita_prezzo",
 
             data: {
                 voto_qp: voto_qp,
