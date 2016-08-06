@@ -11,7 +11,7 @@
 ?>
 
 
-<form action="/SardiniaInFood/php/controller/BaseController.php" id="registrazione_azienda" method="POST">
+<form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" id="registrazione_azienda" method="POST">
     
     
     
