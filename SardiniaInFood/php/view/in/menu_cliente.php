@@ -7,7 +7,7 @@ if($_REQUEST['cmd']=='show_preferiti' || $_REQUEST['cmd']=='indietro')
 echo '
     <li>
         <li>     
-             <a href="?cmd=back_home_page" title="ritorna alla Homepage" method="POST">Home</a>
+             <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=back_home_page" title="ritorna alla Homepage" method="POST">Home</a>
         </li>
     </li>
 ';
@@ -21,7 +21,7 @@ if($_REQUEST['cmd']=='cercadovecosa')
 echo '
     <li>
         <li>     
-             <a href="?cmd=back_home_page" title="pulisci dai risultati" method="POST">Pulisci</a>
+             <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=back_home_page" title="pulisci dai risultati" method="POST">Pulisci</a>
         </li>
     </li>
 ';
@@ -32,7 +32,7 @@ if($_REQUEST['cmd']=='profileandvote')
 echo '
     <li>
         <li>     
-             <a href="?cmd=indietro" method="POST" title="ritorna alla pagina precedente">&laquo; Indietro</a>
+             <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=indietro" method="POST" title="ritorna alla pagina precedente">&laquo; Indietro</a>
         </li>
     </li>
 ';
