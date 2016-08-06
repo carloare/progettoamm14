@@ -5,9 +5,9 @@
  */
 
 
-include_once '../model/UtenteFactory.php';
-include_once '../model/Azienda.php';
-include_once '../model/Utente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
 
 
 if (session_status() != 2) session_start();
