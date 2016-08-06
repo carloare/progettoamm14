@@ -83,7 +83,7 @@
        else
        {        
        ?>
-<form class="bottom-pagination" action="/SardiniaInFood/php/controller/AmministratoreController.php#paginazione" method="POST">        
+<form class="bottom-pagination" action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php#paginazione" method="POST">        
    <input type="hidden" name="cmd" value="showsegnalazioni">
    <input type="hidden" name="pagex" value="<?php echo $pagina; ?>">        
    <div class="other-page"><input type="submit" value="<?php echo $pagina; ?>"></div>    
