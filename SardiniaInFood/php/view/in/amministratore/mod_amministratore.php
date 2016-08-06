@@ -1,11 +1,11 @@
 <!--pagina di moderazione delle recensioni / commenti.-->
-<script type="text/javascript" src="/SardiniaInFood/js/banna.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/richiamo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/falsa_segnalazione.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/customize-amm.js"></script>
+<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/banna.js"></script>
+<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/richiamo.js"></script>
+<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/falsa_segnalazione.js"></script>
+<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/customize-amm.js"></script>
 <?php   
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    //conta il numero delle recensioni
    $numero_recensioni_segnalate = UtenteFactory::contaSegnalazioni();
    //se ci sono delle segnalazioni
