@@ -1,8 +1,8 @@
 <!--mostra_preferiti è la pagina che contiene la lista dei preferiti di un cliente.
 è sostanzialmente divisa in due parti: la prima è un form che permette di filtrare i preferiti, 
 la seconda contiene i preferiti-->
-<script type="text/javascript" src="/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php if (session_status() != 2) session_start();?>
 <?php
 
@@ -37,7 +37,7 @@ la seconda contiene i preferiti-->
       Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
    </p>
      <div class="form-ricerca">
-      <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php" method="POST">
          <input type="text" name="citta_preferiti" value="<?php if (isset($_POST['citta_preferiti'])) echo $_POST['citta_preferiti']; else echo "Dove"; ?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
          <select name="tipo_attivita_id_preferiti" id="tipo_attivita_id_preferiti" title="scegli il tipo di attivit&agrave; che vuoi cercare">
             <?php
@@ -126,7 +126,7 @@ if(isset($aziende_preferite) AND !isset($_SESSION['errore']))
        }
                ?>            
    <div id=profile<?php echo $id_azienda; ?> >
-      <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+      <div class="box-img"><a href=""><img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no_img.png" alt="" /></a></div>
       <div class="box-text">
          <h3><?php echo $attivita; ?></h3>
          <h1><?php echo $nome_azienda; ?></h1>
@@ -138,7 +138,7 @@ if(isset($aziende_preferite) AND !isset($_SESSION['errore']))
             <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp;} else {echo "-";} ?> / 5</div>
          </div>
          <!--bottone per la cancellazione dalla lista dei preferiti-->
-         <div><input type="image" src="/SardiniaInFood/images/cancel.png" id="<?php echo $id_azienda;?>" class="cancella-preferito" alt="cancella dai preferiti" height="38" width="38" title="Cancella dai preferiti" />
+         <div><input type="image" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/cancel.png" id="<?php echo $id_azienda;?>" class="cancella-preferito" alt="cancella dai preferiti" height="38" width="38" title="Cancella dai preferiti" />
          </div>
       </div>
    </div>
