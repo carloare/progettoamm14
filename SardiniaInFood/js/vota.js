@@ -42,7 +42,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=vota",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=vota",
 
             data: {
                 voto: voto,
