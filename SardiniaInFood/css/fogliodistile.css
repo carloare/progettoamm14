@@ -1310,7 +1310,7 @@ padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
-select#tipo_attivita_id_preferiti option[value="15"] {
+select#tipo_attivita_id_preferiti option[value="15"] { 
 background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
