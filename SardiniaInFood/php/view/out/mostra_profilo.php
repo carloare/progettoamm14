@@ -1,9 +1,9 @@
 <!--pagina che contiene una scheda con il profilo di un'azienda a cui si può accedere dalla home page-->
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
-   include_once '../model/UtenteFactory.php';
-   include_once '../model/Azienda.php';
-   include_once '../model/Utente.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
    //generazione del profilo dell'azienda di cui si vuole mostrare il profilo
    $azienda_to_show = UtenteFactory::cercaAziendaPerId($_REQUEST['id_azienda']); 
    $nome_azienda = $azienda_to_show->getNomeAzienda();
@@ -47,7 +47,7 @@
 
 
 <div id="card">
-   <div class="box-img"><a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+   <div class="box-img"><a href=""><img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-contacts">
       <h2><?php echo $attivita; ?></h2>
       <h1><?php echo $nome_azienda; ?></h1>
