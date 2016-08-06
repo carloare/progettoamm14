@@ -1,8 +1,8 @@
 <!--home page amministratore che contiene alcune statistiche-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/customize-amm.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/customize-amm.js"></script>
 <?php
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    ?>
 <div class="page-administration">
    <h1>AMMINISTRAZIONE</h1>
