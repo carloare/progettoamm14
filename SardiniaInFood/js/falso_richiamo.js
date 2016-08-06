@@ -13,7 +13,7 @@ $("input:submit.falso_richiamo").click(function() {
  
  $.ajax({ //spedizione a AmministratoreController per bannare un cliente
               type: "POST",
-                url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=falso_richiamo",
+                url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=falso_richiamo",
                 data: "id_recensione="+vector[0],
                 dataType: "text"
                 
