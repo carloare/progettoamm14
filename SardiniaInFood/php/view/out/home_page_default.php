@@ -130,7 +130,7 @@ if (session_status() != 2)
          <div class="media-voto" title="<?php echo $titolo_m; ?>">MEDIA VOTO: <?php if($numero_voti>0) { echo $media_voto; } else { echo "-"; } ?> / 5</div>
          <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp; } else { echo "-"; } ?> / 5</div>
       </div>
-      <a class="readmore" href='/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>' >+ DETTAGLI</a>
+      <a class="readmore" href='http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php?cmd=profilo&id_azienda=<?php echo $id_azienda; ?>' >+ DETTAGLI</a>
    </div>
 </div>
 <?php  
