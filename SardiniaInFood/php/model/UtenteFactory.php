@@ -1,8 +1,8 @@
 <?php
-include_once 'Azienda.php';
-include_once 'Cliente.php';
-include_once 'Utente.php';
-include_once 'Amministratore.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Cliente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Amministratore.php';
 
 /*
  * Classe che contiene tutti quei servizi necessari a un generico utente (cliente o azienda)
