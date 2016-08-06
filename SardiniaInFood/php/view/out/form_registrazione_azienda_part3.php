@@ -1,6 +1,6 @@
 <!--terza parte della registrazione di una nuova azienda.
 Permette di selezionare tutti gli eventuali servizi offerti-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <div id="box-form">
     <h1 class="white">
         Registrazione nuova azienda
@@ -10,7 +10,7 @@ Permette di selezionare tutti gli eventuali servizi offerti-->
     </h3>
     <div>
         <div class="form-generic">
-            <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
+            <form action="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
                 <?php $servizi = UtenteFactory::listaServizi();
                 while ($row = $servizi->fetch_row()) {
                     ?>
