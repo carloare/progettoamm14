@@ -105,7 +105,7 @@ z-index: -1;
 background-size: cover;
 }
 .fullbackgroundimage.home {
-background: url(../images/bk-home.jpg) no-repeat center top;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/bk-home.jpg) no-repeat center top;
 }
 /* TOP HEADER
 ========================================================================== */
@@ -125,7 +125,7 @@ z-index: 1;
 margin: 15px 0px;
 width: 250px;
 height: 50px;
-background: url(../images/logo.png) 0 0 repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/logo.png) 0 0 repeat;
 float: left;
 }
 #nav {
@@ -137,7 +137,7 @@ float: right;
 display: none;
 height: 40px;
 width: 40px;
-background: #a90000 url('../images/menu-responsive.png') no-repeat right top;
+background: #a90000 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/menu-responsive.png') no-repeat right top;
 cursor: pointer;
 }
 .mobnav-subarrow {
@@ -410,7 +410,7 @@ float: left;
 width: 100%;
 height: 32px;
 line-height: 32px;
-background: url('../images/user.png') no-repeat left top;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/user.png') no-repeat left top;
 text-indent: 40px;
 float: left;
 }
@@ -521,13 +521,13 @@ margin: 32px 0px 0px 32px;
 width: 336px;
 height: 40px;
 line-height: 40px;
-background: url('../images/no-check.png') no-repeat left top;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no-check.png') no-repeat left top;
 font-size: 14px;
 text-indent: 50px;
 float: left;
 }
 #card .box-services .box-gray .service.green {
-background: url('../images/check.png') no-repeat left top;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/check.png') no-repeat left top;
 }
 #card .box-feedback {
 margin-top: 40px;
@@ -605,7 +605,7 @@ float: left;
 width: 100%;
 height: 32px;
 line-height: 32px;
-background: url('../images/user.png') no-repeat left top;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/user.png') no-repeat left top;
 text-indent: 40px;
 float: left;
 }
@@ -633,7 +633,7 @@ line-height: 53px;
 text-indent: 43px;
 float: right;
 cursor: pointer;
-background: url(../images/add.png) 10px 0px no-repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/add.png) 10px 0px no-repeat;
 background-size: 40px 40px;
 color: #000;
 border: none;
@@ -648,7 +648,7 @@ line-height: 53px;
 text-indent: 43px;
 float: right;
 cursor: pointer;
-background: url(../images/remove.png) 10px 0px no-repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/remove.png) 10px 0px no-repeat;
 background-size: 40px 40px;
 color: #000;
 border: none;
@@ -696,13 +696,13 @@ line-height: 46px;
 text-indent: 35px;
 float: right;
 cursor: pointer;
-background: #FFFF66 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
+background: #FFFF66 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) 7px 7px no-repeat;
 background-size: 32px 32px;
 color: #000;
 border: none;
 }
 #card .bottone-preferiti input[type="button"]:hover {
-background: #FFFF33 url(/SardiniaInFood/images/star.png) 7px 7px no-repeat;
+background: #FFFF33 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) 7px 7px no-repeat;
 }
 /* RATING
 ========================================================================== */
@@ -714,14 +714,14 @@ width: 180px;
 height: 100px;
 }
 .ratings_stars {
-background: url('/SardiniaInFood/images/cuore-vuoto.png') no-repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/cuore-vuoto.png') no-repeat;
 float: left;
 height: 28px;
 padding: 2px;
 width: 32px;
 }
 .ratings_over {
-background: url('/SardiniaInFood/images/cuore-pieno.png') no-repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/cuore-pieno.png') no-repeat;
 }
 .product {
 font: 10px verdana, sans-serif;
@@ -739,14 +739,14 @@ width: 180px;
 height: 100px;
 }
 .rapporto_qualita_prezzo_dollars {
-background: url('/SardiniaInFood/images/money (1).png') no-repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/money (1).png') no-repeat;
 float: left;
 height: 28px;
 padding: 2px;
 width: 32px;
 }
 .rapporto_qualita_prezzo_over {
-background: url('/SardiniaInFood/images/money.png') no-repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/money.png') no-repeat;
 }
 .voto {
 padding: 5px;
@@ -772,7 +772,7 @@ margin-bottom: 20px;
 padding-bottom: 30px;
 width: 860px;
 height: auto;
-background: url('../images/bg-black.png') 0 0 repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/bg-black.png') 0 0 repeat;
 }
 .form-home,
 .form-cliente,
@@ -803,7 +803,7 @@ padding: 12px 12px;
 border: 0 !important;
 -webkit-appearance: none;
 -moz-appearance: none;
-background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
+background: #f9f9f9 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/arrow-select.png) top right no-repeat;
 width: 300px;
 background-color: #f9f9f9;
 text-overflow: "";
@@ -987,13 +987,13 @@ font-weight: bold;
 .main-menu-footer li a.validCSS3 {
 width: 88px;
 height: 31px;
-background: url(../images/w3c-css.png) 0 0 no-repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/w3c-css.png) 0 0 no-repeat;
 display: inline-block;
 }
 .main-menu-footer li a.validHTML5 {
 width: 88px;
 height: 31px;
-background: url(../images/w3c-html.png) 0 0 no-repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/w3c-html.png) 0 0 no-repeat;
 display: inline-block;
 }
 .main-menu-footer li a:hover {
@@ -1002,7 +1002,7 @@ text-decoration: underline;
 h6.report {
 margin-top: 20px;
 font-size: 16px;
-background: url(../images/alert-segnalazioni.png) 0 0 no-repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/alert-segnalazioni.png) 0 0 no-repeat;
 text-indent: 54px;
 line-height: 48px;
 }
@@ -1015,7 +1015,7 @@ margin-bottom: 20px;
 padding-bottom: 30px;
 width: 860px;
 height: auto;
-background: url('../images/bg-black.png') 0 0 repeat;
+background: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/bg-black.png') 0 0 repeat;
 }
 .form-generic {
 margin: 0px 30px;
@@ -1037,7 +1037,7 @@ padding: 12px 0px;
 border: 0 !important;
 -webkit-appearance: none;
 -moz-appearance: none;
-background: #f9f9f9 url(../images/arrow-select.png) top right no-repeat;
+background: #f9f9f9 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/arrow-select.png) top right no-repeat;
 width: 100%;
 background-color: #f9f9f9;
 text-overflow: "";
@@ -1097,22 +1097,22 @@ color: #f7f7f7;
 font-size: 18px;
 }
 .errore {
-background: #D82726 url('/SardiniaInFood/images/error.png') 5px 8px no-repeat;
+background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png') 5px 8px no-repeat;
 background-size: 40px 40px;
 }
 .avviso {
-background: #D82726 url('/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;
+background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;
 background-size: 40px 40px;
 }
 .successo {
-background: #D82726 url('/SardiniaInFood/images/successo.png') 5px 8px no-repeat;
+background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/successo.png') 5px 8px no-repeat;
 background-size: 40px 40px;
 }
 .messaggio-errore {
 float: left;
 width: 100%;
 padding: 12px 0px;
-background: #D82726 url('/SardiniaInFood/images/error-advise.png') 2px 2px no-repeat;
+background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error-advise.png') 2px 2px no-repeat;
 background-size: 40px 40px;
 color: #f9f9f9;
 text-align: center;
@@ -1207,7 +1207,7 @@ padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="15"] {
-background: url("/http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
@@ -1516,7 +1516,7 @@ float: right;
 }
 .mobnav-subarrow {
 display: block;
-background-image: url('../images/piu_meno.png');
+background-image: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/piu_meno.png');
 height: 20px;
 width: 30px;
 background-position: top left !important;
@@ -1665,10 +1665,10 @@ margin-top: 30px;
 margin-bottom: 30px;
 width: 100%;
 float: left;
-background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
+background: #FFFF66 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) no-repeat 37% center;
 }
 #card .bottone-preferiti input[type="button"]:hover {
-background: #FFFF33 url(/SardiniaInFood/images/star.png) no-repeat 37% center;
+background: #FFFF33 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) no-repeat 37% center;
 }
 /* CARD
 ========================================================================== */
@@ -1957,7 +1957,7 @@ float: right;
 }
 .mobnav-subarrow {
 display: block;
-background-image: url('../images/piu_meno.png');
+background-image: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/piu_meno.png');
 height: 20px;
 width: 30px;
 background-position: top left !important;
@@ -2126,10 +2126,10 @@ margin-top: 30px;
 margin-bottom: 30px;
 width: 100%;
 float: left;
-background: #FFFF66 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
+background: #FFFF66 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) 29% center no-repeat;
 }
 #card .bottone-preferiti input[type="button"]:hover {
-background: #FFFF33 url(/SardiniaInFood/images/star.png) 29% center no-repeat;
+background: #FFFF33 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) 29% center no-repeat;
 }
 /* CARD
 ========================================================================== */
@@ -2420,7 +2420,7 @@ background: #7a7a7a;
 margin: 20px 0px;
 width: 200px;
 height: 40px;
-background: url(../images/mob-logo.png) 0 0 repeat;
+background: url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/mob-logo.png) 0 0 repeat;
 }
 #nav {
 padding-bottom: 20px;
@@ -2434,7 +2434,7 @@ float: right;
 }
 .mobnav-subarrow {
 display: block;
-background-image: url('../images/piu_meno.png');
+background-image: url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/piu_meno.png');
 height: 20px;
 width: 30px;
 background-position: top left !important;
@@ -2607,10 +2607,10 @@ margin-top: 30px;
 margin-bottom: 30px;
 width: 100%;
 float: left;
-background: #FFFF66 url(/SardiniaInFood/images/star.png) no-repeat 19% center;
+background: #FFFF66 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) no-repeat 19% center;
 }
 #card .bottone-preferiti input[type="button"]:hover {
-background: #FFFF33 url(/SardiniaInFood/images/star.png) 19% center no-repeat;
+background: #FFFF33 url(http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png) 19% center no-repeat;
 }
 /* CARD
 ========================================================================== */
