@@ -166,7 +166,8 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
           
           <?php } ?> 
    </div>
-</div>   
+</div> 
+</div>
 <?php  
    }
    }
