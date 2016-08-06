@@ -5,7 +5,7 @@ $(document).ready(function(){
 
             $.ajax({ //l'azienda viene passata per essere inserita nella lista dei preferiti
                 type: "POST",
-                url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti",
+                url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti",
             }).done(function(messaggio) {
                 alert("Messaggio:" + messaggio);
                 $("#inserisci_tra_i_preferiti").toggle();
