@@ -94,6 +94,6 @@
    }
    } 
     else
-   {echo '<div class="avviso">non sono presenti segnalazioni sulle recensioni</div>';}
+   {echo '<div class="avviso-amministratore">Non sono presenti segnalazioni sulle recensioni</div>';}
    ?>
 </div>
