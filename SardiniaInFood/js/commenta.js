@@ -16,7 +16,7 @@ if (comments.length != 0) {
               
         $.ajax({ //spedizione al ClienteController per inserire la recensione
             type:"POST",
-            url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=commenta",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=commenta",
             data: dataString,
             
             
