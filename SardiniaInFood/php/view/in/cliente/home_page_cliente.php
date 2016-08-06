@@ -126,7 +126,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
     
     
    <div class="box-img">
-       <a href=""><img src="/SardiniaInFood/images/no_img.png" alt="" /></a></div>
+       <a href=""><img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-text">
       <h2><?php echo $attivita; ?></h2>
       <h3><a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
