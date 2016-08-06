@@ -1086,7 +1086,7 @@ cursor: pointer;
 .errore,
 .avviso,
 .successo,
-avviso-amministratore {
+.avviso-amministratore {
 margin: 0 auto;
 width: 740px;
 height: auto;
@@ -1101,7 +1101,7 @@ font-size: 18px;
 background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/error.png') 5px 8px no-repeat;
 background-size: 40px 40px;
 }
-.avviso, avviso-amministratore {
+.avviso, .avviso-amministratore {
 background: #D82726 url('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/avviso.png') 5px 8px no-repeat;
 background-size: 40px 40px;
 }
