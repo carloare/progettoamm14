@@ -757,7 +757,7 @@ class BaseController
             $_SESSION['visible_logout']=0;
         }
 
-        require_once "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php//view/Master.php";
+        require_once "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
     }
     
     
