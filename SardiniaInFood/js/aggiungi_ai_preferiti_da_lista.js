@@ -9,7 +9,7 @@ $("input:image").click(function() {
  
  $.ajax({ //spedizione alla ClienteController per essere cancellato dai preferiti
                 type: "POST",
-                url: "/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti",
+                url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti",
                 data: "id_azienda="+id,
                 dataType: "text"
                 
