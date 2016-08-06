@@ -1,5 +1,5 @@
 <?php
-include_once 'Utente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
 /*
 * Classe che rappresenta un generico cliente
 */
