@@ -189,11 +189,11 @@ class BaseController
                     
                     $vd = new ViewDescriptor();
                     $vd->setTitolo("SardiniaInFood");
-                    $vd->setLogoFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/logo.php");
-                    $vd->setMenuFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php");
-                    $vd->setContentFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/login_cliente.php"); //ritorna al form di login
-                    $vd->setErrorFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php");
-                    $vd->setFooterFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php");
+                    $vd->setLogoFile("../view/out/logo.php");
+                    $vd->setMenuFile("../view/out/menu_back.php");
+                    $vd->setContentFile("../view/out/login_cliente.php"); //ritorna al form di login
+                    $vd->setErrorFile("../view/out/error_out.php");
+                    $vd->setFooterFile("../view/out/footer_empty.php");
                    
                     require_once "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
                         
