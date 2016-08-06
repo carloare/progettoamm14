@@ -916,7 +916,7 @@ class BaseController
         $vd     = new ViewDescriptor();
         // utente non trovato. Viene visualizzato nuovamente il form di login
         if ($utente == "NOTFOUND") {
-            $url = "http://localhost/SardiniaInFood/php/index.php?page=0";
+            $url = "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/index.php?page=0";
             header("location:$url");
         } else {
             // salvo l'utente in sessione
