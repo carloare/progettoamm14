@@ -718,11 +718,11 @@ class BaseController
         if ($utente == "NOTFOUND") {
             $_SESSION['errore'] = 3;
             $vd->setTitolo("SardiniaInFood");
-            $vd->setLogoFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/logo.php");
-            $vd->setMenuFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php");
-            $vd->setContentFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/login_cliente.php"); //ritorno al form di login
-            $vd->setErrorFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php");
-            $vd->setFooterFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php");
+            $vd->setLogoFile("../view/out/logo.php");
+            $vd->setMenuFile("../view/out/menu_back.php");
+            $vd->setContentFile("../view/out/login_cliente.php"); //ritorno al form di login
+            $vd->setErrorFile("../view/out/error_out.php");
+            $vd->setFooterFile("../view/out/footer_empty.php");
         } elseif ($utente == "BANNATO") {
             // se il cliente Ã¨ giÃƒ  registrato viene mostrato un messaggio di errore
             if (isset($_SESSION['risultati'])) {
@@ -749,9 +749,9 @@ class BaseController
             $vd->setTitolo("SardiniaInFood");
             $vd->setLogoFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/in/logo.php");
             $vd->setMenuFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/in/menu_home_cliente.php");
-            $vd->setErrorFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php//view/in/error_in.php");
-            $vd->setContentFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php//view/in/cliente/home_page_cliente.php");
-            $vd->setFooterFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php//view/in/footer_home_clienti.php");
+            $vd->setErrorFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/in/error_in.php");
+            $vd->setContentFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/in/cliente/home_page_cliente.php");
+            $vd->setFooterFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/in/footer_home_clienti.php");
             
             unset($_SESSION['visible_logout']);
             $_SESSION['visible_logout']=0;
