@@ -737,7 +737,7 @@ class BaseController
             $vd->setErrorFile("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php");
             $vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_home_page.php');
 
-            require_once "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
+            require_once "/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
         } else {
             // pulizia della vecchia sessione
             // centenente i risultati delle ricerca del cliente
@@ -757,7 +757,7 @@ class BaseController
             $_SESSION['visible_logout']=0;
         }
 
-        require_once "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
+        require_once "/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php";
     }
     
     
