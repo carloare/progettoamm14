@@ -2,7 +2,7 @@
 è sostanzialmente divisa in due parti: la prima è un form che permette di fare una ricerca
 fra tutte le aziende registrate in SardiniaInFood, la seconda contiene gli eventuali risultati
 della ricerca; qui permette già di inserire le aziende nella lista dei preferiti-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php     
    include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';    
    include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
@@ -129,7 +129,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
        <a href=""><img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/no_img.png" alt="" /></a></div>
    <div class="box-text">
       <h2><?php echo $attivita; ?></h2>
-      <h3><a href="/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
+      <h3><a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>"><?php echo $nome_azienda; ?></a></h3>
       <h3><?php echo $citta; echo ' ';echo $indirizzo; ?></h3>
       <div class="box-statistiche">
          <div class="visualizzazioni">VISUALIZZAZIONI: <?php echo $visualizzazioni; ?></div>
@@ -138,7 +138,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
          <div class="rapporto-qualita-prezzo" title="<?php echo $titolo_qp; ?>">RAPPORTO QUALIT&Agrave; PREZZO: <?php if($numero_voti_qp>0) { echo $rapporto_qp;} else {echo "-";} ?> / 5</div>
       </div>
       <!--bottone per mostrare il profilo completo dell'azienda-->
-      <a class="readmore" href='/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
+      <a class="readmore" href='http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=profileandvote&id_azienda=<?php echo $id_azienda; ?>'>+ DETTAGLI</a>
       
       
       <div class="favorites" >
@@ -147,7 +147,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
           
           
           <!--bottone per inserire nella lista dei preferiti-->
-          <form class="add" action="/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti" method="POST">
+          <form class="add" action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=inseriscitraipreferiti" method="POST">
            <input type="hidden" id="id_azienda"  name="id_azienda" value="<?php echo $id_azienda; ?>">
            <input type="submit" class="add" value="" name="submit" id="submit">
            
@@ -158,7 +158,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
          <?php } else { ?>
           
           
-           <form class="remove" action="/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito" method="POST">
+           <form class="remove" action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=cancellapreferito" method="POST">
     <input type="hidden" id="id_azienda"  name="id_azienda" value="<?php echo $id_azienda; ?>">
                 <input type="submit" class="remove" value="" name="submit" id="submit">
          </form>
