@@ -19,7 +19,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
    </p>
    <!--article che riguarda la ricerca-->
    <div class="form-cliente">
-      <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php" method="POST">
          <input type="text" name="citta" value="<?php if (isset($_POST['citta'])) echo $_POST['citta']; else echo "Dove";?> " title="inserisci il luogo dove fare la ricerca" size="24" onFocus="this.value=''">    
          <select name="tipo_attivita_id" id="tipo_attivita_id" title="scegli il tipo di attivit&agrave; che vuoi cercare">
             <?php
