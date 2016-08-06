@@ -1,8 +1,8 @@
 <!--seconda parte della registrazione di una nuova azienda.
 Inserimento dei dati veri e propri che riguardano un'azienda-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>    
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>    
 <?php
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    //cancellare errori rimasti in sessione
    $_SESSION['step2']=1; 
    ?>
@@ -15,7 +15,7 @@ Inserimento dei dati veri e propri che riguardano un'azienda-->
    </h3>
    <div>
       <div class="form-generic">
-         <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
+         <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
             <p class="submitrec"> <label for="name_azienda">Nome Azienda</label></p>
             <input type="text" name="name_azienda" id="name_azienda" value="<?php if (isset($_POST['name_azienda'])) echo $_POST['name_azienda']; ?>" title="inserisci il nome della tua azienda"> <?php if (isset($_SESSION['name_azienda'])) echo $_SESSION['name_azienda']; ?>
             <p class="submitrec" ><label for="tipo_attivita_id">Tipo di attivit&agrave;</label></p>
