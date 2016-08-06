@@ -1,9 +1,9 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/vota.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/preferiti.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/commenta.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/segnalazione.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/vota.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/rapporto_qualita_prezzo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/preferiti.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/commenta.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/segnalazione.js"></script>
 
 <article>
 <?php 
@@ -12,10 +12,10 @@
  */
 
 
-include_once '../model/UtenteFactory.php';
-include_once '../model/Azienda.php';
-include_once '../model/Utente.php';
-include_once '../model/Cliente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Azienda.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Utente.php';
+include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Cliente.php';
 
 
 if (session_status() != 2) session_start();
@@ -103,7 +103,7 @@ echo '<br>';
     
     //indirizzo, citta
     echo '<br>';
-          echo '<img src="/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
+          echo '<img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/address.png" alt="indirizzo" title="indirizzo" height="16" width="16">';
 
     echo "$indirizzo"; echo' , '; echo $citta;
     //tipo attività
@@ -129,11 +129,11 @@ echo '<br>';
    
   //recapiti
    echo '<br>';
-     echo '<img src="/SardiniaInFood/images/telephone.png" alt="telefono" title="telefono" height="16" width="16">';
+     echo '<img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/telephone.png" alt="telefono" title="telefono" height="16" width="16">';
     echo " $telefono"; 
-     echo '  <img src="/SardiniaInFood/images/email.png" alt="email" title="email" height="16" width="16">';
+     echo '  <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/email.png" alt="email" title="email" height="16" width="16">';
     echo " $email";
-    echo '  <img src="/SardiniaInFood/images/web.png" alt="sito web" title="sito web" height="16" width="16">';
+    echo '  <img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/web.png" alt="sito web" title="sito web" height="16" width="16">';
     echo " $sitoweb";
      echo "<br>";
 //servizi dell'azienda
@@ -173,7 +173,7 @@ echo "</div>";
 while($row = $recensioni->fetch_object()) {
 
     echo '<div class="recensione">';
-   echo'<img src="/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
+   echo'<img src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/user.png" alt="Immagine utente" title="ultimo commento" height="16" width="16">';
    // print $row->id;
    // print $row->id_aziende;
     
@@ -188,7 +188,7 @@ while($row = $recensioni->fetch_object()) {
      ?><!--se la recensione conetiene messaggi offensivi può essere segnalata con il flag
      la segnalazione va nella funzione "segnalazione" qui sotto che aggiorna
      la tabella Recensioni e la tabella Segnalazioni-->
-     <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="16" width="16" title="segnala" onclick ="return confirm('Conferma la segnalazione?');"> 
+     <input type="image" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="16" width="16" title="segnala" onclick ="return confirm('Conferma la segnalazione?');"> 
      <?php 
      
    echo '</div>';
@@ -314,7 +314,7 @@ if($preferito_valido=='VALID') {
 //delle Statistiche
   echo '<section id="stella">
 <h4>Inserisci nella lista dei preferiti</h4>
-<input id="inserisci_tra_i_preferiti" type="image" src="/SardiniaInFood/images/star.png" title = "aggiungi alla lista dei preferiti" alt="Aggiungi ai preferiti" height=32px width=32px>';
+<input id="inserisci_tra_i_preferiti" type="image" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/star.png" title = "aggiungi alla lista dei preferiti" alt="Aggiungi ai preferiti" height=32px width=32px>';
 }
 else
 {}
