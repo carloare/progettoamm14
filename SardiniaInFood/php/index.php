@@ -54,7 +54,7 @@ class FrontController
 				$vd->setContentFile('view/out/home_page_default.php'); //home page default
 				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
 				$vd->setFooterFile('view/out/footer_home_page.php'); //footer
-				if ((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) 
+				if (((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) OR (isset($_SESSION['risultati']))) 
 				{
                                     session_destroy();
 				}
