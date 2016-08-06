@@ -50,10 +50,10 @@ class FrontController
 				// home page visualizzata di default
 
 			case 0:                            
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_home_page.php'); //menu 
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/home_page_default.php'); //home page default
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php'); //specifica la presenza di eventuali errori
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_home_page.php'); //footer
+				$vd->setMenuFile('view/out/menu_home_page.php'); //menu 
+				$vd->setContentFile('view/out/home_page_default.php'); //home page default
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setFooterFile('view/out/footer_home_page.php'); //footer
 				if ((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) 
 				{
                                                                         
