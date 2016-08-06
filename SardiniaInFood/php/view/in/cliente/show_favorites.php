@@ -1,12 +1,12 @@
-<script type="text/javascript" src="/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/cancella_dai_preferiti.js"></script>
 
 <?php if (session_status() != 2) session_start();?>
 
 
 
 <h2>Filtra tra i preferiti</h2>
- <form action="/SardiniaInFood/php/controller/ClienteController.php" method="POST">
+ <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php" method="POST">
 
      
 <input type="text" name="citta_preferiti" value="<?php
@@ -196,7 +196,7 @@ $sitoweb
         ";  
   ?>          
 
-<input type="image" src="/SardiniaInFood/images/arrows.png" id="<?php echo $id_azienda;?>" alt="cancella dai preferiti" height="32" width="32" title="Cancella dai preferiti">
+<input type="image" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/arrows.png" id="<?php echo $id_azienda;?>" alt="cancella dai preferiti" height="32" width="32" title="Cancella dai preferiti">
  
 <?php    
 echo "</div>";
