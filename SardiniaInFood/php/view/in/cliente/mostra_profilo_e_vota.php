@@ -192,7 +192,7 @@
                $id_recensione= $row->id; $segnalato = UtenteFactory::segnalato($id_recensione, $current_id); 
                if($segnalato==0) {?>     
             <div id="<?php echo $row->id; ?>">
-               <input type="image" src="/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="questa relazione contiene parole offensive" height="24" width="24" title="segnala questa recensione" onclick ="return confirm('Conferma la segnalazione?');"> 
+               <input type="image" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/flag.png" id="<?php echo $row->id;?>" alt="segnalazione" height="24" width="24" title="segnala questa recensione" onclick ="return confirm('Conferma la segnalazione?');"> 
             </div>
             <?php } else {}
                }          ?>    
