@@ -1,9 +1,9 @@
 <!--pagina di moderazione delle recensioni / commenti.-->
-<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/banna.js"></script>
-<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/richiamo.js"></script>
-<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/falsa_segnalazione.js"></script>
-<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
-<script type="text/javascript" src="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/js/customize-amm.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/banna.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/richiamo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/falsa_segnalazione.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/customize-amm.js"></script>
 <?php   
    include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    //conta il numero delle recensioni
