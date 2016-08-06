@@ -56,7 +56,6 @@ class FrontController
 				$vd->setFooterFile('view/out/footer_home_page.php'); //footer
 				if ((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) 
 				{
-			            unset($_SESSION['risultati']);
                                     session_destroy();
 				}
 
