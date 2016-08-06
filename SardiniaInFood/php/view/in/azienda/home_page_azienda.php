@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
-   include_once '/home/amm/development/SardiniaInFood/php/model/UtenteFactory.php';
+   include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    ?>
 <?php 
    if (session_status() != 2) session_start();
