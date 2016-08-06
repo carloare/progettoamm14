@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         $.ajax({ //spedizione a AmministratoreController per bannare un cliente
             type: "POST",
-            url: "/SardiniaInFood/php/controller/AmministratoreController.php?cmd=falsa_segnalazione",
+            url: "http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AmministratoreController.php?cmd=falsa_segnalazione",
             data: "id_recensione=" + vector[0],
             dataType: "text"
 
