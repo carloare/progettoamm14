@@ -1754,7 +1754,8 @@ display: block;
 ========================================================================== */
 .errore,
 .avviso,
-.successo {
+.successo,
+.avviso-amministratore {
 font-size: 16px;
 width: 530px;
 background-size: 35px 35px;
@@ -2226,7 +2227,8 @@ font-size: 14px;
 ========================================================================== */
 .errore,
 .avviso,
-.successo {
+.successo,
+.avviso-amministratore {
 font-size: 14px;
 width: 300px;
 background-size: 35px 35px;
@@ -2760,7 +2762,8 @@ font-size: 12px;
 ========================================================================== */
 .errore,
 .avviso,
-.successo {
+.successo,
+.avviso-amministratore {
 font-size: 14px;
 width: 160px;
 background-size: 30px 30px;
