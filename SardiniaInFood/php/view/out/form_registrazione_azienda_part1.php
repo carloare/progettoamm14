@@ -1,6 +1,6 @@
 <!--pagina parte della registrazione di una nuova azienda.
 Un utente che vuole registrare la propria azienda deve prima inserire i propri dati personali-->
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php
    include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/UtenteFactory.php';
    ?>
@@ -12,7 +12,7 @@ Un utente che vuole registrare la propria azienda deve prima inserire i propri d
       Dati personali
    </h3>
    <div class="form-generic">
-      <form action="/SardiniaInFood/php/controller/BaseController.php" method="POST">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
          <p class="submitrec"> <label for="nome_completo_azienda">Nome Completo</label></p>
          <input type="text" name="nome_completo_azienda" id="nome_completo_azienda" value="<?php if (isset($_POST['nome_completo_azienda']) AND $_POST['ruolo'] == 1) echo $_POST['nome_completo_azienda']; ?>" 
             title="inserisci il tuo nome completo"> <?php if (isset($_SESSION['nome_completo_azienda'])) echo $_SESSION['nome_completo_azienda']; ?> 
