@@ -13,7 +13,7 @@ include_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/model/Uten
 echo '
     <li>
         <li>     
-                    <a href="?cmd=back_clear_home_page" title="cancella i risultati ottenuti" method="POST">PULISCI RICERCA</a>
+                    <a href="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php?cmd=back_clear_home_page" title="cancella i risultati ottenuti" method="POST">PULISCI RICERCA</a>
         </li>
     </li>
 ';
