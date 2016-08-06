@@ -1123,103 +1123,103 @@ font-size: 16px;
 select#tipo_attivita_id option[value="-1"] {
 }
 select#tipo_attivita_id option[value="1"] {
-background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="2"] {
-background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="3"] {
-background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="4"] {
-background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="5"] {
-background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="6"] {
-background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="7"] {
-background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="8"] {
-background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="9"] {
-background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="10"] {
-background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="11"] {
-background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="12"] {
-background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="13"] {
-background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="14"] {
-background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="15"] {
-background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
+background: url("/http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="16"] {
-background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id option[value="17"] {
-background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
@@ -1227,103 +1227,103 @@ background-size: 25px 25px;
 select#tipo_attivita_id_preferiti option[value="-1"] {
 }
 select#tipo_attivita_id_preferiti option[value="1"] {
-background: url("/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Agriturismo.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="2"] {
-background: url("/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/American Bar.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="3"] {
-background: url("/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Bar Caffe.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="4"] {
-background: url("/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Birreria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="5"] {
-background: url("/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Bistrot.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="6"] {
-background: url("/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Fast Food.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="7"] {
-background: url("/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Gelateria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="8"] {
-background: url("/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Osteria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="9"] {
-background: url("/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pasticceria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="10"] {
-background: url("/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pizzeria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="11"] {
-background: url("/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Pub.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="12"] {
-background: url("/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Ristorante.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="13"] {
-background: url("/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Self Service.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="14"] {
-background: url("/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Snak Bar.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="15"] {
-background: url("/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Take Away.png")no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="16"] {
-background: url("/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Trattoria.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
 }
 select#tipo_attivita_id_preferiti option[value="17"] {
-background: url("/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
+background: url("http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/images/Altro.png") no-repeat 5px 2px;
 padding-left: 100px;
 padding-top: 5px;
 background-size: 25px 25px;
