@@ -33,7 +33,7 @@ class FrontController
 		// di default. Da qui si accede alle varie funzionalità.
 
 		$vd->setTitolo("Home SardegnaInFood");
-		$vd->setLogoFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/logo.php');
+		$vd->setLogoFile('view/out/logo.php');
 		
                 $value = $_GET['page'];
 		
@@ -50,10 +50,10 @@ class FrontController
 				// home page visualizzata di default
 
 			case 0:                            
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_home_page.php'); //menu 
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/home_page_default.php'); //home page default
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php'); //specifica la presenza di eventuali errori
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_home_page.php'); //footer
+				$vd->setMenuFile('view/out/menu_home_page.php'); //menu 
+				$vd->setContentFile('view/out/home_page_default.php'); //home page default
+				$vd->setErrorFile('view/out/error_out.php'); //specifica la presenza di eventuali errori
+				$vd->setFooterFile('view/out/footer_home_page.php'); //footer
 				if (((isset($_GET['logout'])) AND (isset($_SESSION['current_user']))) OR (isset($_SESSION['risultati']))) 
 				{
                                     session_destroy();
@@ -67,19 +67,19 @@ class FrontController
                              session_destroy();
                              session_start();
                              
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php'); //menu del form di registrazione del cliente
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/form_registrazione_cliente.php'); //form per la registrazione di un nuovo cliente
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php');
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+				$vd->setMenuFile('view/out/menu_back.php'); //menu del form di registrazione del cliente
+				$vd->setContentFile('view/out/form_registrazione_cliente.php'); //form per la registrazione di un nuovo cliente
+				$vd->setErrorFile('view/out/error_out.php');
+				$vd->setFooterFile('view/out/footer_empty.php');
 				break;
 
 				// login cliente
 
 			case 2:
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php'); //menu del form di login di un cliente
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/login_cliente.php'); //form login cliente
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php');
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+				$vd->setMenuFile('view/out/menu_back.php'); //menu del form di login di un cliente
+				$vd->setContentFile('view/out/login_cliente.php'); //form login cliente
+				$vd->setErrorFile('view/out/error_out.php');
+				$vd->setFooterFile('view/out/footer_empty.php');
 				break;
 
 				// form di registrazione dell'azienda
@@ -88,28 +88,28 @@ class FrontController
                              session_destroy();
                              session_start();
                              
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php'); //menu registrazione azienda
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/form_registrazione_azienda_part1.php'); //form per la registrazione di una nuova azienda (parte 1 di 3)
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php');
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+				$vd->setMenuFile('view/out/menu_back.php'); //menu registrazione azienda
+				$vd->setContentFile('view/out/form_registrazione_azienda_part1.php'); //form per la registrazione di una nuova azienda (parte 1 di 3)
+				$vd->setErrorFile('view/out/error_out.php');
+				$vd->setFooterFile('view/out/footer_empty.php');
 				break;
 
 				// login azienda
 
 			case 4:
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php');  //menu login azienda
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/login_azienda.php'); 
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_out.php');
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+				$vd->setMenuFile('view/out/menu_back.php');  //menu login azienda
+				$vd->setContentFile('view/out/login_azienda.php'); 
+				$vd->setErrorFile('view/out/error_out.php');
+				$vd->setFooterFile('view/out/footer_empty.php');
 				break;
 
                                 //login amministratore                            
                             
 			case 5:
-				$vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php'); //menu amministratore
-				$vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/login_amm.php'); //login amministratore
-				$vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_empty.php');
-				$vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+				$vd->setMenuFile('view/out/menu_back.php'); //menu amministratore
+				$vd->setContentFile('view/out/login_amm.php'); //login amministratore
+				$vd->setErrorFile('view/out/error_empty.php');
+				$vd->setFooterFile('view/out/footer_empty.php');
 				break;
 
 			default:
@@ -119,7 +119,7 @@ class FrontController
 
 			// richiamo la vista
 
-			require_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php';
+			require_once 'view/Master.php';
 
 		} 
 		
@@ -131,13 +131,13 @@ class FrontController
             $vd = new ViewDescriptor();
             
             $vd->setTitolo("Errore SardegnaInFood");
-            $vd->setLogoFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/logo.php');
-            $vd->setMenuFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/menu_back.php');
-            $vd->setContentFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/errore404.php'); 
-            $vd->setErrorFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/error_empty.php');
-	    $vd->setFooterFile('http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/view/out/footer_empty.php');
+            $vd->setLogoFile('view/out/logo.php');
+            $vd->setMenuFile('view/out/menu_back.php');
+            $vd->setContentFile('view/out/errore404.php'); 
+            $vd->setErrorFile('view/out/error_empty.php');
+	    $vd->setFooterFile('view/out/footer_empty.php');
            
-           require_once '/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/view/Master.php';
+           require_once 'view/Master.php';
 	}
 
 	
