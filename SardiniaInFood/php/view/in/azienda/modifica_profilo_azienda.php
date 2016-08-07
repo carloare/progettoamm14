@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php 
    if (session_status() != 2) session_start();
    
@@ -23,7 +23,7 @@
       Dati azienda
    </h3>
    <div class="form-generic">
-      <form action="/SardiniaInFood/php/controller/AziendaController.php" method="post">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AziendaController.php" method="post">
          <!--fare tutto cosi-->
          <p class="submitrec"><label for="name_azienda">Nome Azienda:</label></p>
          <input type="text" name="name_azienda" id="name_azienda" value="<?php if(isset($_REQUEST['name_azienda'])) echo $_REQUEST['name_azienda']; else { echo $azienda->getNomeAzienda();} ?>" title="modifica il nome della tua azienda"> 
