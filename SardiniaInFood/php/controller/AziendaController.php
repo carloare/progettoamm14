@@ -334,7 +334,7 @@ class AziendaController
             if (1 === preg_match(citta_regexpr, $company_city)) {
                 $utente->setCitta($company_city);
             } else {
-                $_SESSION['city_azienda'] = "<br><div class='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
+                $_SESSION['city_azienda'] = "<div class='messaggio-errore'>Il campo citt&agrave; non &egrave; valido.<br>Verifica eventuali errori di battitura.</div>";
                 $error_rec++;
             }
         } else {
