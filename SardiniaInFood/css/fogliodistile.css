@@ -1734,7 +1734,8 @@ color: #fff;
 .form-generic {
 width: 590px;
 }
-.form-generic input[type="text"] {
+.form-generic input[type="text"],
+.form-generic input[type="email"]{
 font-size: 14px;
 }
 .form-generic textarea {
@@ -2198,7 +2199,8 @@ color: #fff;
 margin: 0px 20px;
 width: 380px;
 }
-.form-generic input[type="text"] {
+.form-generic input[type="text"],
+.form-generic input[type="email"] {
 font-size: 14px;
 }
 .form-generic input[type="password"].submitrec {
@@ -2726,7 +2728,8 @@ color: #fff;
 margin: 0px 20px;
 width: 240px;
 }
-.form-generic input[type="text"] {
+.form-generic input[type="text"],
+.form-generic input[type="email"]{
 font-size: 12px;
 }
 .form-generic select {
