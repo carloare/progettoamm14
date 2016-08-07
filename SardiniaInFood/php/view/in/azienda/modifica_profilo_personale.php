@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php 
    if (session_status() != 2) session_start();
    
@@ -22,7 +22,7 @@
       Dati personali
    </h3>
    <div class="form-generic">
-      <form action="/SardiniaInFood/php/controller/AziendaController.php" method="post">
+      <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AziendaController.php" method="post">
          <p class="submitrec"> <label for="nome_completo_azienda">Nome Completo:</label></p>
          <input type="text" name="nome_completo_azienda" id="nome_completo_azienda" value="<?php echo $azienda->getNomeCompleto(); ?>" title="modifica il tuo nome completo">
          <?php if (isset($_SESSION['nome_completo_azienda'])) echo $_SESSION['nome_completo_azienda'];?> 
