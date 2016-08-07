@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/SardiniaInFood/js/eliminasfondo.js"></script>
+<script type="text/javascript" src="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/js/eliminasfondo.js"></script>
 <?php 
    if (session_status() != 2) session_start();
    $azienda = $_SESSION['current_user'];
@@ -15,7 +15,7 @@
    </h3>
    <div>
       <div class="form-generic">
-         <form action="/SardiniaInFood/php/controller/AziendaController.php" method="POST">
+         <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/AziendaController.php" method="POST">
             <?php  
                //verifica se l'azienda offre effettivamente dei servizi
                $result=UtenteFactory::verificaServiziOfferti($id_azienda);
