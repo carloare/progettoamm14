@@ -1,2 +1,0 @@
-RewriteEngine on
-RewriteRule ^/SardiniaInFood/php/home.html$ /SardiniaInFood/php/index.php?page=0 [L]
