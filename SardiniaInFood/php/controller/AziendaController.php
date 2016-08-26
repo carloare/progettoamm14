@@ -56,9 +56,6 @@ class AziendaController
     
     
     
-/*                             FUNZIONI
-========================================================================== */
-    
 /* CANCELLA IL PROFILO DELL'AZIENDA
 ========================================================================== */
     //permette di cancellare il profilo il profilo di un'azienda
