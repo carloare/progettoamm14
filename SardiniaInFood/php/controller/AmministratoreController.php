@@ -82,7 +82,7 @@ class AmministratoreController
     
 /* RICHIAMA
 ========================================================================== */
-    //effettua un richjiamo
+    //effettua un richiamo
     public static function richiama()
     {
         echo 'ciao';
