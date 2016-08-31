@@ -13,10 +13,10 @@ if (session_status() != 2)
    ?>
 <div id="box-form-home">
    <h1 class="white">
-      Sardinia in food
+      SardiniaInFood
    </h1>
    <p class="center white">
-      Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
+     Benvenuto su SardiniaInFood. Qui potrai effettuare la ricerca della tua attivit&agrave;  di ristorazione.
    </p>
    <!--form di ricerca tra tutte le aziende iscritte in SardiniaInFood-->
    <div class="form-home">
