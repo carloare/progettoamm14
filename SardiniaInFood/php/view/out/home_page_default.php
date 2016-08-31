@@ -16,7 +16,7 @@ if (session_status() != 2)
       SardiniaInFood
    </h1>
    <p class="center white">
-     Benvenuto su SardiniaInFood. Qui potrai effettuare la ricerca della tua attivit&agrave;  di ristorazione.
+     Benvenuto su SardiniaInFood. Qui potrai effettuare la ricerca della tua attivit&agrave;  di ristorazione che preferisci.
    </p>
    <!--form di ricerca tra tutte le aziende iscritte in SardiniaInFood-->
    <div class="form-home">
