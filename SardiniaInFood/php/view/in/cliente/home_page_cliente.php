@@ -15,7 +15,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
       <?php echo 'Benvenuto '. $nome_completo; ?>
    </h1>
    <p class="center white">
-      Ricerca la tua attivit&agrave; di ristorazione.
+      Ricerca l'attivit&agrave; di ristorazione che preferisci.
    </p>
    <!--article che riguarda la ricerca-->
    <div class="form-cliente">
