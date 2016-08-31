@@ -15,7 +15,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
       <?php echo 'Benvenuto '. $nome_completo; ?>
    </h1>
    <p class="center white">
-      Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
+      Ricerca la tua attivit&agrave; di ristorazione.
    </p>
    <!--article che riguarda la ricerca-->
    <div class="form-cliente">
