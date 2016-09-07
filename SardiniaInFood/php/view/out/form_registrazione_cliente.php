@@ -4,9 +4,9 @@
    <h1 class="white">
       Registrazione nuovo cliente
    </h1>
-   <h3 class="center white">
+   <p class="center white">
       Inserisci i tuoi dati personali. 
-   </h3>
+   </p>
    <div class="form-generic">
       <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
          <p class="submitrec"><label for="nome_completo_cliente">Nome Completo</label></p>
