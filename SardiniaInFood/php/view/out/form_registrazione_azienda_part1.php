@@ -8,7 +8,7 @@ Un utente che vuole registrare la propria azienda deve prima inserire i propri d
    <h1 class="white">
       Registrazione nuova azienda
    </h1>
-   <h3 class="white" >
+   <h3 class="center white" >
       Inserisci i tuoi dati personali.
    </h3>
    <div class="form-generic">
