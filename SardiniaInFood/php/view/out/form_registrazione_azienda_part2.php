@@ -10,7 +10,7 @@ Inserimento dei dati veri e propri che riguardano un'azienda-->
    <h1 class="white">
       Registrazione nuova azienda
    </h1>
-   <h3 class="white" >
+   <h3 class="center white" >
       Inserisci i dati dell'azienda.
    </h3>
    <div>
