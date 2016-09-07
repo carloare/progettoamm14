@@ -34,7 +34,7 @@ la seconda contiene i preferiti-->
       Filtra tra i preferiti
    </h1>
    <p class="center white">
-      Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
+      Filtra tra la lista delle aziende inserite nella lista dei preferiti.
    </p>
      <div class="form-ricerca">
       <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/ClienteController.php" method="POST">
