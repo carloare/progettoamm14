@@ -16,7 +16,7 @@ if (session_status() != 2)
       SardiniaInFood
    </h1>
    <p class="center white">
-     Benvenuto su SardiniaInFood. Qui potrai cercare l'attivit&agrave;  di ristorazione che preferisci tra le principali citt&agrave; della Sardegna.
+     Benvenuto su SardiniaInFood. Qui potrai cercare l'attivit&agrave;  di ristorazione che preferisci nelle principali citt&agrave; della Sardegna.
    </p>
    <!--form di ricerca tra tutte le aziende iscritte in SardiniaInFood-->
    <div class="form-home">
