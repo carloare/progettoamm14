@@ -6,7 +6,7 @@ Permette di selezionare tutti gli eventuali servizi offerti-->
         Registrazione nuova azienda
     </h1>
     <h3 class="white" >
-        Servizi offerti
+        Spunta i servizi offerti
     </h3>
     <div>
         <div class="form-generic">
