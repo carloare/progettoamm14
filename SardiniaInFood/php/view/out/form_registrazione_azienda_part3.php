@@ -5,7 +5,7 @@ Permette di selezionare tutti gli eventuali servizi offerti-->
     <h1 class="white">
         Registrazione nuova azienda
     </h1>
-    <h3 class="white" >
+    <h3 class="center white" >
         Spunta i servizi offerti
     </h3>
     <div>
