@@ -11,7 +11,7 @@ Inserimento dei dati veri e propri che riguardano un'azienda-->
       Registrazione nuova azienda
    </h1>
    <h3 class="white" >
-      Dati azienda
+      Inserisci i dati dell'azienda.
    </h3>
    <div>
       <div class="form-generic">
