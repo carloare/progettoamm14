@@ -15,7 +15,7 @@ della ricerca; qui permette già di inserire le aziende nella lista dei preferit
       <?php echo 'Benvenuto '. $nome_completo; ?>
    </h1>
    <p class="center white">
-      Benvenuto su SardiniaInFood. Qui potrai cercare, votare e scrivire una recensione sulle attivit&agrave;  di ristorazione che si trovano tra le principali citt&agrave; della Sardegna.
+      Benvenuto su SardiniaInFood. Qui potrai cercare, votare e scrivire una recensione sulle attivit&agrave;  di ristorazione che si trovano nelle principali citt&agrave; della Sardegna.
    </p>
    <!--article che riguarda la ricerca-->
    <div class="form-cliente">
