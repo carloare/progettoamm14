@@ -5,7 +5,7 @@
       Registrazione nuovo cliente
    </h1>
    <p class="center white">
-      Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. 
+      Inserisci i tuoi dati personali. 
    </p>
    <div class="form-generic">
       <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" id="registrazione_cliente" method="POST">
