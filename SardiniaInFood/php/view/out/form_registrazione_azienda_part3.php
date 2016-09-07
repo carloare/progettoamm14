@@ -5,9 +5,9 @@ Permette di selezionare tutti gli eventuali servizi offerti-->
     <h1 class="white">
         Registrazione nuova azienda
     </h1>
-    <h3 class="center white" >
+    <p class="center white" >
         Spunta i servizi offerti
-    </h3>
+    </p>
     <div>
         <div class="form-generic">
             <form action="/home/amm/repoAmm/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
