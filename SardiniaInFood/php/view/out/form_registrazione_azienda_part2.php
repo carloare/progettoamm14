@@ -10,9 +10,9 @@ Inserimento dei dati veri e propri che riguardano un'azienda-->
    <h1 class="white">
       Registrazione nuova azienda
    </h1>
-   <h3 class="center white" >
+   <p class="center white">
       Inserisci i dati dell'azienda.
-   </h3>
+   </p>
    <div>
       <div class="form-generic">
          <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
