@@ -9,7 +9,7 @@ Un utente che vuole registrare la propria azienda deve prima inserire i propri d
       Registrazione nuova azienda
    </h1>
    <h3 class="white" >
-      Dati personali
+      Inserisci i tuoi dati personali.
    </h3>
    <div class="form-generic">
       <form action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
