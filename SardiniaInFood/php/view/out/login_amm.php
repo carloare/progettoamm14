@@ -5,9 +5,6 @@
    <h1 class="white">
       Login Amministratore
    </h1>
-   <p class="center white">
-      Gregorio Samsa, svegliandosi una mattina da sogni agitati, si trovò trasformato, nel suo letto, in un enorme insetto immondo. Riposava sulla schiena, dura come una corazza, e sollevando un poco il capo vedeva il suo ventre arcuato, bruno e diviso in tanti segmenti ricurvi, in cima a cui la coperta da letto, vicina a scivolar giù tutta, si manteneva a fatica.
-   </p>
    <div class="form-generic">
       <form name="login_form" action="http://spano.sc.unica.it/amm2014/aresuCarlo/SardiniaInFood/php/controller/BaseController.php" method="POST">
          <input type="text" name="username_amm" value="Username" title="" id="username" class="submitlogin"onfocus="this.value=''" > 
